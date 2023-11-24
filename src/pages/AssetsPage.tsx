@@ -1,7 +1,16 @@
-import { Heading } from "@chakra-ui/react";
+import { Container, Heading } from "@chakra-ui/react";
+import AssetsTable from "../components/AssetsTable";
 
 const AssetsPage = () => {
-  return <Heading>Assets</Heading>;
+  return (
+    <>
+      <Container maxW="container.xl">
+        <Heading mb={10}>Assets</Heading>
+
+        <AssetsTable />
+      </Container>
+    </>
+  );
 };
 
 export default AssetsPage;
