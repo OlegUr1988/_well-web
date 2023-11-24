@@ -31,7 +31,7 @@ const AssetsTable = () => {
               <Td>{asset.id}</Td>
               <Td>{asset.name}</Td>
               <Td textAlign="right">
-                <Link to={`/configs/assets/:${asset.id}`}>
+                <Link to={`/config/assets/:${asset.id}`}>
                   <Button bg="lightblue">Modify</Button>
                 </Link>
               </Td>
