@@ -10,6 +10,10 @@ class APIClient<T> {
   getAll = () => {
     return axiosInstance.get<T[]>(this.endpoint).then((res) => res.data);
   };
+
+  createAsset = (asset: T) => {
+    return axiosInstance.post<T>(this.endpoint, asset).then((res) => res.data);
+  };
 }
 
 export default APIClient;
