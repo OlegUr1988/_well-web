@@ -32,11 +32,11 @@ const AssetsTable = () => {
               <Td>{asset.name}</Td>
               <Td textAlign="right">
                 <Link to={`/config/assets/:${asset.id}`}>
-                  <Button bg="lightblue">Modify</Button>
+                  <Button colorScheme="yellow">Modify</Button>
                 </Link>
               </Td>
               <Td textAlign="right">
-                <Button bg="red">Delete</Button>
+                <Button colorScheme="red">Delete</Button>
               </Td>
             </Tr>
           ))}
