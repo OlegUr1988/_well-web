@@ -1,8 +1,11 @@
 import { Box, Button, Container, Heading } from "@chakra-ui/react";
-import AssetsTable from "../components/AssetsTable";
 import { Link } from "react-router-dom";
+import AssetsTable from "../components/AssetsTable";
+import useAssets from "../hooks/useAssets";
 
 const AssetsPage = () => {
+  const { data: assets } = useAssets();
+
   return (
     <>
       <Container maxW="container.xl">
@@ -14,7 +17,7 @@ const AssetsPage = () => {
           </Link>
         </Box>
 
-        <AssetsTable />
+        <AssetsTable assets={assets!} />
       </Container>
     </>
   );

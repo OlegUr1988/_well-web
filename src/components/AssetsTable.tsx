@@ -9,11 +9,9 @@ import {
   Tr,
 } from "@chakra-ui/table";
 import { Link } from "react-router-dom";
-import useAssets from "../hooks/useAssets";
+import Asset from "../entities/Asset";
 
-const AssetsTable = () => {
-  const { data: assets } = useAssets();
-
+const AssetsTable = ({ assets }: { assets: Asset[] }) => {
   return (
     <TableContainer border="1px" borderRadius={10} borderColor="gray.200">
       <Table variant="striped">
