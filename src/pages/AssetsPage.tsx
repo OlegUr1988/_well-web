@@ -6,7 +6,7 @@ const AssetsPage = () => {
   return (
     <>
       <Container maxW="container.xl">
-        <Heading mb={10}>Assets</Heading>
+        <Heading mb={5}>Assets</Heading>
 
         <Box mb={5}>
           <Link to="/config/assets/new">
