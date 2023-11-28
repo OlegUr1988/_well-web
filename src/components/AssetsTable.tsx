@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/table";
 import { Link } from "react-router-dom";
 import Asset from "../entities/Asset";
+import DeleteAssetButton from "./DeleteAssetButton";
 
 const AssetsTable = ({ assets }: { assets: Asset[] }) => {
   return (
@@ -25,8 +26,8 @@ const AssetsTable = ({ assets }: { assets: Asset[] }) => {
         </Thead>
         <Tbody>
           {assets?.map((asset, index) => (
-            <Tr key={index + 1}>
-              <Td>{asset.id}</Td>
+            <Tr key={asset.id}>
+              <Td>{index + 1}</Td>
               <Td>{asset.name}</Td>
               <Td textAlign="right">
                 <Link to={`/config/assets/:${asset.id}`}>
@@ -34,7 +35,7 @@ const AssetsTable = ({ assets }: { assets: Asset[] }) => {
                 </Link>
               </Td>
               <Td textAlign="right">
-                <Button colorScheme="red">Delete</Button>
+                <DeleteAssetButton assetId={asset.id} />
               </Td>
             </Tr>
           ))}

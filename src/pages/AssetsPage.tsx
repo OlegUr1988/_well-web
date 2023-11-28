@@ -25,15 +25,19 @@ const AssetsPage = () => {
           <AssetsTable assets={assets?.results!} />
         </Box>
 
-        <Pagination
-          page={page}
-          count={assets?.count!}
-          pageSize={pageSize}
-          onFirstPagePress={() => setPage(1)}
-          onPreviousPagePress={() => setPage(page - 1)}
-          onNextPagePress={() => setPage(page + 1)}
-          onLastPagePress={() => setPage(Math.ceil(assets?.count! / pageSize))}
-        />
+        {assets?.count! > pageSize && (
+          <Pagination
+            page={page}
+            count={assets?.count!}
+            pageSize={pageSize}
+            onFirstPagePress={() => setPage(1)}
+            onPreviousPagePress={() => setPage(page - 1)}
+            onNextPagePress={() => setPage(page + 1)}
+            onLastPagePress={() =>
+              setPage(Math.ceil(assets?.count! / pageSize))
+            }
+          />
+        )}
       </Container>
     </>
   );
