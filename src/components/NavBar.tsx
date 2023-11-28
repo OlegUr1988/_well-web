@@ -3,7 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const { pathname } = useLocation();
-  const pathSegments = pathname.split("/").filter((segment) => segment !== "");
+  const pathSegments = pathname
+    .replace(":", "")
+    .split("/")
+    .filter((segment) => segment !== "");
 
   return (
     <Breadcrumb borderBottom="1px" p={3}>
