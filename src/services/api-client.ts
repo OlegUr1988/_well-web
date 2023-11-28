@@ -1,14 +1,21 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "http://localhost:3000/api",
 });
 
+export interface FetchResponse<T> {
+  count: number;
+  results: T[];
+}
+
 class APIClient<T> {
   constructor(private endpoint: string) {}
 
-  getAll = () => {
-    return axiosInstance.get<T[]>(this.endpoint).then((res) => res.data);
+  getAll = (config: AxiosRequestConfig) => {
+    return axiosInstance
+      .get<FetchResponse<T>>(this.endpoint, config)
+      .then((res) => res.data);
   };
 
   createAsset = (asset: T) => {

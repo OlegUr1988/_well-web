@@ -14,9 +14,9 @@ import Asset from "../entities/Asset";
 const AssetsTable = ({ assets }: { assets: Asset[] }) => {
   return (
     <TableContainer border="1px" borderRadius={10} borderColor="gray.200">
-      <Table variant="striped">
+      <Table variant="striped" size="sm">
         <Thead>
-          <Tr>
+          <Tr height={12}>
             <Th>#</Th>
             <Th>Asset</Th>
             <Th></Th>
@@ -24,8 +24,8 @@ const AssetsTable = ({ assets }: { assets: Asset[] }) => {
           </Tr>
         </Thead>
         <Tbody>
-          {assets?.map((asset) => (
-            <Tr key={asset.id}>
+          {assets?.map((asset, index) => (
+            <Tr key={index + 1}>
               <Td>{asset.id}</Td>
               <Td>{asset.name}</Td>
               <Td textAlign="right">

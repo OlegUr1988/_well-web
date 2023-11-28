@@ -1,13 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import Asset from "../entities/Asset";
-import APIClient from "../services/api-client";
+import APIClient, { FetchResponse } from "../services/api-client";
 
 const apiClient = new APIClient<Asset>("/assets");
 
-const useAssets = () => {
-  return useQuery<Asset[], Error>({
-    queryKey: ["assets"],
-    queryFn: apiClient.getAll,
+export interface AssetQuery {
+  page?: number;
+  pageSize?: number;
+}
+
+const useAssets = (query: AssetQuery) => {
+  return useQuery<FetchResponse<Asset>, Error>({
+    queryKey: ["assets", query],
+    queryFn: () => apiClient.getAll({ params: query }),
+    placeholderData: keepPreviousData,
   });
 };
 
