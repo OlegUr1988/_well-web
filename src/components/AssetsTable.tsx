@@ -30,7 +30,7 @@ const AssetsTable = ({ assets }: { assets: Asset[] }) => {
               <Td>{index + 1}</Td>
               <Td>{asset.name}</Td>
               <Td textAlign="right">
-                <Link to={`/config/assets/:${asset.id}`}>
+                <Link to={`/config/assets/${asset.id}`}>
                   <Button colorScheme="yellow">Modify</Button>
                 </Link>
               </Td>
