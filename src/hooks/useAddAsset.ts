@@ -6,7 +6,7 @@ const apiClient = new APIClient<CreateAsset>("/assets");
 
 const useAddAsset = () => {
   return useMutation<CreateAsset, Error, CreateAsset>({
-    mutationFn: apiClient.createAsset,
+    mutationFn: apiClient.post,
   });
 };
 

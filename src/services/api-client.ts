@@ -18,7 +18,19 @@ class APIClient<T> {
       .then((res) => res.data);
   };
 
-  createAsset = (asset: T) => {
+  get = (id: string | number) => {
+    return axiosInstance
+      .get<T>(this.endpoint + "/" + id)
+      .then((res) => res.data);
+  };
+
+  put = (id: string | number, asset: T) => {
+    return axiosInstance
+      .put<T>(this.endpoint + "/" + id, asset)
+      .then((res) => res.data);
+  };
+
+  post = (asset: T) => {
     return axiosInstance.post<T>(this.endpoint, asset).then((res) => res.data);
   };
 

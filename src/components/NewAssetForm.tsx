@@ -9,17 +9,20 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAddAsset from "../hooks/useAddAsset";
 import useAssetForm from "../hooks/useAssetForm";
+import { useQueryClient } from "@tanstack/react-query";
 
 const NewAssetForm = () => {
   const createAsset = useAddAsset();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { register, handleSubmit, onSubmit, errors } = useAssetForm(
     async (data) => {
       try {
         await createAsset.mutateAsync(data);
         toast.success("A new asset was created");
-        navigate("/config/assets", { replace: true });
+        queryClient.invalidateQueries();
+        navigate("/config/assets");
       } catch (error) {
         const { message } = error as Error;
         toast.error(message);
