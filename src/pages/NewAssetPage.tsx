@@ -1,12 +1,12 @@
 import { Heading } from "@chakra-ui/react";
-import AssetForm from "../components/AssetForm";
+import NewAssetForm from "../components/NewAssetForm";
 
 const NewAssetPage = () => {
   return (
     <>
       <Heading mb={5}>Create a new asset</Heading>
 
-      <AssetForm />
+      <NewAssetForm />
     </>
   );
 };

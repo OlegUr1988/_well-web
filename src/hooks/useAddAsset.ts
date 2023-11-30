@@ -4,10 +4,10 @@ import APIClient from "../services/api-client";
 
 const apiClient = new APIClient<CreateAsset>("/assets");
 
-const useCreateAsset = () => {
+const useAddAsset = () => {
   return useMutation<CreateAsset, Error, CreateAsset>({
     mutationFn: apiClient.createAsset,
   });
 };
 
-export default useCreateAsset;
+export default useAddAsset;
