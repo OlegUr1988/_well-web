@@ -1,4 +1,4 @@
-import { Box, Button, Container, Heading } from "@chakra-ui/react";
+import { Box, Button, Container, Heading, Skeleton } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AssetsTable from "../components/AssetsTable";
@@ -8,7 +8,9 @@ import Pagination from "../components/Pagination";
 const AssetsPage = () => {
   const [page, setPage] = useState(1);
   const pageSize = 10;
-  const { data: assets } = useAssets({ page, pageSize });
+  const { data: assets, isLoading, error } = useAssets({ page, pageSize });
+
+  if (error) return null;
 
   return (
     <>
@@ -22,7 +24,11 @@ const AssetsPage = () => {
         </Box>
 
         <Box mb={5}>
-          <AssetsTable assets={assets?.results!} />
+          {isLoading ? (
+            <Skeleton h={400} borderRadius={10} />
+          ) : (
+            <AssetsTable assets={assets?.results!} />
+          )}
         </Box>
 
         {assets?.count! > pageSize && (
