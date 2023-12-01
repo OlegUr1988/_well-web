@@ -4,11 +4,22 @@ import { Link } from "react-router-dom";
 import AssetsTable from "../components/AssetsTable";
 import useAssets from "../hooks/useAssets";
 import Pagination from "../components/Pagination";
+import SearchInput from "../components/SearchInput";
 
 const AssetsPage = () => {
   const [page, setPage] = useState(1);
+  const [searchedName, setSearchedName] = useState("");
   const pageSize = 10;
-  const { data: assets, isLoading, error } = useAssets({ page, pageSize });
+  const {
+    data: assets,
+    isLoading,
+    error,
+  } = useAssets({ page, pageSize, searchedName });
+
+  const handleSearch = (text: string) => {
+    setSearchedName(text);
+    setPage(1);
+  };
 
   if (error) return null;
 
@@ -21,6 +32,10 @@ const AssetsPage = () => {
           <Link to="/config/assets/new">
             <Button colorScheme="blue">Create asset</Button>
           </Link>
+        </Box>
+
+        <Box mb={3}>
+          <SearchInput onSearch={(e) => handleSearch(e)} />
         </Box>
 
         <Box mb={5}>

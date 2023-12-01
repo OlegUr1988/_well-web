@@ -7,6 +7,7 @@ const apiClient = new APIClient<Asset>("/assets");
 export interface AssetQuery {
   page?: number;
   pageSize?: number;
+  searchedName?: string
 }
 
 const useAssets = (query: AssetQuery) => {
