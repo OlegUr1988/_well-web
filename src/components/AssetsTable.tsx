@@ -11,6 +11,8 @@ import {
 import { Link } from "react-router-dom";
 import Asset from "../entities/Asset";
 import DeleteAssetButton from "./DeleteAssetButton";
+import moment from "moment";
+import timeFormat from "../constants/timeFormat";
 
 const AssetsTable = ({ assets }: { assets: Asset[] }) => {
   return (
@@ -19,7 +21,11 @@ const AssetsTable = ({ assets }: { assets: Asset[] }) => {
         <Thead>
           <Tr height={12}>
             <Th>#</Th>
-            <Th>Asset</Th>
+            <Th w={300} textAlign="center">
+              Asset
+            </Th>
+            <Th textAlign="center">Created</Th>
+            <Th textAlign="center">Last Modified</Th>
             <Th></Th>
             <Th></Th>
           </Tr>
@@ -28,7 +34,13 @@ const AssetsTable = ({ assets }: { assets: Asset[] }) => {
           {assets?.map((asset, index) => (
             <Tr key={asset.id}>
               <Td>{index + 1}</Td>
-              <Td>{asset.name}</Td>
+              <Td textAlign="center">{asset.name}</Td>
+              <Td textAlign="center">
+                {moment(asset.created_at).format(timeFormat)}
+              </Td>
+              <Td textAlign="center">
+                {moment(asset.updated_at).format(timeFormat)}
+              </Td>
               <Td textAlign="right">
                 <Link to={`/config/assets/${asset.id}`}>
                   <Button colorScheme="yellow">Modify</Button>
