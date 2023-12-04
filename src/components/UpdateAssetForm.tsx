@@ -4,7 +4,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
