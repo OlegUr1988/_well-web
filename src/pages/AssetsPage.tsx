@@ -1,10 +1,18 @@
-import { Box, Button, Container, Heading, Skeleton } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  HStack,
+  Heading,
+  Skeleton,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import AssetsTable from "../components/AssetsTable";
 import useAssets from "../hooks/useAssets";
 import Pagination from "../components/Pagination";
 import SearchInput from "../components/SearchInput";
+import AssetPanel from "../components/AssetPanel";
 
 const AssetsPage = () => {
   const [page, setPage] = useState(1);
@@ -20,7 +28,6 @@ const AssetsPage = () => {
     setSearchedName(text);
     setPage(1);
   };
-
   if (error) return null;
 
   return (
@@ -29,9 +36,7 @@ const AssetsPage = () => {
         <Heading mb={5}>Assets</Heading>
 
         <Box mb={5}>
-          <Link to="/config/assets/new">
-            <Button colorScheme="blue">Create asset</Button>
-          </Link>
+          <AssetPanel />
         </Box>
 
         <Box mb={3}>
