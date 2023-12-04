@@ -1,18 +1,15 @@
 import {
   Box,
-  Button,
   Container,
-  HStack,
   Heading,
-  Skeleton,
+  Skeleton
 } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import AssetPanel from "../components/AssetPanel";
 import AssetsTable from "../components/AssetsTable";
-import useAssets from "../hooks/useAssets";
 import Pagination from "../components/Pagination";
 import SearchInput from "../components/SearchInput";
-import AssetPanel from "../components/AssetPanel";
+import useAssets from "../hooks/useAssets";
 
 const AssetsPage = () => {
   const [page, setPage] = useState(1);
