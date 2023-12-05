@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AssetImport from "./AssetImport";
 
 const AssetPanel = () => {
-  const baseUrl = "http://localhost:3000/api/assets";
+  const baseUrl = "/api/assets";
 
   return (
     <HStack justify="space-between">
@@ -12,7 +12,7 @@ const AssetPanel = () => {
       </Link>
 
       <HStack gap={3}>
-        <Link to={baseUrl + "/exportToExcel"}>
+        <Link to={baseUrl + "/exportToExcel"} download target="_blank">
           <Button colorScheme="green">Export</Button>
         </Link>
         <AssetImport />
