@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useImportAssetsFromExcel from "../hooks/useImportAssetsFromExcel";
 
-const AssetImport = () => {
+const AssetsImportButton = () => {
   const ref = useRef<HTMLInputElement>(null);
   const { mutateAsync, isPending } = useImportAssetsFromExcel();
   const navigate = useNavigate();
@@ -44,4 +44,4 @@ const AssetImport = () => {
   );
 };
 
-export default AssetImport;
+export default AssetsImportButton;

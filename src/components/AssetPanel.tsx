@@ -1,10 +1,9 @@
 import { Button, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import AssetImport from "./AssetImport";
+import AssetsImportButton from "./AssetsImportButton";
+import AssetsExportButton from "./AssetsExportButton";
 
 const AssetPanel = () => {
-  const baseUrl = "/api/assets";
-
   return (
     <HStack justify="space-between">
       <Link to="/config/assets/new">
@@ -12,10 +11,8 @@ const AssetPanel = () => {
       </Link>
 
       <HStack gap={3}>
-        <Link to={baseUrl + "/exportToExcel"} download target="_blank">
-          <Button colorScheme="green">Export</Button>
-        </Link>
-        <AssetImport />
+        <AssetsExportButton />
+        <AssetsImportButton />
       </HStack>
     </HStack>
   );

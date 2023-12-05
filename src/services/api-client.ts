@@ -1,7 +1,8 @@
 import axios, { AxiosRequestConfig } from "axios";
+import { VITE_REACT_APP_BASE_URL } from "../envs";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: VITE_REACT_APP_BASE_URL,
 });
 
 export interface FetchResponse<T> {
