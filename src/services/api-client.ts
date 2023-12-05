@@ -34,6 +34,10 @@ class APIClient<T> {
     return axiosInstance.post<T>(this.endpoint, asset).then((res) => res.data);
   };
 
+  importFromExcel = (file: FormData) => {
+    return axiosInstance.post(this.endpoint, file).then((res) => res.data);
+  };
+
   delete = (id: string | number) => {
     return axiosInstance
       .delete<T>(this.endpoint + "/" + id)
