@@ -1,20 +1,16 @@
-import {
-  Box,
-  Container,
-  Heading,
-  Skeleton
-} from "@chakra-ui/react";
-import { useState } from "react";
+import { Box, Container, Heading, Skeleton } from "@chakra-ui/react";
 import AssetPanel from "../components/AssetPanel";
 import AssetsTable from "../components/AssetsTable";
 import Pagination from "../components/Pagination";
 import SearchInput from "../components/SearchInput";
 import useAssets from "../hooks/useAssets";
+import useAssetStore from "../store/assets";
 
 const AssetsPage = () => {
-  const [page, setPage] = useState(1);
-  const [searchedName, setSearchedName] = useState("");
-  const pageSize = 10;
+  const { page, searchedName, pageSize } = useAssetStore((s) => s.assetQuery);
+  const setSearchedName = useAssetStore((s) => s.setSearchedName);
+  const setPage = useAssetStore((s) => s.setPage);
+
   const {
     data: assets,
     isLoading,
@@ -25,6 +21,7 @@ const AssetsPage = () => {
     setSearchedName(text);
     setPage(1);
   };
+
   if (error) return null;
 
   return (
@@ -48,16 +45,16 @@ const AssetsPage = () => {
           )}
         </Box>
 
-        {assets?.count! > pageSize && (
+        {assets?.count! > pageSize! && (
           <Pagination
-            page={page}
+            page={page!}
             count={assets?.count!}
-            pageSize={pageSize}
+            pageSize={pageSize!}
             onFirstPagePress={() => setPage(1)}
-            onPreviousPagePress={() => setPage(page - 1)}
-            onNextPagePress={() => setPage(page + 1)}
+            onPreviousPagePress={() => setPage(page! - 1)}
+            onNextPagePress={() => setPage(page! + 1)}
             onLastPagePress={() =>
-              setPage(Math.ceil(assets?.count! / pageSize))
+              setPage(Math.ceil(assets?.count! / pageSize!))
             }
           />
         )}
