@@ -1,57 +1,14 @@
-import { Button } from "@chakra-ui/button";
-import {
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/table";
-import { Link } from "react-router-dom";
+import { Table, TableContainer } from "@chakra-ui/table";
 import Asset from "../entities/Asset";
-import DeleteAssetButton from "./DeleteAssetButton";
-import moment from "moment";
-import timeFormat from "../constants/timeFormat";
+import AssetsTableBody from "./AssetsTableBody";
+import AssetsTableHead from "./AssetsTableHead";
 
 const AssetsTable = ({ assets }: { assets: Asset[] }) => {
   return (
     <TableContainer border="1px" borderRadius={10} borderColor="gray.200">
       <Table variant="striped" size="sm">
-        <Thead>
-          <Tr height={12}>
-            <Th>#</Th>
-            <Th w={300} textAlign="center">
-              Asset
-            </Th>
-            <Th textAlign="center">Created</Th>
-            <Th textAlign="center">Last Modified</Th>
-            <Th></Th>
-            <Th></Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          {assets?.map((asset, index) => (
-            <Tr key={asset.id}>
-              <Td>{index + 1}</Td>
-              <Td textAlign="center">{asset.name}</Td>
-              <Td textAlign="center">
-                {moment(asset.created_at).format(timeFormat)}
-              </Td>
-              <Td textAlign="center">
-                {moment(asset.updated_at).format(timeFormat)}
-              </Td>
-              <Td textAlign="right">
-                <Link to={`/config/assets/${asset.id}`}>
-                  <Button colorScheme="yellow">Modify</Button>
-                </Link>
-              </Td>
-              <Td textAlign="right">
-                <DeleteAssetButton assetId={asset.id} />
-              </Td>
-            </Tr>
-          ))}
-        </Tbody>
+        <AssetsTableHead />
+        <AssetsTableBody assets={assets} />
       </Table>
     </TableContainer>
   );
