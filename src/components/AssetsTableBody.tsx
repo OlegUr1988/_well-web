@@ -13,7 +13,7 @@ const AssetsTableBody = ({ assets }: { assets: Asset[] }) => {
     <Tbody>
       {assets?.map((asset, index) => (
         <Tr key={asset.id}>
-          <Td>{(page! - 1) * pageSize! + (index + 1)}</Td>
+          <Td textAlign="center">{(page! - 1) * pageSize! + (index + 1)}</Td>
           <Td textAlign="center">{asset.name}</Td>
           <Td textAlign="center">
             {moment(asset.created_at).format(timeFormat)}
