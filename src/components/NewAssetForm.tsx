@@ -12,14 +12,14 @@ import useAssetForm from "../hooks/useAssetForm";
 import { useQueryClient } from "@tanstack/react-query";
 
 const NewAssetForm = () => {
-  const createAsset = useAddAsset();
+  const { mutateAsync, isPending } = useAddAsset();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { register, handleSubmit, onSubmit, errors } = useAssetForm(
     async (data) => {
       try {
-        await createAsset.mutateAsync(data);
+        await mutateAsync(data);
         toast.success("A new asset was created");
         queryClient.invalidateQueries();
         navigate("/config/assets");
@@ -38,7 +38,7 @@ const NewAssetForm = () => {
         <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
       </FormControl>
 
-      <Button colorScheme="blue" type="submit">
+      <Button isDisabled={isPending} colorScheme="blue" type="submit">
         Create
       </Button>
     </form>

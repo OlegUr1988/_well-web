@@ -4,7 +4,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,14 +17,14 @@ const UpdateAssetForm = () => {
   const { id } = useParams();
   const { data: asset, isLoading, error } = useAsset(id!);
 
-  const updateAsset = useUpdateAsset(id!);
+  const { mutateAsync, isPending } = useUpdateAsset(id!);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { register, handleSubmit, onSubmit, errors } = useAssetForm(
     async (data) => {
       try {
-        await updateAsset.mutateAsync(data);
+        await mutateAsync(data);
         queryClient.invalidateQueries();
         toast.success("The asset was successfuly modified.");
         navigate("/config/assets");
@@ -52,7 +52,7 @@ const UpdateAssetForm = () => {
         <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
       </FormControl>
 
-      <Button colorScheme="blue" type="submit">
+      <Button isDisabled={isPending} colorScheme="blue" type="submit">
         Modify
       </Button>
     </form>

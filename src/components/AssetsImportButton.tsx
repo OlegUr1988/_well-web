@@ -37,7 +37,7 @@ const AssetsImportButton = () => {
   return (
     <Box>
       <Input ref={ref} type="file" display="none" onChange={handleChange} />
-      <Button disabled={isPending} colorScheme="orange" onClick={handleClick}>
+      <Button isDisabled={isPending} colorScheme="orange" onClick={handleClick}>
         Import
       </Button>
     </Box>

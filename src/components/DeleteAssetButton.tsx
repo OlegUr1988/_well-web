@@ -19,12 +19,12 @@ const DeleteAssetButton = ({ assetId }: { assetId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const queryClient = useQueryClient();
   const cancelRef = useRef(null);
-  const deleteAsset = useDeleteAsset();
+  const { mutateAsync, isPending } = useDeleteAsset();
   const navigate = useNavigate();
 
   const handleDelete = async (assetId: number) => {
     try {
-      await deleteAsset.mutateAsync(assetId);
+      await mutateAsync(assetId);
       toast.success("The asset was successfully deleted.");
       navigate("/config/assets");
       queryClient.invalidateQueries();
@@ -62,6 +62,7 @@ const DeleteAssetButton = ({ assetId }: { assetId: number }) => {
             </Button>
             <Button
               colorScheme="red"
+              isDisabled={isPending}
               ml={3}
               onClick={() => handleDelete(assetId)}
             >
