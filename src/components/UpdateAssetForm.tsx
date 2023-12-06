@@ -4,7 +4,7 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  Text,
+  Skeleton,
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
@@ -37,7 +37,14 @@ const UpdateAssetForm = () => {
 
   if (error) return null;
 
-  if (isLoading) return <Text>Loading</Text>;
+  if (isLoading)
+    return (
+      <>
+        <Skeleton h={5} w={120} my={1} borderRadius={5} />
+        <Skeleton h={10} w={400} mb={5} borderRadius={10} />
+        <Skeleton h={12} w={100} borderRadius={10} />
+      </>
+    );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
