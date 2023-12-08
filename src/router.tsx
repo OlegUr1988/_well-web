@@ -12,19 +12,17 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    children: [{ index: true, element: <HomePage /> }],
+  },
+  {
+    path: "config",
+    element: <ConfigPanelPage />,
     children: [
-      { index: true, element: <HomePage /> },
-      {
-        path: "config",
-        children: [
-          { index: true, element: <ConfigPanelPage /> },
-          { path: "assets", element: <AssetsPage /> },
-          { path: "assets/new", element: <NewAssetPage /> },
-          { path: "assets/:id", element: <AssetDetailPage /> },
-          { path: "equipments", element: <EquipmentsPage /> },
-          { path: "queries", element: <QueriesPage /> },
-        ],
-      },
+      { path: "assets", element: <AssetsPage /> },
+      { path: "assets/new", element: <NewAssetPage /> },
+      { path: "assets/:id", element: <AssetDetailPage /> },
+      { path: "equipments", element: <EquipmentsPage /> },
+      { path: "queries", element: <QueriesPage /> },
     ],
   },
 ]);
