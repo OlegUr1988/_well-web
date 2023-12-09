@@ -21,12 +21,12 @@ const AssetsTableBody = ({ assets }: { assets: Asset[] }) => {
           <Td textAlign="center">
             {moment(asset.updated_at).format(timeFormat)}
           </Td>
-          <Td textAlign="right">
+          <Td textAlign="center">
             <Link to={`/config/assets/${asset.id}`}>
               <Button colorScheme="yellow">Modify</Button>
             </Link>
           </Td>
-          <Td textAlign="right">
+          <Td textAlign="center">
             <DeleteAssetButton assetId={asset.id} />
           </Td>
         </Tr>
