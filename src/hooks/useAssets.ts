@@ -1,14 +1,10 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import Asset from "../entities/Asset";
 import APIClient, { FetchResponse } from "../services/api-client";
+import AssetQuery from "../entities/AssetQuery";
 
 const apiClient = new APIClient<Asset>("/assets");
 
-export interface AssetQuery {
-  page?: number;
-  pageSize?: number;
-  searchedName?: string
-}
 
 const useAssets = (query: AssetQuery) => {
   return useQuery<FetchResponse<Asset>, Error>({

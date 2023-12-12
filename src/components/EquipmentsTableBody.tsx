@@ -4,13 +4,16 @@ import Equipment from "../entities/Equipment";
 import moment from "moment";
 import timeFormat from "../constants/timeFormat";
 import EquipmentDeleteButton from "./EquipmentDeleteButton";
+import useEquipmentStore from "../store/equipments";
 
 const EquipmentsTableBody = ({ equipments }: { equipments: Equipment[] }) => {
+  const { page, pageSize } = useEquipmentStore((s) => s.equipmentQuery);
+
   return (
     <Tbody>
       {equipments.map((equipment, index) => (
         <Tr key={equipment.id}>
-          <Td textAlign="center">{index + 1}</Td>
+          <Td textAlign="center">{(page! - 1) * pageSize! + (index + 1)}</Td>
           <Td textAlign="center">{equipment.name}</Td>
           <Td textAlign="center">{equipment.asset.name}</Td>
           <Td textAlign="center">

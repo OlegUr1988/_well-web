@@ -9,11 +9,13 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
 } from "@chakra-ui/modal";
+import { useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAssets from "../hooks/useAssets";
 import useDeleteAsset from "../hooks/useDeleteAsset";
-import { useQueryClient } from "@tanstack/react-query";
+import useAssetStore from "../store/assets";
 
 const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -22,12 +24,21 @@ const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
   const { mutateAsync, isPending } = useDeleteAsset();
   const navigate = useNavigate();
 
+  const { page, pageSize } = useAssetStore((s) => s.assetQuery);
+  const { data: assets } = useAssets({ page, pageSize });
+  const setPage = useAssetStore((s) => s.setPage);
+
+  const handlePagination = () => {
+    if (assets?.results.length === 1 && page! > 1) setPage(page! - 1);
+  };
+
   const handleDelete = async (assetId: number) => {
     try {
       await mutateAsync(assetId);
       toast.success("The asset was successfully deleted.");
       navigate("/config/assets");
       queryClient.invalidateQueries();
+      handlePagination();
       onClose();
     } catch (error) {
       const { message } = error as Error;
