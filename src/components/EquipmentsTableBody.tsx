@@ -19,7 +19,7 @@ const EquipmentsTableBody = ({ equipments }: { equipments: Equipment[] }) => {
             {moment(equipment.updated_at).format(timeFormat)}
           </Td>
           <Td textAlign="center">
-            <Link to={`/config/eqipments/${equipment.id}`}>
+            <Link to={`/config/equipments/${equipment.id}`}>
               <Button colorScheme="yellow">Modify</Button>
             </Link>
           </Td>
