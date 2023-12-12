@@ -1,3 +1,3 @@
-export default interface CreateAsset {
+export default interface AddAsset {
   name: string;
 }

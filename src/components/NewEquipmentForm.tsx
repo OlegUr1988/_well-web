@@ -12,15 +12,33 @@ import useForm from "../hooks/useForm";
 import { equipmentFormSchema } from "../validationSchema";
 import ControlledSelect from "./ControlledSelect";
 import EquipmentFormSkeleton from "./EquipmentFormSkeleton";
+import useAddEquipment from "../hooks/useAddEquipment";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const NewEquipmentForm = () => {
   const { data: assets, isLoading, error } = useAssets({});
 
+  const { mutateAsync, isPending } = useAddEquipment();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const { control, register, handleSubmit, onSubmit, errors } =
-    useForm<EquipmentFormData>(
-      (data) => console.log(data),
-      equipmentFormSchema
-    );
+    useForm<EquipmentFormData>(async (data) => {
+      try {
+        await mutateAsync({
+          name: data.name,
+          assetId: data.asset?.value!,
+        });
+        toast.success("A new equipment was created");
+        queryClient.invalidateQueries();
+        navigate("/config/equipments");
+      } catch (error) {
+        const { message } = error as Error;
+        toast.error(message);
+      }
+    }, equipmentFormSchema);
 
   if (error) return null;
 
@@ -49,7 +67,7 @@ const NewEquipmentForm = () => {
         />
       </Box>
 
-      <Button colorScheme="blue" type="submit">
+      <Button isDisabled={isPending} colorScheme="blue" type="submit">
         Create
       </Button>
     </form>
