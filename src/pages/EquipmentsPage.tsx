@@ -1,19 +1,28 @@
 import { Box, Container, Heading, Skeleton } from "@chakra-ui/react";
 import EquipmentPanel from "../components/EquipmentPanel";
 import EquipmentsTable from "../components/EquipmentsTable";
+import Pagination from "../components/Pagination";
+import SearchInput from "../components/SearchInput";
 import useEquipments from "../hooks/useEquipments";
 import useEquipmentStore from "../store/equipments";
-import Pagination from "../components/Pagination";
 
 const EquipmentsPage = () => {
-  const { page, pageSize } = useEquipmentStore((s) => s.equipmentQuery);
+  const { page, pageSize, searchedName } = useEquipmentStore(
+    (s) => s.equipmentQuery
+  );
+  const setSearchedName = useEquipmentStore((s) => s.setSearchedName);
   const setPage = useEquipmentStore((s) => s.setPage);
 
   const {
     data: equipments,
     isLoading,
     error,
-  } = useEquipments({ page, pageSize });
+  } = useEquipments({ page, pageSize, searchedName });
+
+  const handleSearch = (text: string) => {
+    setSearchedName(text);
+    setPage(1);
+  };
 
   if (error) return null;
 
@@ -23,6 +32,10 @@ const EquipmentsPage = () => {
 
       <Box mb={5}>
         <EquipmentPanel />
+      </Box>
+
+      <Box mb={3}>
+        <SearchInput onSearch={(e) => handleSearch(e)} />
       </Box>
 
       <Box mb={5}>
