@@ -1,6 +1,6 @@
 import { Th, Thead, Tr } from "@chakra-ui/react";
 
-const EqipmentsTableHead = () => {
+const EquipmentsTableHead = () => {
   const columns = [
     { id: 0, label: "#", width: "" },
     { id: 1, label: "Equipment", width: "300" },
@@ -24,4 +24,4 @@ const EqipmentsTableHead = () => {
   );
 };
 
-export default EqipmentsTableHead;
+export default EquipmentsTableHead;

@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import AddAsset from "../entities/CreateAsset";
+import AddAsset from "../entities/AddAsset";
 import APIClient from "../services/api-client";
 
 const apiClient = new APIClient<AddAsset>("/assets");

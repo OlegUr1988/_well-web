@@ -33,6 +33,7 @@ const ControlledSelect = <
   control,
   rules,
   shouldUnregister,
+  defaultValue,
   ...selectProps
 }: ControlledSelectProps<FormValues, Option, IsMulti, Group>) => {
   const {
@@ -43,6 +44,7 @@ const ControlledSelect = <
     control,
     rules,
     shouldUnregister,
+    defaultValue,
   });
 
   return (

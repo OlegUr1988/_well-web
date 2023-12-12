@@ -12,15 +12,26 @@ import useForm from "../hooks/useForm";
 import { equipmentFormSchema } from "../validationSchema";
 import ControlledSelect from "./ControlledSelect";
 import EquipmentFormSkeleton from "./EquipmentFormSkeleton";
-import useAddEquipment from "../hooks/useAddEquipment";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import useEquipment from "../hooks/useEquipment";
+import { useNavigate, useParams } from "react-router-dom";
+import useUpdateEquipment from "../hooks/useUpdateEquipment";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
-const NewEquipmentForm = () => {
-  const { data: assets, isLoading, error } = useAssets({});
+const UpdateEquipmentForm = () => {
+  const { id } = useParams();
+  const {
+    data: assets,
+    isLoading: isAssetsLoading,
+    error: assetsError,
+  } = useAssets({});
+  const {
+    data: equipment,
+    isLoading: isEquipmentLoading,
+    error: equipmentError,
+  } = useEquipment(id!);
 
-  const { mutateAsync, isPending } = useAddEquipment();
+  const { mutateAsync, isPending } = useUpdateEquipment(id!);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -31,8 +42,8 @@ const NewEquipmentForm = () => {
           name: data.name,
           assetId: data.asset?.value!,
         });
-        toast.success("A new equipment was created");
         queryClient.invalidateQueries();
+        toast.success("The equipment was successfuly modified.");
         navigate("/config/equipments");
       } catch (error) {
         const { message } = error as Error;
@@ -40,20 +51,30 @@ const NewEquipmentForm = () => {
       }
     }, equipmentFormSchema);
 
-  if (error) return null;
+  if (assetsError || equipmentError) return null;
 
-  if (isLoading) return <EquipmentFormSkeleton />;
+  if (isAssetsLoading || isEquipmentLoading) return <EquipmentFormSkeleton />;
 
   const options: SelectOption[] = assets!.results.map((asset) => ({
     label: asset.name,
     value: asset.id,
   }));
 
+  const defaultOption: SelectOption = {
+    label: equipment?.asset.name!,
+    value: equipment?.asset.id!,
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl mb={3} isInvalid={!!errors.name}>
         <FormLabel>Equipment Name</FormLabel>
-        <Input w={400} placeholder="Equipment Name" {...register("name")} />
+        <Input
+          w={400}
+          placeholder="Equipment Name"
+          defaultValue={equipment?.name}
+          {...register("name")}
+        />
         <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
       </FormControl>
 
@@ -62,16 +83,17 @@ const NewEquipmentForm = () => {
           name="asset"
           control={control}
           label="Select Asset"
+          defaultValue={defaultOption}
           placeholder="Asset"
           options={options}
         />
       </Box>
 
       <Button isDisabled={isPending} colorScheme="blue" type="submit">
-        Create
+        Update
       </Button>
     </form>
   );
 };
 
-export default NewEquipmentForm;
+export default UpdateEquipmentForm;
