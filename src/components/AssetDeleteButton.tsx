@@ -15,7 +15,7 @@ import { toast } from "react-toastify";
 import useDeleteAsset from "../hooks/useDeleteAsset";
 import { useQueryClient } from "@tanstack/react-query";
 
-const DeleteAssetButton = ({ assetId }: { assetId: number }) => {
+const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const queryClient = useQueryClient();
   const cancelRef = useRef(null);
@@ -75,4 +75,4 @@ const DeleteAssetButton = ({ assetId }: { assetId: number }) => {
   );
 };
 
-export default DeleteAssetButton;
+export default AssetDeleteButton;

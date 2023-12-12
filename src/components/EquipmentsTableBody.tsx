@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Equipment from "../entities/Equipment";
 import moment from "moment";
 import timeFormat from "../constants/timeFormat";
+import EquipmentDeleteButton from "./EquipmentDeleteButton";
 
 const EquipmentsTableBody = ({ equipments }: { equipments: Equipment[] }) => {
   return (
@@ -24,7 +25,7 @@ const EquipmentsTableBody = ({ equipments }: { equipments: Equipment[] }) => {
             </Link>
           </Td>
           <Td textAlign="center">
-            <Button colorScheme="red">Delete</Button>
+            <EquipmentDeleteButton equipmentId={equipment.id} />
           </Td>
         </Tr>
       ))}
