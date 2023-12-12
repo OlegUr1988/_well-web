@@ -11,6 +11,7 @@ import useAssets from "../hooks/useAssets";
 import useForm from "../hooks/useForm";
 import { equipmentFormSchema } from "../validationSchema";
 import ControlledSelect from "./ControlledSelect";
+import EquipmentFormSkeleton from "./EquipmentFormSkeleton";
 
 const NewEquipmentForm = () => {
   const { data: assets, isLoading, error } = useAssets({});
@@ -23,7 +24,7 @@ const NewEquipmentForm = () => {
 
   if (error) return null;
 
-  if (isLoading) return isLoading;
+  if (isLoading) return <EquipmentFormSkeleton />;
 
   const options: SelectOption[] = assets!.results.map((asset) => ({
     label: asset.name,

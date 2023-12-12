@@ -14,6 +14,7 @@ import useAsset from "../hooks/useAsset";
 import useForm from "../hooks/useForm";
 import useUpdateAsset from "../hooks/useUpdateAsset";
 import { assetSchema } from "../validationSchema";
+import AssetFormSkeleton from "./AssetFormSkeleton";
 
 const UpdateAssetForm = () => {
   const { id } = useParams();
@@ -40,14 +41,7 @@ const UpdateAssetForm = () => {
 
   if (error) return null;
 
-  if (isLoading)
-    return (
-      <>
-        <Skeleton h={5} w={120} my={1} borderRadius={5} />
-        <Skeleton h={10} w={400} mb={5} borderRadius={10} />
-        <Skeleton h={12} w={100} borderRadius={10} />
-      </>
-    );
+  if (isLoading) return <AssetFormSkeleton />;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
