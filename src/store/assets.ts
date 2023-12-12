@@ -1,11 +1,6 @@
 import { create } from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
-
-interface AssetQuery {
-  page?: number;
-  pageSize?: number;
-  searchedName?: string;
-}
+import AssetQuery from "../entities/AssetQuery";
 
 interface AssetStore {
   assetQuery: AssetQuery;

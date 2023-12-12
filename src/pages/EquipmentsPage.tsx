@@ -2,9 +2,18 @@ import { Box, Container, Heading, Skeleton } from "@chakra-ui/react";
 import EquipmentPanel from "../components/EquipmentPanel";
 import EquipmentsTable from "../components/EquipmentsTable";
 import useEquipments from "../hooks/useEquipments";
+import useEquipmentStore from "../store/equipments";
+import Pagination from "../components/Pagination";
 
 const EquipmentsPage = () => {
-  const { data: equipments, isLoading, error } = useEquipments();
+  const { page, pageSize } = useEquipmentStore((s) => s.equipmentQuery);
+  const setPage = useEquipmentStore((s) => s.setPage);
+
+  const {
+    data: equipments,
+    isLoading,
+    error,
+  } = useEquipments({ page, pageSize });
 
   if (error) return null;
 
@@ -23,6 +32,20 @@ const EquipmentsPage = () => {
           <EquipmentsTable equipments={equipments?.results!} />
         )}
       </Box>
+
+      {equipments?.count! > pageSize! && (
+        <Pagination
+          page={page!}
+          count={equipments?.count!}
+          pageSize={pageSize!}
+          onFirstPagePress={() => setPage(1)}
+          onPreviousPagePress={() => setPage(page! - 1)}
+          onNextPagePress={() => setPage(page! + 1)}
+          onLastPagePress={() =>
+            setPage(Math.ceil(equipments?.count! / pageSize!))
+          }
+        />
+      )}
     </Container>
   );
 };

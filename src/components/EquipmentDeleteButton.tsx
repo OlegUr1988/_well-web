@@ -1,19 +1,21 @@
 import { Button } from "@chakra-ui/button";
 import { useDisclosure } from "@chakra-ui/hooks";
 import {
-    AlertDialog,
-    AlertDialogBody,
-    AlertDialogCloseButton,
-    AlertDialogContent,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogOverlay,
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogCloseButton,
+  AlertDialogContent,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogOverlay,
 } from "@chakra-ui/modal";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useDeleteEquipment from "../hooks/useDeleteEquipment";
+import useEquipments from "../hooks/useEquipments";
+import useEquipmentStore from "../store/equipments";
 
 const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -22,12 +24,21 @@ const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
   const { mutateAsync, isPending } = useDeleteEquipment();
   const navigate = useNavigate();
 
+  const { page, pageSize } = useEquipmentStore((s) => s.equipmentQuery);
+  const { data: equipments } = useEquipments({ page, pageSize });
+  const setPage = useEquipmentStore((s) => s.setPage);
+
+  const handlePagination = () => {
+    if (equipments?.results.length === 1 && page! > 1) setPage(page! - 1);
+  };
+
   const handleDelete = async (equipmentId: number) => {
     try {
       await mutateAsync(equipmentId);
       toast.success("The equipment was successfully deleted.");
       navigate("/config/equipments");
       queryClient.invalidateQueries();
+      handlePagination();
       onClose();
     } catch (error) {
       const { message } = error as Error;
