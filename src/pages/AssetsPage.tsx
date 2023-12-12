@@ -7,7 +7,7 @@ import useAssets from "../hooks/useAssets";
 import useAssetStore from "../store/assets";
 
 const AssetsPage = () => {
-  const { page, searchedName, pageSize } = useAssetStore((s) => s.assetQuery);
+  const { page, pageSize, searchedName } = useAssetStore((s) => s.assetQuery);
   const setSearchedName = useAssetStore((s) => s.setSearchedName);
   const setPage = useAssetStore((s) => s.setPage);
 
