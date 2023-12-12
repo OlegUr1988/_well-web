@@ -9,9 +9,11 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { AssetFormData } from "../entities/FormData";
 import useAsset from "../hooks/useAsset";
-import useAssetForm from "../hooks/useAssetForm";
+import useForm from "../hooks/useForm";
 import useUpdateAsset from "../hooks/useUpdateAsset";
+import { assetSchema } from "../validationSchema";
 
 const UpdateAssetForm = () => {
   const { id } = useParams();
@@ -21,7 +23,7 @@ const UpdateAssetForm = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit, onSubmit, errors } = useAssetForm(
+  const { register, handleSubmit, onSubmit, errors } = useForm<AssetFormData>(
     async (data) => {
       try {
         await mutateAsync(data);
@@ -32,7 +34,8 @@ const UpdateAssetForm = () => {
         const { message } = error as Error;
         toast.error(message);
       }
-    }
+    },
+    assetSchema
   );
 
   if (error) return null;
@@ -48,7 +51,7 @@ const UpdateAssetForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl mb={5} isRequired isInvalid={!!errors.name}>
+      <FormControl mb={5} isInvalid={!!errors.name}>
         <FormLabel>Asset Name</FormLabel>
         <Input
           w={400}
