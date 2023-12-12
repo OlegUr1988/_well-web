@@ -5,18 +5,20 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { AssetFormData } from "../entities/FormData";
 import useAddAsset from "../hooks/useAddAsset";
-import useAssetForm from "../hooks/useAssetForm";
-import { useQueryClient } from "@tanstack/react-query";
+import useForm from "../hooks/useForm";
+import { assetSchema } from "../validationSchema";
 
 const NewAssetForm = () => {
   const { mutateAsync, isPending } = useAddAsset();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { register, handleSubmit, onSubmit, errors } = useAssetForm(
+  const { register, handleSubmit, onSubmit, errors } = useForm<AssetFormData>(
     async (data) => {
       try {
         await mutateAsync(data);
@@ -27,14 +29,15 @@ const NewAssetForm = () => {
         const { message } = error as Error;
         toast.error(message);
       }
-    }
+    },
+    assetSchema
   );
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl mb={5} isRequired isInvalid={!!errors.name}>
+      <FormControl mb={5} isInvalid={!!errors.name}>
         <FormLabel>Asset Name</FormLabel>
-        <Input w={400} placeholder="name" {...register("name")} />
+        <Input w={400} placeholder="Name" {...register("name")} />
         <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
       </FormControl>
 

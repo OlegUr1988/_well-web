@@ -11,7 +11,7 @@ const ConfigPanelPage = () => {
         <Box>
           <NavBar />
         </Box>
-        <Box p={3} overflowY="auto">
+        <Box p={3} overflowY="auto" height="100%">
           <Outlet />
         </Box>
       </Flex>
