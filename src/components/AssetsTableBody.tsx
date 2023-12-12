@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import timeFormat from "../constants/timeFormat";
 import Asset from "../entities/Asset";
 import useAssetStore from "../store/assets";
-import DeleteAssetButton from "./DeleteAssetButton";
+import AssetDeleteButton from "./AssetDeleteButton";
 
 const AssetsTableBody = ({ assets }: { assets: Asset[] }) => {
   const { page, pageSize } = useAssetStore((s) => s.assetQuery);
@@ -27,7 +27,7 @@ const AssetsTableBody = ({ assets }: { assets: Asset[] }) => {
             </Link>
           </Td>
           <Td textAlign="center">
-            <DeleteAssetButton assetId={asset.id} />
+            <AssetDeleteButton assetId={asset.id} />
           </Td>
         </Tr>
       ))}
