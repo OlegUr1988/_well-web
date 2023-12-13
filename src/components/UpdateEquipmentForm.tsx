@@ -17,6 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useUpdateEquipment from "../hooks/useUpdateEquipment";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { HttpError } from "../services/api-client";
 
 const UpdateEquipmentForm = () => {
   const { id } = useParams();
@@ -46,8 +47,8 @@ const UpdateEquipmentForm = () => {
         toast.success("The equipment was successfuly modified.");
         navigate("/config/equipments");
       } catch (error) {
-        const { message } = error as Error;
-        toast.error(message);
+        const { response } = error as HttpError;
+        toast.error(response?.data.message);
       }
     }, equipmentFormSchema);
 

@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import useAssets from "../hooks/useAssets";
 import useDeleteAsset from "../hooks/useDeleteAsset";
 import useAssetStore from "../store/assets";
+import { HttpError } from "../services/api-client";
 
 const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,8 +42,8 @@ const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
       handlePagination();
       onClose();
     } catch (error) {
-      const { message } = error as Error;
-      toast.error(message);
+      const { response } = error as HttpError;
+      toast.error(response?.data.message);
       onClose();
     }
   };

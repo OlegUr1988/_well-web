@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { VITE_REACT_APP_BASE_URL } from "../envs";
 
 const axiosInstance = axios.create({
@@ -9,6 +9,14 @@ export interface FetchResponse<T> {
   count: number;
   results: T[];
 }
+
+interface AxiosValidationError {
+  message: string;
+  errors: Record<string, string[]>;
+}
+
+export interface HttpError
+  extends AxiosError<AxiosValidationError, Record<string, unknown>> {}
 
 class APIClient<T> {
   constructor(private endpoint: string) {}
