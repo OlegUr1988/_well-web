@@ -16,6 +16,7 @@ import useAddEquipment from "../hooks/useAddEquipment";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
+import { HttpError } from "../services/api-client";
 
 const NewEquipmentForm = () => {
   const { data: assets, isLoading, error } = useAssets({});
@@ -35,8 +36,8 @@ const NewEquipmentForm = () => {
         queryClient.invalidateQueries();
         navigate("/config/equipments");
       } catch (error) {
-        const { message } = error as Error;
-        toast.error(message);
+        const { response } = error as HttpError;
+        toast.error(response?.data.message);
       }
     }, equipmentFormSchema);
 

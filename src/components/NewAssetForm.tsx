@@ -12,6 +12,7 @@ import { AssetFormData } from "../entities/FormData";
 import useAddAsset from "../hooks/useAddAsset";
 import useForm from "../hooks/useForm";
 import { assetSchema } from "../validationSchema";
+import { HttpError } from "../services/api-client";
 
 const NewAssetForm = () => {
   const { mutateAsync, isPending } = useAddAsset();
@@ -26,8 +27,8 @@ const NewAssetForm = () => {
         queryClient.invalidateQueries();
         navigate("/config/assets");
       } catch (error) {
-        const { message } = error as Error;
-        toast.error(message);
+        const { response } = error as HttpError;
+        toast.error(response?.data.message);
       }
     },
     assetSchema

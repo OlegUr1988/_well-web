@@ -14,6 +14,7 @@ import useForm from "../hooks/useForm";
 import useUpdateAsset from "../hooks/useUpdateAsset";
 import { assetSchema } from "../validationSchema";
 import AssetFormSkeleton from "./AssetFormSkeleton";
+import { HttpError } from "../services/api-client";
 
 const UpdateAssetForm = () => {
   const { id } = useParams();
@@ -31,8 +32,8 @@ const UpdateAssetForm = () => {
         toast.success("The asset was successfuly modified.");
         navigate("/config/assets");
       } catch (error) {
-        const { message } = error as Error;
-        toast.error(message);
+        const { response } = error as HttpError;
+        toast.error(response?.data.message);
       }
     },
     assetSchema

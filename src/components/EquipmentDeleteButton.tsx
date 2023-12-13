@@ -16,6 +16,7 @@ import { toast } from "react-toastify";
 import useDeleteEquipment from "../hooks/useDeleteEquipment";
 import useEquipments from "../hooks/useEquipments";
 import useEquipmentStore from "../store/equipments";
+import { HttpError } from "../services/api-client";
 
 const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,8 +42,8 @@ const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
       handlePagination();
       onClose();
     } catch (error) {
-      const { message } = error as Error;
-      toast.error(message);
+      const { response } = error as HttpError;
+      toast.error(response?.data.message);
       onClose();
     }
   };

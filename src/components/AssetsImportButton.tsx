@@ -4,6 +4,7 @@ import { ChangeEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useImportAssetsFromExcel from "../hooks/useImportAssetsFromExcel";
+import { HttpError } from "../services/api-client";
 
 const AssetsImportButton = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -29,8 +30,9 @@ const AssetsImportButton = () => {
       navigate("/config/assets");
       queryClient.invalidateQueries();
     } catch (error) {
-      const { message } = error as Error;
-      toast.error(message);
+      console.log(error)
+      const { response } = error as HttpError;
+      toast.error(response?.data.message);
     }
   };
 
