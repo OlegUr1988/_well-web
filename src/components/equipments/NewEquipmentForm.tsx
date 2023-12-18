@@ -7,32 +7,21 @@ import {
   Input,
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { EquipmentFormData, SelectOption } from "../entities/FormData";
-import { useAssets } from "../hooks/assets";
-import useEquipment from "../hooks/useEquipment";
-import useForm from "../hooks/useForm";
-import useUpdateEquipment from "../hooks/useUpdateEquipment";
-import { HttpError } from "../services/api-client";
-import { equipmentFormSchema } from "../validationSchema";
-import ControlledSelect from "./ControlledSelect";
+import { EquipmentFormData, SelectOption } from "../../entities/FormData";
+import { useAssets } from "../../hooks/assets";
+import { useAddEquipment } from "../../hooks/equipments";
+import useForm from "../../hooks/useForm";
+import { HttpError } from "../../services/api-client";
+import { equipmentFormSchema } from "../../validationSchema";
+import ControlledSelect from "../ControlledSelect";
 import EquipmentFormSkeleton from "./EquipmentFormSkeleton";
 
-const UpdateEquipmentForm = () => {
-  const { id } = useParams();
-  const {
-    data: assets,
-    isLoading: isAssetsLoading,
-    error: assetsError,
-  } = useAssets({});
-  const {
-    data: equipment,
-    isLoading: isEquipmentLoading,
-    error: equipmentError,
-  } = useEquipment(id!);
+const NewEquipmentForm = () => {
+  const { data: assets, isLoading, error } = useAssets({});
 
-  const { mutateAsync, isPending } = useUpdateEquipment(id!);
+  const { mutateAsync, isPending } = useAddEquipment();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -43,8 +32,8 @@ const UpdateEquipmentForm = () => {
           name: data.name,
           assetId: data.asset?.value!,
         });
+        toast.success("A new equipment was created");
         queryClient.invalidateQueries();
-        toast.success("The equipment was successfuly modified.");
         navigate("/config/equipments");
       } catch (error) {
         const { response } = error as HttpError;
@@ -52,30 +41,20 @@ const UpdateEquipmentForm = () => {
       }
     }, equipmentFormSchema);
 
-  if (assetsError || equipmentError) return null;
+  if (error) return null;
 
-  if (isAssetsLoading || isEquipmentLoading) return <EquipmentFormSkeleton />;
+  if (isLoading) return <EquipmentFormSkeleton />;
 
   const options: SelectOption[] = assets!.results.map((asset) => ({
     label: asset.name,
     value: asset.id,
   }));
 
-  const defaultOption: SelectOption = {
-    label: equipment?.asset.name!,
-    value: equipment?.asset.id!,
-  };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <FormControl mb={3} isInvalid={!!errors.name}>
         <FormLabel>Equipment Name</FormLabel>
-        <Input
-          w={400}
-          placeholder="Equipment Name"
-          defaultValue={equipment?.name}
-          {...register("name")}
-        />
+        <Input w={400} placeholder="Equipment Name" {...register("name")} />
         <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
       </FormControl>
 
@@ -84,17 +63,16 @@ const UpdateEquipmentForm = () => {
           name="asset"
           control={control}
           label="Select Asset"
-          defaultValue={defaultOption}
           placeholder="Asset"
           options={options}
         />
       </Box>
 
       <Button isDisabled={isPending} colorScheme="blue" type="submit">
-        Update
+        Create
       </Button>
     </form>
   );
 };
 
-export default UpdateEquipmentForm;
+export default NewEquipmentForm;

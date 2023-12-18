@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { assets } from "../../services/assetsService";
+import { assets } from "../../services/assetsServices";
 
 const useDeleteAsset = () => {
   return useMutation({

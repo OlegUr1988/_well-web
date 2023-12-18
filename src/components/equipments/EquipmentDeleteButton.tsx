@@ -13,10 +13,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useDeleteEquipment from "../hooks/useDeleteEquipment";
-import useEquipments from "../hooks/useEquipments";
-import useEquipmentStore from "../store/equipments";
-import { HttpError } from "../services/api-client";
+import { useDeleteEquipment, useEquipments } from "../../hooks/equipments";
+import { HttpError } from "../../services/api-client";
+import useEquipmentStore from "../../store/equipments";
 
 const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();

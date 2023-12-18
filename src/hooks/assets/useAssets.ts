@@ -2,7 +2,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import Asset from "../../entities/Asset";
 import AssetQuery from "../../entities/AssetQuery";
 import { FetchResponse } from "../../services/api-client";
-import { assets } from "../../services/assetsService";
+import { assets } from "../../services/assetsServices";
 
 const useAssets = (query: AssetQuery) => {
   return useQuery<FetchResponse<Asset>, Error>({

@@ -1,10 +1,9 @@
 import { Box, Container, Heading, Skeleton } from "@chakra-ui/react";
-import EquipmentPanel from "../components/EquipmentPanel";
-import EquipmentsTable from "../components/EquipmentsTable";
-import Pagination from "../components/Pagination";
-import SearchInput from "../components/SearchInput";
-import useEquipments from "../hooks/useEquipments";
-import useEquipmentStore from "../store/equipments";
+import Pagination from "../../components/Pagination";
+import SearchInput from "../../components/SearchInput";
+import { EquipmentPanel, EquipmentsTable } from "../../components/equipments/";
+import { useEquipments } from "../../hooks/equipments";
+import useEquipmentStore from "../../store/equipments";
 
 const EquipmentsPage = () => {
   const { page, pageSize, searchedName } = useEquipmentStore(

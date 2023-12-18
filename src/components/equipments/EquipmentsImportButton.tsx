@@ -3,8 +3,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useImportEquipmentsFromExcel from "../hooks/useImportEquipmentsFromExcel";
-import { HttpError } from "../services/api-client";
+import { useImportEquipmentsFromExcel } from "../../hooks/equipments";
+import { HttpError } from "../../services/api-client";
 
 const EquipmentsImportButton = () => {
   const ref = useRef<HTMLInputElement>(null);

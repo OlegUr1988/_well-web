@@ -1,5 +1,5 @@
 import { Heading } from "@chakra-ui/react";
-import UpdateEquipmentForm from "../components/UpdateEquipmentForm";
+import { UpdateEquipmentForm } from "../../components/equipments/";
 
 const EquipmentDetailPage = () => {
   return (

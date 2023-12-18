@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { importAssets } from "../../services/assetsService";
+import { importAssets } from "../../services/assetsServices";
 
 const useImportAssetsFromExcel = () => {
   return useMutation({

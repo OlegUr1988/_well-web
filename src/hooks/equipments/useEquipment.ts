@@ -1,13 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import Equipment from "../entities/Equipment";
-import APIClient from "../services/api-client";
-
-const apiClient = new APIClient<Equipment>("/equipments");
+import Equipment from "../../entities/Equipment";
+import { equipments } from "../../services/equipmentsServices";
 
 const useEquipment = (id: string | number) => {
   return useQuery<Equipment, Error>({
     queryKey: ["equipments", id],
-    queryFn: () => apiClient.get(id),
+    queryFn: () => equipments.get(id),
   });
 };
 

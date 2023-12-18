@@ -1,12 +1,14 @@
 import { createBrowserRouter } from "react-router-dom";
-import { AssetDetailPage, AssetsPage, NewAssetPage } from "./pages/assets/";
 import ConfigPanelPage from "./pages/ConfigPanelPage";
-import EquipmentsPage from "./pages/EquipmentsPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 import QueriesPage from "./pages/QueriesPage";
-import NewEquipmentPage from "./pages/NewEquipmentPage";
-import EquipmentDetailPage from "./pages/EquipmentDetailPage";
+import { AssetDetailPage, AssetsPage, NewAssetPage } from "./pages/assets/";
+import {
+  EquipmentDetailPage,
+  EquipmentsPage,
+  NewEquipmentPage,
+} from "./pages/equipments";
 
 const router = createBrowserRouter([
   {

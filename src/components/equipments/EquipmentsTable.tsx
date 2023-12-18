@@ -1,5 +1,5 @@
 import { Table, TableContainer } from "@chakra-ui/react";
-import Equipment from "../entities/Equipment";
+import Equipment from "../../entities/Equipment";
 import EquipmentsTableHead from "./EquipmentsTableHead";
 import EquipmentsTableBody from "./EquipmentsTableBody";
 
