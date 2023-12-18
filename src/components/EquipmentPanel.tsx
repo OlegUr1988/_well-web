@@ -1,6 +1,7 @@
 import { Button, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import EquipmentsExportButton from "./EquipmentsExportButton";
+import EquipmentsImportButton from "./EquipmentsImportButton";
 
 const EquipmentPanel = () => {
   return (
@@ -9,7 +10,10 @@ const EquipmentPanel = () => {
         <Button colorScheme="blue">Create equipment</Button>
       </Link>
 
-      <EquipmentsExportButton />
+      <HStack gap={3}>
+        <EquipmentsExportButton />
+        <EquipmentsImportButton />
+      </HStack>
     </HStack>
   );
 };
