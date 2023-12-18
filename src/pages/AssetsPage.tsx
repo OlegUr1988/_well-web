@@ -34,7 +34,10 @@ const AssetsPage = () => {
         </Box>
 
         <Box mb={3}>
-          <SearchInput onSearch={(e) => handleSearch(e)} />
+          <SearchInput
+            placeholder="Search by asset..."
+            onSearch={(e) => handleSearch(e)}
+          />
         </Box>
 
         <Box mb={5}>
