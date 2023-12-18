@@ -1,5 +1,5 @@
 import { Heading } from "@chakra-ui/react";
-import NewAssetForm from "../components/NewAssetForm";
+import { NewAssetForm } from "../../components/assets";
 
 const NewAssetPage = () => {
   return (

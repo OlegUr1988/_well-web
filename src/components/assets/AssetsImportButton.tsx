@@ -3,8 +3,8 @@ import { useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useImportAssetsFromExcel from "../hooks/useImportAssetsFromExcel";
-import { HttpError } from "../services/api-client";
+import { useImportAssetsFromExcel } from "../../hooks/assets";
+import { HttpError } from "../../services/api-client";
 
 const AssetsImportButton = () => {
   const ref = useRef<HTMLInputElement>(null);
@@ -30,7 +30,7 @@ const AssetsImportButton = () => {
       navigate("/config/assets");
       queryClient.invalidateQueries();
     } catch (error) {
-      console.log(error)
+      console.log(error);
       const { response } = error as HttpError;
       toast.error(response?.data.message);
     }

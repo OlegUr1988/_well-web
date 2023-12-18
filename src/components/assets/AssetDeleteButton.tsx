@@ -13,10 +13,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useAssets from "../hooks/useAssets";
-import useDeleteAsset from "../hooks/useDeleteAsset";
-import useAssetStore from "../store/assets";
-import { HttpError } from "../services/api-client";
+import { useAssets, useDeleteAsset } from "../../hooks/assets";
+import { HttpError } from "../../services/api-client";
+import useAssetStore from "../../store/assets";
 
 const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();

@@ -1,10 +1,9 @@
 import { Box, Container, Heading, Skeleton } from "@chakra-ui/react";
-import AssetPanel from "../components/AssetPanel";
-import AssetsTable from "../components/AssetsTable";
-import Pagination from "../components/Pagination";
-import SearchInput from "../components/SearchInput";
-import useAssets from "../hooks/useAssets";
-import useAssetStore from "../store/assets";
+import Pagination from "../../components/Pagination";
+import SearchInput from "../../components/SearchInput";
+import { AssetPanel, AssetsTable } from "../../components/assets";
+import { useAssets } from "../../hooks/assets";
+import useAssetStore from "../../store/assets";
 
 const AssetsPage = () => {
   const { page, pageSize, searchedName } = useAssetStore((s) => s.assetQuery);

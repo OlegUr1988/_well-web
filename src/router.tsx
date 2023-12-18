@@ -1,11 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import AssetDetailPage from "./pages/AssetDetailPage";
-import AssetsPage from "./pages/AssetsPage";
+import { AssetDetailPage, AssetsPage, NewAssetPage } from "./pages/assets/";
 import ConfigPanelPage from "./pages/ConfigPanelPage";
 import EquipmentsPage from "./pages/EquipmentsPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
-import NewAssetPage from "./pages/NewAssetPage";
 import QueriesPage from "./pages/QueriesPage";
 import NewEquipmentPage from "./pages/NewEquipmentPage";
 import EquipmentDetailPage from "./pages/EquipmentDetailPage";

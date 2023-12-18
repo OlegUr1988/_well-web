@@ -1,9 +1,9 @@
 import { Button, Tbody, Td, Tr } from "@chakra-ui/react";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import timeFormat from "../constants/timeFormat";
-import Asset from "../entities/Asset";
-import useAssetStore from "../store/assets";
+import timeFormat from "../../constants/timeFormat";
+import Asset from "../../entities/Asset";
+import useAssetStore from "../../store/assets";
 import AssetDeleteButton from "./AssetDeleteButton";
 
 const AssetsTableBody = ({ assets }: { assets: Asset[] }) => {

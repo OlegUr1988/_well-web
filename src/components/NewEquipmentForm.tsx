@@ -6,17 +6,17 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { EquipmentFormData, SelectOption } from "../entities/FormData";
-import useAssets from "../hooks/useAssets";
+import { useAssets } from "../hooks/assets";
+import useAddEquipment from "../hooks/useAddEquipment";
 import useForm from "../hooks/useForm";
+import { HttpError } from "../services/api-client";
 import { equipmentFormSchema } from "../validationSchema";
 import ControlledSelect from "./ControlledSelect";
 import EquipmentFormSkeleton from "./EquipmentFormSkeleton";
-import useAddEquipment from "../hooks/useAddEquipment";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
-import { HttpError } from "../services/api-client";
 
 const NewEquipmentForm = () => {
   const { data: assets, isLoading, error } = useAssets({});

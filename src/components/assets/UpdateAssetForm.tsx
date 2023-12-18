@@ -8,13 +8,12 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AssetFormData } from "../entities/FormData";
-import useAsset from "../hooks/useAsset";
-import useForm from "../hooks/useForm";
-import useUpdateAsset from "../hooks/useUpdateAsset";
-import { assetSchema } from "../validationSchema";
+import { AssetFormData } from "../../entities/FormData";
+import { useAsset, useUpdateAsset } from "../../hooks/assets";
+import useForm from "../../hooks/useForm";
+import { HttpError } from "../../services/api-client";
+import { assetSchema } from "../../validationSchema";
 import AssetFormSkeleton from "./AssetFormSkeleton";
-import { HttpError } from "../services/api-client";
 
 const UpdateAssetForm = () => {
   const { id } = useParams();

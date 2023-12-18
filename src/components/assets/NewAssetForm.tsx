@@ -8,11 +8,11 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AssetFormData } from "../entities/FormData";
-import useAddAsset from "../hooks/useAddAsset";
-import useForm from "../hooks/useForm";
-import { assetSchema } from "../validationSchema";
-import { HttpError } from "../services/api-client";
+import { AssetFormData } from "../../entities/FormData";
+import { useAddAsset } from "../../hooks/assets";
+import useForm from "../../hooks/useForm";
+import { assetSchema } from "../../validationSchema";
+import { HttpError } from "../../services/api-client";
 
 const NewAssetForm = () => {
   const { mutateAsync, isPending } = useAddAsset();

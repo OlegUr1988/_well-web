@@ -1,13 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import Asset from "../entities/Asset";
-import APIClient from "../services/api-client";
-
-const apiClient = new APIClient<Asset>("/assets");
+import Asset from "../../entities/Asset";
+import { assets } from "../../services/assetsService";
 
 const useAsset = (id: string | number) => {
   return useQuery<Asset, Error>({
     queryKey: ["assets", id],
-    queryFn: () => apiClient.get(id),
+    queryFn: () => assets.get(id),
   });
 };
 
