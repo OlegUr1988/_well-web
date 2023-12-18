@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
-import AssetQuery from "../entities/AssetQuery";
+import { AssetQuery } from "../entities/assets";
 
 interface AssetStore {
   assetQuery: AssetQuery;

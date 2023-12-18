@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import UpdateAsset from "../../entities/UpdateAsset";
+import { UpdateAsset } from "../../entities/assets";
 import { updateAsset } from "../../services/assetsServices";
 
 const useUpdateAsset = (id: string | number) => {

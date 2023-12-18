@@ -1,5 +1,5 @@
 import { Table, TableContainer } from "@chakra-ui/table";
-import Asset from "../../entities/Asset";
+import { Asset } from "../../entities/assets";
 import AssetsTableBody from "./AssetsTableBody";
 import AssetsTableHead from "./AssetsTableHead";
 

@@ -1,6 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import Asset from "../../entities/Asset";
-import AssetQuery from "../../entities/AssetQuery";
+import { Asset, AssetQuery } from "../../entities/assets";
 import { FetchResponse } from "../../services/api-client";
 import { assets } from "../../services/assetsServices";
 

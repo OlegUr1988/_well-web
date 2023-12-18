@@ -1,6 +1,4 @@
-import AddAsset from "../entities/AddAsset";
-import Asset from "../entities/Asset";
-import UpdateAsset from "../entities/UpdateAsset";
+import { AddAsset, Asset, UpdateAsset } from "../entities/assets";
 import APIClient from "./api-client";
 
 export const assets = new APIClient<Asset>("/assets");

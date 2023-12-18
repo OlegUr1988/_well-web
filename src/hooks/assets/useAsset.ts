@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import Asset from "../../entities/Asset";
+import { Asset } from "../../entities/assets";
 import { assets } from "../../services/assetsServices";
 
 const useAsset = (id: string | number) => {

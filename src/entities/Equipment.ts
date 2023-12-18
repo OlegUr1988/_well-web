@@ -1,4 +1,4 @@
-import Asset from "./Asset";
+import { Asset } from "./assets/";
 
 export default interface Equipment {
   id: number;
