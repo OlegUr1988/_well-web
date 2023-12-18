@@ -3,10 +3,11 @@ import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 
 interface Props {
+  placeholder?: string;
   onSearch: (text: string) => void;
 }
 
-const SearchInput = ({ onSearch }: Props) => {
+const SearchInput = ({ placeholder = "Search...", onSearch }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
@@ -20,7 +21,7 @@ const SearchInput = ({ onSearch }: Props) => {
       <InputGroup>
         <InputLeftElement children={<BsSearch />} />
         <Input
-          placeholder="Seach assets..."
+          placeholder={placeholder}
           borderRadius={10}
           onChange={(e) => onSearch(e.target.value)}
         />
