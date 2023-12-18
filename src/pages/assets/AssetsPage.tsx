@@ -1,7 +1,12 @@
 import { Box, Container, Heading, Skeleton } from "@chakra-ui/react";
+import CommandPanel from "../../components/CommandPanel";
 import Pagination from "../../components/Pagination";
 import SearchInput from "../../components/SearchInput";
-import { AssetPanel, AssetsTable } from "../../components/assets";
+import {
+  AssetsExportButton,
+  AssetsImportButton,
+  AssetsTable,
+} from "../../components/assets";
 import { useAssets } from "../../hooks/assets";
 import useAssetStore from "../../store/assets";
 
@@ -29,7 +34,12 @@ const AssetsPage = () => {
         <Heading mb={5}>Assets</Heading>
 
         <Box mb={5}>
-          <AssetPanel />
+          <CommandPanel
+            path="/config/assets/new"
+            createLabel="Create"
+            exportButton={<AssetsExportButton />}
+            importButton={<AssetsImportButton />}
+          />
         </Box>
 
         <Box mb={3}>

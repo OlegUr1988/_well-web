@@ -1,6 +1,5 @@
 export { default as EquipmentDeleteButton } from "./EquipmentDeleteButton";
 export { default as EquipmentFormSkeleton } from "./EquipmentFormSkeleton";
-export { default as EquipmentPanel } from "./EquipmentPanel";
 export { default as EquipmentsExportButton } from "./EquipmentsExportButton";
 export { default as EquipmentsImportButton } from "./EquipmentsImportButton";
 export { default as EquipmentsTable } from "./EquipmentsTable";

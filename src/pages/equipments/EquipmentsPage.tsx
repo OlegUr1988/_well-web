@@ -1,9 +1,14 @@
 import { Box, Container, Heading, Skeleton } from "@chakra-ui/react";
 import Pagination from "../../components/Pagination";
 import SearchInput from "../../components/SearchInput";
-import { EquipmentPanel, EquipmentsTable } from "../../components/equipments/";
+import {
+  EquipmentsExportButton,
+  EquipmentsImportButton,
+  EquipmentsTable,
+} from "../../components/equipments/";
 import { useEquipments } from "../../hooks/equipments";
 import useEquipmentStore from "../../store/equipments";
+import CommandPanel from "../../components/CommandPanel";
 
 const EquipmentsPage = () => {
   const { page, pageSize, searchedName } = useEquipmentStore(
@@ -30,7 +35,12 @@ const EquipmentsPage = () => {
       <Heading mb={5}>Equipments</Heading>
 
       <Box mb={5}>
-        <EquipmentPanel />
+        <CommandPanel
+          path="/config/equipments/new"
+          createLabel="Create"
+          exportButton={<EquipmentsExportButton />}
+          importButton={<EquipmentsImportButton />}
+        />
       </Box>
 
       <Box mb={3}>
