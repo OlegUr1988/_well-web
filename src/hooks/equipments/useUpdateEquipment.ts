@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import UpdateEquipmnet from "../../entities/UpdateEquipment";
+import UpdateEquipmnet from "../../entities/equipments/UpdateEquipment";
 import { updateEquipment } from "../../services/equipmentsServices";
 
 const useUpdateEquipment = (id: string | number) => {

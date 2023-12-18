@@ -1,7 +1,7 @@
 import { Table, TableContainer } from "@chakra-ui/react";
-import Equipment from "../../entities/Equipment";
-import EquipmentsTableHead from "./EquipmentsTableHead";
+import { Equipment } from "../../entities/equipments";
 import EquipmentsTableBody from "./EquipmentsTableBody";
+import EquipmentsTableHead from "./EquipmentsTableHead";
 
 const EquipmentsTable = ({ equipments }: { equipments: Equipment[] }) => {
   return (

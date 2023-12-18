@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import Equipment from "../../entities/Equipment";
+import Equipment from "../../entities/equipments/Equipment";
 import { equipments } from "../../services/equipmentsServices";
 
 const useEquipment = (id: string | number) => {

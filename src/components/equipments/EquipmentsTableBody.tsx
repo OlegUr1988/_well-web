@@ -1,10 +1,10 @@
 import { Button, Tbody, Td, Tr } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import Equipment from "../../entities/Equipment";
 import moment from "moment";
+import { Link } from "react-router-dom";
 import timeFormat from "../../constants/timeFormat";
-import EquipmentDeleteButton from "./EquipmentDeleteButton";
+import { Equipment } from "../../entities/equipments";
 import useEquipmentStore from "../../store/equipments";
+import EquipmentDeleteButton from "./EquipmentDeleteButton";
 
 const EquipmentsTableBody = ({ equipments }: { equipments: Equipment[] }) => {
   const { page, pageSize } = useEquipmentStore((s) => s.equipmentQuery);

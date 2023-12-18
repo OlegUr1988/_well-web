@@ -1,6 +1,6 @@
-import { create } from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
-import EquipmentQuery from "../entities/EquipmentQuery";
+import { create } from "zustand";
+import { EquipmentQuery } from "../entities/equipments";
 
 interface EquipmentStore {
   equipmentQuery: EquipmentQuery;
