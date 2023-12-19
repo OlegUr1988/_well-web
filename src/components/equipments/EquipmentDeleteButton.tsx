@@ -1,28 +1,9 @@
-import { Button } from "@chakra-ui/button";
-import { useDisclosure } from "@chakra-ui/hooks";
-import {
-  AlertDialog,
-  AlertDialogBody,
-  AlertDialogCloseButton,
-  AlertDialogContent,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogOverlay,
-} from "@chakra-ui/modal";
-import { useQueryClient } from "@tanstack/react-query";
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { useDeleteEquipment, useEquipments } from "../../hooks/equipments";
-import { HttpError } from "../../services/api-client";
 import useEquipmentStore from "../../store/equipments";
+import DeleteButton from "../DeleteButton";
 
 const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const queryClient = useQueryClient();
-  const cancelRef = useRef(null);
   const { mutateAsync, isPending } = useDeleteEquipment();
-  const navigate = useNavigate();
 
   const { page, pageSize } = useEquipmentStore((s) => s.equipmentQuery);
   const { data: equipments } = useEquipments({ page, pageSize });
@@ -32,57 +13,15 @@ const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
     if (equipments?.results.length === 1 && page! > 1) setPage(page! - 1);
   };
 
-  const handleDelete = async (equipmentId: number) => {
-    try {
-      await mutateAsync(equipmentId);
-      toast.success("The equipment was successfully deleted.");
-      navigate("/config/equipments");
-      queryClient.invalidateQueries();
-      handlePagination();
-      onClose();
-    } catch (error) {
-      const { response } = error as HttpError;
-      toast.error(response?.data.message);
-      onClose();
-    }
-  };
-
   return (
-    <>
-      <Button onClick={onOpen} colorScheme="red">
-        Delete
-      </Button>
-      <AlertDialog
-        motionPreset="slideInBottom"
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-        isOpen={isOpen}
-        isCentered
-      >
-        <AlertDialogOverlay />
-
-        <AlertDialogContent>
-          <AlertDialogHeader>Delete the equipment?</AlertDialogHeader>
-          <AlertDialogCloseButton />
-          <AlertDialogBody>
-            Are you sure you want to delete this equipment?
-          </AlertDialogBody>
-          <AlertDialogFooter>
-            <Button ref={cancelRef} onClick={onClose}>
-              No
-            </Button>
-            <Button
-              colorScheme="red"
-              isDisabled={isPending}
-              ml={3}
-              onClick={() => handleDelete(equipmentId)}
-            >
-              Yes
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    </>
+    <DeleteButton
+      itemId={equipmentId}
+      itemName="equipment"
+      routeAfterDelete="/config/equipments"
+      isPending={isPending}
+      mutateAsync={mutateAsync}
+      onSuccess={handlePagination}
+    />
   );
 };
 
