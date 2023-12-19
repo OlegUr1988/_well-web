@@ -35,7 +35,7 @@ const AssetsPage = () => {
 
         <Box mb={5}>
           <CommandPanel
-            path="/config/assets/new"
+            createPath="/config/assets/new"
             createLabel="Create"
             exportButton={<AssetsExportButton />}
             importButton={<AssetsImportButton />}

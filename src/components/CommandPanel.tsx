@@ -2,21 +2,21 @@ import { Button, HStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
 interface Props {
-  path: string;
+  createPath: string;
   createLabel: string;
   exportButton?: JSX.Element;
   importButton?: JSX.Element;
 }
 
 const CommandPanel = ({
-  path,
+  createPath,
   createLabel,
   exportButton,
   importButton,
 }: Props) => {
   return (
     <HStack justify="space-between">
-      <Link to={path}>
+      <Link to={createPath}>
         <Button colorScheme="blue">{createLabel}</Button>
       </Link>
 
