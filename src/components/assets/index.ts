@@ -1,4 +1,3 @@
-export { default as AssetDeleteButton } from "./AssetDeleteButton";
 export { default as AssetsCommandPanel } from "./AssetsCommandPanel";
 export { default as AssetsList } from "./AssetsList";
 export { default as AssetsPagination } from "./AssetsPagination";

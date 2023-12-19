@@ -1,0 +1,21 @@
+import useEquipmentStore from "../../store/equipments";
+import SearchInput from "../SearchInput";
+
+const EquipmentsSearchInput = () => {
+  const setSearchedName = useEquipmentStore((s) => s.setSearchedName);
+  const setPage = useEquipmentStore((s) => s.setPage);
+
+  const handleSearch = (text: string) => {
+    setSearchedName(text);
+    setPage(1);
+  };
+
+  return (
+    <SearchInput
+      placeholder="Search by equipment or asset..."
+      onSearch={(e) => handleSearch(e)}
+    />
+  );
+};
+
+export default EquipmentsSearchInput;
