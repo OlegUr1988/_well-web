@@ -28,7 +28,7 @@ const ImportButton = ({
     const file = e.target.files?.[0];
 
     if (!file) {
-      console.error("No file selected");
+      toast.error("No file selected");
       return;
     }
 
