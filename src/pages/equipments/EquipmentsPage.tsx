@@ -1,6 +1,6 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
 import {
-  EquipmentCommandPanel,
+  EquipmentsCommandPanel,
   EquipmentsList,
   EquipmentsPagination,
   EquipmentsSearchInput,
@@ -12,7 +12,7 @@ const EquipmentsPage = () => {
       <Heading mb={5}>Equipments</Heading>
 
       <Box mb={5}>
-        <EquipmentCommandPanel />
+        <EquipmentsCommandPanel />
       </Box>
 
       <Box mb={3}>
