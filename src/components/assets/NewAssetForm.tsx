@@ -1,51 +1,35 @@
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
-import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { AssetFormData } from "../../entities/FormData";
 import { useAddAsset } from "../../hooks/assets";
-import useForm from "../../hooks/useForm";
+import { useFormSubmit } from "../../hooks/forms";
 import { assetSchema } from "../../validationSchema";
-import { HttpError } from "../../services/api-client";
+import { FormContainer, FormInput, FormSubmit } from "../forms/";
 
 const NewAssetForm = () => {
   const { mutateAsync, isPending } = useAddAsset();
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
-  const { register, handleSubmit, onSubmit, errors } = useForm<AssetFormData>(
-    async (data) => {
-      try {
-        await mutateAsync(data);
-        toast.success("A new asset was created");
-        queryClient.invalidateQueries();
-        navigate("/config/assets");
-      } catch (error) {
-        const { response } = error as HttpError;
-        toast.error(response?.data.message);
-      }
-    },
-    assetSchema
-  );
+  const { register, handleSubmit, onSubmit, errors } = useFormSubmit<
+    AssetFormData,
+    AssetFormData
+  >({
+    onSuccessMessage: "The new asset was successfuly created.",
+    redirectPath: "/config/assets",
+    schema: assetSchema,
+    mutateAsync,
+    onDataMutate: (data) => data,
+  });
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl mb={5} isInvalid={!!errors.name}>
-        <FormLabel>Asset Name</FormLabel>
-        <Input w={400} placeholder="Name" {...register("name")} />
-        <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
-      </FormControl>
+    <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
+      <FormInput
+        name="name"
+        label="Asset Name"
+        error={errors.name?.message!}
+        placeholder="Name"
+        register={register}
+      />
 
-      <Button isDisabled={isPending} colorScheme="blue" type="submit">
-        Create
-      </Button>
-    </form>
+      <FormSubmit label="Create" isDisabled={isPending} />
+    </FormContainer>
   );
 };
 

@@ -1,21 +1,11 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
-import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 import { EquipmentFormData, SelectOption } from "../../entities/FormData";
+import { AddEquipment } from "../../entities/equipments";
 import { useAssets } from "../../hooks/assets";
 import { useEquipment, useUpdateEquipment } from "../../hooks/equipments";
-import useForm from "../../hooks/useForm";
-import { HttpError } from "../../services/api-client";
+import { useFormSubmit } from "../../hooks/forms";
 import { equipmentFormSchema } from "../../validationSchema";
-import ControlledSelect from "../ControlledSelect";
+import { FormContainer, FormInput, FormSelect, FormSubmit } from "../forms/";
 import EquipmentFormSkeleton from "./EquipmentFormSkeleton";
 
 const UpdateEquipmentForm = () => {
@@ -25,6 +15,7 @@ const UpdateEquipmentForm = () => {
     isLoading: isAssetsLoading,
     error: assetsError,
   } = useAssets({});
+
   const {
     data: equipment,
     isLoading: isEquipmentLoading,
@@ -32,24 +23,17 @@ const UpdateEquipmentForm = () => {
   } = useEquipment(id!);
 
   const { mutateAsync, isPending } = useUpdateEquipment(id!);
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
-  const { control, register, handleSubmit, onSubmit, errors } =
-    useForm<EquipmentFormData>(async (data) => {
-      try {
-        await mutateAsync({
-          name: data.name,
-          assetId: data.asset?.value!,
-        });
-        queryClient.invalidateQueries();
-        toast.success("The equipment was successfuly modified.");
-        navigate("/config/equipments");
-      } catch (error) {
-        const { response } = error as HttpError;
-        toast.error(response?.data.message);
-      }
-    }, equipmentFormSchema);
+  const { control, register, handleSubmit, onSubmit, errors } = useFormSubmit<
+    EquipmentFormData,
+    AddEquipment
+  >({
+    onSuccessMessage: "A new equipment was created",
+    redirectPath: "/config/equipments",
+    schema: equipmentFormSchema,
+    mutateAsync,
+    onDataMutate: (data) => ({ name: data.name, assetId: data.asset?.value! }),
+  });
 
   if (assetsError || equipmentError) return null;
 
@@ -66,33 +50,26 @@ const UpdateEquipmentForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl mb={3} isInvalid={!!errors.name}>
-        <FormLabel>Equipment Name</FormLabel>
-        <Input
-          w={400}
-          placeholder="Equipment Name"
-          defaultValue={equipment?.name}
-          {...register("name")}
-        />
-        <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
-      </FormControl>
+    <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
+      <FormInput
+        name="name"
+        label="Equipment Name"
+        error={errors.name?.message!}
+        placeholder="Equipment Name"
+        defaultValue={equipment?.name}
+        register={register}
+      />
 
-      <Box w={400} mb={5}>
-        <ControlledSelect<EquipmentFormData, SelectOption, false>
-          name="asset"
-          control={control}
-          label="Select Asset"
-          defaultValue={defaultOption}
-          placeholder="Asset"
-          options={options}
-        />
-      </Box>
+      <FormSelect
+        name="asset"
+        control={control}
+        label="Select Asset"
+        defaultValue={defaultOption}
+        options={options}
+      />
 
-      <Button isDisabled={isPending} colorScheme="blue" type="submit">
-        Update
-      </Button>
-    </form>
+      <FormSubmit label="Update" isDisabled={isPending} />
+    </FormContainer>
   );
 };
 

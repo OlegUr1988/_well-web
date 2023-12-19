@@ -1,45 +1,26 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
-import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { EquipmentFormData, SelectOption } from "../../entities/FormData";
+import { AddEquipment } from "../../entities/equipments";
 import { useAssets } from "../../hooks/assets";
 import { useAddEquipment } from "../../hooks/equipments";
-import useForm from "../../hooks/useForm";
-import { HttpError } from "../../services/api-client";
+import { useFormSubmit } from "../../hooks/forms";
 import { equipmentFormSchema } from "../../validationSchema";
-import ControlledSelect from "../ControlledSelect";
+import { FormContainer, FormInput, FormSelect, FormSubmit } from "../forms/";
 import EquipmentFormSkeleton from "./EquipmentFormSkeleton";
 
 const NewEquipmentForm = () => {
   const { data: assets, isLoading, error } = useAssets({});
-
   const { mutateAsync, isPending } = useAddEquipment();
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
-  const { control, register, handleSubmit, onSubmit, errors } =
-    useForm<EquipmentFormData>(async (data) => {
-      try {
-        await mutateAsync({
-          name: data.name,
-          assetId: data.asset?.value!,
-        });
-        toast.success("A new equipment was created");
-        queryClient.invalidateQueries();
-        navigate("/config/equipments");
-      } catch (error) {
-        const { response } = error as HttpError;
-        toast.error(response?.data.message);
-      }
-    }, equipmentFormSchema);
+  const { control, register, handleSubmit, onSubmit, errors } = useFormSubmit<
+    EquipmentFormData,
+    AddEquipment
+  >({
+    onSuccessMessage: "A new equipment was created",
+    redirectPath: "/config/equipments",
+    schema: equipmentFormSchema,
+    mutateAsync,
+    onDataMutate: (data) => ({ name: data.name, assetId: data.asset?.value! }),
+  });
 
   if (error) return null;
 
@@ -51,27 +32,24 @@ const NewEquipmentForm = () => {
   }));
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl mb={3} isInvalid={!!errors.name}>
-        <FormLabel>Equipment Name</FormLabel>
-        <Input w={400} placeholder="Equipment Name" {...register("name")} />
-        <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
-      </FormControl>
+    <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
+      <FormInput
+        name="name"
+        label="Equipment Name"
+        error={errors.name?.message!}
+        placeholder="Equipment Name"
+        register={register}
+      />
 
-      <Box w={400} mb={5}>
-        <ControlledSelect<EquipmentFormData, SelectOption, false>
-          name="asset"
-          control={control}
-          label="Select Asset"
-          placeholder="Asset"
-          options={options}
-        />
-      </Box>
+      <FormSelect
+        name="asset"
+        control={control}
+        label="Select Asset"
+        options={options}
+      />
 
-      <Button isDisabled={isPending} colorScheme="blue" type="submit">
-        Create
-      </Button>
-    </form>
+      <FormSubmit label="Create" isDisabled={isPending} />
+    </FormContainer>
   );
 };
 

@@ -1,64 +1,44 @@
-import {
-  Button,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-} from "@chakra-ui/react";
-import { useQueryClient } from "@tanstack/react-query";
-import { useNavigate, useParams } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
 import { AssetFormData } from "../../entities/FormData";
 import { useAsset, useUpdateAsset } from "../../hooks/assets";
-import useForm from "../../hooks/useForm";
-import { HttpError } from "../../services/api-client";
+import { useFormSubmit } from "../../hooks/forms";
 import { assetSchema } from "../../validationSchema";
+import { FormContainer, FormInput, FormSubmit } from "../forms/";
 import AssetFormSkeleton from "./AssetFormSkeleton";
 
 const UpdateAssetForm = () => {
   const { id } = useParams();
   const { data: asset, isLoading, error } = useAsset(id!);
-
   const { mutateAsync, isPending } = useUpdateAsset(id!);
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
-  const { register, handleSubmit, onSubmit, errors } = useForm<AssetFormData>(
-    async (data) => {
-      try {
-        await mutateAsync(data);
-        queryClient.invalidateQueries();
-        toast.success("The asset was successfuly modified.");
-        navigate("/config/assets");
-      } catch (error) {
-        const { response } = error as HttpError;
-        toast.error(response?.data.message);
-      }
-    },
-    assetSchema
-  );
+  const { register, handleSubmit, onSubmit, errors } = useFormSubmit<
+    AssetFormData,
+    AssetFormData
+  >({
+    onSuccessMessage: "The asset was successfuly modified.",
+    redirectPath: "/config/assets",
+    schema: assetSchema,
+    mutateAsync,
+    onDataMutate: (data) => data,
+  });
 
   if (error) return null;
 
   if (isLoading) return <AssetFormSkeleton />;
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl mb={5} isInvalid={!!errors.name}>
-        <FormLabel>Asset Name</FormLabel>
-        <Input
-          w={400}
-          placeholder="name"
-          defaultValue={asset?.name}
-          {...register("name")}
-        />
-        <FormErrorMessage>{errors.name?.message}</FormErrorMessage>
-      </FormControl>
+    <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
+      <FormInput
+        name="name"
+        label="Asset Name"
+        error={errors.name?.message!}
+        placeholder="Name"
+        defaultValue={asset?.name}
+        register={register}
+      />
 
-      <Button isDisabled={isPending} colorScheme="blue" type="submit">
-        Modify
-      </Button>
-    </form>
+      <FormSubmit label="Update" isDisabled={isPending} />
+    </FormContainer>
   );
 };
 
