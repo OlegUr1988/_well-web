@@ -4,10 +4,15 @@ import { BsSearch } from "react-icons/bs";
 
 interface Props {
   placeholder?: string;
+  defaultValue?: string;
   onSearch: (text: string) => void;
 }
 
-const SearchInput = ({ placeholder = "Search...", onSearch }: Props) => {
+const SearchInput = ({
+  placeholder = "Search...",
+  defaultValue = "",
+  onSearch,
+}: Props) => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (
@@ -23,6 +28,7 @@ const SearchInput = ({ placeholder = "Search...", onSearch }: Props) => {
         <Input
           placeholder={placeholder}
           borderRadius={10}
+          defaultValue={defaultValue}
           onChange={(e) => onSearch(e.target.value)}
         />
       </InputGroup>
