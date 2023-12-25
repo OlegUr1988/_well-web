@@ -17,3 +17,12 @@ export const equipmentFormSchema = z.object({
   name: z.string().min(1).max(255),
   asset: assetOptionShema.nullable(),
 });
+
+export const PHDTagSchema = z.object({
+  tagname: z
+    .string()
+    .trim()
+    .min(1, "Tagname should be at least 1 character")
+    .max(300, "More than 300 characters"),
+  description: z.string(),
+});

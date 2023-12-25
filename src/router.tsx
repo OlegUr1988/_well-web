@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ConfigPanelPage from "./pages/ConfigPanelPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
-import { PHDTagsPage } from "./pages/PHDTags";
+import { NewPHDTagPage, PHDTagsPage } from "./pages/PHDTags";
 import QueriesPage from "./pages/QueriesPage";
 import { AssetDetailPage, AssetsPage, NewAssetPage } from "./pages/assets/";
 import {
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
       { path: "equipments/new", element: <NewEquipmentPage /> },
       { path: "equipments/:id", element: <EquipmentDetailPage /> },
       { path: "phd-tags", element: <PHDTagsPage /> },
+      { path: "phd-tags/new", element: <NewPHDTagPage /> },
       { path: "queries", element: <QueriesPage /> },
     ],
   },

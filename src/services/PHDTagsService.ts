@@ -1,4 +1,5 @@
-import { PHDTag } from "../entities/PHDTags";
+import { AddPHDTag, PHDTag } from "../entities/PHDTags";
 import APIClient from "./api-client";
 
 export const tags = new APIClient<PHDTag>("/phd-tags");
+export const addTag = new APIClient<AddPHDTag>("/phd-tags");
