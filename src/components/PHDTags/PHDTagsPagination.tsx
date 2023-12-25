@@ -1,4 +1,4 @@
-import usePHDTags from "../../hooks/PHDTags/usePHDTags";
+import { usePHDTags } from "../../hooks/PHDTags";
 import usePHDTagStore from "../../store/phdTags";
 import Pagination from "../Pagination";
 

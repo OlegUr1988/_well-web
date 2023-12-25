@@ -22,7 +22,7 @@ const PHDTagsTableBody = ({ tags }: { tags: PHDTag[] }) => {
             {moment(tag.updated_at).format(timeFormat)}
           </Td>
           <Td textAlign="center">
-            <Link to={`/config/assets/${tag.id}`}>
+            <Link to={`/config/phd-tags/${tag.id}`}>
               <Button colorScheme="yellow">Modify</Button>
             </Link>
           </Td>

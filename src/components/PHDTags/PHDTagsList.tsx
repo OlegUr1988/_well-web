@@ -1,5 +1,5 @@
 import { Skeleton } from "@chakra-ui/react";
-import usePHDTags from "../../hooks/PHDTags/usePHDTags";
+import { usePHDTags } from "../../hooks/PHDTags";
 import usePHDTagStore from "../../store/phdTags";
 import PHDTagsTable from "./PHDTagsTable";
 

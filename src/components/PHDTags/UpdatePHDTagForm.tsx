@@ -1,22 +1,31 @@
+import { useParams } from "react-router-dom";
 import { PHDTagFormData } from "../../entities/FormData";
-import { useAddPHDTag } from "../../hooks/PHDTags";
+import { usePHDTag, useUpdatePHDTag } from "../../hooks/PHDTags";
 import { useFormSubmit } from "../../hooks/forms";
 import { PHDTagSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "../forms";
+import PHDTagFormSkeleton from "./PHDTagFormSkeleton";
 
-const NewPHDTagForm = () => {
-  const { mutateAsync, isPending } = useAddPHDTag();
+const UpdatePHDTagForm = () => {
+  const { id } = useParams();
+  const { data: tag, isLoading, error } = usePHDTag(id!);
+
+  const { mutateAsync, isPending } = useUpdatePHDTag(id!);
 
   const { register, handleSubmit, onSubmit, errors } = useFormSubmit<
     PHDTagFormData,
     PHDTagFormData
   >({
-    onSuccessMessage: "The new PHD tag was successfuly created.",
+    onSuccessMessage: "The PHd tag was successfuly modified",
     redirectPath: "/config/phd-tags",
     schema: PHDTagSchema,
     mutateAsync,
     onDataMutate: (data) => data,
   });
+
+  if (error) return null;
+
+  if (isLoading) return <PHDTagFormSkeleton />;
 
   return (
     <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
@@ -24,6 +33,7 @@ const NewPHDTagForm = () => {
         name="tagname"
         label="PHD tagname"
         error={errors.tagname?.message!}
+        defaultValue={tag?.tagname}
         placeholder="Tagname"
         isRequired={true}
         register={register}
@@ -33,12 +43,13 @@ const NewPHDTagForm = () => {
         name="description"
         label="Descrtiption"
         error={errors.description?.message!}
+        defaultValue={tag?.description}
         placeholder="Description"
         register={register}
       />
-      <FormSubmit label="Create" isDisabled={isPending} />
+      <FormSubmit label="Update" isDisabled={isPending} />
     </FormContainer>
   );
 };
 
-export default NewPHDTagForm;
+export default UpdatePHDTagForm;
