@@ -1,4 +1,5 @@
 import { GrConfigure } from "react-icons/gr";
+import { LiaHashtagSolid } from "react-icons/lia";
 import { MdOutlineQueryBuilder, MdOutlineWebAsset } from "react-icons/md";
 
 export default [
@@ -16,6 +17,12 @@ export default [
   },
   {
     id: 3,
+    name: "PHD Tags",
+    url: "/config/phd-tags",
+    icon: LiaHashtagSolid,
+  },
+  {
+    id: 4,
     name: "Configure Queries",
     url: "/config/queries",
     icon: MdOutlineQueryBuilder,

@@ -1,5 +1,3 @@
-export default interface EquipmentQuery {
-  page?: number;
-  pageSize?: number;
-  searchedName?: string;
-}
+import BasicQuery from "../BasicQuery";
+
+export default interface EquipmentQuery extends BasicQuery {}
