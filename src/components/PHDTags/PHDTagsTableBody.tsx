@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import timeFormat from "../../constants/timeFormat";
 import { PHDTag } from "../../entities/PHDTags";
 import usePHDTagStore from "../../store/phdTags";
+import PHDTagDeleteButton from "./PHDTagDeleteButton";
 
 const PHDTagsTableBody = ({ tags }: { tags: PHDTag[] }) => {
   const { page, pageSize } = usePHDTagStore((s) => s.PHDTagsQuery);
@@ -27,7 +28,7 @@ const PHDTagsTableBody = ({ tags }: { tags: PHDTag[] }) => {
             </Link>
           </Td>
           <Td textAlign="center">
-            {/* <AssetDeleteButton assetId={asset.id} /> */}
+            <PHDTagDeleteButton tagId={tag.id} />
           </Td>
         </Tr>
       ))}
