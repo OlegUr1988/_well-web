@@ -1,5 +1,3 @@
-export default interface AssetQuery {
-  page?: number;
-  pageSize?: number;
-  searchedName?: string;
-}
+import BasicQuery from "../BasicQuery";
+
+export default interface AssetQuery extends BasicQuery {}
