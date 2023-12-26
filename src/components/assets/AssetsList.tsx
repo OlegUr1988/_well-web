@@ -1,26 +1,24 @@
-import { Skeleton } from "@chakra-ui/react";
-import { useAssets } from "../../hooks/assets";
-import useAssetStore from "../../store/assets";
-import AssetsTable from "./AssetsTable";
+import { HStack, List, ListItem, Text } from "@chakra-ui/react";
+import { Asset } from "../../entities/assets";
+import AssetDeleteButton from "./AssetDeleteButton";
+import AssetModifyButton from "./AssetModifyButton";
 
-const AssetsList = () => {
-  const { page, pageSize, searchedName } = useAssetStore((s) => s.assetQuery);
-
-  const {
-    data: assets,
-    isLoading,
-    error,
-  } = useAssets({ page, pageSize, searchedName });
-
-  if (error) return null;
-
+const AssetsList = ({ assets }: { assets: Asset[] }) => {
   return (
     <>
-      {isLoading ? (
-        <Skeleton h={400} borderRadius={10} />
-      ) : (
-        <AssetsTable assets={assets?.results!} />
-      )}
+      {assets?.map((asset) => (
+        <List key={asset.id} w="100%">
+          <ListItem my={1}>
+            <HStack justify="space-between">
+              <Text color="white">{asset.name}</Text>
+              <HStack>
+                <AssetModifyButton asset={asset} />
+                <AssetDeleteButton assetId={asset.id} />
+              </HStack>
+            </HStack>
+          </ListItem>
+        </List>
+      ))}
     </>
   );
 };
