@@ -5,11 +5,6 @@ import Layout from "./pages/Layout";
 import ModelsPage from "./pages/ModelsPage";
 import { NewPHDTagPage, PHDTagDetailPage, PHDTagsPage } from "./pages/PHDTags";
 import QueriesPage from "./pages/QueriesPage";
-import {
-  EquipmentDetailPage,
-  EquipmentsPage,
-  NewEquipmentPage,
-} from "./pages/equipments";
 
 const router = createBrowserRouter([
   {
@@ -25,9 +20,6 @@ const router = createBrowserRouter([
     path: "config",
     element: <ConfigPanelPage />,
     children: [
-      { path: "equipments", element: <EquipmentsPage /> },
-      { path: "equipments/new", element: <NewEquipmentPage /> },
-      { path: "equipments/:id", element: <EquipmentDetailPage /> },
       { path: "phd-tags", element: <PHDTagsPage /> },
       { path: "phd-tags/new", element: <NewPHDTagPage /> },
       { path: "phd-tags/:id", element: <PHDTagDetailPage /> },

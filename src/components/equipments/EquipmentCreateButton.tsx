@@ -18,7 +18,7 @@ import { HttpError } from "../../services/api-client";
 import { equipmentSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "../forms";
 
-const EquipmentsCreateButton = ({ assetId }: { assetId: number }) => {
+const EquipmentCreateButton = ({ assetId }: { assetId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { mutateAsync, isPending } = useAddEquipment();
   const queryClient = useQueryClient();
@@ -66,4 +66,4 @@ const EquipmentsCreateButton = ({ assetId }: { assetId: number }) => {
   );
 };
 
-export default EquipmentsCreateButton;
+export default EquipmentCreateButton;

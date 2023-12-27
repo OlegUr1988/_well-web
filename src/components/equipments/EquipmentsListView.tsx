@@ -1,9 +1,9 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
-import { EquipmentsList } from ".";
 import { useEquipments } from "../../hooks/equipments";
 import useModelStore from "../../store/model";
 import ListViewSpinner from "../ListViewSpinner";
-import EquipmentsCreateButton from "./EquipmentsCreateButton";
+import EquipmentCreateButton from "./EquipmentCreateButton";
+import EquipmentsList from "./EquipmentsList";
 
 const EquipmentsListView = () => {
   const { assetId } = useModelStore((s) => s.modelQuery);
@@ -29,7 +29,7 @@ const EquipmentsListView = () => {
       <EquipmentsList equipments={equipments!} />
 
       <Box p={2} w="100%">
-        <EquipmentsCreateButton assetId={assetId} />
+        <EquipmentCreateButton assetId={assetId} />
       </Box>
     </VStack>
   );
