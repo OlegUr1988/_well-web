@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import { AssetsListView } from "../components/assets";
 import { EquipmentsListView } from "../components/equipments";
-import PartsListView from "../components/parts/PartsListView";
+import { PartsListView } from "../components/parts";
 
 const ModelsPage = () => {
   return (

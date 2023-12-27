@@ -2,6 +2,7 @@ import { Box, Heading, VStack } from "@chakra-ui/react";
 import { useParts } from "../../hooks/parts";
 import useModelStore from "../../store/model";
 import ListViewSpinner from "../ListViewSpinner";
+import PartsCreateButton from "./PartsCreateButton";
 import PartsList from "./PartsList";
 
 const PartsListView = () => {
@@ -28,7 +29,7 @@ const PartsListView = () => {
       <PartsList parts={parts!} />
 
       <Box p={2} w="100%">
-        {/* <EquipmentsCreateButton assetId={assetId} /> */}
+        <PartsCreateButton equipmentId={equipmentId} />
       </Box>
     </VStack>
   );

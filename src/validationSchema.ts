@@ -17,6 +17,10 @@ export const equipmentSchema = z.object({
   name: z.string().min(1).max(255),
 });
 
+export const partSchema = z.object({
+  name: z.string().min(1).max(255),
+});
+
 export const PHDTagSchema = z.object({
   tagname: z
     .string()

@@ -1,6 +1,8 @@
 import { HStack, List, ListItem, Text } from "@chakra-ui/react";
 import { Part } from "../../entities/parts";
 import useModelStore from "../../store/model";
+import PartDeleteButton from "./PartDeleteButton";
+import PartEditButton from "./PartEditButton";
 
 const PartsList = ({ parts }: { parts: Part[] }) => {
   const { partId } = useModelStore((s) => s.modelQuery);
@@ -8,24 +10,24 @@ const PartsList = ({ parts }: { parts: Part[] }) => {
 
   return (
     <List w="100%">
-      {parts?.map((parts) => (
+      {parts?.map((part) => (
         <ListItem
-          key={parts.id}
+          key={part.id}
           py={1}
           px={2}
-          bgColor={partId === parts.id ? "gray.400" : "gray.700"}
+          bgColor={partId === part.id ? "gray.400" : "gray.700"}
         >
           <HStack justify="space-between">
             <Text
               color="white"
-              onClick={() => setPartId(parts.id)}
+              onClick={() => setPartId(part.id)}
               cursor="pointer"
             >
-              {parts.name}
+              {part.name}
             </Text>
             <HStack>
-              {/* <EquipmentEditButton equipment={equipment} /> */}
-              {/* <EquipmentDeleteButton equipmentId={equipment.id} /> */}
+              <PartEditButton part={part} />
+              <PartDeleteButton partId={part.id} />
             </HStack>
           </HStack>
         </ListItem>
