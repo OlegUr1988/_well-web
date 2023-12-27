@@ -5,30 +5,34 @@ import AssetDeleteButton from "./AssetDeleteButton";
 import AssetEditButton from "./AssetEditButton";
 
 const AssetsList = ({ assets }: { assets: Asset[] }) => {
+  const { assetId } = useModelStore((s) => s.modelQuery);
   const setAssetId = useModelStore((s) => s.setAssetId);
 
   return (
-    <>
+    <List w="100%">
       {assets?.map((asset) => (
-        <List key={asset.id} w="100%">
-          <ListItem my={1}>
-            <HStack justify="space-between">
-              <Text
-                color="white"
-                onClick={() => setAssetId(asset.id)}
-                cursor="pointer"
-              >
-                {asset.name}
-              </Text>
-              <HStack>
-                <AssetEditButton asset={asset} />
-                <AssetDeleteButton assetId={asset.id} />
-              </HStack>
+        <ListItem
+          key={asset.id}
+          py={1}
+          px={2}
+          bgColor={assetId === asset.id ? "gray.400" : "gray.700"}
+        >
+          <HStack justify="space-between">
+            <Text
+              color="white"
+              onClick={() => setAssetId(asset.id)}
+              cursor="pointer"
+            >
+              {asset.name}
+            </Text>
+            <HStack>
+              <AssetEditButton asset={asset} />
+              <AssetDeleteButton assetId={asset.id} />
             </HStack>
-          </ListItem>
-        </List>
+          </HStack>
+        </ListItem>
       ))}
-    </>
+    </List>
   );
 };
 

@@ -1,4 +1,4 @@
-import { Heading, VStack } from "@chakra-ui/react";
+import { Box, Heading, VStack } from "@chakra-ui/react";
 import { AssetsList } from ".";
 import { useAssets } from "../../hooks/assets";
 import ListViewSpinner from "../ListViewSpinner";
@@ -17,16 +17,17 @@ const AssetsListView = () => {
       width={250}
       bgColor="gray.700"
       alignItems="start"
-      p={2}
       borderRight="1px solid gray"
     >
-      <Heading color="white" size="lg" mb={3}>
+      <Heading color="white" size="lg" px={2} my={3}>
         Assets
       </Heading>
 
       <AssetsList assets={assets!} />
 
-      <AssetCreateButton />
+      <Box p={2} w="100%">
+        <AssetCreateButton />
+      </Box>
     </VStack>
   );
 };
