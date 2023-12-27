@@ -1,7 +1,7 @@
 import { HStack, List, ListItem, Text } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
 import AssetDeleteButton from "./AssetDeleteButton";
-import AssetModifyButton from "./AssetModifyButton";
+import AssetEditButton from "./AssetEditButton";
 
 const AssetsList = ({ assets }: { assets: Asset[] }) => {
   return (
@@ -12,7 +12,7 @@ const AssetsList = ({ assets }: { assets: Asset[] }) => {
             <HStack justify="space-between">
               <Text color="white">{asset.name}</Text>
               <HStack>
-                <AssetModifyButton asset={asset} />
+                <AssetEditButton asset={asset} />
                 <AssetDeleteButton assetId={asset.id} />
               </HStack>
             </HStack>
