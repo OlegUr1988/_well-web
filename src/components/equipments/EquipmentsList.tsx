@@ -1,27 +1,24 @@
-import { Skeleton } from "@chakra-ui/react";
-import { useEquipments } from "../../hooks/equipments";
-import useEquipmentStore from "../../store/equipments";
-import EquipmentsTable from "./EquipmentsTable";
+import { HStack, List, ListItem, Text } from "@chakra-ui/react";
+import { Equipment } from "../../entities/equipments";
+import AssetDeleteButton from "../assets/AssetDeleteButton";
+import AssetModifyButton from "../assets/AssetModifyButton";
 
-const EquipmentsList = () => {
-  const { page, pageSize, searchedName } = useEquipmentStore(
-    (s) => s.equipmentQuery
-  );
-
-  const {
-    data: equipments,
-    isLoading,
-    error,
-  } = useEquipments({ page, pageSize, searchedName });
-
-  if (error) return null;
+const EquipmentsList = ({ equipments }: { equipments: Equipment[] }) => {
   return (
     <>
-      {isLoading ? (
-        <Skeleton h={400} borderRadius={10} />
-      ) : (
-        <EquipmentsTable equipments={equipments?.results!} />
-      )}
+      {equipments?.map((equipment) => (
+        <List key={equipment.id} w="100%">
+          <ListItem my={1}>
+            <HStack justify="space-between">
+              <Text color="white">{equipment.name}</Text>
+              <HStack>
+                <AssetModifyButton asset={equipment} />
+                <AssetDeleteButton assetId={equipment.id} />
+              </HStack>
+            </HStack>
+          </ListItem>
+        </List>
+      ))}
     </>
   );
 };

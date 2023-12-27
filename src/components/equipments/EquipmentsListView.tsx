@@ -1,6 +1,7 @@
 import { Heading, VStack } from "@chakra-ui/react";
 import { useEquipments } from "../../hooks/equipments";
 import ListViewSpinner from "../ListViewSpinner";
+import { EquipmentsList } from ".";
 
 const EquipmentsListView = () => {
   const { data: equipments, isLoading, error } = useEquipments({ assetId: 2 });
@@ -22,7 +23,7 @@ const EquipmentsListView = () => {
         Equipments
       </Heading>
 
-      {/* <AssetsList assets={assets!} /> */}
+      <EquipmentsList equipments={equipments!} />
 
       {/* <AssetCreateButton /> */}
     </VStack>
