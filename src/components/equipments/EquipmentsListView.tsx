@@ -1,11 +1,9 @@
 import { Heading, VStack } from "@chakra-ui/react";
-import { AssetsList } from ".";
-import { useAssets } from "../../hooks/assets";
+import { useEquipments } from "../../hooks/equipments";
 import ListViewSpinner from "../ListViewSpinner";
-import AssetCreateButton from "./AssetCreateButton";
 
-const AssetsListView = () => {
-  const { data: assets, isLoading, error } = useAssets({});
+const EquipmentsListView = () => {
+  const { data: equipments, isLoading, error } = useEquipments({ assetId: 2 });
 
   if (isLoading) return <ListViewSpinner />;
 
@@ -21,14 +19,14 @@ const AssetsListView = () => {
       borderRight="1px solid gray"
     >
       <Heading color="white" size="lg" mb={3}>
-        Assets
+        Equipments
       </Heading>
 
-      <AssetsList assets={assets!} />
+      {/* <AssetsList assets={assets!} /> */}
 
-      <AssetCreateButton />
+      {/* <AssetCreateButton /> */}
     </VStack>
   );
 };
 
-export default AssetsListView;
+export default EquipmentsListView;

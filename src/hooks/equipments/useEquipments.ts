@@ -5,7 +5,7 @@ import { FetchResponse } from "../../services/api-client";
 import { equipments } from "../../services/equipmentsServices";
 
 const useEquipments = (query: EquipmentQuery) => {
-  return useQuery<FetchResponse<Equipment>, Error>({
+  return useQuery<Equipment[], Error>({
     queryKey: ["equipments", query],
     queryFn: () => equipments.getAll({ params: query }),
     placeholderData: keepPreviousData,
