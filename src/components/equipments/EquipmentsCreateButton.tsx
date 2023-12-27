@@ -11,32 +11,30 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import { FaPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
-import { AssetFormData } from "../../entities/FormData";
-import { useAddAsset } from "../../hooks/assets";
+import { EquipmentFormData } from "../../entities/FormData";
+import { useAddEquipment } from "../../hooks/equipments";
 import { useForm } from "../../hooks/forms";
 import { HttpError } from "../../services/api-client";
-import { assetSchema } from "../../validationSchema";
+import { equipmentSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "../forms";
 
-const AssetCreateButton = () => {
+const EquipmentsCreateButton = ({ assetId }: { assetId: number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { mutateAsync, isPending } = useAddAsset();
+  const { mutateAsync, isPending } = useAddEquipment();
   const queryClient = useQueryClient();
 
-  const { register, errors, handleSubmit, onSubmit } = useForm<AssetFormData>(
-    async (data) => {
+  const { register, errors, handleSubmit, onSubmit } =
+    useForm<EquipmentFormData>(async (data) => {
       try {
-        await mutateAsync(data);
+        await mutateAsync({ name: data.name, assetId });
         onClose();
-        toast.success("The new asset was successfully added");
+        toast.success("The new equipment was successfully added");
         queryClient.invalidateQueries();
       } catch (error) {
         const { response } = error as HttpError;
         toast.error(response?.data.message);
       }
-    },
-    assetSchema
-  );
+    }, equipmentSchema);
 
   return (
     <>
@@ -47,13 +45,13 @@ const AssetCreateButton = () => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create Asset</ModalHeader>
+          <ModalHeader>Create Equipment</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
               <FormInput
                 name="name"
-                label="Asset Name"
+                label="Equipment Name"
                 error={errors.name?.message!}
                 placeholder="Name"
                 register={register}
@@ -68,4 +66,4 @@ const AssetCreateButton = () => {
   );
 };
 
-export default AssetCreateButton;
+export default EquipmentsCreateButton;
