@@ -5,7 +5,6 @@ import Layout from "./pages/Layout";
 import ModelsPage from "./pages/ModelsPage";
 import { NewPHDTagPage, PHDTagDetailPage, PHDTagsPage } from "./pages/PHDTags";
 import QueriesPage from "./pages/QueriesPage";
-import { AssetDetailPage, AssetsPage, NewAssetPage } from "./pages/assets/";
 import {
   EquipmentDetailPage,
   EquipmentsPage,
@@ -26,9 +25,6 @@ const router = createBrowserRouter([
     path: "config",
     element: <ConfigPanelPage />,
     children: [
-      { path: "assets", element: <AssetsPage /> },
-      { path: "assets/new", element: <NewAssetPage /> },
-      { path: "assets/:id", element: <AssetDetailPage /> },
       { path: "equipments", element: <EquipmentsPage /> },
       { path: "equipments/new", element: <NewEquipmentPage /> },
       { path: "equipments/:id", element: <EquipmentDetailPage /> },

@@ -1,8 +1,8 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
-import { AssetsList } from ".";
 import { useAssets } from "../../hooks/assets";
 import ListViewSpinner from "../ListViewSpinner";
 import AssetCreateButton from "./AssetCreateButton";
+import AssetsList from "./AssetsList";
 
 const AssetsListView = () => {
   const { data: assets, isLoading, error } = useAssets({});
