@@ -1,7 +1,8 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
+import { useParts } from "../../hooks/parts";
 import useModelStore from "../../store/model";
 import ListViewSpinner from "../ListViewSpinner";
-import { useParts } from "../../hooks/parts";
+import PartsList from "./PartsList";
 
 const PartsListView = () => {
   const { equipmentId } = useModelStore((s) => s.modelQuery);
@@ -24,7 +25,7 @@ const PartsListView = () => {
         Equipment Parts
       </Heading>
 
-      {/* <EquipmentsList equipments={equipments!} /> */}
+      <PartsList parts={parts!} />
 
       <Box p={2} w="100%">
         {/* <EquipmentsCreateButton assetId={assetId} /> */}
