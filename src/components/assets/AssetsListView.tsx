@@ -1,34 +1,19 @@
-import { Box, Heading, VStack } from "@chakra-ui/react";
 import { useAssets } from "../../hooks/assets";
-import ListViewSpinner from "../ListViewSpinner";
+import ListView from "../ListView";
 import AssetCreateButton from "./AssetCreateButton";
 import AssetsList from "./AssetsList";
 
 const AssetsListView = () => {
   const { data: assets, isLoading, error } = useAssets({});
 
-  if (isLoading) return <ListViewSpinner />;
-
-  if (error) return null;
-
   return (
-    <VStack
-      h="100%"
-      width={250}
-      bgColor="gray.700"
-      alignItems="start"
-      borderRight="1px solid gray"
-    >
-      <Heading color="white" size="lg" px={2} my={3}>
-        Assets
-      </Heading>
-
-      <AssetsList assets={assets!} />
-
-      <Box p={2} w="100%">
-        <AssetCreateButton />
-      </Box>
-    </VStack>
+    <ListView
+      title="Assets"
+      isLoading={isLoading}
+      error={error}
+      listComponent={<AssetsList assets={assets!} />}
+      createButtonComponent={<AssetCreateButton />}
+    />
   );
 };
 
