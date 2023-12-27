@@ -1,42 +1,41 @@
 import {
-    Button,
-    Modal,
-    ModalBody,
-    ModalCloseButton,
-    ModalContent,
-    ModalHeader,
-    ModalOverlay,
-    useDisclosure,
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { MdOutlineEdit } from "react-icons/md";
 import { toast } from "react-toastify";
-import { Asset } from "../../entities/assets";
-import { useUpdateAsset } from "../../hooks/assets";
+import { EquipmentFormData } from "../../entities/FormData";
+import { Equipment } from "../../entities/equipments";
+import { useUpdateEquipment } from "../../hooks/equipments";
 import { useForm } from "../../hooks/forms";
 import { HttpError } from "../../services/api-client";
-import { assetSchema } from "../../validationSchema";
+import { equipmentSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "../forms";
 
-const AssetModifyButton = ({ asset }: { asset: Asset }) => {
+const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { mutateAsync, isPending } = useUpdateEquipment(equipment.id);
   const queryClient = useQueryClient();
-  const { mutateAsync, isPending } = useUpdateAsset(asset.id);
 
-  const { register, errors, handleSubmit, onSubmit } = useForm<Asset>(
-    async (data) => {
+  const { register, errors, handleSubmit, onSubmit } =
+    useForm<EquipmentFormData>(async (data) => {
       try {
-        await mutateAsync(data);
+        await mutateAsync({ name: data.name, assetId: equipment.assetId });
         onClose();
-        toast.success("The asset was successfully modified");
+        toast.success("The new equipment was successfully modified");
         queryClient.invalidateQueries();
       } catch (error) {
         const { response } = error as HttpError;
         toast.error(response?.data.message);
       }
-    },
-    assetSchema
-  );
+    }, equipmentSchema);
 
   return (
     <>
@@ -47,20 +46,20 @@ const AssetModifyButton = ({ asset }: { asset: Asset }) => {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Edit Asset</ModalHeader>
+          <ModalHeader>Edit Equipment</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
               <FormInput
                 name="name"
-                label="Asset Name"
+                label="Equipment Name"
                 error={errors.name?.message!}
-                defaultValue={asset.name}
                 placeholder="Name"
+                defaultValue={equipment.name}
                 register={register}
               />
 
-              <FormSubmit label="Edit" isDisabled={isPending} />
+              <FormSubmit label="Save" isDisabled={isPending} />
             </FormContainer>
           </ModalBody>
         </ModalContent>
@@ -69,4 +68,4 @@ const AssetModifyButton = ({ asset }: { asset: Asset }) => {
   );
 };
 
-export default AssetModifyButton;
+export default EquipmentEditButton;

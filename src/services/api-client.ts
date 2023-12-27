@@ -33,14 +33,14 @@ class APIClient<T> {
       .then((res) => res.data);
   };
 
-  put = (id: string | number, asset: T) => {
+  put = (id: string | number, entity: T) => {
     return axiosInstance
-      .put<T>(this.endpoint + "/" + id, asset)
+      .put<T>(this.endpoint + "/" + id, entity)
       .then((res) => res.data);
   };
 
-  post = (asset: T) => {
-    return axiosInstance.post<T>(this.endpoint, asset).then((res) => res.data);
+  post = (entity: T) => {
+    return axiosInstance.post<T>(this.endpoint, entity).then((res) => res.data);
   };
 
   importFromExcel = (file: FormData) => {

@@ -13,9 +13,8 @@ export const assetOptionShema = z.object({
   value: z.number(),
 });
 
-export const equipmentFormSchema = z.object({
+export const equipmentSchema = z.object({
   name: z.string().min(1).max(255),
-  asset: assetOptionShema.nullable(),
 });
 
 export const PHDTagSchema = z.object({

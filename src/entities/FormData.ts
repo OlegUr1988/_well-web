@@ -3,13 +3,13 @@ import {
   PHDTagSchema,
   assetOptionShema,
   assetSchema,
-  equipmentFormSchema,
+  equipmentSchema,
 } from "../validationSchema";
 
 export type AssetFormData = z.infer<typeof assetSchema>;
 
 export type SelectOption = z.infer<typeof assetOptionShema>;
 
-export type EquipmentFormData = z.infer<typeof equipmentFormSchema>;
+export type EquipmentFormData = z.infer<typeof equipmentSchema>;
 
 export type PHDTagFormData = z.infer<typeof PHDTagSchema>;

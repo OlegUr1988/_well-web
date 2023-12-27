@@ -3,7 +3,7 @@ import { AddEquipment } from "../../entities/equipments";
 import { useAssets } from "../../hooks/assets";
 import { useAddEquipment } from "../../hooks/equipments";
 import { useFormSubmit } from "../../hooks/forms";
-import { equipmentFormSchema } from "../../validationSchema";
+import { equipmentSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSelect, FormSubmit } from "../forms/";
 import EquipmentFormSkeleton from "./EquipmentFormSkeleton";
 
@@ -17,7 +17,7 @@ const NewEquipmentForm = () => {
   >({
     onSuccessMessage: "A new equipment was created",
     redirectPath: "/config/equipments",
-    schema: equipmentFormSchema,
+    schema: equipmentSchema,
     mutateAsync,
     onDataMutate: (data) => ({ name: data.name, assetId: data.asset?.value! }),
   });

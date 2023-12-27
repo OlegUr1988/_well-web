@@ -9,26 +9,27 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
-import { FaPlus } from "react-icons/fa";
+import { MdOutlineEdit } from "react-icons/md";
 import { toast } from "react-toastify";
 import { AssetFormData } from "../../entities/FormData";
-import { useAddAsset } from "../../hooks/assets";
+import { Asset } from "../../entities/assets";
+import { useUpdateAsset } from "../../hooks/assets";
 import { useForm } from "../../hooks/forms";
 import { HttpError } from "../../services/api-client";
 import { assetSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "../forms";
 
-const AssetCreateButton = () => {
+const AssetEditButton = ({ asset }: { asset: Asset }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { mutateAsync, isPending } = useAddAsset();
   const queryClient = useQueryClient();
+  const { mutateAsync, isPending } = useUpdateAsset(asset.id);
 
   const { register, errors, handleSubmit, onSubmit } = useForm<AssetFormData>(
     async (data) => {
       try {
         await mutateAsync(data);
         onClose();
-        toast.success("The new asset was successfully added");
+        toast.success("The asset was successfully modified");
         queryClient.invalidateQueries();
       } catch (error) {
         const { response } = error as HttpError;
@@ -40,14 +41,14 @@ const AssetCreateButton = () => {
 
   return (
     <>
-      <Button variant="outline" mt={3} color="white" onClick={onOpen} w="100%">
-        <FaPlus />
+      <Button size="xs" variant="outline" color="white" onClick={onOpen}>
+        <MdOutlineEdit />
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Create Asset</ModalHeader>
+          <ModalHeader>Edit Asset</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
@@ -55,11 +56,12 @@ const AssetCreateButton = () => {
                 name="name"
                 label="Asset Name"
                 error={errors.name?.message!}
+                defaultValue={asset.name}
                 placeholder="Name"
                 register={register}
               />
 
-              <FormSubmit label="Create" isDisabled={isPending} />
+              <FormSubmit label="Save" isDisabled={isPending} />
             </FormContainer>
           </ModalBody>
         </ModalContent>
@@ -68,4 +70,4 @@ const AssetCreateButton = () => {
   );
 };
 
-export default AssetCreateButton;
+export default AssetEditButton;
