@@ -8,10 +8,11 @@ import useForm from "./useForm";
 
 interface Props<T, K> {
   onSuccessMessage: string;
-  redirectPath: string;
+  redirectPath?: string;
   schema: ZodSchema<any>;
   mutateAsync: (data: K) => Promise<K>;
   onDataMutate: (data: T) => K;
+  onSuccess?: () => void;
 }
 
 const useFormSubmit = <T extends FieldValues, K>({
@@ -20,6 +21,7 @@ const useFormSubmit = <T extends FieldValues, K>({
   schema,
   mutateAsync,
   onDataMutate,
+  onSuccess,
 }: Props<T, K>) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -30,7 +32,8 @@ const useFormSubmit = <T extends FieldValues, K>({
         await mutateAsync(onDataMutate(data));
         toast.success(onSuccessMessage);
         queryClient.invalidateQueries();
-        navigate(redirectPath);
+        if (onSuccess) onSuccess();
+        if (redirectPath) navigate(redirectPath);
       } catch (error) {
         const { response } = error as HttpError;
         toast.error(response?.data.message);

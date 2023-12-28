@@ -1,7 +1,7 @@
 import { useParts } from "../../hooks/parts";
 import useModelStore from "../../store/model";
 import ListView from "../ListView";
-import PartsCreateButton from "./PartsCreateButton";
+import PartCreateButton from "./PartCreateButton";
 import PartsList from "./PartsList";
 
 const PartsListView = () => {
@@ -15,7 +15,7 @@ const PartsListView = () => {
       isLoading={isLoading}
       error={error}
       listComponent={<PartsList parts={parts!} />}
-      createButtonComponent={<PartsCreateButton equipmentId={equipmentId} />}
+      createButtonComponent={<PartCreateButton equipmentId={equipmentId} />}
     />
   );
 };
