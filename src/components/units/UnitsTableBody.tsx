@@ -8,11 +8,12 @@ const UnitsTableBody = ({ units }: { units: Unit[] }) => {
 
   return (
     <Tbody>
-      {units?.map((tag, index) => (
-        <Tr key={tag.id}>
+      {units?.map((unit, index) => (
+        <Tr key={unit.id}>
           <Td textAlign="center">{(page! - 1) * pageSize! + (index + 1)}</Td>
+          <Td textAlign="center">{unit.name}</Td>
           <Td textAlign="center">
-            <Link to={`/config/phd-tags/${tag.id}`}>
+            <Link to={`/config/phd-tags/${unit.id}`}>
               <Button colorScheme="yellow">Modify</Button>
             </Link>
           </Td>
