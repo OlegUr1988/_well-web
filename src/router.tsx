@@ -3,7 +3,7 @@ import ConfigPanelPage from "./pages/ConfigPanelPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 import ModelsPage from "./pages/ModelsPage";
-import QueriesPage from "./pages/QueriesPage";
+import UnitsPage from "./pages/Units/UnitsPage";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       // { path: "phd-tags", element: <PHDTagsPage /> },
       // { path: "phd-tags/new", element: <NewPHDTagPage /> },
       // { path: "phd-tags/:id", element: <PHDTagDetailPage /> },
-      { path: "queries", element: <QueriesPage /> },
+      { path: "units", element: <UnitsPage /> },
     ],
   },
 ]);
