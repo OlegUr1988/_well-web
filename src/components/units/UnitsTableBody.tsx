@@ -1,7 +1,7 @@
-import { Button, Tbody, Td, Tr } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Tbody, Td, Tr } from "@chakra-ui/react";
 import { Unit } from "../../entities/units";
 import useUnitsStore from "../../store/unitsStore";
+import UnitEditButton from "./UnitEditButton";
 
 const UnitsTableBody = ({ units }: { units: Unit[] }) => {
   const { page, pageSize } = useUnitsStore((s) => s.unitsQuery);
@@ -13,9 +13,7 @@ const UnitsTableBody = ({ units }: { units: Unit[] }) => {
           <Td textAlign="center">{(page! - 1) * pageSize! + (index + 1)}</Td>
           <Td textAlign="center">{unit.name}</Td>
           <Td textAlign="center">
-            <Link to={`/config/phd-tags/${unit.id}`}>
-              <Button colorScheme="yellow">Modify</Button>
-            </Link>
+            <UnitEditButton unit={unit} />
           </Td>
           <Td textAlign="center">
             {/* <PHDTagDeleteButton tagId={tag.id} /> */}
