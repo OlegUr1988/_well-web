@@ -7,6 +7,12 @@ import AssetEditButton from "./AssetEditButton";
 const AssetsList = ({ assets }: { assets: Asset[] }) => {
   const { assetId } = useModelStore((s) => s.modelQuery);
   const setAssetId = useModelStore((s) => s.setAssetId);
+  const setEquipmentId = useModelStore((s) => s.setEquipmentId);
+
+  const handleSelect = (id: number) => {
+    setAssetId(id);
+    setEquipmentId(0);
+  };
 
   return (
     <List w="100%">
@@ -20,7 +26,7 @@ const AssetsList = ({ assets }: { assets: Asset[] }) => {
           <HStack justify="space-between">
             <Text
               color="white"
-              onClick={() => setAssetId(asset.id)}
+              onClick={() => handleSelect(asset.id)}
               cursor="pointer"
             >
               {asset.name}

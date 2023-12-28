@@ -7,6 +7,12 @@ import EquipmentEditButton from "./EquipmentEditButton";
 const EquipmentsList = ({ equipments }: { equipments: Equipment[] }) => {
   const { equipmentId } = useModelStore((s) => s.modelQuery);
   const setEquipmentId = useModelStore((s) => s.setEquipmentId);
+  const setPartId = useModelStore((s) => s.setPartId);
+
+  const handleSelect = (id: number) => {
+    setEquipmentId(id);
+    setPartId(0);
+  };
 
   return (
     <List w="100%">
@@ -20,7 +26,7 @@ const EquipmentsList = ({ equipments }: { equipments: Equipment[] }) => {
           <HStack justify="space-between">
             <Text
               color="white"
-              onClick={() => setEquipmentId(equipment.id)}
+              onClick={() => handleSelect(equipment.id)}
               cursor="pointer"
             >
               {equipment.name}
