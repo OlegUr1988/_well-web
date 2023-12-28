@@ -15,7 +15,7 @@ const PartsList = ({ parts }: { parts: Part[] }) => {
           key={part.id}
           py={1}
           px={2}
-          bgColor={partId === part.id ? "gray.400" : "gray.700"}
+          bgColor={partId === part.id ? "blue.300" : "gray.700"}
         >
           <HStack justify="space-between">
             <Text

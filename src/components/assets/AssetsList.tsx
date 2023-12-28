@@ -21,7 +21,7 @@ const AssetsList = ({ assets }: { assets: Asset[] }) => {
           key={asset.id}
           py={1}
           px={2}
-          bgColor={assetId === asset.id ? "gray.400" : "gray.700"}
+          bgColor={assetId === asset.id ? "blue.300" : "gray.700"}
         >
           <HStack justify="space-between">
             <Text
