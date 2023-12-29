@@ -2,6 +2,7 @@ import { Tbody, Td, Tr } from "@chakra-ui/react";
 import { Unit } from "../../entities/units";
 import useUnitsStore from "../../store/unitsStore";
 import UnitEditButton from "./UnitEditButton";
+import UnitDeleteButton from "./UnitDeleteButton";
 
 const UnitsTableBody = ({ units }: { units: Unit[] }) => {
   const { page, pageSize } = useUnitsStore((s) => s.unitsQuery);
@@ -16,7 +17,7 @@ const UnitsTableBody = ({ units }: { units: Unit[] }) => {
             <UnitEditButton unit={unit} />
           </Td>
           <Td textAlign="center">
-            {/* <PHDTagDeleteButton tagId={tag.id} /> */}
+            <UnitDeleteButton unitId={unit.id} />
           </Td>
         </Tr>
       ))}

@@ -1,5 +1,5 @@
 import { useAddUnit } from "../../hooks/units";
-import CreateButton from "../CreateButton";
+import DeleteButton from "../CreateButton";
 import SimpleModal from "../SimpleModal";
 
 const UnitsCreateButton = () => {
@@ -11,7 +11,7 @@ const UnitsCreateButton = () => {
       label="Units"
       submitLabel="Create"
       onSuccessMessage="The new item was successfully added"
-      renderTriggerButton={(onOpen) => <CreateButton onClick={onOpen} />}
+      renderTriggerButton={(onOpen) => <DeleteButton onClick={onOpen} />}
       isPending={isPending}
       mutateAsync={(data) => mutateAsync(data)}
     />
