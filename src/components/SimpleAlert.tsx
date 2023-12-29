@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
-import { FaRegTrashAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { HttpError } from "../services/api-client";
 
@@ -21,6 +20,7 @@ interface Props<T> {
   onSuccessMessage: string;
   isPending: boolean;
   mutateAsync: () => Promise<T>;
+  onSuccess?: () => void;
   renderTriggerButton: (onOpen: () => void) => JSX.Element;
 }
 
@@ -30,6 +30,7 @@ const SimpleAlert = <T,>({
   onSuccessMessage,
   isPending,
   mutateAsync,
+  onSuccess,
   renderTriggerButton,
 }: Props<T>) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -42,6 +43,7 @@ const SimpleAlert = <T,>({
       await mutateAsync();
       toast.success(onSuccessMessage);
       queryClient.invalidateQueries();
+      if (onSuccess) onSuccess();
       onClose();
     } catch (error) {
       const { response } = error as HttpError;

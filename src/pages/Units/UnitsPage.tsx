@@ -1,6 +1,9 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
-import { UnitsList } from "../../components/units";
-import UnitsCreateButton from "../../components/units/UnitsCreateButton";
+import {
+  UnitsCreateButton,
+  UnitsList,
+  UnitsPagination,
+} from "../../components/units";
 import UnitSearchInput from "../../components/units/UnitSearchInput";
 
 const PHDTagsPage = () => {
@@ -21,7 +24,7 @@ const PHDTagsPage = () => {
           <UnitsList />
         </Box>
 
-        {/* <PHDTagsPagination /> */}
+        <UnitsPagination />
       </Container>
     </>
   );
