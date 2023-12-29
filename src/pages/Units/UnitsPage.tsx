@@ -1,6 +1,7 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
 import { UnitsList } from "../../components/units";
 import UnitsCreateButton from "../../components/units/UnitsCreateButton";
+import UnitSearchInput from "../../components/units/UnitSearchInput";
 
 const PHDTagsPage = () => {
   return (
@@ -12,7 +13,9 @@ const PHDTagsPage = () => {
           <UnitsCreateButton />
         </Box>
 
-        <Box mb={3}>{/* <PHDTagsSearchInput /> */}</Box>
+        <Box mb={3}>
+          <UnitSearchInput />
+        </Box>
 
         <Box mb={5}>
           <UnitsList />
