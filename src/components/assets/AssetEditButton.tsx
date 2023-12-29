@@ -1,17 +1,18 @@
 import { Asset } from "../../entities/assets";
 import { useUpdateAsset } from "../../hooks/assets";
-import ListViewModal from "../ListViewModal";
+import ListViewEditButton from "../ListViewEditButton";
+import SimpleModal from "../SimpleModal";
 
 const AssetEditButton = ({ asset }: { asset: Asset }) => {
   const { mutateAsync, isPending } = useUpdateAsset(asset.id);
 
   return (
-    <ListViewModal
+    <SimpleModal
       header="Edit Asset"
       label="Asset Name"
       submitLabel="Save"
       onSuccessMessage="The new asset was successfully modified"
-      icon="edit"
+      renderTriggerButton={(onOpen) => <ListViewEditButton onClick={onOpen} />}
       defaultValue={asset.name}
       isPending={isPending}
       mutateAsync={(data) => mutateAsync(data)}

@@ -1,16 +1,19 @@
 import { useAddEquipment } from "../../hooks/equipments";
-import ListViewModal from "../ListViewModal";
+import ListViewCreateButton from "../ListViewCreateButton";
+import SimpleModal from "../SimpleModal";
 
 const EquipmentCreateButton = ({ assetId }: { assetId: number }) => {
   const { mutateAsync, isPending } = useAddEquipment();
 
   return (
-    <ListViewModal
+    <SimpleModal
       header="Create Equipment"
       label="Equipment Name"
       submitLabel="Create"
       onSuccessMessage="The new equipment was successfully added"
-      icon="create"
+      renderTriggerButton={(onOpen) => (
+        <ListViewCreateButton onClick={onOpen} />
+      )}
       isPending={isPending}
       mutateAsync={(data) => mutateAsync({ name: data.name, assetId })}
     />

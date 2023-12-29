@@ -1,5 +1,4 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -8,8 +7,6 @@ import {
   ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
-import { FaPlus } from "react-icons/fa";
-import { MdOutlineEdit } from "react-icons/md";
 import { ListViewFormData } from "../entities/FormData";
 import { useFormSubmit } from "../hooks/forms";
 import { listViewFormSchema } from "../validationSchema";
@@ -20,18 +17,18 @@ interface Props {
   label: string;
   submitLabel: string;
   onSuccessMessage: string;
-  icon: "create" | "edit";
+  renderTriggerButton: (onOpen: () => void) => JSX.Element;
   isPending: boolean;
   defaultValue?: string;
   mutateAsync: (data: ListViewFormData) => Promise<ListViewFormData>;
 }
 
-const ListViewModal = ({
+const SimpleModal = ({
   header,
   label,
   submitLabel,
   onSuccessMessage,
-  icon,
+  renderTriggerButton,
   isPending,
   defaultValue = "",
   mutateAsync,
@@ -50,22 +47,7 @@ const ListViewModal = ({
   });
   return (
     <>
-      {icon === "create" && (
-        <Button
-          variant="outline"
-          mt={3}
-          color="white"
-          onClick={onOpen}
-          w="100%"
-        >
-          <FaPlus />
-        </Button>
-      )}
-      {icon === "edit" && (
-        <Button size="xs" variant="outline" color="white" onClick={onOpen}>
-          <MdOutlineEdit />
-        </Button>
-      )}
+      {renderTriggerButton(onOpen)}
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
@@ -92,4 +74,4 @@ const ListViewModal = ({
   );
 };
 
-export default ListViewModal;
+export default SimpleModal;

@@ -7,7 +7,7 @@ const SideBar = () => {
   const location = useLocation();
 
   return (
-    <Flex bg="blue.500" direction="column" w={300}>
+    <Flex bg="gray.700" direction="column" w={300}>
       <HStack mb={5} p={2} alignItems="center">
         <GiGears size={36} color="white" />
         <Text fontSize="xx-large" color="white" fontWeight={700}>
@@ -18,7 +18,7 @@ const SideBar = () => {
       <List>
         {configNavLinks.map((link) => (
           <ListItem
-            key={link.id}
+            key={link.name}
             p={2}
             bg={location.pathname === link.url ? "blue.300" : ""}
           >

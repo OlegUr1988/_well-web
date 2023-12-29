@@ -3,8 +3,7 @@ import ConfigPanelPage from "./pages/ConfigPanelPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 import ModelsPage from "./pages/ModelsPage";
-import { NewPHDTagPage, PHDTagDetailPage, PHDTagsPage } from "./pages/PHDTags";
-import QueriesPage from "./pages/QueriesPage";
+import UnitsPage from "./pages/Units/UnitsPage";
 
 const router = createBrowserRouter([
   {
@@ -20,10 +19,10 @@ const router = createBrowserRouter([
     path: "config",
     element: <ConfigPanelPage />,
     children: [
-      { path: "phd-tags", element: <PHDTagsPage /> },
-      { path: "phd-tags/new", element: <NewPHDTagPage /> },
-      { path: "phd-tags/:id", element: <PHDTagDetailPage /> },
-      { path: "queries", element: <QueriesPage /> },
+      // { path: "phd-tags", element: <PHDTagsPage /> },
+      // { path: "phd-tags/new", element: <NewPHDTagPage /> },
+      // { path: "phd-tags/:id", element: <PHDTagDetailPage /> },
+      { path: "units", element: <UnitsPage /> },
     ],
   },
 ]);

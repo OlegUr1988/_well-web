@@ -21,7 +21,7 @@ const EquipmentsList = ({ equipments }: { equipments: Equipment[] }) => {
           key={equipment.id}
           py={1}
           px={2}
-          bgColor={equipmentId === equipment.id ? "gray.400" : "gray.700"}
+          bgColor={equipmentId === equipment.id ? "blue.300" : "gray.700"}
         >
           <HStack justify="space-between">
             <Text

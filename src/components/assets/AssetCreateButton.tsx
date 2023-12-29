@@ -1,16 +1,19 @@
 import { useAddAsset } from "../../hooks/assets";
-import ListViewModal from "../ListViewModal";
+import ListViewCreateButton from "../ListViewCreateButton";
+import SimpleModal from "../SimpleModal";
 
 const AssetCreateButton = () => {
   const { mutateAsync, isPending } = useAddAsset();
 
   return (
-    <ListViewModal
+    <SimpleModal
       header="Create Asset"
       label="Asset Name"
       submitLabel="Create"
       onSuccessMessage="The new asset was successfully added"
-      icon="create"
+      renderTriggerButton={(onOpen) => (
+        <ListViewCreateButton onClick={onOpen} />
+      )}
       isPending={isPending}
       mutateAsync={(data) => mutateAsync(data)}
     />
