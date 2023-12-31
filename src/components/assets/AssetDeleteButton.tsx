@@ -1,5 +1,6 @@
+import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteAsset } from "../../hooks/assets";
-import ListViewDeleteButton from "../ListViewDeleteButton";
+import IconEditButton from "../IconButton";
 import SimpleAlert from "../SimpleAlert";
 
 const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
@@ -13,7 +14,12 @@ const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
       isPending={isPending}
       mutateAsync={() => mutateAsync(assetId)}
       renderTriggerButton={(onOpen) => (
-        <ListViewDeleteButton onClick={onOpen} />
+        <IconEditButton
+          onClick={onOpen}
+          size="xs"
+          btnColor="gray"
+          icon={<FaRegTrashAlt color="white" />}
+        />
       )}
     />
   );

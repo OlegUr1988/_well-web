@@ -1,7 +1,6 @@
-import { HStack, List, ListItem, Text } from "@chakra-ui/react";
+import { List, ListItem } from "@chakra-ui/react";
 import { Parameter } from "../../entities/parameters";
-import ParameterDeleteButton from "./ParameterDeleteButton";
-import ParameterEditButton from "./ParameterEditButton";
+import ParameterCard from "./ParameterCard";
 
 const ParametersList = ({
   parameters,
@@ -17,11 +16,7 @@ const ParametersList = ({
         .map((parameter) => (
           <List key={parameter.id}>
             <ListItem mb={2}>
-              <HStack>
-                <Text>{parameter.name}</Text>
-                <ParameterEditButton parameter={parameter} />
-                <ParameterDeleteButton parameterId={parameter.id} />
-              </HStack>
+              <ParameterCard parameter={parameter} />
             </ListItem>
           </List>
         ))}

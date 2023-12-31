@@ -13,7 +13,6 @@ const ParametersSection = () => {
 
   if (isLoading) return <Heading>Loading</Heading>;
 
-  console.log(parameters);
   return (
     <Box mx={5}>
       <Heading>Parameters</Heading>
