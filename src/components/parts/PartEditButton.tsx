@@ -12,7 +12,7 @@ const PartEditButton = ({ part }: { part: Part }) => {
       label="Equipments Part Name"
       submitLabel="Save"
       defaultValue={part.name}
-      onSuccessMessage="The new equipment part was successfully modified"
+      onSuccessMessage="The equipment part was successfully modified"
       renderTriggerButton={(onOpen) => <ListViewEditButton onClick={onOpen} />}
       isPending={isPending}
       mutateAsync={(data) =>

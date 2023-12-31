@@ -1,4 +1,4 @@
-import { Box, Container, Heading, VStack } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { useParameters } from "../../hooks/parameters";
 import useModelStore from "../../store/model";
 import ParameterTypesList from "./ParameterTypesList";

@@ -11,7 +11,7 @@ const AssetEditButton = ({ asset }: { asset: Asset }) => {
       header="Edit Asset"
       label="Asset Name"
       submitLabel="Save"
-      onSuccessMessage="The new asset was successfully modified"
+      onSuccessMessage="The asset was successfully modified"
       renderTriggerButton={(onOpen) => <ListViewEditButton onClick={onOpen} />}
       defaultValue={asset.name}
       isPending={isPending}

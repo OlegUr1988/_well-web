@@ -11,7 +11,7 @@ const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
       header="Edit Equipment"
       label="Equipment Name"
       submitLabel="Save"
-      onSuccessMessage="The new equipment was successfully modified"
+      onSuccessMessage="The equipment was successfully modified"
       renderTriggerButton={(onOpen) => <ListViewEditButton onClick={onOpen} />}
       defaultValue={equipment.name}
       isPending={isPending}
