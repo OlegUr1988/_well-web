@@ -1,0 +1,36 @@
+import { MdOutlineEdit } from "react-icons/md";
+import { Parameter } from "../../entities/parameters";
+import { useUpdatePararameter } from "../../hooks/parameters";
+import IconEditButton from "../IconButton";
+import SimpleModal from "../SimpleModal";
+
+const ParameterEditButton = ({ parameter }: { parameter: Parameter }) => {
+  const { mutateAsync, isPending } = useUpdatePararameter(parameter.id);
+  return (
+    <SimpleModal
+      header="Edit Parameter"
+      label="Parameter Name"
+      submitLabel="Save"
+      onSuccessMessage="The parameter was successfully modified"
+      renderTriggerButton={(onOpen) => (
+        <IconEditButton
+          onClick={onOpen}
+          size="xs"
+          variant="unstyled"
+          icon={<MdOutlineEdit />}
+        />
+      )}
+      defaultValue={parameter.name}
+      isPending={isPending}
+      mutateAsync={(data) =>
+        mutateAsync({
+          name: data.name,
+          parameterTypeId: parameter.parameterTypeId,
+          partId: parameter.partId,
+        })
+      }
+    />
+  );
+};
+
+export default ParameterEditButton;

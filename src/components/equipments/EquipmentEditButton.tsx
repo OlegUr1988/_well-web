@@ -1,6 +1,7 @@
+import { MdOutlineEdit } from "react-icons/md";
 import { Equipment } from "../../entities/equipments";
 import { useUpdateEquipment } from "../../hooks/equipments";
-import ListViewEditButton from "../ListViewEditButton";
+import IconEditButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
 
 const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
@@ -11,8 +12,15 @@ const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
       header="Edit Equipment"
       label="Equipment Name"
       submitLabel="Save"
-      onSuccessMessage="The new equipment was successfully modified"
-      renderTriggerButton={(onOpen) => <ListViewEditButton onClick={onOpen} />}
+      onSuccessMessage="The equipment was successfully modified"
+      renderTriggerButton={(onOpen) => (
+        <IconEditButton
+          onClick={onOpen}
+          size="xs"
+          btnColor="gray"
+          icon={<MdOutlineEdit color="white" />}
+        />
+      )}
       defaultValue={equipment.name}
       isPending={isPending}
       mutateAsync={(data) =>

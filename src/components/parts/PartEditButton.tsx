@@ -1,6 +1,7 @@
+import { MdOutlineEdit } from "react-icons/md";
 import { Part } from "../../entities/parts";
 import { useUpdatePart } from "../../hooks/parts";
-import ListViewEditButton from "../ListViewEditButton";
+import IconEditButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
 
 const PartEditButton = ({ part }: { part: Part }) => {
@@ -12,8 +13,15 @@ const PartEditButton = ({ part }: { part: Part }) => {
       label="Equipments Part Name"
       submitLabel="Save"
       defaultValue={part.name}
-      onSuccessMessage="The new equipment part was successfully modified"
-      renderTriggerButton={(onOpen) => <ListViewEditButton onClick={onOpen} />}
+      onSuccessMessage="The equipment part was successfully modified"
+      renderTriggerButton={(onOpen) => (
+        <IconEditButton
+          onClick={onOpen}
+          size="xs"
+          btnColor="gray"
+          icon={<MdOutlineEdit color="white" />}
+        />
+      )}
       isPending={isPending}
       mutateAsync={(data) =>
         mutateAsync({ name: data.name, equipmentId: part.equipmentId })

@@ -1,5 +1,6 @@
+import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteEquipment } from "../../hooks/equipments";
-import ListViewDeleteButton from "../ListViewDeleteButton";
+import IconEditButton from "../IconButton";
 import SimpleAlert from "../SimpleAlert";
 
 const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
@@ -13,7 +14,12 @@ const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
       isPending={isPending}
       mutateAsync={() => mutateAsync(equipmentId)}
       renderTriggerButton={(onOpen) => (
-        <ListViewDeleteButton onClick={onOpen} />
+        <IconEditButton
+          onClick={onOpen}
+          size="xs"
+          btnColor="gray"
+          icon={<FaRegTrashAlt color="white" />}
+        />
       )}
     />
   );

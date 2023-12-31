@@ -1,5 +1,6 @@
+import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeletePart } from "../../hooks/parts";
-import ListViewDeleteButton from "../ListViewDeleteButton";
+import IconEditButton from "../IconButton";
 import SimpleAlert from "../SimpleAlert";
 
 const PartDeleteButton = ({ partId }: { partId: number }) => {
@@ -13,7 +14,12 @@ const PartDeleteButton = ({ partId }: { partId: number }) => {
       isPending={isPending}
       mutateAsync={() => mutateAsync(partId)}
       renderTriggerButton={(onOpen) => (
-        <ListViewDeleteButton onClick={onOpen} />
+        <IconEditButton
+          onClick={onOpen}
+          size="xs"
+          btnColor="gray"
+          icon={<FaRegTrashAlt color="white" />}
+        />
       )}
     />
   );
