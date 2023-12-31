@@ -4,7 +4,7 @@ import { parameters } from "../../services/parametersServices";
 
 const useParameters = (query: ParameterQuery) => {
   return useQuery<Parameter[], Error>({
-    queryKey: ["parts", query],
+    queryKey: ["parameters", query],
     queryFn: () => parameters.getAll({ params: query }),
     placeholderData: keepPreviousData,
   });

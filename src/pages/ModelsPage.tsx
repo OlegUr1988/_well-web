@@ -2,6 +2,7 @@ import { Flex } from "@chakra-ui/react";
 import { AssetsListView } from "../components/assets";
 import { EquipmentsListView } from "../components/equipments";
 import { PartsListView } from "../components/parts";
+import { ParametersSection } from "../components/parameters";
 
 const ModelsPage = () => {
   return (
@@ -9,6 +10,7 @@ const ModelsPage = () => {
       <AssetsListView />
       <EquipmentsListView />
       <PartsListView />
+      <ParametersSection />
     </Flex>
   );
 };

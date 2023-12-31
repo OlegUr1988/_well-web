@@ -4,7 +4,7 @@ import { parameters } from "../../services/parametersServices";
 
 const useParameter = (id: string | number) => {
   return useQuery<Parameter, Error>({
-    queryKey: ["parts", id],
+    queryKey: ["parameters", id],
     queryFn: () => parameters.get(id),
   });
 };
