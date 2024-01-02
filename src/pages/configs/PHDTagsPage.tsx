@@ -1,9 +1,9 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
 import {
-    PHDTagsCommandPanel,
-    PHDTagsList,
-    PHDTagsPagination,
-    PHDTagsSearchInput,
+  PHDTagsCommandPanel,
+  PHDTagsList,
+  PHDTagsPagination,
+  PHDTagsSearchInput,
 } from "../../components/PHDTags";
 
 const PHDTagsPage = () => {
