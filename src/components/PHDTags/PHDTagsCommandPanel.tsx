@@ -2,12 +2,13 @@ import { useImportPHDTagsFromExcel } from "../../hooks/PHDTags";
 import CommandPanel from "../CommandPanel";
 import ExportButton from "../ExportButton";
 import ImportButton from "../ImportButton";
+import PHDTagCreateButton from "./PHDTagCreateButton";
 
 const PHDTagsCommandPanel = () => {
   const { mutateAsync } = useImportPHDTagsFromExcel();
   return (
     <CommandPanel
-      createButton={<></>}
+      createButton={<PHDTagCreateButton />}
       exportButton={<ExportButton url="/phd-tags/exportToExcel" />}
       importButton={
         <ImportButton

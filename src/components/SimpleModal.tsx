@@ -1,15 +1,8 @@
-import {
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
 import { ListViewFormData } from "../entities/FormData";
 import { useFormSubmit } from "../hooks/forms";
 import { listViewFormSchema } from "../validationSchema";
+import ModalContainer from "./ModalContainer";
 import { FormContainer, FormInput, FormSubmit } from "./forms";
 
 interface Props {
@@ -45,31 +38,25 @@ const SimpleModal = ({
     schema: listViewFormSchema,
     onSuccess: () => onClose(),
   });
+
   return (
     <>
       {renderTriggerButton(onOpen)}
 
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>{header}</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
-              <FormInput
-                name="name"
-                label={label}
-                error={errors.name?.message!}
-                placeholder="Name"
-                defaultValue={defaultValue}
-                register={register}
-              />
+      <ModalContainer header={header} isOpen={isOpen} onClose={onClose}>
+        <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
+          <FormInput
+            name="name"
+            label={label}
+            error={errors.name?.message!}
+            placeholder="Name"
+            defaultValue={defaultValue}
+            register={register}
+          />
 
-              <FormSubmit label={submitLabel} isDisabled={isPending} />
-            </FormContainer>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+          <FormSubmit label={submitLabel} isDisabled={isPending} />
+        </FormContainer>
+      </ModalContainer>
     </>
   );
 };
