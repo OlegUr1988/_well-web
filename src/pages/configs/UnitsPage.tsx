@@ -10,7 +10,7 @@ const PHDTagsPage = () => {
   return (
     <>
       <Container maxW="container.xl">
-        <Heading mb={5}>PHD Tags</Heading>
+        <Heading mb={5}>Units</Heading>
 
         <Box mb={5}>
           <UnitsCommandPanel />
