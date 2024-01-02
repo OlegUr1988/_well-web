@@ -1,4 +1,4 @@
 export default interface UpdatePHDTag {
   tagname: string;
-  description: string;
+  unitId: number;
 }

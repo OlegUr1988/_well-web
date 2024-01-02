@@ -6,7 +6,7 @@ import { FetchResponse } from "../../services/api-client";
 const usePHDTags = (query: PHDTagQuery) => {
   return useQuery<FetchResponse<PHDTag>, Error>({
     queryKey: ["PHDTags", query],
-    queryFn: () => tags.getAll({ params: query }),
+    queryFn: () => tags.getFetchResponse({ params: query }),
     placeholderData: keepPreviousData,
   });
 };

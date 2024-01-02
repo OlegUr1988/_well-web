@@ -52,6 +52,7 @@ const ControlledSelect = <
       {label && <FormLabel>{label}</FormLabel>}
       <Select<Option, IsMulti, Group>
         options={options}
+        defaultValue={defaultValue}
         {...selectProps}
         {...field}
       />

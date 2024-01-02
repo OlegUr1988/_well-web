@@ -8,13 +8,15 @@ import { HttpError } from "../services/api-client";
 interface Props {
   mutateAsync: (file: File) => Promise<void>;
   successMessage: string;
-  routeAfterImport: string;
+  redirectLink?: string;
+  onSuccess?: () => void;
 }
 
 const ImportButton = ({
   mutateAsync,
   successMessage,
-  routeAfterImport,
+  redirectLink,
+  onSuccess,
 }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -35,7 +37,8 @@ const ImportButton = ({
     try {
       await mutateAsync(file);
       toast.success(successMessage);
-      navigate(routeAfterImport);
+      if (redirectLink) navigate(redirectLink);
+      if (onSuccess) onSuccess();
       queryClient.invalidateQueries();
     } catch (error) {
       console.log(error);
