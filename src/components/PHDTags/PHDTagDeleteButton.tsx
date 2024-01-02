@@ -1,6 +1,7 @@
 import { useDeletePHDTag, usePHDTags } from "../../hooks/PHDTags";
 import usePHDTagStore from "../../store/phdTags";
 import DeleteButton from "../DeleteButton";
+import SimpleAlert from "../SimpleAlert";
 
 const PHDTagDeleteButton = ({ tagId }: { tagId: number }) => {
   const { mutateAsync, isPending } = useDeletePHDTag();
@@ -14,13 +15,14 @@ const PHDTagDeleteButton = ({ tagId }: { tagId: number }) => {
   };
 
   return (
-    <DeleteButton
-      itemId={tagId}
-      itemName="PHD tag"
-      routeAfterDelete="/config/phd-tags"
+    <SimpleAlert
+      header="Delete the item?"
+      content="Are you sure to delete this item?"
+      onSuccessMessage="The item was successfully deleted"
       isPending={isPending}
-      mutateAsync={mutateAsync}
+      mutateAsync={() => mutateAsync(tagId)}
       onSuccess={handlePagination}
+      renderTriggerButton={(onOpen) => <DeleteButton onClick={onOpen} />}
     />
   );
 };
