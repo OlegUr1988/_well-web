@@ -74,7 +74,10 @@ const PHDTagModal = ({
             label="Select units"
             name="unit"
             options={options}
-            defaultValue={defaultPHDTag?.unitId}
+            defaultValue={{
+              label: defaultPHDTag?.unit.name!,
+              value: defaultPHDTag?.unit.id!,
+            }}
           />
 
           <FormSubmit label={submitLabel} isDisabled={isPending} />

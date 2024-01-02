@@ -1,8 +1,8 @@
-import { Button, Tbody, Td, Tr } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Tbody, Td, Tr } from "@chakra-ui/react";
 import { PHDTag } from "../../entities/PHDTags";
 import usePHDTagStore from "../../store/phdTags";
 import PHDTagDeleteButton from "./PHDTagDeleteButton";
+import PHDTagEditButton from "./PHDTagEditButton";
 
 const PHDTagsTableBody = ({ tags }: { tags: PHDTag[] }) => {
   const { page, pageSize } = usePHDTagStore((s) => s.PHDTagsQuery);
@@ -15,9 +15,7 @@ const PHDTagsTableBody = ({ tags }: { tags: PHDTag[] }) => {
           <Td textAlign="center">{tag.tagname}</Td>
           <Td textAlign="center">{tag.unit.name}</Td>
           <Td textAlign="center">
-            <Link to={`/config/phd-tags/${tag.id}`}>
-              <Button colorScheme="yellow">Modify</Button>
-            </Link>
+            <PHDTagEditButton tag={tag} />
           </Td>
           <Td textAlign="center">
             <PHDTagDeleteButton tagId={tag.id} />
