@@ -7,7 +7,6 @@ import { useUnits } from "../../hooks/units";
 import { PHDTagSchema } from "../../validationSchema";
 import ModalContainer from "../ModalContainer";
 import { FormContainer, FormInput, FormSelect, FormSubmit } from "../forms";
-import PHDTagFormSkeleton from "./PHDTagFormSkeleton";
 
 interface Props {
   header: string;
@@ -47,7 +46,7 @@ const PHDTagModal = ({
 
   if (error) return null;
 
-  if (isLoading) return <PHDTagFormSkeleton />;
+  if (isLoading) return null;
 
   const options: SelectOption[] = units!.results.map((unit) => ({
     label: unit.name,
