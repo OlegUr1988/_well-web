@@ -7,8 +7,7 @@ const PHDTagsCommandPanel = () => {
   const { mutateAsync } = useImportPHDTagsFromExcel();
   return (
     <CommandPanel
-      createPath="/config/phd-tags/new"
-      createLabel="Create"
+      createButton={<></>}
       exportButton={<ExportButton url="/phd-tags/exportToExcel" />}
       importButton={
         <ImportButton

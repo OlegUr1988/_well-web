@@ -1,24 +1,15 @@
-import { Button, HStack } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { HStack } from "@chakra-ui/react";
 
 interface Props {
-  createPath: string;
-  createLabel: string;
+  createButton?: JSX.Element;
   exportButton?: JSX.Element;
   importButton?: JSX.Element;
 }
 
-const CommandPanel = ({
-  createPath,
-  createLabel,
-  exportButton,
-  importButton,
-}: Props) => {
+const CommandPanel = ({ createButton, exportButton, importButton }: Props) => {
   return (
     <HStack justify="space-between">
-      <Link to={createPath}>
-        <Button colorScheme="blue">{createLabel}</Button>
-      </Link>
+      {createButton}
 
       <HStack gap={3}>
         {exportButton}

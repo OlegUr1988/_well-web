@@ -4,6 +4,7 @@ import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 import ModelsPage from "./pages/ModelsPage";
 import UnitsPage from "./pages/Units/UnitsPage";
+import { PHDTagsPage } from "./pages/PHDTags";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
     path: "config",
     element: <ConfigPanelPage />,
     children: [
-      // { path: "phd-tags", element: <PHDTagsPage /> },
+      { path: "tags", element: <PHDTagsPage /> },
       // { path: "phd-tags/new", element: <NewPHDTagPage /> },
       // { path: "phd-tags/:id", element: <PHDTagDetailPage /> },
       { path: "units", element: <UnitsPage /> },
