@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 
 interface Props {
   size?: string;
@@ -22,7 +22,9 @@ const IconEditButton = ({
       variant={variant}
       onClick={onClick}
     >
-      {icon}
+      <Flex align="center" justify="center">
+        {icon}
+      </Flex>
     </Button>
   );
 };
