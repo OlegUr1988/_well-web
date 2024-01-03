@@ -11,6 +11,7 @@ import {
 import { Assignment } from "../../entities/Assignments";
 import { useAssignments } from "../../hooks/assignments";
 import { useUnits } from "../../hooks/units";
+import AssignmentEditButton from "./AssignmentEditButton";
 
 const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
   const { data: assigns, isLoading, error } = useAssignments(parameterId);
@@ -31,7 +32,7 @@ const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
         <Thead>
           <Tr>
             <Th>Tagname</Th>
-            <Th>Units</Th>
+            <Th textAlign="center">Units</Th>
             <Th></Th>
             <Th></Th>
           </Tr>
@@ -40,9 +41,11 @@ const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
           {assigns?.map((assign, index) => (
             <Tr key={index}>
               <Td>{assign.PHDTag.tagname}</Td>
-              <Td>{getUnits(assign)}</Td>
-              <Td>edit</Td>
-              <Td>delete</Td>
+              <Td textAlign="center">{getUnits(assign)}</Td>
+              <Td textAlign="center">
+                <AssignmentEditButton assignment={assign} />
+              </Td>
+              <Td textAlign="center">delete</Td>
             </Tr>
           ))}
         </Tbody>

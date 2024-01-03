@@ -12,5 +12,6 @@ export interface AddAssignment {
 }
 
 export interface UpdateAssignment {
+  partParameterId: number;
   PHDTagId: number;
 }
