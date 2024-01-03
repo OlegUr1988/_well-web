@@ -1,6 +1,6 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeletePart } from "../../hooks/parts";
-import IconEditButton from "../IconButton";
+import IconButton from "../IconButton";
 import SimpleAlert from "../SimpleAlert";
 
 const PartDeleteButton = ({ partId }: { partId: number }) => {
@@ -14,7 +14,7 @@ const PartDeleteButton = ({ partId }: { partId: number }) => {
       isPending={isPending}
       mutateAsync={() => mutateAsync(partId)}
       renderTriggerButton={(onOpen) => (
-        <IconEditButton
+        <IconButton
           onClick={onOpen}
           size="xs"
           btnColor="gray"

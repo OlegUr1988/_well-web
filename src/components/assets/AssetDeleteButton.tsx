@@ -1,6 +1,6 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteAsset } from "../../hooks/assets";
-import IconEditButton from "../IconButton";
+import IconButton from "../IconButton";
 import SimpleAlert from "../SimpleAlert";
 
 const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
@@ -14,7 +14,7 @@ const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
       isPending={isPending}
       mutateAsync={() => mutateAsync(assetId)}
       renderTriggerButton={(onOpen) => (
-        <IconEditButton
+        <IconButton
           onClick={onOpen}
           size="xs"
           btnColor="gray"

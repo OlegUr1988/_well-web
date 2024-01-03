@@ -8,7 +8,7 @@ interface Props {
   onClick: () => void;
 }
 
-const IconEditButton = ({
+const IconButton = ({
   size,
   btnColor,
   variant = "outline",
@@ -29,4 +29,4 @@ const IconEditButton = ({
   );
 };
 
-export default IconEditButton;
+export default IconButton;

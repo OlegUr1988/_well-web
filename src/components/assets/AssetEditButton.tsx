@@ -1,7 +1,7 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Asset } from "../../entities/assets";
 import { useUpdateAsset } from "../../hooks/assets";
-import IconEditButton from "../IconButton";
+import IconButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
 
 const AssetEditButton = ({ asset }: { asset: Asset }) => {
@@ -14,7 +14,7 @@ const AssetEditButton = ({ asset }: { asset: Asset }) => {
       submitLabel="Save"
       onSuccessMessage="The asset was successfully modified"
       renderTriggerButton={(onOpen) => (
-        <IconEditButton
+        <IconButton
           onClick={onOpen}
           size="xs"
           btnColor="gray"

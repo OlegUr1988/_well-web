@@ -11,6 +11,7 @@ import {
 import { Assignment } from "../../entities/Assignments";
 import { useAssignments } from "../../hooks/assignments";
 import { useUnits } from "../../hooks/units";
+import AssignmentDeleteButton from "./AssignmentDeleteButton";
 import AssignmentEditButton from "./AssignmentEditButton";
 
 const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
@@ -26,6 +27,8 @@ const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
       .name;
   };
 
+  if (!assigns?.length) return null
+
   return (
     <TableContainer>
       <Table>
@@ -34,7 +37,6 @@ const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
             <Th>Tagname</Th>
             <Th textAlign="center">Units</Th>
             <Th></Th>
-            <Th></Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -42,10 +44,11 @@ const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
             <Tr key={index}>
               <Td>{assign.PHDTag.tagname}</Td>
               <Td textAlign="center">{getUnits(assign)}</Td>
-              <Td textAlign="center">
+              <Td textAlign="right">
                 <AssignmentEditButton assignment={assign} />
+                <AssignmentDeleteButton assignment={assign} />
               </Td>
-              <Td textAlign="center">delete</Td>
+             
             </Tr>
           ))}
         </Tbody>
