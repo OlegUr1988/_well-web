@@ -1,7 +1,7 @@
 import { FaPlus } from "react-icons/fa";
 import { useAddAsset } from "../../hooks/assets";
-import IconButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
+import { IconButton } from "../common/buttons";
 
 const AssetCreateButton = () => {
   const { mutateAsync, isPending } = useAddAsset();

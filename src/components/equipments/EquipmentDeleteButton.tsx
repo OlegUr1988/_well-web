@@ -1,6 +1,6 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteEquipment } from "../../hooks/equipments";
-import IconButton from "../IconButton";
+import { IconButton } from "../common/buttons/";
 import SimpleAlert from "../SimpleAlert";
 
 const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {

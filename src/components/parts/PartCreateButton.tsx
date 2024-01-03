@@ -1,7 +1,7 @@
 import { FaPlus } from "react-icons/fa";
 import { useAddPart } from "../../hooks/parts";
-import IconButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
+import { IconButton } from "../common/buttons/";
 
 const PartCreateButton = ({ equipmentId }: { equipmentId: number }) => {
   const { mutateAsync, isPending } = useAddPart();

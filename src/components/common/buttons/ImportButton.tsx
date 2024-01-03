@@ -3,7 +3,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { HttpError } from "../services/api-client";
+import { HttpError } from "../../../services/api-client";
 
 interface Props {
   mutateAsync: (file: File) => Promise<void>;

@@ -1,6 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import { useAddAssignment } from "../../hooks/assignments";
-import IconButton from "../IconButton";
+import { IconButton } from "../common/buttons";
 import AssignmentModal from "./AssignmentModal";
 
 const AssignmentCreateButton = ({ parameterId }: { parameterId: number }) => {

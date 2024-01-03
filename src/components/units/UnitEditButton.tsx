@@ -1,6 +1,6 @@
 import { Unit } from "../../entities/units";
 import { useUpdateUnit } from "../../hooks/units";
-import EditButton from "../EditButton";
+import { EditButton } from "../common/buttons/";
 import SimpleModal from "../SimpleModal";
 
 const UnitEditButton = ({ unit }: { unit: Unit }) => {

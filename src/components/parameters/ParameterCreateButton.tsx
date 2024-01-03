@@ -1,5 +1,5 @@
 import { useAddParameter } from "../../hooks/parameters";
-import CreateButton from "../CreateButton";
+import { CreateButton } from "../common/buttons";
 import SimpleModal from "../SimpleModal";
 
 const ParameterCreateButton = ({

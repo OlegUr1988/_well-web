@@ -1,8 +1,8 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Parameter } from "../../entities/parameters";
 import { useUpdatePararameter } from "../../hooks/parameters";
-import IconButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
+import { IconButton } from "../common/buttons/";
 
 const ParameterEditButton = ({ parameter }: { parameter: Parameter }) => {
   const { mutateAsync, isPending } = useUpdatePararameter(parameter.id);

@@ -1,7 +1,7 @@
 import { FaPlus } from "react-icons/fa";
 import { useAddEquipment } from "../../hooks/equipments";
-import IconButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
+import { IconButton } from "../common/buttons/";
 
 const EquipmentCreateButton = ({ assetId }: { assetId: number }) => {
   const { mutateAsync, isPending } = useAddEquipment();

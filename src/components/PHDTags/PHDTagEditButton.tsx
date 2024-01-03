@@ -1,6 +1,6 @@
 import { PHDTag } from "../../entities/PHDTags";
 import { useUpdatePHDTag } from "../../hooks/PHDTags";
-import EditButton from "../EditButton";
+import { EditButton } from "../common/buttons/";
 import PHDTagModal from "./PHDTagModal";
 
 const PHDTagEditButton = ({ tag }: { tag: PHDTag }) => {

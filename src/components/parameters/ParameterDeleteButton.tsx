@@ -1,7 +1,7 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteParameter } from "../../hooks/parameters";
-import IconButton from "../IconButton";
 import SimpleAlert from "../SimpleAlert";
+import { IconButton } from "../common/buttons/";
 
 const ParameterDeleteButton = ({ parameterId }: { parameterId: number }) => {
   const { mutateAsync, isPending } = useDeleteParameter();
