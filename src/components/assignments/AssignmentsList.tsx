@@ -27,10 +27,10 @@ const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
       .name;
   };
 
-  if (!assigns?.length) return null
+  if (!assigns?.length) return null;
 
   return (
-    <TableContainer>
+    <TableContainer m={5}>
       <Table>
         <Thead>
           <Tr>
@@ -48,7 +48,6 @@ const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
                 <AssignmentEditButton assignment={assign} />
                 <AssignmentDeleteButton assignment={assign} />
               </Td>
-             
             </Tr>
           ))}
         </Tbody>
