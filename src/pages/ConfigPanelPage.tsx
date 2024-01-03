@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import NavBar from "../components/common/NavBar";
 import SideBar from "../components/SideBar";
 
 const ConfigPanelPage = () => {

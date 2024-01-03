@@ -1,5 +1,5 @@
 import useAssetStore from "../../store/assets";
-import SearchInput from "../SearchInput";
+import SearchInput from "../common/SearchInput";
 
 const AssetsSearchInput = () => {
   const { searchedName } = useAssetStore((s) => s.assetQuery);

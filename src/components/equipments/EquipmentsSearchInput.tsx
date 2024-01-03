@@ -1,5 +1,5 @@
 import useEquipmentStore from "../../store/equipments";
-import SearchInput from "../SearchInput";
+import SearchInput from "../common/SearchInput";
 
 const EquipmentsSearchInput = () => {
   const { searchedName } = useEquipmentStore((s) => s.equipmentQuery);

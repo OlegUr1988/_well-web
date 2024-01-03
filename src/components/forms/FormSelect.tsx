@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { Control, FieldValues, Path, PathValue } from "react-hook-form";
-import ControlledSelect from "../ControlledSelect";
+import ControlledSelect from "./ControlledSelect";
 
 interface Props<T extends FieldValues, K> {
   label: string;
