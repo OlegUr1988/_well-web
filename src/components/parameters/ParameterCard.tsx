@@ -1,18 +1,28 @@
-import { Card, HStack, Text } from "@chakra-ui/react";
+import { Card, Collapse, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { Parameter } from "../../entities/parameters";
+import CollapsibleButton from "../CollapsibleButton";
+import { AssignmentCreateButton, AssignmentsList } from "../assignments";
 import ParameterDeleteButton from "./ParameterDeleteButton";
 import ParameterEditButton from "./ParameterEditButton";
 
 const ParameterCard = ({ parameter }: { parameter: Parameter }) => {
+  const { isOpen, onToggle } = useDisclosure();
   return (
     <Card variant="outline">
       <HStack p={3} justify="space-between">
-        <Text>{parameter.name}</Text>
         <HStack>
+          <Text>{parameter.name}</Text>
+          <CollapsibleButton isOpen={isOpen} onClick={onToggle} />
+        </HStack>
+        <HStack>
+          <AssignmentCreateButton parameterId={parameter.id} />
           <ParameterEditButton parameter={parameter} />
           <ParameterDeleteButton parameterId={parameter.id} />
         </HStack>
       </HStack>
+      <Collapse in={isOpen} animateOpacity>
+        <AssignmentsList parameterId={parameter.id} />
+      </Collapse>
     </Card>
   );
 };

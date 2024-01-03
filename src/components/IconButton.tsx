@@ -1,4 +1,4 @@
-import { Button } from "@chakra-ui/react";
+import { Button, Flex } from "@chakra-ui/react";
 
 interface Props {
   size?: string;
@@ -8,7 +8,7 @@ interface Props {
   onClick: () => void;
 }
 
-const IconEditButton = ({
+const IconButton = ({
   size,
   btnColor,
   variant = "outline",
@@ -22,9 +22,11 @@ const IconEditButton = ({
       variant={variant}
       onClick={onClick}
     >
-      {icon}
+      <Flex align="center" justify="center">
+        {icon}
+      </Flex>
     </Button>
   );
 };
 
-export default IconEditButton;
+export default IconButton;

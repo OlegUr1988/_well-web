@@ -1,7 +1,7 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Equipment } from "../../entities/equipments";
 import { useUpdateEquipment } from "../../hooks/equipments";
-import IconEditButton from "../IconButton";
+import IconButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
 
 const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
@@ -14,7 +14,7 @@ const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
       submitLabel="Save"
       onSuccessMessage="The equipment was successfully modified"
       renderTriggerButton={(onOpen) => (
-        <IconEditButton
+        <IconButton
           onClick={onOpen}
           size="xs"
           btnColor="gray"

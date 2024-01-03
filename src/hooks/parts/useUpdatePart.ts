@@ -4,7 +4,7 @@ import { updatePart } from "../../services/partsServices";
 
 const useUpdatePart = (id: string | number) => {
   return useMutation<UpdatePart, Error, UpdatePart>({
-    mutationFn: (equipment) => updatePart.put(id, equipment),
+    mutationFn: (part) => updatePart.put(id, part),
   });
 };
 

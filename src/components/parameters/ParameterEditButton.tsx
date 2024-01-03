@@ -1,7 +1,7 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Parameter } from "../../entities/parameters";
 import { useUpdatePararameter } from "../../hooks/parameters";
-import IconEditButton from "../IconButton";
+import IconButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
 
 const ParameterEditButton = ({ parameter }: { parameter: Parameter }) => {
@@ -13,7 +13,7 @@ const ParameterEditButton = ({ parameter }: { parameter: Parameter }) => {
       submitLabel="Save"
       onSuccessMessage="The parameter was successfully modified"
       renderTriggerButton={(onOpen) => (
-        <IconEditButton
+        <IconButton
           onClick={onOpen}
           size="xs"
           variant="unstyled"
