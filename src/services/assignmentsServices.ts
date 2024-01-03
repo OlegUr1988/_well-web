@@ -2,7 +2,7 @@ import {
   AddAssignment,
   Assignment,
   UpdateAssignment,
-} from "../entities/Assignment";
+} from "../entities/Assignments";
 import APIClient from "./api-client";
 
 export const assignments = new APIClient<Assignment>("/assignments");

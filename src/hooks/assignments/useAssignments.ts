@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { Assignment } from "../../entities/Assignment";
+import { Assignment } from "../../entities/Assignments";
 import { assignments } from "../../services/assignmentsServices";
 
 const useAssignments = (paramId: number) => {
