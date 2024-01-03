@@ -1,12 +1,12 @@
 import {
-  Spinner,
+  Skeleton,
   Table,
   TableContainer,
   Tbody,
   Td,
   Th,
   Thead,
-  Tr,
+  Tr
 } from "@chakra-ui/react";
 import { Assignment } from "../../entities/Assignments";
 import { useAssignments } from "../../hooks/assignments";
@@ -20,7 +20,7 @@ const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
 
   if (error) return null;
 
-  if (isLoading) return <Spinner />;
+  if (isLoading) return <Skeleton h={75} m={3} borderRadius={10} />;
 
   const getUnits = (assign: Assignment) => {
     return units?.results.filter((unit) => unit.id === assign.PHDTag.unitId)[0]

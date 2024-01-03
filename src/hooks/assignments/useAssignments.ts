@@ -4,7 +4,7 @@ import { assignments } from "../../services/assignmentsServices";
 
 const useAssignments = (paramId: number) => {
   return useQuery<Assignment[], Error>({
-    queryKey: ["parts", paramId],
+    queryKey: ["assignments", paramId],
     queryFn: () => assignments.getArrayById(paramId),
     placeholderData: keepPreviousData,
   });
