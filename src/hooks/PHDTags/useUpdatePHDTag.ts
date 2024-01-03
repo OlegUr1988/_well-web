@@ -4,7 +4,7 @@ import { updateTag } from "../../services/PHDTagsService";
 
 const useUpdateAsset = (id: string | number) => {
   return useMutation<UpdatePHDTag, Error, UpdatePHDTag>({
-    mutationFn: (asset) => updateTag.put(id, asset),
+    mutationFn: (PHDTag) => updateTag.put(id, PHDTag),
   });
 };
 

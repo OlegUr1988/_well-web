@@ -5,8 +5,8 @@ import { updateAssignment } from "../../services/assignmentsServices";
 const useUpdateAssignment = (assignment: Assignment) => {
   const { partParameterId, PHDTagId } = assignment;
   return useMutation<UpdateAssignment, Error, UpdateAssignment>({
-    mutationFn: (body) =>
-      updateAssignment.putByTwoIds(partParameterId, PHDTagId, body),
+    mutationFn: (assignmentBody) =>
+      updateAssignment.putByTwoIds(partParameterId, PHDTagId, assignmentBody),
   });
 };
 

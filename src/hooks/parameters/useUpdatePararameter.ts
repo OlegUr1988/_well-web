@@ -4,7 +4,7 @@ import { updateParameter } from "../../services/parametersServices";
 
 const useUpdatePararameter = (id: string | number) => {
   return useMutation<UpdateParameter, Error, UpdateParameter>({
-    mutationFn: (equipment) => updateParameter.put(id, equipment),
+    mutationFn: (parameter) => updateParameter.put(id, parameter),
   });
 };
 
