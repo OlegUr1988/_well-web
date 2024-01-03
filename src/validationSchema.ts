@@ -24,3 +24,7 @@ export const PHDTagSchema = z.object({
     .max(300, "More than 300 characters"),
   unit: selectSchema,
 });
+
+export const AssignmentSchema = z.object({
+  tag: selectSchema,
+});
