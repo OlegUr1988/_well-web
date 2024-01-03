@@ -1,6 +1,6 @@
-import { Card, HStack, Text } from "@chakra-ui/react";
+import { Card, CardBody, HStack, Text } from "@chakra-ui/react";
 import { Parameter } from "../../entities/parameters";
-import { AssignmentCreateButton } from "../assignments";
+import { AssignmentCreateButton, AssignmentsList } from "../assignments";
 import ParameterDeleteButton from "./ParameterDeleteButton";
 import ParameterEditButton from "./ParameterEditButton";
 
@@ -15,6 +15,9 @@ const ParameterCard = ({ parameter }: { parameter: Parameter }) => {
           <ParameterDeleteButton parameterId={parameter.id} />
         </HStack>
       </HStack>
+      <CardBody>
+        <AssignmentsList parameterId={parameter.id} />
+      </CardBody>
     </Card>
   );
 };
