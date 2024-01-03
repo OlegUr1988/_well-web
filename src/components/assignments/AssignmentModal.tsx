@@ -1,7 +1,7 @@
 import { useDisclosure } from "@chakra-ui/react";
-import { AddAssignment, Assignment } from "../../entities/Assignments";
-import { AssignmentFormData } from "../../entities/FormData";
-import SelectOption from "../../entities/SelectOption";
+import { AddAssignment, Assignment } from "../../entities/assignments";
+import { AssignmentFormData } from "../../entities/formDatas";
+import { SelectOption } from "../../entities/selectOption";
 import { usePHDTags } from "../../hooks/PHDTags";
 import { useFormSubmit } from "../../hooks/forms";
 import { AssignmentSchema } from "../../validationSchema";

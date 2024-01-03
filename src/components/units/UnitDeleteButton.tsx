@@ -1,6 +1,6 @@
 import { useDeleteUnit, useUnits } from "../../hooks/units";
 import useUnitsStore from "../../store/unitsStore";
-import DeleteButton from "../DeleteButton";
+import { DeleteButton } from "../common/buttons/";
 import SimpleAlert from "../SimpleAlert";
 
 const UnitDeleteButton = ({ unitId }: { unitId: number }) => {

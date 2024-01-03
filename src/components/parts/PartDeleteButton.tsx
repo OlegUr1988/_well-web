@@ -1,7 +1,7 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeletePart } from "../../hooks/parts";
-import IconButton from "../IconButton";
 import SimpleAlert from "../SimpleAlert";
+import { IconButton } from "../common/buttons/";
 
 const PartDeleteButton = ({ partId }: { partId: number }) => {
   const { mutateAsync, isPending } = useDeletePart();
@@ -17,7 +17,7 @@ const PartDeleteButton = ({ partId }: { partId: number }) => {
         <IconButton
           onClick={onOpen}
           size="xs"
-          btnColor="gray"
+          btnColorScheme="gray"
           icon={<FaRegTrashAlt color="white" />}
         />
       )}

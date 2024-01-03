@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import ParameterType from "../entities/ParameterType";
+import { ParameterType } from "../entities/parameterType";
 import APIClient from "../services/api-client";
 
 const apiClient = new APIClient<ParameterType>("parameter-types");

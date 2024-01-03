@@ -1,7 +1,7 @@
 import { Card, Collapse, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { Parameter } from "../../entities/parameters";
-import CollapsibleButton from "../CollapsibleButton";
 import { AssignmentCreateButton, AssignmentsList } from "../assignments";
+import { CollapsibleButton } from "../common/buttons";
 import ParameterDeleteButton from "./ParameterDeleteButton";
 import ParameterEditButton from "./ParameterEditButton";
 

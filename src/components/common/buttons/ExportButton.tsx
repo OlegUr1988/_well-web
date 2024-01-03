@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { VITE_REACT_APP_BASE_URL } from "../envs";
+import { VITE_REACT_APP_BASE_URL } from "../../../envs";
 
 const ExportButton = ({ url }: { url: string }) => {
   return (

@@ -1,8 +1,8 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Equipment } from "../../entities/equipments";
 import { useUpdateEquipment } from "../../hooks/equipments";
-import IconButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
+import { IconButton } from "../common/buttons/";
 
 const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
   const { mutateAsync, isPending } = useUpdateEquipment(equipment.id);
@@ -17,7 +17,7 @@ const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
         <IconButton
           onClick={onOpen}
           size="xs"
-          btnColor="gray"
+          btnColorScheme="gray"
           icon={<MdOutlineEdit color="white" />}
         />
       )}

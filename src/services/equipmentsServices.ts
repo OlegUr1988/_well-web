@@ -1,7 +1,7 @@
 import {
   AddEquipment,
   Equipment,
-  UpdateEquipment,
+  UpdateEquipment
 } from "../entities/equipments";
 import APIClient from "./api-client";
 

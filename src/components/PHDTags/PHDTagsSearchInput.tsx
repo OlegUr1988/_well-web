@@ -1,5 +1,5 @@
 import usePHDTagStore from "../../store/phdTags";
-import SearchInput from "../SearchInput";
+import SearchInput from "../common/SearchInput";
 
 const PHDTagsSearchInput = () => {
   const { searchedName } = usePHDTagStore((s) => s.PHDTagsQuery);

@@ -1,8 +1,8 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Part } from "../../entities/parts";
 import { useUpdatePart } from "../../hooks/parts";
-import IconButton from "../IconButton";
 import SimpleModal from "../SimpleModal";
+import { IconButton } from "../common/buttons/";
 
 const PartEditButton = ({ part }: { part: Part }) => {
   const { mutateAsync, isPending } = useUpdatePart(part.id);
@@ -18,7 +18,7 @@ const PartEditButton = ({ part }: { part: Part }) => {
         <IconButton
           onClick={onOpen}
           size="xs"
-          btnColor="gray"
+          btnColorScheme="gray"
           icon={<MdOutlineEdit color="white" />}
         />
       )}

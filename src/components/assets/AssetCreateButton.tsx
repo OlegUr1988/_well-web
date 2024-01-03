@@ -1,6 +1,7 @@
+import { FaPlus } from "react-icons/fa";
 import { useAddAsset } from "../../hooks/assets";
-import ListViewCreateButton from "../ListViewCreateButton";
 import SimpleModal from "../SimpleModal";
+import { IconButton } from "../common/buttons";
 
 const AssetCreateButton = () => {
   const { mutateAsync, isPending } = useAddAsset();
@@ -12,7 +13,14 @@ const AssetCreateButton = () => {
       submitLabel="Create"
       onSuccessMessage="The new asset was successfully added"
       renderTriggerButton={(onOpen) => (
-        <ListViewCreateButton onClick={onOpen} />
+        <IconButton
+          variant="outline"
+          color="white"
+          btnColorScheme=""
+          onClick={onOpen}
+          w="100%"
+          icon={<FaPlus />}
+        />
       )}
       isPending={isPending}
       mutateAsync={(data) => mutateAsync(data)}

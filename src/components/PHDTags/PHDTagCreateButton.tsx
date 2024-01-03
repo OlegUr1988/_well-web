@@ -1,5 +1,5 @@
 import { useAddPHDTag } from "../../hooks/PHDTags";
-import CreateButton from "../CreateButton";
+import { CreateButton } from "../common/buttons/";
 import PHDTagModal from "./PHDTagModal";
 
 const PHDTagCreateButton = () => {

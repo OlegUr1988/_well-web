@@ -1,6 +1,6 @@
 import { useUnits } from "../../hooks/units";
 import useUnitsStore from "../../store/unitsStore";
-import Pagination from "../Pagination";
+import Pagination from "../common/Pagination";
 
 const PHDTagsPagination = () => {
   const { page, pageSize, searchedName } = useUnitsStore((s) => s.unitsQuery);

@@ -1,9 +1,9 @@
 import { useMutation } from "@tanstack/react-query";
-import UpdateEquipmnet from "../../entities/equipments/UpdateEquipment";
+import { UpdateEquipment } from "../../entities/equipments";
 import { updateEquipment } from "../../services/equipmentsServices";
 
 const useUpdateEquipment = (id: string | number) => {
-  return useMutation<UpdateEquipmnet, Error, UpdateEquipmnet>({
+  return useMutation<UpdateEquipment, Error, UpdateEquipment>({
     mutationFn: (equipment) => updateEquipment.put(id, equipment),
   });
 };
