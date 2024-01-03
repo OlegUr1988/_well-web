@@ -1,6 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import Equipment from "../../entities/equipments/Equipment";
-import EquipmentQuery from "../../entities/equipments/EquipmentQuery";
+import { Equipment, EquipmentQuery } from "../../entities/equipments";
 import { equipments } from "../../services/equipmentsServices";
 
 const useEquipments = (query: EquipmentQuery) => {

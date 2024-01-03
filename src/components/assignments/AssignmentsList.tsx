@@ -6,9 +6,9 @@ import {
   Td,
   Th,
   Thead,
-  Tr
+  Tr,
 } from "@chakra-ui/react";
-import { Assignment } from "../../entities/Assignments";
+import { Assignment } from "../../entities/assignments";
 import { useAssignments } from "../../hooks/assignments";
 import { useUnits } from "../../hooks/units";
 import AssignmentDeleteButton from "./AssignmentDeleteButton";

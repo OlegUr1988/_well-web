@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import AddEquipment from "../../entities/equipments/AddEquipment";
+import { AddEquipment } from "../../entities/equipments";
 import { addEquipment } from "../../services/equipmentsServices";
 
 const useAddEquipment = () => {

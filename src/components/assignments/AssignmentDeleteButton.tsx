@@ -1,5 +1,5 @@
 import { FaRegTrashAlt } from "react-icons/fa";
-import { Assignment } from "../../entities/Assignments";
+import { Assignment } from "../../entities/assignments";
 import { useDeleteAssignment } from "../../hooks/assignments";
 import IconButton from "../IconButton";
 import SimpleAlert from "../SimpleAlert";

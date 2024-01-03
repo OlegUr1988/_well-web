@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { Assignment, UpdateAssignment } from "../../entities/Assignments";
+import { Assignment, UpdateAssignment } from "../../entities/assignments";
 import { updateAssignment } from "../../services/assignmentsServices";
 
 const useUpdateAssignment = (assignment: Assignment) => {

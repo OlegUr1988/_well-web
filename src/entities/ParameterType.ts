@@ -1,4 +1,4 @@
-export default interface ParameterType {
+export interface ParameterType {
   id: number;
   name: string;
 }

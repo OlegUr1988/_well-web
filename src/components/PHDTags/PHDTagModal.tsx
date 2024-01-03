@@ -1,7 +1,7 @@
 import { useDisclosure } from "@chakra-ui/react";
-import { PHDTagFormData } from "../../entities/FormData";
 import { AddPHDTag, PHDTag } from "../../entities/PHDTags";
-import SelectOption from "../../entities/SelectOption";
+import { PHDTagFormData } from "../../entities/formDatas";
+import { SelectOption } from "../../entities/selectOption";
 import { useFormSubmit } from "../../hooks/forms";
 import { useUnits } from "../../hooks/units";
 import { PHDTagSchema } from "../../validationSchema";

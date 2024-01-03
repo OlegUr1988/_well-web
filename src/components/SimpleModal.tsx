@@ -1,5 +1,5 @@
 import { useDisclosure } from "@chakra-ui/react";
-import { ListViewFormData } from "../entities/FormData";
+import { ListViewFormData } from "../entities/formDatas";
 import { useFormSubmit } from "../hooks/forms";
 import { listViewFormSchema } from "../validationSchema";
 import ModalContainer from "./ModalContainer";

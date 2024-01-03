@@ -1,5 +1,5 @@
 import { MdOutlineEdit } from "react-icons/md";
-import { Assignment } from "../../entities/Assignments";
+import { Assignment } from "../../entities/assignments";
 import { useUpdateAssignment } from "../../hooks/assignments";
 import IconButton from "../IconButton";
 import AssignmentModal from "./AssignmentModal";
