@@ -39,9 +39,21 @@ class APIClient<T> {
       .then((res) => res.data);
   };
 
+  getArrayById = (id: string | number) => {
+    return axiosInstance
+      .get<T[]>(this.endpoint + "/" + id)
+      .then((res) => res.data);
+  };
+
   put = (id: string | number, entity: T) => {
     return axiosInstance
       .put<T>(this.endpoint + "/" + id, entity)
+      .then((res) => res.data);
+  };
+
+  putByTwoIds = (firstId: number, secondId: number, entity: T) => {
+    return axiosInstance
+      .put<T>(this.endpoint + "/" + firstId + "/" + secondId, entity)
       .then((res) => res.data);
   };
 
@@ -56,6 +68,12 @@ class APIClient<T> {
   delete = (id: string | number) => {
     return axiosInstance
       .delete<T>(this.endpoint + "/" + id)
+      .then((res) => res.data);
+  };
+
+  deleteByTwoIds = (firstId: number, secondId: number) => {
+    return axiosInstance
+      .delete<T>(this.endpoint + "/" + firstId + "/" + secondId)
       .then((res) => res.data);
   };
 }
