@@ -17,7 +17,7 @@ const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
         <IconButton
           onClick={onOpen}
           size="xs"
-          btnColor="gray"
+          btnColorScheme="gray"
           icon={<FaRegTrashAlt color="white" />}
         />
       )}

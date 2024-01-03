@@ -18,7 +18,7 @@ const PartEditButton = ({ part }: { part: Part }) => {
         <IconButton
           onClick={onOpen}
           size="xs"
-          btnColor="gray"
+          btnColorScheme="gray"
           icon={<MdOutlineEdit color="white" />}
         />
       )}

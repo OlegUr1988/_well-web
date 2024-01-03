@@ -17,7 +17,7 @@ const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
         <IconButton
           onClick={onOpen}
           size="xs"
-          btnColor="gray"
+          btnColorScheme="gray"
           icon={<MdOutlineEdit color="white" />}
         />
       )}
