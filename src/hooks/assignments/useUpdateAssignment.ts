@@ -3,10 +3,10 @@ import { Assignment, UpdateAssignment } from "../../entities/assignments";
 import { updateAssignment } from "../../services/assignmentsServices";
 
 const useUpdateAssignment = (assignment: Assignment) => {
-  const { partParameterId, PHDTagId } = assignment;
+  const { attributeId, PHDTagId } = assignment;
   return useMutation<UpdateAssignment, Error, UpdateAssignment>({
     mutationFn: (assignmentBody) =>
-      updateAssignment.putByTwoIds(partParameterId, PHDTagId, assignmentBody),
+      updateAssignment.putByTwoIds(attributeId, PHDTagId, assignmentBody),
   });
 };
 

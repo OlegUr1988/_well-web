@@ -15,13 +15,13 @@ const AttributeCard = ({ attribute }: { attribute: Attribute }) => {
           <CollapsibleButton isOpen={isOpen} onClick={onToggle} />
         </HStack>
         <HStack>
-          <AssignmentCreateButton parameterId={attribute.id} />
+          <AssignmentCreateButton attributeId={attribute.id} />
           <AttributeEditButton attribute={attribute} />
           <AttributeDeleteButton attributeId={attribute.id} />
         </HStack>
       </HStack>
       <Collapse in={isOpen} animateOpacity>
-        <AssignmentsList parameterId={attribute.id} />
+        <AssignmentsList attributeId={attribute.id} />
       </Collapse>
     </Card>
   );
