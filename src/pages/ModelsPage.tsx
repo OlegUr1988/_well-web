@@ -1,6 +1,6 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { AreasListView } from "../components/areas";
-import { EquipmentsListView } from "../components/equipments";
+import { AssetsListView } from "../components/assets";
 import { ParametersSection } from "../components/parameters";
 import { PartsListView } from "../components/parts";
 
@@ -8,7 +8,7 @@ const ModelsPage = () => {
   return (
     <Flex h="100%">
       <AreasListView />
-      <EquipmentsListView />
+      <AssetsListView />
       <PartsListView />
       <Box flex={1} overflowY="auto">
         <ParametersSection />
