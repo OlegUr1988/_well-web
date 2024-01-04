@@ -5,8 +5,8 @@ import PartDeleteButton from "./PartDeleteButton";
 import PartEditButton from "./PartEditButton";
 
 const PartsList = ({ parts }: { parts: Part[] }) => {
-  const { partId } = useModelStore((s) => s.modelQuery);
-  const setPartId = useModelStore((s) => s.setPartId);
+  const { equipmentId: partId } = useModelStore((s) => s.modelQuery);
+  const setPartId = useModelStore((s) => s.setEquipmentId);
 
   return (
     <List w="100%">

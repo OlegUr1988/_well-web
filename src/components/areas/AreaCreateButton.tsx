@@ -1,17 +1,17 @@
 import { FaPlus } from "react-icons/fa";
-import { useAddAsset } from "../../hooks/assets";
+import { useAddArea } from "../../hooks/areas";
 import SimpleModal from "../SimpleModal";
 import { IconButton } from "../common/buttons";
 
-const AssetCreateButton = () => {
-  const { mutateAsync, isPending } = useAddAsset();
+const AreaCreateButton = () => {
+  const { mutateAsync, isPending } = useAddArea();
 
   return (
     <SimpleModal
-      header="Create Asset"
-      label="Asset Name"
+      header="Create Area"
+      label="Area Name"
       submitLabel="Create"
-      onSuccessMessage="The new asset was successfully added"
+      onSuccessMessage="The new area was successfully added"
       renderTriggerButton={(onOpen) => (
         <IconButton
           variant="outline"
@@ -28,4 +28,4 @@ const AssetCreateButton = () => {
   );
 };
 
-export default AssetCreateButton;
+export default AreaCreateButton;

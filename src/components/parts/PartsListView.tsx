@@ -5,7 +5,7 @@ import PartCreateButton from "./PartCreateButton";
 import PartsList from "./PartsList";
 
 const PartsListView = () => {
-  const { equipmentId } = useModelStore((s) => s.modelQuery);
+  const { assetId: equipmentId } = useModelStore((s) => s.modelQuery);
   const { data: parts, isLoading, error } = useParts({ equipmentId });
   if (equipmentId == 0) return null;
 

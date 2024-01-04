@@ -6,7 +6,7 @@ import ParameterCreateButton from "./ParameterCreateButton";
 import ParametersList from "./ParametersList";
 
 const ParameterTypesList = ({ parameters }: { parameters: Parameter[] }) => {
-  const { partId } = useModelStore((s) => s.modelQuery);
+  const { equipmentId: partId } = useModelStore((s) => s.modelQuery);
 
   const { data: types } = useParameterType();
   return (

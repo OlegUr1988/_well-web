@@ -1,18 +1,18 @@
 import { FaRegTrashAlt } from "react-icons/fa";
-import { useDeleteAsset } from "../../hooks/assets";
+import { useDeleteArea } from "../../hooks/areas";
 import SimpleAlert from "../SimpleAlert";
 import { IconButton } from "../common/buttons";
 
-const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
-  const { mutateAsync, isPending } = useDeleteAsset();
+const AreaDeleteButton = ({ areaId }: { areaId: number }) => {
+  const { mutateAsync, isPending } = useDeleteArea();
 
   return (
     <SimpleAlert
-      header="Delete the Asset?"
-      content="Are you sure to delete this Asset?"
-      onSuccessMessage="The asset was successfully deleted"
+      header="Delete the Area?"
+      content="Are you sure to delete this Area?"
+      onSuccessMessage="The area was successfully deleted"
       isPending={isPending}
-      mutateAsync={() => mutateAsync(assetId)}
+      mutateAsync={() => mutateAsync(areaId)}
       renderTriggerButton={(onOpen) => (
         <IconButton
           onClick={onOpen}
@@ -25,4 +25,4 @@ const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
   );
 };
 
-export default AssetDeleteButton;
+export default AreaDeleteButton;

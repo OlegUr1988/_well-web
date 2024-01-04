@@ -4,7 +4,7 @@ import useModelStore from "../../store/model";
 import ParameterTypesList from "./ParameterTypesList";
 
 const ParametersSection = () => {
-  const { partId } = useModelStore((s) => s.modelQuery);
+  const { equipmentId: partId } = useModelStore((s) => s.modelQuery);
   const { data: parameters, isLoading, error } = useParameters({ partId });
 
   if (partId === 0) return null;

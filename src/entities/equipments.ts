@@ -1,11 +1,11 @@
+import { Area } from "./areas";
 import { BasicQuery } from "./basicQuery";
-import { Asset } from "./assets";
 
 export interface Equipment {
   id: number;
   name: string;
   assetId: number;
-  asset: Asset;
+  asset: Area;
 }
 
 export interface AddEquipment {

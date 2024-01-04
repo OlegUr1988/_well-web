@@ -5,7 +5,7 @@ import EquipmentCreateButton from "./EquipmentCreateButton";
 import EquipmentsList from "./EquipmentsList";
 
 const EquipmentsListView = () => {
-  const { assetId } = useModelStore((s) => s.modelQuery);
+  const { areaId: assetId } = useModelStore((s) => s.modelQuery);
   const { data: equipments, isLoading, error } = useEquipments({ assetId });
   if (assetId == 0) return null;
 

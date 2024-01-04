@@ -1,18 +1,18 @@
 import { MdOutlineEdit } from "react-icons/md";
-import { Asset } from "../../entities/assets";
-import { useUpdateAsset } from "../../hooks/assets";
-import { IconButton } from "../common/buttons";
+import { Area } from "../../entities/areas";
+import { useUpdateArea } from "../../hooks/areas";
 import SimpleModal from "../SimpleModal";
+import { IconButton } from "../common/buttons";
 
-const AssetEditButton = ({ asset }: { asset: Asset }) => {
-  const { mutateAsync, isPending } = useUpdateAsset(asset.id);
+const AreaEditButton = ({ area }: { area: Area }) => {
+  const { mutateAsync, isPending } = useUpdateArea(area.id);
 
   return (
     <SimpleModal
-      header="Edit Asset"
-      label="Asset Name"
+      header="Edit Area"
+      label="Area Name"
       submitLabel="Save"
-      onSuccessMessage="The asset was successfully modified"
+      onSuccessMessage="The area was successfully modified"
       renderTriggerButton={(onOpen) => (
         <IconButton
           onClick={onOpen}
@@ -21,11 +21,11 @@ const AssetEditButton = ({ asset }: { asset: Asset }) => {
           icon={<MdOutlineEdit color="white" />}
         />
       )}
-      defaultValue={asset.name}
+      defaultValue={area.name}
       isPending={isPending}
       mutateAsync={(data) => mutateAsync(data)}
     />
   );
 };
 
-export default AssetEditButton;
+export default AreaEditButton;
