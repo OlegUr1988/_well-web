@@ -1,0 +1,28 @@
+import { FaRegTrashAlt } from "react-icons/fa";
+import { useDeleteEquipment } from "../../hooks/equipments";
+import SimpleAlert from "../SimpleAlert";
+import { IconButton } from "../common/buttons";
+
+const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
+  const { mutateAsync, isPending } = useDeleteEquipment();
+
+  return (
+    <SimpleAlert
+      header="Delete the Equipment?"
+      content="Are you sure to delete this Equipment?"
+      onSuccessMessage="The equipment was successfully deleted"
+      isPending={isPending}
+      mutateAsync={() => mutateAsync(equipmentId)}
+      renderTriggerButton={(onOpen) => (
+        <IconButton
+          onClick={onOpen}
+          size="xs"
+          btnColorScheme="gray"
+          icon={<FaRegTrashAlt color="white" />}
+        />
+      )}
+    />
+  );
+};
+
+export default EquipmentDeleteButton;
