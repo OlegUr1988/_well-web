@@ -1,6 +1,6 @@
 import { Box, HStack, Text } from "@chakra-ui/react";
 import { Parameter } from "../../entities/parameters";
-import useParameterType from "../../hooks/useParameterTypes";
+import useAttributeTypes from "../../hooks/useAttributeTypes";
 import useModelStore from "../../store/model";
 import ParameterCreateButton from "./ParameterCreateButton";
 import ParametersList from "./ParametersList";
@@ -8,7 +8,7 @@ import ParametersList from "./ParametersList";
 const ParameterTypesList = ({ parameters }: { parameters: Parameter[] }) => {
   const { equipmentId: partId } = useModelStore((s) => s.modelQuery);
 
-  const { data: types } = useParameterType();
+  const { data: types } = useAttributeTypes();
   return (
     <>
       {types?.map((type) => (
