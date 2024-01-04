@@ -1,30 +1,30 @@
 import { Card, Collapse, HStack, Text, useDisclosure } from "@chakra-ui/react";
-import { Parameter } from "../../entities/parameters";
+import { Attribute } from "../../entities/attributes";
 import { AssignmentCreateButton, AssignmentsList } from "../assignments";
 import { CollapsibleButton } from "../common/buttons";
-import ParameterDeleteButton from "./ParameterDeleteButton";
-import ParameterEditButton from "./ParameterEditButton";
+import AttributeDeleteButton from "./AttributeDeleteButton";
+import AttributeEditButton from "./AttributeEditButton";
 
-const ParameterCard = ({ parameter }: { parameter: Parameter }) => {
+const AttributeCard = ({ attribute }: { attribute: Attribute }) => {
   const { isOpen, onToggle } = useDisclosure();
   return (
     <Card variant="outline">
       <HStack p={3} justify="space-between">
         <HStack>
-          <Text>{parameter.name}</Text>
+          <Text>{attribute.name}</Text>
           <CollapsibleButton isOpen={isOpen} onClick={onToggle} />
         </HStack>
         <HStack>
-          <AssignmentCreateButton parameterId={parameter.id} />
-          <ParameterEditButton parameter={parameter} />
-          <ParameterDeleteButton parameterId={parameter.id} />
+          <AssignmentCreateButton parameterId={attribute.id} />
+          <AttributeEditButton attribute={attribute} />
+          <AttributeDeleteButton attributeId={attribute.id} />
         </HStack>
       </HStack>
       <Collapse in={isOpen} animateOpacity>
-        <AssignmentsList parameterId={parameter.id} />
+        <AssignmentsList parameterId={attribute.id} />
       </Collapse>
     </Card>
   );
 };
 
-export default ParameterCard;
+export default AttributeCard;

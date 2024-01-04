@@ -1,12 +1,12 @@
 import { Box, HStack, Text } from "@chakra-ui/react";
-import { Parameter } from "../../entities/parameters";
+import { Attribute } from "../../entities/attributes";
 import useAttributeTypes from "../../hooks/useAttributeTypes";
 import useModelStore from "../../store/model";
-import ParameterCreateButton from "./ParameterCreateButton";
-import ParametersList from "./ParametersList";
+import AttributeCreateButton from "./AttributeCreateButton";
+import AttributesList from "./AttributesList";
 
-const ParameterTypesList = ({ parameters }: { parameters: Parameter[] }) => {
-  const { equipmentId: partId } = useModelStore((s) => s.modelQuery);
+const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
+  const { equipmentId } = useModelStore((s) => s.modelQuery);
 
   const { data: types } = useAttributeTypes();
   return (
@@ -20,13 +20,16 @@ const ParameterTypesList = ({ parameters }: { parameters: Parameter[] }) => {
             </Text>
           </HStack>
           <Box mb={3}>
-            <ParameterCreateButton parameterTypeId={type.id} partId={partId} />
+            <AttributeCreateButton
+              attributeTypeId={type.id}
+              equipmentId={equipmentId}
+            />
           </Box>
-          <ParametersList parameters={parameters} typeId={type.id} />
+          <AttributesList attributes={attributes} typeId={type.id} />
         </Box>
       ))}
     </>
   );
 };
 
-export default ParameterTypesList;
+export default AttributeTypesList;
