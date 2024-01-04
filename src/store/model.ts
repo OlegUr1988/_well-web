@@ -2,26 +2,30 @@ import { mountStoreDevtool } from "simple-zustand-devtools";
 import { create } from "zustand";
 
 interface ModelQuery {
+  areaId: number;
   assetId: number;
   equipmentId: number;
-  partId: number;
 }
 
 interface ModelStore {
   modelQuery: ModelQuery;
+  setAreaId: (areaId: number) => void;
   setAssetId: (assetId: number) => void;
   setEquipmentId: (equipmentId: number) => void;
-  setPartId: (partId: number) => void;
 }
 
 const useModelStore = create<ModelStore>((set) => ({
-  modelQuery: { assetId: 0, equipmentId: 0, partId: 0 },
+  modelQuery: { areaId: 0, assetId: 0, equipmentId: 0 },
+  setAreaId: (areaId) =>
+    set((store) => ({ modelQuery: { ...store.modelQuery, areaId } })),
   setAssetId: (assetId) =>
-    set((store) => ({ modelQuery: { ...store.modelQuery, assetId } })),
+    set((store) => ({
+      modelQuery: { ...store.modelQuery, assetId },
+    })),
   setEquipmentId: (equipmentId) =>
-    set((store) => ({ modelQuery: { ...store.modelQuery, equipmentId } })),
-  setPartId: (partId) =>
-    set((store) => ({ modelQuery: { ...store.modelQuery, partId } })),
+    set((store) => ({
+      modelQuery: { ...store.modelQuery, equipmentId },
+    })),
 }));
 
 if (process.env.NODE_ENV === "development")

@@ -3,7 +3,7 @@ import { useAddAsset } from "../../hooks/assets";
 import SimpleModal from "../SimpleModal";
 import { IconButton } from "../common/buttons";
 
-const AssetCreateButton = () => {
+const AssetCreateButton = ({ areaId }: { areaId: number }) => {
   const { mutateAsync, isPending } = useAddAsset();
 
   return (
@@ -23,7 +23,7 @@ const AssetCreateButton = () => {
         />
       )}
       isPending={isPending}
-      mutateAsync={(data) => mutateAsync(data)}
+      mutateAsync={(data) => mutateAsync({ name: data.name, areaId })}
     />
   );
 };

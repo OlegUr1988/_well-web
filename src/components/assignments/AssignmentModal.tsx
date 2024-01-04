@@ -9,7 +9,7 @@ import ModalContainer from "../ModalContainer";
 import { FormContainer, FormSelect, FormSubmit } from "../forms";
 
 interface Props {
-  parameterId: number;
+  attributeId: number;
   header: string;
   submitLabel: string;
   onSuccessMessage: string;
@@ -20,7 +20,7 @@ interface Props {
 }
 
 const AssignmentModal = ({
-  parameterId,
+  attributeId,
   header,
   submitLabel,
   onSuccessMessage,
@@ -39,7 +39,7 @@ const AssignmentModal = ({
     onSuccessMessage,
     mutateAsync,
     onDataMutate: (data) => ({
-      partParameterId: parameterId,
+      attributeId,
       PHDTagId: data.tag.value,
     }),
     schema: AssignmentSchema,

@@ -14,8 +14,8 @@ import { useUnits } from "../../hooks/units";
 import AssignmentDeleteButton from "./AssignmentDeleteButton";
 import AssignmentEditButton from "./AssignmentEditButton";
 
-const AssignmentsList = ({ parameterId }: { parameterId: number }) => {
-  const { data: assigns, isLoading, error } = useAssignments(parameterId);
+const AssignmentsList = ({ attributeId }: { attributeId: number }) => {
+  const { data: assigns, isLoading, error } = useAssignments(attributeId);
   const { data: units } = useUnits({});
 
   if (error) return null;

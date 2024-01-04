@@ -1,17 +1,17 @@
 import { PHDTag } from "./PHDTags";
 
 export interface Assignment {
-  partParameterId: number;
+  attributeId: number;
   PHDTagId: number;
   PHDTag: PHDTag;
 }
 
 export interface AddAssignment {
-  partParameterId: number;
+  attributeId: number;
   PHDTagId: number;
 }
 
 export interface UpdateAssignment {
-  partParameterId: number;
+  attributeId: number;
   PHDTagId: number;
 }

@@ -6,7 +6,7 @@ import EquipmentsList from "./EquipmentsList";
 
 const EquipmentsListView = () => {
   const { assetId } = useModelStore((s) => s.modelQuery);
-  const { data: equipments, isLoading, error } = useEquipments({ assetId });
+  const { data: parts, isLoading, error } = useEquipments({ assetId });
   if (assetId == 0) return null;
 
   return (
@@ -14,7 +14,7 @@ const EquipmentsListView = () => {
       title="Equipments"
       isLoading={isLoading}
       error={error}
-      listComponent={<EquipmentsList equipments={equipments!} />}
+      listComponent={<EquipmentsList equipments={parts!} />}
       createButtonComponent={<EquipmentCreateButton assetId={assetId} />}
     />
   );

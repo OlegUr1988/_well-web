@@ -9,7 +9,7 @@ const AssignmentEditButton = ({ assignment }: { assignment: Assignment }) => {
 
   return (
     <AssignmentModal
-      parameterId={assignment.partParameterId}
+      attributeId={assignment.attributeId}
       header="Assign PHD Tag"
       onSuccessMessage="A PHD Tag was successfuly assigned"
       submitLabel="Assign"

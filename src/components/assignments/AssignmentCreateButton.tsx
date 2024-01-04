@@ -3,11 +3,11 @@ import { useAddAssignment } from "../../hooks/assignments";
 import { IconButton } from "../common/buttons";
 import AssignmentModal from "./AssignmentModal";
 
-const AssignmentCreateButton = ({ parameterId }: { parameterId: number }) => {
+const AssignmentCreateButton = ({ attributeId }: { attributeId: number }) => {
   const { mutateAsync, isPending } = useAddAssignment();
   return (
     <AssignmentModal
-      parameterId={parameterId}
+      attributeId={attributeId}
       header="Assign PHD Tag"
       onSuccessMessage="A PHD Tag was successfuly assigned"
       submitLabel="Assign"

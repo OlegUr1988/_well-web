@@ -4,7 +4,7 @@ import { updateEquipment } from "../../services/equipmentsServices";
 
 const useUpdateEquipment = (id: string | number) => {
   return useMutation<UpdateEquipment, Error, UpdateEquipment>({
-    mutationFn: (equipment) => updateEquipment.put(id, equipment),
+    mutationFn: (part) => updateEquipment.put(id, part),
   });
 };
 

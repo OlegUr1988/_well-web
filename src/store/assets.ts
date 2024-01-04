@@ -1,19 +1,18 @@
-import { create } from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
+import { create } from "zustand";
 import { AssetQuery } from "../entities/assets";
 
 interface AssetStore {
   assetQuery: AssetQuery;
-  setPage: (page: number) => void;
   setSearchedName: (searchedName: string) => void;
 }
 
 const useAssetStore = create<AssetStore>((set) => ({
-  assetQuery: { page: 1, pageSize: 10 },
-  setPage: (page) =>
-    set((store) => ({ assetQuery: { ...store.assetQuery, page } })),
+  assetQuery: {},
   setSearchedName: (searchedName) =>
-    set((store) => ({ assetQuery: { ...store.assetQuery, searchedName } })),
+    set((store) => ({
+      assetQuery: { ...store.assetQuery, searchedName },
+    })),
 }));
 
 if (process.env.NODE_ENV === "development")

@@ -1,8 +1,8 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Asset } from "../../entities/assets";
 import { useUpdateAsset } from "../../hooks/assets";
-import { IconButton } from "../common/buttons";
 import SimpleModal from "../SimpleModal";
+import { IconButton } from "../common/buttons";
 
 const AssetEditButton = ({ asset }: { asset: Asset }) => {
   const { mutateAsync, isPending } = useUpdateAsset(asset.id);
@@ -23,7 +23,9 @@ const AssetEditButton = ({ asset }: { asset: Asset }) => {
       )}
       defaultValue={asset.name}
       isPending={isPending}
-      mutateAsync={(data) => mutateAsync(data)}
+      mutateAsync={(data) =>
+        mutateAsync({ name: data.name, areaId: asset.areaId })
+      }
     />
   );
 };

@@ -4,11 +4,9 @@ import SearchInput from "../common/SearchInput";
 const AssetsSearchInput = () => {
   const { searchedName } = useAssetStore((s) => s.assetQuery);
   const setSearchedName = useAssetStore((s) => s.setSearchedName);
-  const setPage = useAssetStore((s) => s.setPage);
 
   const handleSearch = (text: string) => {
     setSearchedName(text);
-    setPage(1);
   };
 
   return (

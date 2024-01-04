@@ -8,12 +8,10 @@ const AssetsList = ({ assets }: { assets: Asset[] }) => {
   const { assetId } = useModelStore((s) => s.modelQuery);
   const setAssetId = useModelStore((s) => s.setAssetId);
   const setEquipmentId = useModelStore((s) => s.setEquipmentId);
-  const setPartId = useModelStore((s) => s.setPartId);
 
   const handleSelect = (id: number) => {
     setAssetId(id);
     setEquipmentId(0);
-    setPartId(0);
   };
 
   return (
