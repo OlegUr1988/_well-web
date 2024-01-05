@@ -1,28 +1,27 @@
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react";
-import { Link, useLocation } from "react-router-dom";
+import { HStack, Heading, Text } from "@chakra-ui/react";
+import { NavLink } from "react-router-dom";
 
 const NavBar = () => {
-  const { pathname } = useLocation();
-  const pathSegments = pathname
-    .replace(":", "")
-    .split("/")
-    .filter((segment) => segment !== "");
-
   return (
-    <Breadcrumb borderBottom="1px" p={3}>
-      {pathSegments.map((segment, index) => (
-        <BreadcrumbItem key={index}>
-          <BreadcrumbLink
-            as={Link}
-            fontSize="large"
-            fontWeight={600}
-            to={`/${pathSegments.slice(0, index + 1).join("/")}`}
-          >
-            {segment.toUpperCase()}
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-      ))}
-    </Breadcrumb>
+    <HStack
+      bgColor="gray.700"
+      borderBottom="1px solid gray"
+      py={1}
+      px={3}
+      justify="space-between"
+    >
+      <NavLink to="/">
+        <Heading color="red">Honeywell</Heading>
+      </NavLink>
+      <HStack>
+        <NavLink to="models" className="nav-link">
+          <Text color="white">Models</Text>
+        </NavLink>
+        <NavLink to="config" className="nav-link">
+          <Text color="white">Configurations</Text>
+        </NavLink>
+      </HStack>
+    </HStack>
   );
 };
 
