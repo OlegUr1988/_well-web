@@ -15,7 +15,7 @@ const AttributesSection = () => {
 
   return (
     <Box mx={5}>
-      <Heading>Parameters</Heading>
+      <Heading>Attributes</Heading>
 
       <AttributeTypesList attributes={attributes!} />
     </Box>

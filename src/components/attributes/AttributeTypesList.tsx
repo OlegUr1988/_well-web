@@ -14,7 +14,7 @@ const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
       {types?.map((type) => (
         <Box key={type.id} mb={5}>
           <HStack mb={3}>
-            <Text fontSize={22}>Prameter type: </Text>
+            <Text fontSize={22}>Attribute type: </Text>
             <Text fontSize={22} fontWeight="bold">
               {type.name}
             </Text>
