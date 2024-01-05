@@ -1,4 +1,29 @@
 html,
-body, #root {
+body,
+#root {
   height: 100%;
+}
+
+.active {
+  position: relative;
+}
+
+.nav-link.active::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  animation: set-underline 0.5s ease-in-out forwards;
+}
+
+@keyframes set-underline {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }

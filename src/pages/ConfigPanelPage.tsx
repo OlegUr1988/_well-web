@@ -1,7 +1,7 @@
 import { Box, Flex } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
-import NavBar from "../components/common/NavBar";
 import SideBar from "../components/SideBar";
+import BreadcrumbBar from "../components/common/BreadcrumbBar";
 
 const ConfigPanelPage = () => {
   return (
@@ -9,7 +9,7 @@ const ConfigPanelPage = () => {
       <SideBar />
       <Flex direction={"column"} flex={1}>
         <Box>
-          <NavBar />
+          <BreadcrumbBar />
         </Box>
         <Box p={3} overflowY="auto" height="100%">
           <Outlet />

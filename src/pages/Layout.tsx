@@ -1,17 +1,17 @@
-import { Box } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/common/NavBar";
 
 const Layout = () => {
   return (
-    <>
-      <Box mb={5}>
+    <Flex direction="column" height="100%">
+      <Box>
         <NavBar />
       </Box>
-      <Box mx={10} my={5}>
+      <Box flex={1} height="100%">
         <Outlet />
       </Box>
-    </>
+    </Flex>
   );
 };
 
