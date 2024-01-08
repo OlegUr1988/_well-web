@@ -1,10 +1,12 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteArea } from "../../hooks/areas";
+import useModelStore from "../../store/model";
 import SimpleAlert from "../SimpleAlert";
 import { IconButton } from "../common/buttons";
 
 const AreaDeleteButton = ({ areaId }: { areaId: number }) => {
   const { mutateAsync, isPending } = useDeleteArea();
+  const setAreaId = useModelStore((s) => s.setAreaId);
 
   return (
     <SimpleAlert
@@ -13,6 +15,7 @@ const AreaDeleteButton = ({ areaId }: { areaId: number }) => {
       onSuccessMessage="The area was successfully deleted"
       isPending={isPending}
       mutateAsync={() => mutateAsync(areaId)}
+      onSuccess={() => setAreaId(0)}
       renderTriggerButton={(onOpen) => (
         <IconButton
           onClick={onOpen}

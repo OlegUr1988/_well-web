@@ -1,10 +1,12 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteAsset } from "../../hooks/assets";
-import { IconButton } from "../common/buttons";
+import useModelStore from "../../store/model";
 import SimpleAlert from "../SimpleAlert";
+import { IconButton } from "../common/buttons";
 
 const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
   const { mutateAsync, isPending } = useDeleteAsset();
+  const setAssetId = useModelStore((s) => s.setAssetId);
 
   return (
     <SimpleAlert
@@ -13,6 +15,7 @@ const AssetDeleteButton = ({ assetId }: { assetId: number }) => {
       onSuccessMessage="The asset was successfully deleted"
       isPending={isPending}
       mutateAsync={() => mutateAsync(assetId)}
+      onSuccess={() => setAssetId(0)}
       renderTriggerButton={(onOpen) => (
         <IconButton
           onClick={onOpen}
