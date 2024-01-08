@@ -2,6 +2,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { Assignment } from "../../entities/assignments";
 import { useDeleteAssignment } from "../../hooks/assignments";
 import SimpleAlert from "../SimpleAlert";
+import TooltipContainer from "../common/TooltipContainer";
 import { IconButton } from "../common/buttons/";
 
 const AssignmentDeleteButton = ({ assignment }: { assignment: Assignment }) => {
@@ -15,12 +16,14 @@ const AssignmentDeleteButton = ({ assignment }: { assignment: Assignment }) => {
       isPending={isPending}
       mutateAsync={mutateAsync}
       renderTriggerButton={(onOpen) => (
-        <IconButton
-          onClick={onOpen}
-          size="xs"
-          variant="unstyled"
-          icon={<FaRegTrashAlt />}
-        />
+        <TooltipContainer label="Delete">
+          <IconButton
+            onClick={onOpen}
+            size="xs"
+            variant="unstyled"
+            icon={<FaRegTrashAlt />}
+          />
+        </TooltipContainer>
       )}
     />
   );

@@ -1,6 +1,7 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteAttribute } from "../../hooks/attributes";
 import SimpleAlert from "../SimpleAlert";
+import TooltipContainer from "../common/TooltipContainer";
 import { IconButton } from "../common/buttons";
 
 const AttributeDeleteButton = ({ attributeId }: { attributeId: number }) => {
@@ -13,12 +14,14 @@ const AttributeDeleteButton = ({ attributeId }: { attributeId: number }) => {
       isPending={isPending}
       mutateAsync={() => mutateAsync(attributeId)}
       renderTriggerButton={(onOpen) => (
-        <IconButton
-          onClick={onOpen}
-          size="xs"
-          variant="unstyled"
-          icon={<FaRegTrashAlt />}
-        />
+        <TooltipContainer label="Delete">
+          <IconButton
+            onClick={onOpen}
+            size="xs"
+            variant="unstyled"
+            icon={<FaRegTrashAlt />}
+          />
+        </TooltipContainer>
       )}
     />
   );
