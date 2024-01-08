@@ -1,4 +1,5 @@
 import { useDisclosure } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { ListViewFormData } from "../entities/formDatas";
 import { useFormSubmit } from "../hooks/forms";
 import { listViewFormSchema } from "../validationSchema";
@@ -28,7 +29,7 @@ const SimpleModal = ({
 }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { register, handleSubmit, onSubmit, errors } = useFormSubmit<
+  const { reset, register, handleSubmit, onSubmit, errors } = useFormSubmit<
     ListViewFormData,
     ListViewFormData
   >({
@@ -38,6 +39,12 @@ const SimpleModal = ({
     schema: listViewFormSchema,
     onSuccess: () => onClose(),
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      reset();
+    }
+  }, [isOpen, reset]);
 
   return (
     <>

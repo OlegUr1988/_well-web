@@ -26,7 +26,7 @@ const useFormSubmit = <T extends FieldValues, K>({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { control, register, handleSubmit, onSubmit, errors } = useForm<T>(
+  const { control, reset, register, handleSubmit, onSubmit, errors } = useForm<T>(
     async (data) => {
       try {
         await mutateAsync(onDataMutate(data));
@@ -42,7 +42,7 @@ const useFormSubmit = <T extends FieldValues, K>({
     schema
   );
 
-  return { control, register, handleSubmit, onSubmit, errors };
+  return { control, reset, register, handleSubmit, onSubmit, errors };
 };
 
 export default useFormSubmit;
