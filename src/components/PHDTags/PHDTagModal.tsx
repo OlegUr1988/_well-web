@@ -1,4 +1,5 @@
 import { useDisclosure } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { AddPHDTag, PHDTag } from "../../entities/PHDTags";
 import { PHDTagFormData } from "../../entities/formDatas";
 import { SelectOption } from "../../entities/selectOption";
@@ -30,19 +31,23 @@ const PHDTagModal = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { data: units, isLoading, error } = useUnits({});
 
-  const { control, register, handleSubmit, onSubmit, errors } = useFormSubmit<
-    PHDTagFormData,
-    AddPHDTag
-  >({
-    onSuccessMessage,
-    mutateAsync,
-    onDataMutate: (data) => ({
-      tagname: data.tagname,
-      unitId: data.unit.value,
-    }),
-    schema: PHDTagSchema,
-    onSuccess: () => onClose(),
-  });
+  const { control, reset, register, handleSubmit, onSubmit, errors } =
+    useFormSubmit<PHDTagFormData, AddPHDTag>({
+      onSuccessMessage,
+      mutateAsync,
+      onDataMutate: (data) => ({
+        tagname: data.tagname,
+        unitId: data.unit.value,
+      }),
+      schema: PHDTagSchema,
+      onSuccess: () => onClose(),
+    });
+
+  useEffect(() => {
+    if (isOpen) {
+      reset();
+    }
+  }, [isOpen, reset]);
 
   if (error) return null;
 

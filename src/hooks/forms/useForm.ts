@@ -8,12 +8,13 @@ const useForm = <T extends FieldValues>(
 ) => {
   const {
     control,
+    reset,
     register,
     handleSubmit,
     formState: { errors },
   } = useReactForm<T>({ resolver: zodResolver(schema) });
 
-  return { control, register, handleSubmit, onSubmit, errors };
+  return { control, reset, register, handleSubmit, onSubmit, errors };
 };
 
 export default useForm;

@@ -1,4 +1,5 @@
 import { useDisclosure } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { AddAssignment, Assignment } from "../../entities/assignments";
 import { AssignmentFormData } from "../../entities/formDatas";
 import { SelectOption } from "../../entities/selectOption";
@@ -32,7 +33,7 @@ const AssignmentModal = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { data: tags, isLoading, error } = usePHDTags({});
 
-  const { control, handleSubmit, onSubmit } = useFormSubmit<
+  const { control, reset, handleSubmit, onSubmit } = useFormSubmit<
     AssignmentFormData,
     AddAssignment
   >({
@@ -45,6 +46,12 @@ const AssignmentModal = ({
     schema: AssignmentSchema,
     onSuccess: () => onClose(),
   });
+
+  useEffect(() => {
+    if (isOpen) {
+      reset();
+    }
+  }, [isOpen, reset]);
 
   if (error) return null;
 
