@@ -1,5 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import { useAddAssignment } from "../../hooks/assignments";
+import TooltipContainer from "../common/TooltipContainer";
 import { IconButton } from "../common/buttons";
 import AssignmentModal from "./AssignmentModal";
 
@@ -14,12 +15,14 @@ const AssignmentCreateButton = ({ attributeId }: { attributeId: number }) => {
       isPending={isPending}
       mutateAsync={mutateAsync}
       renderTriggerButton={(onOpen) => (
-        <IconButton
-          onClick={onOpen}
-          size="xs"
-          variant="unstyled"
-          icon={<FaPlus />}
-        />
+        <TooltipContainer label="Assign a tag">
+          <IconButton
+            onClick={onOpen}
+            size="xs"
+            variant="unstyled"
+            icon={<FaPlus />}
+          />
+        </TooltipContainer>
       )}
     />
   );

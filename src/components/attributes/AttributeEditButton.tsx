@@ -2,6 +2,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import { Attribute } from "../../entities/attributes";
 import { useUpdateAttribute } from "../../hooks/attributes";
 import SimpleModal from "../SimpleModal";
+import TooltipContainer from "../common/TooltipContainer";
 import { IconButton } from "../common/buttons";
 
 const AttributeEditButton = ({ attribute }: { attribute: Attribute }) => {
@@ -13,12 +14,14 @@ const AttributeEditButton = ({ attribute }: { attribute: Attribute }) => {
       submitLabel="Save"
       onSuccessMessage="The attribute was successfully modified"
       renderTriggerButton={(onOpen) => (
-        <IconButton
-          onClick={onOpen}
-          size="xs"
-          variant="unstyled"
-          icon={<MdOutlineEdit />}
-        />
+        <TooltipContainer label="Edit">
+          <IconButton
+            onClick={onOpen}
+            size="xs"
+            variant="unstyled"
+            icon={<MdOutlineEdit />}
+          />
+        </TooltipContainer>
       )}
       defaultValue={attribute.name}
       isPending={isPending}
