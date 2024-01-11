@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 import ModelsPage from "./pages/ModelsPage";
 import { PHDTagsPage, UnitsPage } from "./pages/configs";
+import DashboardPage from "./pages/DashboardPage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "dashboards/:areaName/:assetName", element: <DashboardPage /> },
 ]);
 
 export default router;

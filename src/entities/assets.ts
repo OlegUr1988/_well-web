@@ -20,4 +20,5 @@ export interface UpdateAsset {
 
 export interface AssetQuery extends BasicQuery {
   areaId?: number;
+  name?: string;
 }
