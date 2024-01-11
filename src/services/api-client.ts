@@ -27,6 +27,10 @@ class APIClient<T> {
       .then((res) => res.data);
   };
 
+  getByName = (config: AxiosRequestConfig): Promise<T> => {
+    return axiosInstance.get<T>(this.endpoint, config).then((res) => res.data);
+  };
+
   getFetchResponse = (config: AxiosRequestConfig) => {
     return axiosInstance
       .get<FetchResponse<T>>(this.endpoint, config)
