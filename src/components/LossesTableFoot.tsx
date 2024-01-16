@@ -29,7 +29,7 @@ const LossesTableFoot = ({ attributes }: { attributes: Attribute[] }) => {
           Ton CO2
         </Th>
         <Th textAlign="center">
-          {getSumOfRecords(getRecordsByUnits(records!, "%")) + " %"}
+          {getSumOfRecords(getRecordsByUnits(records!, "%")) + "%"}
         </Th>
       </Tr>
     </Tfoot>
