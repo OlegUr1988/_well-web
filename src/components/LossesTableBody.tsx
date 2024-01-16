@@ -1,4 +1,4 @@
-import { Tbody, Td, Tr } from "@chakra-ui/react";
+import { Tbody } from "@chakra-ui/react";
 import { Attribute } from "../entities/attributes";
 import LossesTableRow from "./LossesTableRow";
 
