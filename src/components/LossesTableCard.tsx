@@ -1,4 +1,4 @@
-import { Heading, Skeleton } from "@chakra-ui/react";
+import { Box, Heading, Skeleton } from "@chakra-ui/react";
 import { Asset } from "../entities/assets";
 import { useEquipments } from "../hooks/equipments";
 import DashboardCard from "./DashboardCard";
@@ -25,7 +25,16 @@ const LossesTableCard = ({ asset }: { asset: Asset }) => {
       <Heading size="md" mb={3}>
         {asset.name}
       </Heading>
-      <LossesTable />
+      <Box h={320} overflowY="auto">
+        {equipments?.map((equipment) => (
+          <Box key={equipment.id}>
+            <Heading size="sm">{equipment.name}</Heading>
+            <Box overflowX="auto" mb={3}>
+              <LossesTable equipment={equipment} />
+            </Box>
+          </Box>
+        ))}
+      </Box>
     </DashboardCard>
   );
 };
