@@ -1,8 +1,8 @@
 import { Table, TableContainer } from "@chakra-ui/react";
-import { Equipment } from "../entities/equipments";
-import LossesTableFoot from "./LossesTableFoot";
 import _ from "lodash";
-import useAttributeTypes from "../hooks/useAttributeTypes";
+import { Equipment } from "../../entities/equipments";
+import useAttributeTypes from "../../hooks/useAttributeTypes";
+import LossesTableFoot from "./LossesTableFoot";
 
 const LossesSummaryRow = ({ equipments }: { equipments: Equipment[] }) => {
   const allAttributes = _.flatten(equipments.map((eq) => eq.attribute));

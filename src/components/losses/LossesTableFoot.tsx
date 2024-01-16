@@ -1,8 +1,8 @@
 import { Tfoot, Th, Tr } from "@chakra-ui/react";
 import _ from "lodash";
-import { Attribute } from "../entities/attributes";
-import useRecords from "../hooks/useRecords";
-import { getRecordsByUnits, getSumOfRecords } from "../utils/records";
+import { Attribute } from "../../entities/attributes";
+import useRecords from "../../hooks/useRecords";
+import { getRecordsByUnits, getSumOfRecords } from "../../utils/records";
 
 const LossesTableFoot = ({
   attributes,

@@ -1,7 +1,7 @@
 import { Td, Tr } from "@chakra-ui/react";
-import { Attribute } from "../entities/attributes";
-import useRecords from "../hooks/useRecords";
-import { getRecordsByUnits, getSumOfRecords } from "../utils/records";
+import { Attribute } from "../../entities/attributes";
+import useRecords from "../../hooks/useRecords";
+import { getRecordsByUnits, getSumOfRecords } from "../../utils/records";
 
 const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
   const ids = attribute.assignment.map((ass) => ass.PHDTagId);

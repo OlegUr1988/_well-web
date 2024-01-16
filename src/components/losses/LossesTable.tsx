@@ -1,7 +1,7 @@
 import { Table, TableContainer } from "@chakra-ui/react";
-import { Equipment } from "../entities/equipments";
-import { useAttributes } from "../hooks/attributes";
-import useAttributeTypes from "../hooks/useAttributeTypes";
+import { Equipment } from "../../entities/equipments";
+import { useAttributes } from "../../hooks/attributes";
+import useAttributeTypes from "../../hooks/useAttributeTypes";
 import LossesTableBody from "./LossesTableBody";
 import LossesTableFoot from "./LossesTableFoot";
 import LossesTableHead from "./LossesTableHead";
