@@ -4,9 +4,14 @@ import { Attribute } from "../entities/attributes";
 import useRecords from "../hooks/useRecords";
 import { getRecordsByUnits, getSumOfRecords } from "../utils/records";
 
-const LossesTableFoot = ({ attributes }: { attributes: Attribute[] }) => {
+const LossesTableFoot = ({
+  attributes,
+  label = "Total",
+}: {
+  attributes: Attribute[];
+  label?: string;
+}) => {
   const assignments = _.flatten(attributes.map((attr) => attr.assignment));
-
   const ids = assignments.map((assignment) => assignment.PHDTagId);
   const PHDTagIds = ids.length ? ids : [0];
 
@@ -17,7 +22,7 @@ const LossesTableFoot = ({ attributes }: { attributes: Attribute[] }) => {
   return (
     <Tfoot>
       <Tr>
-        <Th>Total</Th>
+        <Th>{label}</Th>
         <Th textAlign="center">
           {getSumOfRecords(getRecordsByUnits(records!, "kWh"))}
         </Th>

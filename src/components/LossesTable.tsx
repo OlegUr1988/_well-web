@@ -1,4 +1,4 @@
-import { Table } from "@chakra-ui/react";
+import { Table, TableContainer } from "@chakra-ui/react";
 import { Equipment } from "../entities/equipments";
 import { useAttributes } from "../hooks/attributes";
 import useAttributeTypes from "../hooks/useAttributeTypes";
@@ -27,11 +27,13 @@ const LossesTable = ({ equipment }: { equipment: Equipment }) => {
   if (error) return null;
 
   return (
-    <Table variant="striped" size="sm">
-      <LossesTableHead />
-      <LossesTableBody attributes={attributes!} />
-      <LossesTableFoot attributes={attributes!} />
-    </Table>
+    <TableContainer>
+      <Table variant="striped" size="sm">
+        <LossesTableHead />
+        <LossesTableBody attributes={attributes!} />
+        <LossesTableFoot attributes={attributes!} />
+      </Table>
+    </TableContainer>
   );
 };
 

@@ -3,6 +3,7 @@ import { Asset } from "../entities/assets";
 import { useEquipments } from "../hooks/equipments";
 import DashboardCard from "./DashboardCard";
 import LossesTable from "./LossesTable";
+import LossesSummaryRow from "./LossesSummaryRow";
 
 const LossesTableCard = ({ asset }: { asset: Asset }) => {
   const {
@@ -25,7 +26,7 @@ const LossesTableCard = ({ asset }: { asset: Asset }) => {
       <Heading size="md" mb={3}>
         {asset.name}
       </Heading>
-      <Box h={320} overflowY="auto">
+      <Box h={320} mb={3} overflowY="auto">
         {equipments?.map((equipment) => (
           <Box key={equipment.id}>
             <Heading size="sm">{equipment.name}</Heading>
@@ -34,6 +35,10 @@ const LossesTableCard = ({ asset }: { asset: Asset }) => {
             </Box>
           </Box>
         ))}
+      </Box>
+
+      <Box>
+        <LossesSummaryRow equipments={equipments!} />
       </Box>
     </DashboardCard>
   );
