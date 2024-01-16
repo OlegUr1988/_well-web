@@ -3,10 +3,12 @@ import { BasicQuery } from "./basicQuery";
 
 export interface Record {
   id: number;
-  value: number;
+  value: string;
   PHDTagId: number;
   timestamp: number;
-  PHDtag: PHDTag;
+  PHDTag: PHDTag;
 }
 
-export interface RecordQuery extends BasicQuery {}
+export interface RecordQuery extends BasicQuery {
+  PHDTagIds?: number[];
+}

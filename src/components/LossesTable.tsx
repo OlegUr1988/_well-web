@@ -30,7 +30,7 @@ const LossesTable = ({ equipment }: { equipment: Equipment }) => {
     <Table variant="striped" size="sm">
       <LossesTableHead />
       <LossesTableBody attributes={attributes!} />
-      <LossesTableFoot />
+      <LossesTableFoot attributes={attributes!} />
     </Table>
   );
 };

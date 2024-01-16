@@ -1,3 +1,4 @@
+import { Assignment } from "./assignments";
 import { BasicQuery } from "./basicQuery";
 
 export interface Attribute {
@@ -5,6 +6,7 @@ export interface Attribute {
   name: string;
   equipmentId: number;
   attributeTypeId: number;
+  assignment: Assignment[]
 }
 
 export interface AddAttribute {
