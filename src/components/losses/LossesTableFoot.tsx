@@ -1,21 +1,17 @@
 import { Tfoot, Th, Tr } from "@chakra-ui/react";
 import _ from "lodash";
 import { Attribute } from "../../entities/attributes";
-import useRecords from "../../hooks/useRecords";
+import useGetRecords from "../../hooks/useGetRecords";
 import { getRecordsByUnits, getSumOfRecords } from "../../utils/records";
 
-const LossesTableFoot = ({
-  attributes,
-  label = "Total",
-}: {
+interface Props {
   attributes: Attribute[];
   label?: string;
-}) => {
-  const assignments = _.flatten(attributes.map((attr) => attr.assignment));
-  const ids = assignments.map((assignment) => assignment.PHDTagId);
-  const PHDTagIds = ids.length ? ids : [0];
+}
 
-  const { data: records } = useRecords({ PHDTagIds });
+const LossesTableFoot = ({ attributes, label = "Total" }: Props) => {
+  const assignments = _.flatten(attributes.map((attr) => attr.assignment));
+  const { records } = useGetRecords(assignments);
 
   if (!records) return null;
 

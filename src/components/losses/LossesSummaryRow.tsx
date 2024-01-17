@@ -1,12 +1,12 @@
 import { Table, TableContainer } from "@chakra-ui/react";
 import _ from "lodash";
 import { Equipment } from "../../entities/equipments";
-import useLossesByType from "../../hooks/useLossesByType";
+import useGetLossesByType from "../../hooks/useGetLossesByType";
 import LossesTableFoot from "./LossesTableFoot";
 
 const LossesSummaryRow = ({ equipments }: { equipments: Equipment[] }) => {
   const allAttributes = _.flatten(equipments.map((eq) => eq.attribute));
-  const attributes = useLossesByType(allAttributes, "loss");
+  const attributes = useGetLossesByType(allAttributes, "loss");
 
   return (
     <TableContainer>
