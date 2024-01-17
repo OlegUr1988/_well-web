@@ -3,14 +3,17 @@ import { Attribute } from "../../entities/attributes";
 import useGetRecords from "../../hooks/useGetRecords";
 import { calculateRecordsSum } from "../../utils/records";
 import LossesTableBodyCell from "./LossesTableBodyCell";
+import LossesTableRowSkeleton from "./LossesTableRowSkeleton";
 
 const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
-  const { records } = useGetRecords(attribute.assignment);
+  const { records, isLoading } = useGetRecords(attribute.assignment);
+
+  if (isLoading) return <LossesTableRowSkeleton label={attribute.name} />;
 
   if (!records) return null;
 
   return (
-    <Tr key={attribute.id}>
+    <Tr>
       <LossesTableBodyCell textAlign="initial">
         {attribute.name}
       </LossesTableBodyCell>
@@ -19,7 +22,6 @@ const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
       </LossesTableBodyCell>
       <LossesTableBodyCell>kWh</LossesTableBodyCell>
       <LossesTableBodyCell>
-        {" "}
         {calculateRecordsSum(records!, "ton CO2")}
       </LossesTableBodyCell>
       <LossesTableBodyCell>Ton CO2</LossesTableBodyCell>

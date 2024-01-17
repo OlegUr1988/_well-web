@@ -3,6 +3,7 @@ import _ from "lodash";
 import { Attribute } from "../../entities/attributes";
 import useGetRecords from "../../hooks/useGetRecords";
 import { calculateRecordsSum } from "../../utils/records";
+import LossesTableFootSkeleton from "./LossesTableFootSkeleton";
 import LossesTableHeadCell from "./LossesTableHeadCell";
 
 interface Props {
@@ -12,7 +13,9 @@ interface Props {
 
 const LossesTableFoot = ({ attributes, label = "Total" }: Props) => {
   const assignments = _.flatten(attributes.map((attr) => attr.assignment));
-  const { records } = useGetRecords(assignments);
+  const { records, isLoading } = useGetRecords(assignments);
+
+  if (isLoading) return <LossesTableFootSkeleton label={label} />;
 
   if (!records) return null;
 
