@@ -1,6 +1,5 @@
 import {
-  Grid,
-  GridItem,
+  Center,
   HStack,
   Heading,
   Input,
@@ -8,73 +7,52 @@ import {
   RangeSliderFilledTrack,
   RangeSliderThumb,
   RangeSliderTrack,
+  SimpleGrid,
   Tag,
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useAreaByName } from "../hooks/areas";
-import { useAssetByName } from "../hooks/assets";
+import { Area } from "../entities/areas";
+import { Asset } from "../entities/assets";
+import DashboardCard from "./DashboardCard";
 
 interface Props {
-  areaName: string;
-  assetName: string;
+  area: Area;
+  asset: Asset;
 }
 
-const DashboardHeaderPanel = ({ areaName, assetName }: Props) => {
-  const {
-    data: area,
-    isLoading: isAreaLoading,
-    error: areaError,
-  } = useAreaByName({ name: areaName });
-  const {
-    data: asset,
-    isLoading: isAssetLoading,
-    error: assetError,
-  } = useAssetByName({ name: assetName });
-
-  if (isAreaLoading || isAssetLoading) return "Loading";
-
-  if (areaError || assetError) return null;
-
+const DashboardHeaderPanel = ({ area, asset }: Props) => {
   if (!area?.asset.find((ass) => ass.id === asset?.id))
     return (
       <Heading>{`The asset: ${asset?.name} is not exists in area: ${area?.name}`}</Heading>
     );
   return (
-    <Grid
+    <SimpleGrid
       templateColumns={"225px repeat(3, 1fr)"}
       gridTemplateRows={"1fr"}
       gap={5}
     >
-      <GridItem
-        p={4}
-        boxShadow="lg"
-        rounded="md"
-        border="1px solid #ddd"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Heading color="red" fontWeight={800}>
+      <DashboardCard>
+        <Center fontSize={36} fontWeight={700} color="red" textAlign="center">
           Honeywell
-        </Heading>
-      </GridItem>
+        </Center>
+      </DashboardCard>
 
-      <GridItem p={3} boxShadow="lg" rounded="md" border="1px solid #ddd">
+      <DashboardCard>
         <VStack gap={1} align="start" rowGap={1}>
           <Text fontSize={16}>Area:</Text>
           <Tag>{area?.name}</Tag>
         </VStack>
-      </GridItem>
+      </DashboardCard>
 
-      <GridItem p={3} boxShadow="lg" rounded="md" border="1px solid #ddd">
+      <DashboardCard>
         <VStack gap={0} align="start" rowGap={1}>
           <Text fontSize={16}>Asset:</Text>
           <Tag>{asset?.name}</Tag>
         </VStack>
-      </GridItem>
+      </DashboardCard>
 
-      <GridItem p={3} boxShadow="lg" rounded="md" border="1px solid #ddd">
+      <DashboardCard>
         <VStack gap={1} align="start" h="full">
           <HStack>
             <Text>From</Text>
@@ -90,8 +68,8 @@ const DashboardHeaderPanel = ({ areaName, assetName }: Props) => {
             <RangeSliderThumb index={1} />
           </RangeSlider>
         </VStack>
-      </GridItem>
-    </Grid>
+      </DashboardCard>
+    </SimpleGrid>
   );
 };
 

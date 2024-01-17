@@ -1,9 +1,11 @@
+import { Attribute } from "./attributes";
 import { BasicQuery } from "./basicQuery";
 
 export interface Equipment {
   id: number;
   name: string;
   assetId: number;
+  attribute: Attribute[];
 }
 
 export interface AddEquipment {
