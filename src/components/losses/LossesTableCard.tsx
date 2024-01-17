@@ -1,7 +1,9 @@
-import { Box, Heading, Skeleton } from "@chakra-ui/react";
+import { Box, Heading } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
 import { useEquipments } from "../../hooks/equipments";
 import DashboardCard from "../DashboardCard";
+import DashboardCardErrorMessage from "../DashboardCardErrorMessage";
+import DashboardCardSkeleton from "../DashboardCardSkeleton";
 import LossesSummaryRow from "./LossesSummaryRow";
 import LossesTablesField from "./LossesTablesField";
 
@@ -12,17 +14,12 @@ const LossesTableCard = ({ asset }: { asset: Asset }) => {
     error,
   } = useEquipments({ assetId: asset.id });
 
-  if (isLoading)
-    return (
-      <DashboardCard p={3}>
-        <Skeleton h={350} borderRadius={10} />
-      </DashboardCard>
-    );
+  if (isLoading) return <DashboardCardSkeleton />;
 
-  if (error) return null;
+  if (error) return <DashboardCardErrorMessage />;
 
   return (
-    <DashboardCard p={3}>
+    <DashboardCard>
       <Heading size="md" mb={3}>
         {asset.name}
       </Heading>

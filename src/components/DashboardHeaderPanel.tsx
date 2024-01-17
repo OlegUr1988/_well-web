@@ -1,4 +1,5 @@
 import {
+  Center,
   HStack,
   Heading,
   Input,
@@ -31,32 +32,27 @@ const DashboardHeaderPanel = ({ area, asset }: Props) => {
       gridTemplateRows={"1fr"}
       gap={5}
     >
-      <DashboardCard
-        p={4}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Heading color="red" fontWeight={800}>
+      <DashboardCard>
+        <Center fontSize={36} fontWeight={700} color="red" textAlign="center">
           Honeywell
-        </Heading>
+        </Center>
       </DashboardCard>
 
-      <DashboardCard p={3}>
+      <DashboardCard>
         <VStack gap={1} align="start" rowGap={1}>
           <Text fontSize={16}>Area:</Text>
           <Tag>{area?.name}</Tag>
         </VStack>
       </DashboardCard>
 
-      <DashboardCard p={3}>
+      <DashboardCard>
         <VStack gap={0} align="start" rowGap={1}>
           <Text fontSize={16}>Asset:</Text>
           <Tag>{asset?.name}</Tag>
         </VStack>
       </DashboardCard>
 
-      <DashboardCard p={3}>
+      <DashboardCard>
         <VStack gap={1} align="start" h="full">
           <HStack>
             <Text>From</Text>
