@@ -10,7 +10,7 @@ const LossesTable = ({ equipment }: { equipment: Equipment }) => {
   const attributes = useGetLossesByType(allAttributes, "loss");
 
   return (
-    <TableContainer>
+    <TableContainer overflowX="auto" whiteSpace="normal">
       <Table variant="striped" size="sm">
         <LossesTableHead />
         <LossesTableBody attributes={attributes!} />

@@ -1,8 +1,9 @@
-import { Tfoot, Th, Tr } from "@chakra-ui/react";
+import { Tfoot, Tr } from "@chakra-ui/react";
 import _ from "lodash";
 import { Attribute } from "../../entities/attributes";
 import useGetRecords from "../../hooks/useGetRecords";
 import { calculateRecordsSum } from "../../utils/records";
+import LossesTableHeadCell from "./LossesTableHeadCell";
 
 interface Props {
   attributes: Attribute[];
@@ -18,14 +19,20 @@ const LossesTableFoot = ({ attributes, label = "Total" }: Props) => {
   return (
     <Tfoot>
       <Tr>
-        <Th>{label}</Th>
-        <Th textAlign="center">{calculateRecordsSum(records!, "kWh")}</Th>
-        <Th textAlign="center">kWh</Th>
-        <Th textAlign="center">{calculateRecordsSum(records!, "ton CO2")}</Th>
-        <Th textAlign="center" whiteSpace="nowrap">
-          Ton CO2
-        </Th>
-        <Th textAlign="center">{calculateRecordsSum(records!, "%") + "%"}</Th>
+        <LossesTableHeadCell w="50%" textAlign="initial">
+          {label}
+        </LossesTableHeadCell>
+        <LossesTableHeadCell>
+          {calculateRecordsSum(records!, "kWh")}
+        </LossesTableHeadCell>
+        <LossesTableHeadCell>kWh</LossesTableHeadCell>
+        <LossesTableHeadCell>
+          {calculateRecordsSum(records!, "ton CO2")}
+        </LossesTableHeadCell>
+        <LossesTableHeadCell whiteSpace="nowrap">Ton CO2</LossesTableHeadCell>
+        <LossesTableHeadCell>
+          {calculateRecordsSum(records!, "%") + "%"}
+        </LossesTableHeadCell>
       </Tr>
     </Tfoot>
   );

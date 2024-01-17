@@ -1,7 +1,8 @@
-import { Td, Tr } from "@chakra-ui/react";
+import { Tr } from "@chakra-ui/react";
 import { Attribute } from "../../entities/attributes";
 import useGetRecords from "../../hooks/useGetRecords";
 import { calculateRecordsSum } from "../../utils/records";
+import LossesTableBodyCell from "./LossesTableBodyCell";
 
 const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
   const { records } = useGetRecords(attribute.assignment);
@@ -10,14 +11,21 @@ const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
 
   return (
     <Tr key={attribute.id}>
-      <Td>{attribute.name}</Td>
-      <Td textAlign="center">{calculateRecordsSum(records!, "kWh")}</Td>
-      <Td textAlign="center">kWh</Td>
-      <Td textAlign="center"> {calculateRecordsSum(records!, "ton CO2")}</Td>
-      <Td textAlign="center" whiteSpace="nowrap">
-        Ton CO2
-      </Td>
-      <Td textAlign="center">{calculateRecordsSum(records!, "%") + "%"}</Td>
+      <LossesTableBodyCell textAlign="initial">
+        {attribute.name}
+      </LossesTableBodyCell>
+      <LossesTableBodyCell>
+        {calculateRecordsSum(records!, "kWh")}
+      </LossesTableBodyCell>
+      <LossesTableBodyCell>kWh</LossesTableBodyCell>
+      <LossesTableBodyCell>
+        {" "}
+        {calculateRecordsSum(records!, "ton CO2")}
+      </LossesTableBodyCell>
+      <LossesTableBodyCell>Ton CO2</LossesTableBodyCell>
+      <LossesTableBodyCell>
+        {calculateRecordsSum(records!, "%") + "%"}
+      </LossesTableBodyCell>
     </Tr>
   );
 };

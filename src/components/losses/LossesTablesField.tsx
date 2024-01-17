@@ -8,7 +8,7 @@ const LossesTablesField = ({ equipments }: { equipments: Equipment[] }) => {
       {equipments?.map((equipment) => (
         <Box key={equipment.id}>
           <Heading size="sm">{equipment.name}</Heading>
-          <Box overflowX="auto" mb={3}>
+          <Box mb={3}>
             <LossesTable equipment={equipment} />
           </Box>
         </Box>

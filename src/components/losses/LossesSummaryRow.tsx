@@ -9,7 +9,7 @@ const LossesSummaryRow = ({ equipments }: { equipments: Equipment[] }) => {
   const attributes = useGetLossesByType(allAttributes, "loss");
 
   return (
-    <TableContainer>
+    <TableContainer overflowY="hidden" pr={equipments.length > 1 ? 4 : 0}>
       <Table size="md">
         <LossesTableFoot label="Train Total" attributes={attributes} />
       </Table>
