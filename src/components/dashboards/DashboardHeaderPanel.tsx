@@ -12,8 +12,8 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { Area } from "../entities/areas";
-import { Asset } from "../entities/assets";
+import { Area } from "../../entities/areas";
+import { Asset } from "../../entities/assets";
 import DashboardCard from "./DashboardCard";
 
 interface Props {
