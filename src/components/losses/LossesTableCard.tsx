@@ -1,9 +1,11 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
 import { useEquipments } from "../../hooks/equipments";
-import DashboardCard from "../DashboardCard";
-import DashboardCardErrorMessage from "../DashboardCardErrorMessage";
-import DashboardCardSkeleton from "../DashboardCardSkeleton";
+import {
+  DashboardCard,
+  DashboardCardErrorMessage,
+  DashboardCardSkeleton,
+} from "../dashboards/";
 import LossesSummaryRow from "./LossesSummaryRow";
 import LossesTablesField from "./LossesTablesField";
 

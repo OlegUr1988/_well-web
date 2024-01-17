@@ -1,6 +1,6 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import DashboardHeaderPanel from "../components/DashboardHeaderPanel";
+import { DashboardHeaderPanel } from "../components/dashboards";
 import { LossesTableCard } from "../components/losses/";
 import { useAreaByName } from "../hooks/areas";
 import { useAssetByName } from "../hooks/assets";
