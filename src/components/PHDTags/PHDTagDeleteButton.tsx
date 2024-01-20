@@ -16,9 +16,9 @@ const PHDTagDeleteButton = ({ tagId }: { tagId: number }) => {
 
   return (
     <SimpleAlert
-      header="Delete the item?"
-      content="Are you sure to delete this item?"
-      onSuccessMessage="The item was successfully deleted"
+      header="Delete the tag?"
+      content="Are you sure to delete this tag and all related records for this tag?"
+      onSuccessMessage="The tag was successfully deleted with all records"
       isPending={isPending}
       mutateAsync={() => mutateAsync(tagId)}
       onSuccess={handlePagination}
