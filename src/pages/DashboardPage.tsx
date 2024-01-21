@@ -31,7 +31,7 @@ const DashboardPage = () => {
       <SimpleGrid columns={2} gap={5} mb={5}>
         <LossesTableCard asset={asset!} />
       </SimpleGrid>
-      <LossesDailyLineChartCard />
+      <LossesDailyLineChartCard asset={asset!} />
     </Box>
   );
 };
