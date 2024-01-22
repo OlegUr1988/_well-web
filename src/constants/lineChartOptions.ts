@@ -35,6 +35,9 @@ const lineChartOptions: ApexOptions = {
   markers: { size: 1 },
   xaxis: {
     type: "datetime",
+    labels: {
+      datetimeUTC: false,
+    },
     title: {
       text: "Timestamp",
     },

@@ -17,8 +17,10 @@ const useGetSeriesByEquipments = (equipments: Equipment[]) => {
   );
   const groupedRecords = _.groupBy(filteredRecords, "PHDTagId");
   const uniqueRecords = _.mapValues(groupedRecords, (value) =>
-    _.uniqBy(value, "value")
+    _.uniqBy(value, "timestamp")
   );
+
+  console.log(uniqueRecords);
 
   // filtering assignments
   const ids = _.flatten(filteredRecords?.map((r) => r.PHDTagId));
