@@ -18,7 +18,7 @@ const lineChartOptions: ApexOptions = {
   },
   dataLabels: {
     enabled: true,
-    formatter: (val, index) => {
+    formatter: (val) => {
       return parseFloat(val.toString()).toFixed(0);
     },
   },
@@ -41,7 +41,7 @@ const lineChartOptions: ApexOptions = {
   },
   yaxis: {
     labels: {
-      formatter: (val, index) => {
+      formatter: (val) => {
         return val.toFixed(0);
       },
     },
@@ -50,9 +50,6 @@ const lineChartOptions: ApexOptions = {
     show: true,
     position: "top",
     horizontalAlign: "left",
-    itemMargin: {
-      vertical: 15,
-    },
   },
 };
 

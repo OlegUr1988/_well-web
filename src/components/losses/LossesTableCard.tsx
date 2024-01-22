@@ -26,7 +26,7 @@ const LossesTableCard = ({ asset }: { asset: Asset }) => {
         {asset.name}
       </Heading>
 
-      <Box h={320} mb={3} overflowY="auto">
+      <Box h={250} mb={3} overflowY="auto">
         <LossesTablesField equipments={equipments!} />
       </Box>
 
