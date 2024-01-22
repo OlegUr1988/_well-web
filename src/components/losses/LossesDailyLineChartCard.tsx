@@ -19,7 +19,7 @@ const LossesDailyLineChartCard = ({ asset }: { asset: Asset }) => {
 
   if (isLoading) return <DashboardCardSkeleton />;
 
-  if (error) return <DashboardCardErrorMessage />;
+  if (error || !series.length) return <DashboardCardErrorMessage />;
 
   return (
     <DashboardCard>
