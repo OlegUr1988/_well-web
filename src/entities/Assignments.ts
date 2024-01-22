@@ -1,7 +1,9 @@
 import { PHDTag } from "./PHDTags";
+import { Attribute } from "./attributes";
 
 export interface Assignment {
   attributeId: number;
+  attribute: Attribute;
   PHDTagId: number;
   PHDTag: PHDTag;
 }
