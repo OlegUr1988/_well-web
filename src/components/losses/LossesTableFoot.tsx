@@ -2,7 +2,7 @@ import { Tfoot, Tr } from "@chakra-ui/react";
 import _ from "lodash";
 import { Attribute } from "../../entities/attributes";
 import useGetRecords from "../../hooks/useGetRecords";
-import { calculateRecordsSum } from "../../utils/records";
+import { calculateRecordsSum, getAverageOfRecords } from "../../utils/records";
 import LossesTableFootSkeleton from "./LossesTableFootSkeleton";
 import LossesTableHeadCell from "./LossesTableHeadCell";
 
@@ -34,7 +34,7 @@ const LossesTableFoot = ({ attributes, label = "Total" }: Props) => {
         </LossesTableHeadCell>
         <LossesTableHeadCell whiteSpace="nowrap">Ton CO2</LossesTableHeadCell>
         <LossesTableHeadCell>
-          {calculateRecordsSum(records!, "%") + "%"}
+          {getAverageOfRecords(assignments, records) + "%"}
         </LossesTableHeadCell>
       </Tr>
     </Tfoot>

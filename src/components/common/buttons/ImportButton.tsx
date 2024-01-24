@@ -41,7 +41,6 @@ const ImportButton = ({
       if (onSuccess) onSuccess();
       queryClient.invalidateQueries();
     } catch (error) {
-      console.log(error);
       const { response } = error as HttpError;
       toast.error(response?.data.message);
     }
