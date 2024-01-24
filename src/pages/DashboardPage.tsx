@@ -1,7 +1,11 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { DashboardHeaderPanel } from "../components/dashboards";
-import { LossesDailyLineChartCard, LossesTableCard } from "../components/losses/";
+import {
+  LossesDailyLineChartCard,
+  LossesTableCard,
+} from "../components/losses/";
+import { PerformancesCard } from "../components/performances";
 import { useAreaByName } from "../hooks/areas";
 import { useAssetByName } from "../hooks/assets";
 
@@ -30,6 +34,7 @@ const DashboardPage = () => {
       </Box>
       <SimpleGrid columns={2} gap={5} mb={5}>
         <LossesTableCard asset={asset!} />
+        <PerformancesCard />
       </SimpleGrid>
       <LossesDailyLineChartCard asset={asset!} />
     </Box>
