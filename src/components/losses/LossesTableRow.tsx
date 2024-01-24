@@ -1,7 +1,7 @@
 import { Tr } from "@chakra-ui/react";
 import { Attribute } from "../../entities/attributes";
 import useGetRecords from "../../hooks/useGetRecords";
-import { calculateRecordsSum } from "../../utils/records";
+import { calculateRecordsSum, getAverageOfRecords } from "../../utils/records";
 import LossesTableBodyCell from "./LossesTableBodyCell";
 import LossesTableRowSkeleton from "./LossesTableRowSkeleton";
 
@@ -26,7 +26,7 @@ const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
       </LossesTableBodyCell>
       <LossesTableBodyCell>Ton CO2</LossesTableBodyCell>
       <LossesTableBodyCell>
-        {calculateRecordsSum(records!, "%") + "%"}
+        {getAverageOfRecords(attribute.assignment, records) + "%"}
       </LossesTableBodyCell>
     </Tr>
   );

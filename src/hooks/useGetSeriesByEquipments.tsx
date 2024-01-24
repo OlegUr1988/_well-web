@@ -20,8 +20,6 @@ const useGetSeriesByEquipments = (equipments: Equipment[]) => {
     _.uniqBy(value, "timestamp")
   );
 
-  console.log(uniqueRecords);
-
   // filtering assignments
   const ids = _.flatten(filteredRecords?.map((r) => r.PHDTagId));
   const filteredAssignments = assignments.filter((ass) =>
