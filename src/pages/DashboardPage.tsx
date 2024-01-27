@@ -34,7 +34,7 @@ const DashboardPage = () => {
       </Box>
       <SimpleGrid columns={2} gap={5} mb={5}>
         <LossesTableCard asset={asset!} />
-        <PerformancesCard />
+        <PerformancesCard asset={asset!} />
       </SimpleGrid>
       <LossesDailyLineChartCard asset={asset!} />
     </Box>
