@@ -3,11 +3,11 @@ import { ApexOptions } from "apexcharts";
 const semiGaugeOptions: ApexOptions = {
   chart: {
     type: "radialBar",
-    offsetY: -20,
     sparkline: {
       enabled: true,
     },
   },
+  colors: ["#00E396"],
   plotOptions: {
     radialBar: {
       startAngle: -90,
@@ -15,7 +15,7 @@ const semiGaugeOptions: ApexOptions = {
       track: {
         background: "#e7e7e7",
         strokeWidth: "97%",
-        margin: 5, // margin is in pixels
+        margin: 5,
         dropShadow: {
           enabled: true,
           top: 2,
@@ -30,8 +30,7 @@ const semiGaugeOptions: ApexOptions = {
           show: false,
         },
         value: {
-          offsetY: -2,
-          fontSize: "22px",
+          show: false,
         },
         total: {
           show: false,
