@@ -24,7 +24,7 @@ const DashboardHeaderPanel = ({ area, asset }: Props) => {
     >
       <DashboardLogo />
       <DashboardLocationInfo areaName={area.name} assetName={asset.name} />
-      <DashboardAssetSelectInput assetName={asset.name} />
+      <DashboardAssetSelectInput asset={asset} area={area} />
       <DashboardTimeSelectInput />
     </SimpleGrid>
   );
