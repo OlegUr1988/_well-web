@@ -45,7 +45,7 @@ const PerformanceGaugeChart = ({ equipment }: { equipment: Equipment }) => {
 
   return (
     <VStack>
-      <Box w={250} overflowX="auto">
+      <Box w={300} overflowX="auto">
         <Text fontSize="lg" textAlign="left" fontWeight={600}>
           {equipment.name}
         </Text>

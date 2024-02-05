@@ -7,7 +7,7 @@ const PerformanceGauge = ({ usefulWorkRatio }: { usefulWorkRatio: number }) => {
       series={[usefulWorkRatio]}
       options={semiGaugeOptions}
       type="radialBar"
-      height={300}
+      height={380}
     />
   );
 };
