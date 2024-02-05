@@ -5,6 +5,7 @@ import { DashboardCard } from ".";
 import { Area } from "../../entities/areas";
 import { Asset } from "../../entities/assets";
 import { useAssets } from "../../hooks/assets";
+import DashboardAssetSelectInputSkeleton from "./DashboardAssetSelectInputSkeleton";
 
 const DashboardAssetSelectInput = ({
   area,
@@ -16,7 +17,7 @@ const DashboardAssetSelectInput = ({
   const { data: assets, isLoading, error } = useAssets({});
   const navigate = useNavigate();
 
-  if (isLoading) return null;
+  if (isLoading) return <DashboardAssetSelectInputSkeleton />;
 
   if (error) return null;
 
