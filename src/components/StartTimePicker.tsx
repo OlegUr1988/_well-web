@@ -1,15 +1,15 @@
-import useTimePeriodStore from "../store/time";
+import useTimeRange from "../hooks/useTimeRage";
 import TimeRangePicker from "./TimeRangePicker";
 
 const StartTimePicker = () => {
-  const { startTime, endTime } = useTimePeriodStore((s) => s.timeRange);
-  const setStartTime = useTimePeriodStore((s) => s.setStartTime);
+  const { min, isLoading, range, setStartTime } = useTimeRange();
 
   return (
     <TimeRangePicker
-      max={endTime}
-      isLoading={false}
-      value={startTime}
+      min={min}
+      max={range.endTime}
+      isLoading={isLoading}
+      value={range.startTime}
       onPick={(value) => setStartTime(value)}
     />
   );

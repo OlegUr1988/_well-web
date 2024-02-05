@@ -1,15 +1,8 @@
-import {
-  HStack,
-  RangeSlider,
-  RangeSliderFilledTrack,
-  RangeSliderThumb,
-  RangeSliderTrack,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { HStack, Text, VStack } from "@chakra-ui/react";
 import { DashboardCard } from ".";
 import EndTimePicker from "../EndTimePicker";
 import StartTimePicker from "../StartTimePicker";
+import TimeRangeSlider from "../TimeRangeSlider";
 
 const DashboardTimeSelectInput = () => {
   return (
@@ -21,13 +14,7 @@ const DashboardTimeSelectInput = () => {
           <Text>To</Text>
           <EndTimePicker />
         </HStack>
-        <RangeSlider aria-label={["min", "max"]} defaultValue={[10, 30]}>
-          <RangeSliderTrack>
-            <RangeSliderFilledTrack />
-          </RangeSliderTrack>
-          <RangeSliderThumb index={0} />
-          <RangeSliderThumb index={1} />
-        </RangeSlider>
+        <TimeRangeSlider />
       </VStack>
     </DashboardCard>
   );
