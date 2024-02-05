@@ -1,4 +1,4 @@
-import { Text, VStack } from "@chakra-ui/react";
+import { Box, Text, VStack } from "@chakra-ui/react";
 import { Select } from "chakra-react-select";
 import { useNavigate } from "react-router-dom";
 import { DashboardCard } from ".";
@@ -29,15 +29,20 @@ const DashboardAssetSelectInput = ({
 
   return (
     <DashboardCard>
-      <VStack gap={0} align="start" rowGap={1}>
-        <Text fontSize={16}>Select Asset:</Text>
-        <Select
-          defaultValue={defaultValue}
-          onChange={(option) =>
-            navigate(`/dashboards/${area.name}/${option?.label}`)
-          }
-          options={options}
-        />
+      <VStack align="start">
+        <Text fontSize={14} fontWeight={600}>
+          Select Asset:
+        </Text>
+        <Box w="100%">
+          <Select
+            defaultValue={defaultValue}
+            onChange={(option) =>
+              navigate(`/dashboards/${area.name}/${option?.label}`)
+            }
+            options={options}
+            size="sm"
+          />
+        </Box>
       </VStack>
     </DashboardCard>
   );
