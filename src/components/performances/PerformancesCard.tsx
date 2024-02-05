@@ -6,7 +6,7 @@ import {
   DashboardCardErrorMessage,
   DashboardCardSkeleton,
 } from "../dashboards";
-import PerformanceGauge from "./PerformanceGauge";
+import PerformanceGaugeChart from "./PerformanceGaugeChart";
 
 const PerformancesCard = ({ asset }: { asset: Asset }) => {
   const {
@@ -26,12 +26,12 @@ const PerformancesCard = ({ asset }: { asset: Asset }) => {
         <SimpleGrid
           h="100%"
           columns={{ base: 1, xl: equipments!.length > 1 ? 2 : 1 }}
-          alignContent={{base: 'start', xl: "center"}}
+          alignContent={{ base: "start", xl: "center" }}
           overflowY="auto"
           gap={5}
         >
           {equipments?.map((equipment) => (
-            <PerformanceGauge key={equipment.id} equipment={equipment} />
+            <PerformanceGaugeChart key={equipment.id} equipment={equipment} />
           ))}
         </SimpleGrid>
       </Box>
