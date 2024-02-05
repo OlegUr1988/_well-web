@@ -5,7 +5,7 @@ export interface Record {
   id: number;
   value: string;
   PHDTagId: number;
-  timestamp: number;
+  timestamp: string;
   PHDTag: PHDTag;
 }
 
