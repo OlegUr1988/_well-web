@@ -28,7 +28,7 @@ const PerformancesCard = ({ asset }: { asset: Asset }) => {
           columns={{ base: 1, xl: equipments!.length > 1 ? 2 : 1 }}
           alignContent={{ base: "start", xl: "center" }}
           overflowY="auto"
-          gap={5}
+          gap={6}
         >
           {equipments?.map((equipment) => (
             <PerformanceGaugeChart key={equipment.id} equipment={equipment} />
