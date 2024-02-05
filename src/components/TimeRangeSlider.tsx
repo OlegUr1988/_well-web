@@ -1,8 +1,9 @@
 import {
-    RangeSlider,
-    RangeSliderFilledTrack,
-    RangeSliderThumb,
-    RangeSliderTrack,
+  RangeSlider,
+  RangeSliderFilledTrack,
+  RangeSliderThumb,
+  RangeSliderTrack,
+  Skeleton,
 } from "@chakra-ui/react";
 import moment from "moment";
 import timeFormat from "../constants/timeFormat";
@@ -20,7 +21,7 @@ const TimeRangeSlider = () => {
     setPreviousEndTime,
   } = useTimeRange();
 
-  if (isLoading) return null;
+  if (isLoading) return <Skeleton h={4} w="100%" rounded={5}/>;
 
   const minValue = Number(moment(range.startTime));
   const maxValue = Number(moment(range.endTime));

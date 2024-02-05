@@ -9,7 +9,7 @@ interface Props {
 }
 
 const TimeRangePicker = ({ min, max, isLoading, value, onPick }: Props) => {
-  if (isLoading) return <Skeleton h={10} w={250} />;
+  if (isLoading) return <Skeleton h={8} w={120} rounded={5} />;
 
   return (
     <Input
