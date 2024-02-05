@@ -12,9 +12,7 @@ interface TimeRange {
 }
 
 interface TimePeriodStore {
-  interval: number;
   timeRange: TimeRange;
-  setInterval: (interval: number) => void;
   setStartTime: (startTime: string) => void;
   setEndTime: (endTime: string) => void;
   setPreviousStartTime: (previousStartTime: string) => void;
@@ -23,7 +21,6 @@ interface TimePeriodStore {
 }
 
 const useTimePeriodStore = create<TimePeriodStore>((set) => ({
-  interval: 0,
   timeRange: {
     startTime: moment().subtract(7, "days").format(timeFormat),
     endTime: moment().format(timeFormat),
@@ -31,7 +28,6 @@ const useTimePeriodStore = create<TimePeriodStore>((set) => ({
     previousEndTime: moment().format(timeFormat),
     isChanging: false,
   },
-  setInterval: (interval) => set({ interval }),
   setStartTime: (startTime) =>
     set((store) => ({
       ...store,
