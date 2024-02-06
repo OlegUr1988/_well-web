@@ -8,9 +8,10 @@ import {
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 interface Props<T extends FieldValues> {
+  type?: "text" | "number";
   label: string;
   placeholder?: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   isRequired?: boolean;
   error: string;
   register: UseFormRegister<T>;
@@ -18,6 +19,7 @@ interface Props<T extends FieldValues> {
 }
 
 const FormInput = <T extends FieldValues>({
+  type = "text",
   label,
   placeholder = "",
   defaultValue = "",
@@ -30,6 +32,7 @@ const FormInput = <T extends FieldValues>({
     <FormControl mb={5} isInvalid={!!error} isRequired={isRequired}>
       <FormLabel>{label}</FormLabel>
       <Input
+        type={type}
         w={400}
         placeholder={placeholder}
         defaultValue={defaultValue}

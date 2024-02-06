@@ -26,8 +26,8 @@ const useFormSubmit = <T extends FieldValues, K>({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { control, reset, register, handleSubmit, onSubmit, errors } = useForm<T>(
-    async (data) => {
+  const { control, reset, register, handleSubmit, onSubmit, errors } =
+    useForm<T>(async (data) => {
       try {
         await mutateAsync(onDataMutate(data));
         toast.success(onSuccessMessage);
@@ -38,9 +38,7 @@ const useFormSubmit = <T extends FieldValues, K>({
         const { response } = error as HttpError;
         toast.error(response?.data.message);
       }
-    },
-    schema
-  );
+    }, schema);
 
   return { control, reset, register, handleSubmit, onSubmit, errors };
 };

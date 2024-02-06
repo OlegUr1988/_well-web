@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import ConfigPanelPage from "./pages/ConfigPanelPage";
+import DashboardPage from "./pages/DashboardPage";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 import ModelsPage from "./pages/ModelsPage";
-import { PHDTagsPage, UnitsPage } from "./pages/configs";
-import DashboardPage from "./pages/DashboardPage";
+import { DataSourcePage, PHDTagsPage, UnitsPage } from "./pages/configs";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +24,7 @@ const router = createBrowserRouter([
         children: [
           { path: "tags", element: <PHDTagsPage /> },
           { path: "units", element: <UnitsPage /> },
+          { path: "datasource", element: <DataSourcePage /> },
         ],
       },
     ],
