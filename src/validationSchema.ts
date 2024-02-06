@@ -28,3 +28,12 @@ export const PHDTagSchema = z.object({
 export const AssignmentSchema = z.object({
   tag: selectSchema,
 });
+
+export const DataSourceSchema = z.object({
+  host: z
+    .string()
+    .trim()
+    .min(1, "Tagname should be at least 1 character")
+    .max(300, "More than 300 characters"),
+  port: z.coerce.number().min(1, "The port must be possitive value"),
+});
