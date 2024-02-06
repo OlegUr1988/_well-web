@@ -34,7 +34,12 @@ const lineChartOptions: ApexOptions = {
     },
     padding: { right: 30, top: 10 },
   },
-  markers: { size: 5 },
+  markers: {
+    size: 5,
+    hover: {
+      size: 8,
+    },
+  },
   xaxis: {
     type: "datetime",
     labels: {
