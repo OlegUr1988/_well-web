@@ -8,6 +8,8 @@ const LossesSummaryRow = ({ equipments }: { equipments: Equipment[] }) => {
   const allAttributes = _.flatten(equipments.map((eq) => eq.attribute));
   const attributes = useGetAttributesByType(allAttributes, "loss");
 
+  if (!attributes.length) return null;
+
   return (
     <TableContainer overflowY="hidden" pr={equipments.length > 1 ? 4 : 0}>
       <Table size="md">

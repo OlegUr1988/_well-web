@@ -16,7 +16,7 @@ const TimeRangePicker = ({ min, max, isLoading, value, onPick }: Props) => {
       min={min}
       max={max}
       value={value}
-      size="sm"
+      size={{ base: "xs", xl: "sm" }}
       onChange={(e) => onPick(e.target.value)}
       type="date"
     />

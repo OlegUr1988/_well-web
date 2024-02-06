@@ -5,7 +5,7 @@ const LossesTableHead = () => {
     <Thead>
       <Tr>
         <Th textAlign="center">Loss type</Th>
-        <Th textAlign="center">Agg</Th>
+        <Th textAlign="center">Sum</Th>
         <Th textAlign="center">UOM</Th>
         <Th textAlign="center">Emiss</Th>
         <Th textAlign="center">UOM</Th>
