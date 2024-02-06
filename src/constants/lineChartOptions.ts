@@ -21,6 +21,7 @@ const lineChartOptions: ApexOptions = {
     formatter: (val) => {
       return parseFloat(val.toString()).toFixed(0);
     },
+    offsetY: -5,
   },
   title: {
     align: "center",
@@ -31,8 +32,9 @@ const lineChartOptions: ApexOptions = {
       colors: ["#f3f3f3", "transparent"],
       opacity: 0.5,
     },
+    padding: { right: 30, top: 10 },
   },
-  markers: { size: 1 },
+  markers: { size: 5 },
   xaxis: {
     type: "datetime",
     labels: {

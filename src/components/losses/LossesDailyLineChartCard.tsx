@@ -22,7 +22,7 @@ const LossesDailyLineChartCard = ({ asset }: { asset: Asset }) => {
   if (error || !series.length) return <DashboardCardErrorMessage />;
 
   return (
-    <DashboardCard>
+    <DashboardCard p={0} py={2}>
       <ReactApexChart
         options={options}
         series={series}
