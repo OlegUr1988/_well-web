@@ -1,4 +1,4 @@
-import { Heading, SimpleGrid } from "@chakra-ui/react";
+import { Heading, Show, SimpleGrid } from "@chakra-ui/react";
 import { Area } from "../../entities/areas";
 import { Asset } from "../../entities/assets";
 import DashboardAssetSelectInput from "./DashboardAssetSelectInput";
@@ -18,12 +18,17 @@ const DashboardHeaderPanel = ({ area, asset }: Props) => {
     );
   return (
     <SimpleGrid
-      templateColumns={"225px repeat(3, 1fr)"}
+      templateColumns={{
+        base: "225px repeat(2, 1fr)",
+        xl: "225px repeat(3, 1fr)",
+      }}
       gridTemplateRows={"1fr"}
       gap={5}
     >
       <DashboardLogo />
-      <DashboardLocationInfo areaName={area.name} assetName={asset.name} />
+      <Show above="xl">
+        <DashboardLocationInfo areaName={area.name} assetName={asset.name} />
+      </Show>
       <DashboardAssetSelectInput asset={asset} area={area} />
       <DashboardTimeSelectInput />
     </SimpleGrid>
