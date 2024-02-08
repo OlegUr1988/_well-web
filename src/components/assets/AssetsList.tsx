@@ -1,13 +1,16 @@
-import { HStack, List, ListItem, Text } from "@chakra-ui/react";
+import { Box, HStack, List, ListItem, Text } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
+import { useArea } from "../../hooks/areas";
 import useModelStore from "../../store/model";
+import ListViewLinkIcon from "../ListViewLinkIcon";
 import AssetDeleteButton from "./AssetDeleteButton";
 import AssetEditButton from "./AssetEditButton";
 
 const AssetsList = ({ assets }: { assets: Asset[] }) => {
-  const { assetId } = useModelStore((s) => s.modelQuery);
+  const { assetId, areaId } = useModelStore((s) => s.modelQuery);
   const setAssetId = useModelStore((s) => s.setAssetId);
   const setEquipmentId = useModelStore((s) => s.setEquipmentId);
+  const { data: area } = useArea(areaId);
 
   const handleSelect = (id: number) => {
     setAssetId(id);
@@ -30,7 +33,13 @@ const AssetsList = ({ assets }: { assets: Asset[] }) => {
               cursor="pointer"
             >
               {asset.name}
+              <Box as="span">
+                <ListViewLinkIcon
+                  path={`/dashboards/${area?.name}/${asset.name}`}
+                />
+              </Box>
             </Text>
+
             <HStack>
               <AssetEditButton asset={asset} />
               <AssetDeleteButton assetId={asset.id} />

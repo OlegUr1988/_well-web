@@ -7,7 +7,7 @@ interface Props {
   variant?: string;
   icon: JSX.Element;
   w?: string | number;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const IconButton = ({
