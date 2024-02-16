@@ -1,11 +1,12 @@
 import _ from "lodash";
+import losses from "../constants/losses";
 import { Equipment } from "../entities/equipments";
-import useGetAttributesByType from "./useGetLossesByType";
+import useGetLossesByTypes from "./useGetLossesByTypes";
 import useGetRecords from "./useGetRecords";
 
 const useGetSeriesByEquipments = (equipments: Equipment[]) => {
   const allAttributes = _.flatten(equipments?.map((eq) => eq.attribute));
-  const attributes = useGetAttributesByType(allAttributes, "loss");
+  const attributes = useGetLossesByTypes(allAttributes, losses);
 
   // getting assignments
   const assignments = _.flatten(attributes.map((attr) => attr.assignment));

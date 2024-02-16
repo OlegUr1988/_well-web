@@ -1,13 +1,14 @@
 import { Table, TableContainer } from "@chakra-ui/react";
+import losses from "../../constants/losses";
 import { Equipment } from "../../entities/equipments";
-import useGetAttributesByType from "../../hooks/useGetLossesByType";
+import useGetLossesByTypes from "../../hooks/useGetLossesByTypes";
 import LossesTableBody from "./LossesTableBody";
 import LossesTableFoot from "./LossesTableFoot";
 import LossesTableHead from "./LossesTableHead";
 
 const LossesTable = ({ equipment }: { equipment: Equipment }) => {
   const allAttributes = equipment.attribute;
-  const attributes = useGetAttributesByType(allAttributes, "loss");
+  const attributes = useGetLossesByTypes(allAttributes, losses);
 
   return (
     <TableContainer overflowX="auto" whiteSpace="normal">
