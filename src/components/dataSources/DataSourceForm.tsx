@@ -1,7 +1,7 @@
 import { DataSourceFormData } from "../../entities/formDatas";
 import { useDataSource, useUpdateDataSource } from "../../hooks/dataSources";
 import { useFormSubmit } from "../../hooks/forms";
-import { DataSourceSchema } from "../../validationSchema";
+import { dataSourceSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "../forms";
 
 const DataSourceForm = () => {
@@ -14,7 +14,7 @@ const DataSourceForm = () => {
   >({
     onSuccessMessage: "Data source was successfuly updated",
     mutateAsync,
-    schema: DataSourceSchema,
+    schema: dataSourceSchema,
     onDataMutate: (data) => data,
   });
 

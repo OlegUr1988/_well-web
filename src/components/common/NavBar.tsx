@@ -20,6 +20,9 @@ const NavBar = () => {
         <NavLink to="config" className="nav-link">
           <Text color="white">Configurations</Text>
         </NavLink>
+        <NavLink to="login" className="nav-link">
+          <Text color="white">Login</Text>
+        </NavLink>
       </HStack>
     </HStack>
   );

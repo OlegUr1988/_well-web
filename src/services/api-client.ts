@@ -1,4 +1,4 @@
-import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { VITE_REACT_APP_BASE_URL } from "../envs";
 
 const axiosInstance = axios.create({
@@ -70,7 +70,9 @@ class APIClient<T> {
   };
 
   login = (entity: T) => {
-    return axiosInstance.post<T, JWT>(this.endpoint, entity);
+    return axiosInstance
+      .post<T, AxiosResponse<JWT>>(this.endpoint, entity)
+      .then((res) => res.data);
   };
 
   importFromExcel = (file: FormData) => {

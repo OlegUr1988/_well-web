@@ -6,33 +6,34 @@ import { ZodSchema } from "zod";
 import { HttpError } from "../../services/api-client";
 import useForm from "./useForm";
 
-interface Props<T, K> {
+interface Props<T, K, V = K> {
   onSuccessMessage: string;
   redirectPath?: string;
   schema: ZodSchema<any>;
-  mutateAsync: (data: K) => Promise<K>;
-  onDataMutate: (data: T) => K;
-  onSuccess?: () => void;
+  mutateAsync: (data: T | K) => Promise<V>;
+  onDataMutate?: (data: T) => K;
+  onSuccess?: (result: V) => void;
 }
 
-const useFormSubmit = <T extends FieldValues, K>({
+const useFormSubmit = <T extends FieldValues, K, V = K>({
   onSuccessMessage,
   redirectPath,
   schema,
   mutateAsync,
   onDataMutate,
   onSuccess,
-}: Props<T, K>) => {
+}: Props<T, K, V>) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { control, reset, register, handleSubmit, onSubmit, errors } =
     useForm<T>(async (data) => {
       try {
-        await mutateAsync(onDataMutate(data));
+        const mutatedData = onDataMutate ? onDataMutate(data) : data;
+        const result = await mutateAsync(mutatedData);
         toast.success(onSuccessMessage);
         queryClient.invalidateQueries();
-        if (onSuccess) onSuccess();
+        if (onSuccess) onSuccess(result);
         if (redirectPath) navigate(redirectPath);
       } catch (error) {
         const { response } = error as HttpError;
