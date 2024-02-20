@@ -15,6 +15,10 @@ interface AxiosValidationError {
   errors: Record<string, string[]>;
 }
 
+export interface JWT {
+  token: string;
+}
+
 export interface HttpError
   extends AxiosError<AxiosValidationError, Record<string, unknown>> {}
 
@@ -63,6 +67,10 @@ class APIClient<T> {
 
   post = (entity: T) => {
     return axiosInstance.post<T>(this.endpoint, entity).then((res) => res.data);
+  };
+
+  login = (entity: T) => {
+    return axiosInstance.post<T, JWT>(this.endpoint, entity);
   };
 
   importFromExcel = (file: FormData) => {
