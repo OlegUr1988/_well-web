@@ -1,7 +1,10 @@
-import { HStack, Heading, Text } from "@chakra-ui/react";
+import { Avatar, HStack, Heading, Text } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import useUserStore from "../../store/auth";
 
 const NavBar = () => {
+  const user = useUserStore((s) => s.user);
+
   return (
     <HStack
       bgColor="gray.700"
@@ -20,9 +23,12 @@ const NavBar = () => {
         <NavLink to="config" className="nav-link">
           <Text color="white">Configurations</Text>
         </NavLink>
-        <NavLink to="login" className="nav-link">
-          <Text color="white">Login</Text>
-        </NavLink>
+        {!user && (
+          <NavLink to="login" className="nav-link">
+            <Text color="white">Login</Text>
+          </NavLink>
+        )}
+        {user && <Avatar name={user.username} size="sm" bg="gray" />}
       </HStack>
     </HStack>
   );
