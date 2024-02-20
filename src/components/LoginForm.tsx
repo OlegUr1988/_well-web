@@ -2,6 +2,7 @@ import { LoginFormData } from "../entities/formDatas";
 import { useFormSubmit } from "../hooks/forms";
 import useLogin from "../hooks/useLogin";
 import { JWT } from "../services/api-client";
+import { setToken } from "../utils/auth";
 import { loginSchema } from "../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "./forms";
 
@@ -15,10 +16,7 @@ const LoginForm = () => {
     onSuccessMessage: "Successfull login",
     mutateAsync: (data) => mutateAsync(data),
     schema: loginSchema,
-    onSuccess: (data) => {
-      const { token } = data;
-      localStorage.setItem("jwt", token);
-    },
+    onSuccess: setToken,
     redirectPath: "/",
   });
 
