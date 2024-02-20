@@ -53,6 +53,12 @@ class APIClient<T> {
       .then((res) => res.data);
   };
 
+  getUserInfo = (token: string) => {
+    return axiosInstance
+      .get<T>(this.endpoint + "/me", { headers: { "x-auth-token": token } })
+      .then((res) => res.data);
+  };
+
   put = (id: string | number, entity: T) => {
     return axiosInstance
       .put<T>(this.endpoint + "/" + id, entity)
