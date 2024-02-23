@@ -8,7 +8,7 @@ import {
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 interface Props<T extends FieldValues> {
-  type?: "text" | "number";
+  type?: "text" | "number" | "password";
   label: string;
   placeholder?: string;
   defaultValue?: string | number;

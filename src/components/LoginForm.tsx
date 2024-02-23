@@ -32,6 +32,7 @@ const LoginForm = () => {
       <FormInput
         name="password"
         label="Password"
+        type="password"
         error={errors.password?.message!}
         placeholder="Password"
         register={register}

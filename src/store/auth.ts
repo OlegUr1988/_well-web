@@ -4,7 +4,7 @@ import { User } from "../entities/users";
 
 interface UserStore {
   user: User | null;
-  setUser: (user: User) => void;
+  setUser: (user: User | null) => void;
 }
 
 const useUserStore = create<UserStore>((set) => ({
