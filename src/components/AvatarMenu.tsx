@@ -1,10 +1,13 @@
 import {
   Avatar,
+  Badge,
+  HStack,
   Menu,
   MenuButton,
   MenuDivider,
   MenuItem,
   MenuList,
+  Text,
 } from "@chakra-ui/react";
 import useUserStore from "../store/auth";
 import { clearToken } from "../utils/auth";
@@ -19,8 +22,22 @@ const AvatarMenu = () => {
         <Avatar name={user?.username} size="sm" bg="gray" />
       </MenuButton>
       <MenuList>
-        <MenuItem>{user?.username}</MenuItem>
-        <MenuItem>{user?.isAdmin ? "Admin" : "User"}</MenuItem>
+        <MenuItem>
+          <HStack justify={"space-between"}>
+            <Text>Username:</Text>
+            <Text fontWeight={600}>{user?.username}</Text>
+          </HStack>
+        </MenuItem>
+        <MenuItem>
+          <HStack justify={"space-between"}>
+            <Text>Role:</Text>
+            {user?.isAdmin ? (
+              <Badge colorScheme="green">Admin user</Badge>
+            ) : (
+              <Badge>Operator</Badge>
+            )}
+          </HStack>
+        </MenuItem>
         <MenuDivider />
         <MenuItem
           onClick={() => {
