@@ -9,6 +9,7 @@ const useUser = () => {
     queryKey: ["user", token],
     queryFn: () => users.getUserInfo(),
     retry: 1,
+    refetchOnWindowFocus: false,
   });
 };
 
