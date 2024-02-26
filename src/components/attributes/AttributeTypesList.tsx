@@ -4,9 +4,11 @@ import useAttributeTypes from "../../hooks/useAttributeTypes";
 import useModelStore from "../../store/model";
 import AttributeCreateButton from "./AttributeCreateButton";
 import AttributesList from "./AttributesList";
+import useUserStore from "../../store/auth";
 
 const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
   const { equipmentId } = useModelStore((s) => s.modelQuery);
+  const user = useUserStore((s) => s.user);
 
   const { data: types } = useAttributeTypes();
   return (
@@ -20,12 +22,16 @@ const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
             </Text>
           </HStack>
           <Box mb={3}>
-            <AttributeCreateButton
-              attributeTypeId={type.id}
-              equipmentId={equipmentId}
-            />
+            {user && (
+              <AttributeCreateButton
+                attributeTypeId={type.id}
+                equipmentId={equipmentId}
+              />
+            )}
           </Box>
-          <AttributesList attributes={attributes} typeId={type.id} />
+          <Box mb={10}>
+            <AttributesList attributes={attributes} typeId={type.id} />
+          </Box>
         </Box>
       ))}
     </>
