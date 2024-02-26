@@ -1,14 +1,20 @@
 import { JWT } from "../services/api-client";
 
+const key = "JWT";
+
 export const setToken = (data: JWT) => {
   const { token } = data;
-  localStorage.setItem("JWT", token);
+  localStorage.setItem(key, token);
 };
 
 export const getToken = () => {
-  return localStorage.getItem("JWT");
+  return localStorage.getItem(key);
 };
 
 export const clearToken = () => {
-  localStorage.removeItem("JWT");
+  localStorage.removeItem(key);
+};
+
+export const setTokenHeader = () => {
+  return { "x-auth-token": getToken()! };
 };

@@ -23,36 +23,49 @@ export interface HttpError
   extends AxiosError<AxiosValidationError, Record<string, unknown>> {}
 
 class APIClient<T> {
-  constructor(private endpoint: string) {}
+  constructor(
+    private endpoint: string,
+    private setHeaders?: () => { [x: string]: string }
+  ) {}
+
+  private getRequestHeaders(): { [x: string]: string } {
+    return this.setHeaders ? this.setHeaders() : {};
+  }
 
   getAll = (config: AxiosRequestConfig) => {
     return axiosInstance
-      .get<T[]>(this.endpoint, config)
+      .get<T[]>(this.endpoint, { headers: this.getRequestHeaders(), ...config })
       .then((res) => res.data);
   };
 
   getByName = (config: AxiosRequestConfig): Promise<T> => {
-    return axiosInstance.get<T>(this.endpoint, config).then((res) => res.data);
+    return axiosInstance
+      .get<T>(this.endpoint, { headers: this.getRequestHeaders(), ...config })
+      .then((res) => res.data);
   };
 
   getFetchResponse = (config: AxiosRequestConfig) => {
     return axiosInstance
-      .get<FetchResponse<T>>(this.endpoint, config)
+      .get<FetchResponse<T>>(this.endpoint, {
+        headers: this.getRequestHeaders(),
+        ...config,
+      })
       .then((res) => res.data);
   };
 
   get = (id: string | number) => {
     return axiosInstance
-      .get<T>(this.endpoint + "/" + id)
+      .get<T>(this.endpoint + "/" + id, { headers: this.getRequestHeaders() })
       .then((res) => res.data);
   };
 
   getArrayById = (id: string | number) => {
     return axiosInstance
-      .get<T[]>(this.endpoint + "/" + id)
+      .get<T[]>(this.endpoint + "/" + id, { headers: this.getRequestHeaders() })
       .then((res) => res.data);
   };
 
+  // TODO: Remove token
   getUserInfo = (token: string) => {
     return axiosInstance
       .get<T>(this.endpoint + "/me", { headers: { "x-auth-token": token } })
@@ -61,39 +74,53 @@ class APIClient<T> {
 
   put = (id: string | number, entity: T) => {
     return axiosInstance
-      .put<T>(this.endpoint + "/" + id, entity)
+      .put<T>(this.endpoint + "/" + id, entity, {
+        headers: this.getRequestHeaders(),
+      })
       .then((res) => res.data);
   };
 
   putByTwoIds = (firstId: number, secondId: number, entity: T) => {
     return axiosInstance
-      .put<T>(this.endpoint + "/" + firstId + "/" + secondId, entity)
+      .put<T>(this.endpoint + "/" + firstId + "/" + secondId, entity, {
+        headers: this.getRequestHeaders(),
+      })
       .then((res) => res.data);
   };
 
   post = (entity: T) => {
-    return axiosInstance.post<T>(this.endpoint, entity).then((res) => res.data);
+    return axiosInstance
+      .post<T>(this.endpoint, entity, { headers: this.getRequestHeaders() })
+      .then((res) => res.data);
   };
 
   login = (entity: T) => {
     return axiosInstance
-      .post<T, AxiosResponse<JWT>>(this.endpoint, entity)
+      .post<T, AxiosResponse<JWT>>(this.endpoint, entity, {
+        headers: this.getRequestHeaders(),
+      })
       .then((res) => res.data);
   };
 
   importFromExcel = (file: FormData) => {
-    return axiosInstance.post(this.endpoint, file).then((res) => res.data);
+    return axiosInstance
+      .post(this.endpoint, file, { headers: this.getRequestHeaders() })
+      .then((res) => res.data);
   };
 
   delete = (id: string | number) => {
     return axiosInstance
-      .delete<T>(this.endpoint + "/" + id)
+      .delete<T>(this.endpoint + "/" + id, {
+        headers: this.getRequestHeaders(),
+      })
       .then((res) => res.data);
   };
 
   deleteByTwoIds = (firstId: number, secondId: number) => {
     return axiosInstance
-      .delete<T>(this.endpoint + "/" + firstId + "/" + secondId)
+      .delete<T>(this.endpoint + "/" + firstId + "/" + secondId, {
+        headers: this.getRequestHeaders(),
+      })
       .then((res) => res.data);
   };
 }
