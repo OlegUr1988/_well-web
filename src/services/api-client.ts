@@ -65,10 +65,9 @@ class APIClient<T> {
       .then((res) => res.data);
   };
 
-  // TODO: Remove token
-  getUserInfo = (token: string) => {
+  getUserInfo = () => {
     return axiosInstance
-      .get<T>(this.endpoint + "/me", { headers: { "x-auth-token": token } })
+      .get<T>(this.endpoint + "/me", { headers: this.getRequestHeaders() })
       .then((res) => res.data);
   };
 

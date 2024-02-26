@@ -7,7 +7,7 @@ const useUser = () => {
   const token = getToken();
   return useQuery<User, Error, User>({
     queryKey: ["user", token],
-    queryFn: () => users.getUserInfo(token!),
+    queryFn: () => users.getUserInfo(),
     retry: 1,
   });
 };
