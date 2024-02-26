@@ -3,10 +3,12 @@ import { Equipment } from "../../entities/equipments";
 import useModelStore from "../../store/model";
 import EquipmentDeleteButton from "./EquipmentDeleteButton";
 import EquipmentEditButton from "./EquipmentEditButton";
+import useUserStore from "../../store/auth";
 
 const EquipmentsList = ({ equipments }: { equipments: Equipment[] }) => {
   const { equipmentId } = useModelStore((s) => s.modelQuery);
   const setEquipmentId = useModelStore((s) => s.setEquipmentId);
+  const user = useUserStore((s) => s.user);
 
   return (
     <List w="100%">
@@ -26,8 +28,8 @@ const EquipmentsList = ({ equipments }: { equipments: Equipment[] }) => {
               {equipment.name}
             </Text>
             <HStack>
-              <EquipmentEditButton equipment={equipment} />
-              <EquipmentDeleteButton equipmentId={equipment.id} />
+              {user && <EquipmentEditButton equipment={equipment} />}
+              {user && <EquipmentDeleteButton equipmentId={equipment.id} />}
             </HStack>
           </HStack>
         </ListItem>
