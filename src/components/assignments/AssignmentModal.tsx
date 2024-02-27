@@ -5,7 +5,7 @@ import { AssignmentFormData } from "../../entities/formDatas";
 import { SelectOption } from "../../entities/selectOption";
 import { usePHDTags } from "../../hooks/PHDTags";
 import { useFormSubmit } from "../../hooks/forms";
-import { AssignmentSchema } from "../../validationSchema";
+import { assignmentSchema } from "../../validationSchema";
 import ModalContainer from "../ModalContainer";
 import { FormContainer, FormSelect, FormSubmit } from "../forms";
 
@@ -43,7 +43,7 @@ const AssignmentModal = ({
       attributeId,
       PHDTagId: data.tag.value,
     }),
-    schema: AssignmentSchema,
+    schema: assignmentSchema,
     onSuccess: () => onClose(),
   });
 

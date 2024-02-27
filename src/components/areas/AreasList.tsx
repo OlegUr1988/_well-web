@@ -1,5 +1,6 @@
 import { HStack, List, ListItem, Text } from "@chakra-ui/react";
 import { Area } from "../../entities/areas";
+import useUserStore from "../../store/auth";
 import useModelStore from "../../store/model";
 import AreaDeleteButton from "./AreaDeleteButton";
 import AreaEditButton from "./AreaEditButton";
@@ -9,6 +10,7 @@ const AreasList = ({ areas }: { areas: Area[] }) => {
   const setAreaId = useModelStore((s) => s.setAreaId);
   const setAssetId = useModelStore((s) => s.setAssetId);
   const setEquipmentId = useModelStore((s) => s.setEquipmentId);
+  const user = useUserStore((s) => s.user);
 
   const handleSelect = (id: number) => {
     setAreaId(id);
@@ -34,8 +36,8 @@ const AreasList = ({ areas }: { areas: Area[] }) => {
               {area.name}
             </Text>
             <HStack>
-              <AreaEditButton area={area} />
-              <AreaDeleteButton areaId={area.id} />
+              {user && <AreaEditButton area={area} />}
+              {user && <AreaDeleteButton areaId={area.id} />}
             </HStack>
           </HStack>
         </ListItem>

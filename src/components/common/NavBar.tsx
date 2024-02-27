@@ -1,7 +1,11 @@
 import { HStack, Heading, Text } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
+import useUserStore from "../../store/auth";
+import AvatarMenu from "../AvatarMenu";
 
 const NavBar = () => {
+  const user = useUserStore((s) => s.user);
+
   return (
     <HStack
       bgColor="gray.700"
@@ -20,6 +24,12 @@ const NavBar = () => {
         <NavLink to="config" className="nav-link">
           <Text color="white">Configurations</Text>
         </NavLink>
+        {!user && (
+          <NavLink to="login" className="nav-link">
+            <Text color="white">Login</Text>
+          </NavLink>
+        )}
+        {user && <AvatarMenu />}
       </HStack>
     </HStack>
   );

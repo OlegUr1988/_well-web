@@ -13,10 +13,12 @@ import { useAssignments } from "../../hooks/assignments";
 import { useUnits } from "../../hooks/units";
 import AssignmentDeleteButton from "./AssignmentDeleteButton";
 import AssignmentEditButton from "./AssignmentEditButton";
+import useUserStore from "../../store/auth";
 
 const AssignmentsList = ({ attributeId }: { attributeId: number }) => {
   const { data: assigns, isLoading, error } = useAssignments(attributeId);
   const { data: units } = useUnits({});
+  const user = useUserStore((s) => s.user);
 
   if (error) return null;
 
@@ -45,8 +47,8 @@ const AssignmentsList = ({ attributeId }: { attributeId: number }) => {
               <Td>{assign.PHDTag.tagname}</Td>
               <Td textAlign="center">{getUnits(assign)}</Td>
               <Td textAlign="right">
-                <AssignmentEditButton assignment={assign} />
-                <AssignmentDeleteButton assignment={assign} />
+                {user && <AssignmentEditButton assignment={assign} />}
+                {user && <AssignmentDeleteButton assignment={assign} />}
               </Td>
             </Tr>
           ))}

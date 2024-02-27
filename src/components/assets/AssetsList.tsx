@@ -5,12 +5,14 @@ import useModelStore from "../../store/model";
 import ListViewLinkIcon from "../ListViewLinkIcon";
 import AssetDeleteButton from "./AssetDeleteButton";
 import AssetEditButton from "./AssetEditButton";
+import useUserStore from "../../store/auth";
 
 const AssetsList = ({ assets }: { assets: Asset[] }) => {
   const { assetId, areaId } = useModelStore((s) => s.modelQuery);
   const setAssetId = useModelStore((s) => s.setAssetId);
   const setEquipmentId = useModelStore((s) => s.setEquipmentId);
   const { data: area } = useArea(areaId);
+  const user = useUserStore((s) => s.user);
 
   const handleSelect = (id: number) => {
     setAssetId(id);
@@ -41,8 +43,8 @@ const AssetsList = ({ assets }: { assets: Asset[] }) => {
             </Text>
 
             <HStack>
-              <AssetEditButton asset={asset} />
-              <AssetDeleteButton assetId={asset.id} />
+              {user && <AssetEditButton asset={asset} />}
+              {user && <AssetDeleteButton assetId={asset.id} />}
             </HStack>
           </HStack>
         </ListItem>

@@ -19,21 +19,34 @@ export const selectSchema = z.object({
 export const PHDTagSchema = z.object({
   tagname: z
     .string()
-    .trim()
     .min(1, "Tagname should be at least 1 character")
-    .max(300, "More than 300 characters"),
+    .max(300, "More than 300 characters")
+    .regex(/^\S+$/, "Should not contain spacess"),
   unit: selectSchema,
 });
 
-export const AssignmentSchema = z.object({
+export const assignmentSchema = z.object({
   tag: selectSchema,
 });
 
-export const DataSourceSchema = z.object({
+export const dataSourceSchema = z.object({
   host: z
     .string()
-    .trim()
     .min(1, "Tagname should be at least 1 character")
-    .max(300, "More than 300 characters"),
+    .max(300, "More than 300 characters")
+    .regex(/^\S+$/, "Should not contain spacess"),
   port: z.coerce.number().min(1, "The port must be possitive value"),
+});
+
+export const loginSchema = z.object({
+  username: z
+    .string()
+    .min(3, "The username should be at least 3 characters")
+    .max(50, "More that 50 characters")
+    .regex(/^\S+$/, "Should not contain spacess"),
+  password: z
+    .string()
+    .min(4, "The password should be at least 4 characters")
+    .max(255, "More that 255 characters")
+    .regex(/^\S+$/, "Should not contain spacess"),
 });

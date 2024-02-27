@@ -1,12 +1,14 @@
 import { DataSourceFormData } from "../../entities/formDatas";
 import { useDataSource, useUpdateDataSource } from "../../hooks/dataSources";
 import { useFormSubmit } from "../../hooks/forms";
-import { DataSourceSchema } from "../../validationSchema";
+import useUserStore from "../../store/auth";
+import { dataSourceSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "../forms";
 
 const DataSourceForm = () => {
   const { data: dataSource, isLoading, error } = useDataSource(1);
   const { mutateAsync, isPending } = useUpdateDataSource(1);
+  const user = useUserStore((s) => s.user);
 
   const { register, handleSubmit, onSubmit, errors } = useFormSubmit<
     DataSourceFormData,
@@ -14,7 +16,7 @@ const DataSourceForm = () => {
   >({
     onSuccessMessage: "Data source was successfuly updated",
     mutateAsync,
-    schema: DataSourceSchema,
+    schema: dataSourceSchema,
     onDataMutate: (data) => data,
   });
 
@@ -43,7 +45,7 @@ const DataSourceForm = () => {
         register={register}
       />
 
-      <FormSubmit label={"Update"} isDisabled={isPending} />
+      {user && <FormSubmit label={"Update"} isDisabled={isPending} />}
     </FormContainer>
   );
 };

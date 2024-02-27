@@ -4,6 +4,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
+import LoginPage from "./pages/LoginPage";
 import ModelsPage from "./pages/ModelsPage";
 import { DataSourcePage, PHDTagsPage, UnitsPage } from "./pages/configs";
 
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <HomePage /> },
+      { path: "login", element: <LoginPage /> },
       {
         path: "models",
         element: <ModelsPage />,

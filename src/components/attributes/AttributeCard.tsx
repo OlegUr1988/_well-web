@@ -4,9 +4,11 @@ import { AssignmentCreateButton, AssignmentsList } from "../assignments";
 import { CollapsibleButton } from "../common/buttons";
 import AttributeDeleteButton from "./AttributeDeleteButton";
 import AttributeEditButton from "./AttributeEditButton";
+import useUserStore from "../../store/auth";
 
 const AttributeCard = ({ attribute }: { attribute: Attribute }) => {
   const { isOpen, onToggle } = useDisclosure();
+  const user = useUserStore((s) => s.user);
   return (
     <Card variant="outline">
       <HStack p={3} justify="space-between">
@@ -15,9 +17,9 @@ const AttributeCard = ({ attribute }: { attribute: Attribute }) => {
           <CollapsibleButton isOpen={isOpen} onClick={onToggle} />
         </HStack>
         <HStack>
-          <AssignmentCreateButton attributeId={attribute.id} />
-          <AttributeEditButton attribute={attribute} />
-          <AttributeDeleteButton attributeId={attribute.id} />
+          {user && <AssignmentCreateButton attributeId={attribute.id} />}
+          {user && <AttributeEditButton attribute={attribute} />}
+          {user && <AttributeDeleteButton attributeId={attribute.id} />}
         </HStack>
       </HStack>
       <Collapse in={isOpen} animateOpacity>

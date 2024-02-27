@@ -1,4 +1,5 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
+import useUserStore from "../store/auth";
 import ListViewSpinner from "./ListViewSpinner";
 
 interface Props {
@@ -16,6 +17,8 @@ const ListView = ({
   listComponent,
   createButtonComponent,
 }: Props) => {
+  const user = useUserStore((s) => s.user);
+
   if (isLoading) return <ListViewSpinner />;
 
   if (error) return null;
@@ -35,7 +38,7 @@ const ListView = ({
       {listComponent}
 
       <Box p={2} w="100%">
-        {createButtonComponent}
+        {user && createButtonComponent}
       </Box>
     </VStack>
   );

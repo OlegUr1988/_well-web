@@ -35,7 +35,6 @@ const SimpleModal = ({
   >({
     onSuccessMessage,
     mutateAsync,
-    onDataMutate: (data) => data,
     schema: listViewFormSchema,
     onSuccess: () => onClose(),
   });

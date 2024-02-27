@@ -3,9 +3,11 @@ import { PHDTag } from "../../entities/PHDTags";
 import usePHDTagStore from "../../store/phdTags";
 import PHDTagDeleteButton from "./PHDTagDeleteButton";
 import PHDTagEditButton from "./PHDTagEditButton";
+import useUserStore from "../../store/auth";
 
 const PHDTagsTableBody = ({ tags }: { tags: PHDTag[] }) => {
   const { page, pageSize } = usePHDTagStore((s) => s.PHDTagsQuery);
+  const user = useUserStore((s) => s.user);
 
   return (
     <Tbody>
@@ -14,12 +16,16 @@ const PHDTagsTableBody = ({ tags }: { tags: PHDTag[] }) => {
           <Td textAlign="center">{(page! - 1) * pageSize! + (index + 1)}</Td>
           <Td textAlign="center">{tag.tagname}</Td>
           <Td textAlign="center">{tag.unit.name}</Td>
-          <Td textAlign="center">
-            <PHDTagEditButton tag={tag} />
-          </Td>
-          <Td textAlign="center">
-            <PHDTagDeleteButton tagId={tag.id} />
-          </Td>
+          {user && (
+            <Td textAlign="center">
+              <PHDTagEditButton tag={tag} />
+            </Td>
+          )}
+          {user && (
+            <Td textAlign="center">
+              <PHDTagDeleteButton tagId={tag.id} />
+            </Td>
+          )}
         </Tr>
       ))}
     </Tbody>
