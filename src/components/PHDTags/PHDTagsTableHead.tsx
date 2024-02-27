@@ -1,22 +1,17 @@
 import { Th, Thead, Tr } from "@chakra-ui/react";
+import useUserStore from "../../store/auth";
 
 const PHDTagsTableHead = () => {
-  const columns = [
-    { id: 0, label: "#", width: "" },
-    { id: 1, label: "Tagname", width: "300" },
-    { id: 2, label: "Units", width: "300" },
-    { id: 3, label: "", width: "" },
-    { id: 4, label: "", width: "" },
-  ];
+  const user = useUserStore((s) => s.user);
 
   return (
     <Thead>
       <Tr height={12}>
-        {columns.map((column) => (
-          <Th key={column.id} w={column.width} textAlign="center">
-            {column.label}
-          </Th>
-        ))}
+        <Th textAlign="center">#</Th>
+        <Th textAlign="center">Tagname</Th>
+        <Th textAlign="center">Units</Th>
+        {user && <Th textAlign="center"></Th>}
+        {user && <Th textAlign="center"></Th>}
       </Tr>
     </Thead>
   );

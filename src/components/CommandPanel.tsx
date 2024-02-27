@@ -1,4 +1,5 @@
 import { HStack } from "@chakra-ui/react";
+import useUserStore from "../store/auth";
 
 interface Props {
   createButton?: JSX.Element;
@@ -7,13 +8,15 @@ interface Props {
 }
 
 const CommandPanel = ({ createButton, exportButton, importButton }: Props) => {
+  const user = useUserStore((s) => s.user);
+
   return (
     <HStack justify="space-between">
-      {createButton}
+      {user && createButton}
 
       <HStack gap={3}>
         {exportButton}
-        {importButton}
+        {user && importButton}
       </HStack>
     </HStack>
   );
