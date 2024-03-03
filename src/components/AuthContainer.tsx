@@ -1,5 +1,5 @@
 import { ReactNode, useEffect } from "react";
-import useUser from "../hooks/useUser";
+import { useUser } from "../hooks/users";
 import useUserStore from "../store/auth";
 
 const AuthContainer = ({ children }: { children: ReactNode }) => {
