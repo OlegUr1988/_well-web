@@ -4,7 +4,7 @@ import { changeUserPassword } from "../../services/usersServices";
 
 const useChangeUserPassword = () => {
   return useMutation<ChangeUserPassword, Error, ChangeUserPassword>({
-    mutationFn: (password) => changeUserPassword.put(0, password),
+    mutationFn: (password) => changeUserPassword.updateUser(password),
   });
 };
 

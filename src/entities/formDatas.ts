@@ -5,6 +5,7 @@ import {
   PHDTagSchema,
   listViewFormSchema,
   loginSchema,
+  changeUserPasswordSchema,
 } from "../validationSchema";
 
 export type ListViewFormData = z.infer<typeof listViewFormSchema>;
@@ -16,3 +17,7 @@ export type AssignmentFormData = z.infer<typeof assignmentSchema>;
 export type DataSourceFormData = z.infer<typeof dataSourceSchema>;
 
 export type LoginFormData = z.infer<typeof loginSchema>;
+
+export type ChangeUserPasswordFormData = z.infer<
+  typeof changeUserPasswordSchema
+>;
