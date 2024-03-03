@@ -7,6 +7,7 @@ import Layout from "./pages/Layout";
 import LoginPage from "./pages/LoginPage";
 import ModelsPage from "./pages/ModelsPage";
 import { DataSourcePage, PHDTagsPage, UnitsPage } from "./pages/configs";
+import ChangePasswordPage from "./pages/configs/ChangePasswordPage";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
           { path: "tags", element: <PHDTagsPage /> },
           { path: "units", element: <UnitsPage /> },
           { path: "datasource", element: <DataSourcePage /> },
+          { path: "change-password", element: <ChangePasswordPage /> },
         ],
       },
     ],

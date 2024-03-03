@@ -4,3 +4,7 @@ export interface User {
   isAdmin: boolean;
   joined_at: string;
 }
+
+export interface ChangeUserPassword {
+  password: string;
+}

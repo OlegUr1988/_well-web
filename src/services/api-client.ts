@@ -79,6 +79,12 @@ class APIClient<T> {
       .then((res) => res.data);
   };
 
+  updateUser = (entity: T) => {
+    return axiosInstance
+      .put<T>(this.endpoint, entity, { headers: this.getRequestHeaders() })
+      .then((res) => res.data);
+  };
+
   putByTwoIds = (firstId: number, secondId: number, entity: T) => {
     return axiosInstance
       .put<T>(this.endpoint + "/" + firstId + "/" + secondId, entity, {

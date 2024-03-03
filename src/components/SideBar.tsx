@@ -1,10 +1,18 @@
 import { Flex, HStack, List, ListIcon, ListItem, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { GiGears } from "react-icons/gi";
 import { Link, useLocation } from "react-router-dom";
 import configNavLinks from "../constants/configNavLinks";
+import useUserStore from "../store/auth";
 
 const SideBar = () => {
+  const [links, setLinks] = useState(configNavLinks);
   const location = useLocation();
+  const user = useUserStore((s) => s.user);
+
+  useEffect(() => {
+    if (!user) setLinks(links.filter((link) => link.isAuthRequired === false));
+  }, [user]);
 
   return (
     <Flex bg="gray.700" direction="column" w={300}>
@@ -16,7 +24,7 @@ const SideBar = () => {
       </HStack>
 
       <List>
-        {configNavLinks.map((link) => (
+        {links.map((link) => (
           <ListItem
             key={link.name}
             p={2}
