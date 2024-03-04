@@ -1,6 +1,8 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Attribute } from "../../entities/attributes";
+import { ListViewFormData } from "../../entities/formDatas";
 import { useUpdateAttribute } from "../../hooks/attributes";
+import { listViewFormSchema } from "../../validationSchema";
 import SimpleModal from "../SimpleModal";
 import TooltipContainer from "../common/TooltipContainer";
 import { IconButton } from "../common/buttons";
@@ -8,11 +10,12 @@ import { IconButton } from "../common/buttons";
 const AttributeEditButton = ({ attribute }: { attribute: Attribute }) => {
   const { mutateAsync, isPending } = useUpdateAttribute(attribute.id);
   return (
-    <SimpleModal
+    <SimpleModal<ListViewFormData>
       header="Edit Attribute"
       label="Attribute Name"
       submitLabel="Save"
       onSuccessMessage="The attribute was successfully modified"
+      schema={listViewFormSchema}
       renderTriggerButton={(onOpen) => (
         <TooltipContainer label="Edit">
           <IconButton

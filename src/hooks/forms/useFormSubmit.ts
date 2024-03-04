@@ -9,7 +9,7 @@ import useForm from "./useForm";
 interface Props<T, K, V = K> {
   onSuccessMessage: string;
   redirectPath?: string;
-  schema: ZodSchema<any>;
+  schema: ZodSchema<T>;
   mutateAsync: (data: K) => Promise<V>;
   onDataMutate?: (data: T) => K;
   onSuccess?: (result: V) => void;

@@ -9,6 +9,7 @@ const UsersTableHead = () => {
         <Th textAlign="center">isAdmin</Th>
         <Th></Th>
         <Th></Th>
+        <Th></Th>
       </Tr>
     </Thead>
   );

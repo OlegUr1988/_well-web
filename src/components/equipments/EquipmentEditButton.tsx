@@ -3,17 +3,20 @@ import { Equipment } from "../../entities/equipments";
 import { useUpdateEquipment } from "../../hooks/equipments";
 import SimpleModal from "../SimpleModal";
 import { IconButton } from "../common/buttons";
+import { ListViewFormData } from "../../entities/formDatas";
+import { listViewFormSchema } from "../../validationSchema";
 
 const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
   const { mutateAsync, isPending } = useUpdateEquipment(equipment.id);
 
   return (
-    <SimpleModal
+    <SimpleModal<ListViewFormData>
       header="Edit Equipment"
       label="Equipment Name"
       submitLabel="Save"
       defaultValue={equipment.name}
       onSuccessMessage="The equipment was successfully modified"
+      schema={listViewFormSchema}
       renderTriggerButton={(onOpen) => (
         <IconButton
           onClick={onOpen}

@@ -8,3 +8,7 @@ export const changeUserPassword = new APIClient<ChangeUserPassword>(
   setTokenHeader
 );
 export const updateUser = new APIClient<UpdateUser>("/users", setTokenHeader);
+export const setUserPassword = new APIClient<ChangeUserPassword>(
+  "/users/set-password",
+  setTokenHeader
+);
