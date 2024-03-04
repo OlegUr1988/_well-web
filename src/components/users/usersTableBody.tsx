@@ -1,6 +1,7 @@
 import { Badge, Tbody, Td, Tr } from "@chakra-ui/react";
 import { User } from "../../entities/users";
 import useUserStore from "../../store/user";
+import UserEditButton from "./UserEditButton";
 
 const UsersTableBody = ({ users }: { users: User[] }) => {
   const { page, pageSize } = useUserStore((s) => s.usersQuery);
@@ -18,7 +19,9 @@ const UsersTableBody = ({ users }: { users: User[] }) => {
             )}
           </Td>
 
-          <Td textAlign="center">{/* <PHDTagEditButton tag={user} /> */}</Td>
+          <Td textAlign="center">
+            <UserEditButton user={user} />
+          </Td>
 
           <Td textAlign="center">
             {/* <PHDTagDeleteButton tagId={user.id} /> */}

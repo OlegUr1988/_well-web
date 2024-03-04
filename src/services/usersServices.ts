@@ -1,4 +1,4 @@
-import { ChangeUserPassword, User } from "../entities/users";
+import { ChangeUserPassword, UpdateUser, User } from "../entities/users";
 import { setTokenHeader } from "../utils/auth";
 import APIClient from "./api-client";
 
@@ -7,3 +7,4 @@ export const changeUserPassword = new APIClient<ChangeUserPassword>(
   "/users",
   setTokenHeader
 );
+export const updateUser = new APIClient<UpdateUser>("/users", setTokenHeader);

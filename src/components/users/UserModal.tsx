@@ -15,9 +15,10 @@ interface Props {
   isPending: boolean;
   defaultUser?: UpdateUser;
   mutateAsync: (data: UpdateUser) => Promise<UpdateUser>;
+  onSuccess?: () => void;
 }
 
-const UserModalButton = ({
+const UserModal = ({
   header,
   submitLabel,
   onSuccessMessage,
@@ -25,6 +26,7 @@ const UserModalButton = ({
   isPending,
   defaultUser,
   mutateAsync,
+  onSuccess,
 }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -33,7 +35,10 @@ const UserModalButton = ({
       onSuccessMessage,
       mutateAsync,
       schema: updateUserSchema,
-      onSuccess: () => onClose(),
+      onSuccess: () => {
+        onClose();
+        if (onSuccess) onSuccess();
+      },
     });
 
   useEffect(() => {
@@ -73,4 +78,4 @@ const UserModalButton = ({
   );
 };
 
-export default UserModalButton;
+export default UserModal;

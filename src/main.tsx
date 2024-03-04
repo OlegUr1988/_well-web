@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={client}>
         <RouterProvider router={router} />
-        <ToastContainer />
+        <ToastContainer position="bottom-left" />
         <ReactQueryDevtools />
       </QueryClientProvider>
     </ChakraProvider>
