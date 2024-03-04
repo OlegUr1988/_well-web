@@ -1,3 +1,5 @@
+import { BasicQuery } from "./basicQuery";
+
 export interface User {
   id: number;
   username: string;
@@ -8,3 +10,5 @@ export interface User {
 export interface ChangeUserPassword {
   password: string;
 }
+
+export interface UserQuery extends BasicQuery {}
