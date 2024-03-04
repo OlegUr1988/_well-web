@@ -1,3 +1,4 @@
+export { default as FormChekbox } from "./FormChekbox";
 export { default as FormContainer } from "./FormContainer";
 export { default as FormInput } from "./FormInput";
 export { default as FormSelect } from "./FormSelect";

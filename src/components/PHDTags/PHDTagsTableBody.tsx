@@ -3,7 +3,7 @@ import { PHDTag } from "../../entities/PHDTags";
 import usePHDTagStore from "../../store/phdTags";
 import PHDTagDeleteButton from "./PHDTagDeleteButton";
 import PHDTagEditButton from "./PHDTagEditButton";
-import useUserStore from "../../store/auth";
+import useUserStore from "../../store/user";
 
 const PHDTagsTableBody = ({ tags }: { tags: PHDTag[] }) => {
   const { page, pageSize } = usePHDTagStore((s) => s.PHDTagsQuery);

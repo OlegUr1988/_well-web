@@ -1,6 +1,6 @@
 import { Flex, HStack, List, Text } from "@chakra-ui/react";
 import { GiGears } from "react-icons/gi";
-import useUserStore from "../store/auth";
+import useUserStore from "../store/user";
 import SideBarListItem from "./SideBarListItem";
 
 const SideBar = () => {
@@ -15,8 +15,11 @@ const SideBar = () => {
         </Text>
       </HStack>
       <List>
-        <SideBarListItem to="/config/units" text="Units" />
+        {user && user.isAdmin && (
+          <SideBarListItem to="/config/users" text="Users" />
+        )}
         <SideBarListItem to="/config/tags" text="PHD Tags" />
+        <SideBarListItem to="/config/units" text="Units" />
         <SideBarListItem to="/config/datasource" text="Data Source" />
         {user && (
           <SideBarListItem

@@ -1,12 +1,12 @@
 import { useDisclosure } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { ListViewFormData } from "../entities/formDatas";
+import { FieldValues, Path } from "react-hook-form";
+import { ZodSchema } from "zod";
 import { useFormSubmit } from "../hooks/forms";
-import { listViewFormSchema } from "../validationSchema";
 import ModalContainer from "./ModalContainer";
 import { FormContainer, FormInput, FormSubmit } from "./forms";
 
-interface Props {
+interface Props<T> {
   header: string;
   label: string;
   submitLabel: string;
@@ -14,10 +14,13 @@ interface Props {
   renderTriggerButton: (onOpen: () => void) => JSX.Element;
   isPending: boolean;
   defaultValue?: string;
-  mutateAsync: (data: ListViewFormData) => Promise<ListViewFormData>;
+  mutateAsync: (data: T) => Promise<T>;
+  onSuccess?: () => void;
+  schema: ZodSchema<T>;
+  name?: keyof T;
 }
 
-const SimpleModal = ({
+const SimpleModal = <T extends FieldValues>({
   header,
   label,
   submitLabel,
@@ -26,17 +29,20 @@ const SimpleModal = ({
   isPending,
   defaultValue = "",
   mutateAsync,
-}: Props) => {
+  onSuccess,
+  schema,
+  name = "name",
+}: Props<T>) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { reset, register, handleSubmit, onSubmit, errors } = useFormSubmit<
-    ListViewFormData,
-    ListViewFormData
-  >({
+  const { reset, register, handleSubmit, onSubmit, errors } = useFormSubmit<T>({
     onSuccessMessage,
     mutateAsync,
-    schema: listViewFormSchema,
-    onSuccess: () => onClose(),
+    schema,
+    onSuccess: () => {
+      onClose();
+      if (onSuccess) onSuccess();
+    },
   });
 
   useEffect(() => {
@@ -52,10 +58,10 @@ const SimpleModal = ({
       <ModalContainer header={header} isOpen={isOpen} onClose={onClose}>
         <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
           <FormInput
-            name="name"
+            name={name as Path<T>}
             label={label}
-            error={errors.name?.message!}
-            placeholder="Name"
+            error={errors[name]?.message as string}
+            placeholder={name as string}
             defaultValue={defaultValue}
             register={register}
           />

@@ -9,13 +9,13 @@ import useForm from "./useForm";
 interface Props<T, K, V = K> {
   onSuccessMessage: string;
   redirectPath?: string;
-  schema: ZodSchema<any>;
-  mutateAsync: (data: T | K) => Promise<V>;
+  schema: ZodSchema<T>;
+  mutateAsync: (data: K) => Promise<V>;
   onDataMutate?: (data: T) => K;
   onSuccess?: (result: V) => void;
 }
 
-const useFormSubmit = <T extends FieldValues, K, V = K>({
+const useFormSubmit = <T extends FieldValues, K = T, V = K>({
   onSuccessMessage,
   redirectPath,
   schema,
@@ -29,7 +29,9 @@ const useFormSubmit = <T extends FieldValues, K, V = K>({
   const { control, reset, register, handleSubmit, onSubmit, errors } =
     useForm<T>(async (data) => {
       try {
-        const mutatedData = onDataMutate ? onDataMutate(data) : data;
+        const mutatedData = onDataMutate
+          ? onDataMutate(data)
+          : (data as unknown as K);
         const result = await mutateAsync(mutatedData);
         toast.success(onSuccessMessage);
         queryClient.invalidateQueries();

@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from "react";
 import { useUser } from "../hooks/users";
-import useUserStore from "../store/auth";
+import useUserStore from "../store/user";
 
 const AuthContainer = ({ children }: { children: ReactNode }) => {
   const { data: user, isLoading } = useUser();

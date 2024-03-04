@@ -59,3 +59,26 @@ export const changeUserPasswordSchema = z.object({
     .max(255, "More that 255 characters")
     .regex(noSpaces, "Should not contain spacess"),
 });
+
+export const updateUserSchema = z.object({
+  username: z
+    .string()
+    .min(3, "The username should be at least 3 characters")
+    .max(50, "More that 50 characters")
+    .regex(noSpaces, "Should not contain spacess"),
+  isAdmin: z.boolean(),
+});
+
+export const registerUserSchema = z.object({
+  username: z
+    .string()
+    .min(3, "The username should be at least 3 characters")
+    .max(50, "More that 50 characters")
+    .regex(noSpaces, "Should not contain spacess"),
+  isAdmin: z.boolean(),
+  password: z
+    .string()
+    .min(4, "The password should be at least 4 characters")
+    .max(255, "More that 255 characters")
+    .regex(noSpaces, "Should not contain spacess"),
+});

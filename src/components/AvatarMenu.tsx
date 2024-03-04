@@ -9,7 +9,7 @@ import {
   MenuList,
   Text,
 } from "@chakra-ui/react";
-import useUserStore from "../store/auth";
+import useUserStore from "../store/user";
 import { clearToken } from "../utils/auth";
 import { useNavigate } from "react-router-dom";
 

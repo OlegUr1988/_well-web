@@ -1,6 +1,6 @@
 import { HStack, Heading, Text } from "@chakra-ui/react";
 import { NavLink } from "react-router-dom";
-import useUserStore from "../../store/auth";
+import useUserStore from "../../store/user";
 import AvatarMenu from "../AvatarMenu";
 
 const NavBar = () => {

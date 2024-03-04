@@ -8,6 +8,7 @@ import LoginPage from "./pages/LoginPage";
 import ModelsPage from "./pages/ModelsPage";
 import { DataSourcePage, PHDTagsPage, UnitsPage } from "./pages/configs";
 import ChangePasswordPage from "./pages/configs/ChangePasswordPage";
+import UsersPage from "./pages/configs/UsersPage";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
         path: "config",
         element: <ConfigPanelPage />,
         children: [
+          { path: "users", element: <UsersPage /> },
           { path: "tags", element: <PHDTagsPage /> },
           { path: "units", element: <UnitsPage /> },
           { path: "datasource", element: <DataSourcePage /> },

@@ -1,3 +1,5 @@
+import { BasicQuery } from "./basicQuery";
+
 export interface User {
   id: number;
   username: string;
@@ -5,6 +7,19 @@ export interface User {
   joined_at: string;
 }
 
+export interface UpdateUser {
+  username: string;
+  isAdmin: boolean;
+}
+
+export interface RegisterUser {
+  username: string;
+  isAdmin: boolean;
+  password: string;
+}
+
 export interface ChangeUserPassword {
   password: string;
 }
+
+export interface UserQuery extends BasicQuery {}

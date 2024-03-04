@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ChangeUserPasswordFormData } from "../../entities/formDatas";
 import { useFormSubmit } from "../../hooks/forms";
-import useChangeUserPassword from "../../hooks/users/useChangeUserPassword";
+import { useChangeUserPassword } from "../../hooks/users/";
 import { clearToken } from "../../utils/auth";
 import { changeUserPasswordSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "../forms";

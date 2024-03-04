@@ -1,4 +1,6 @@
+import { ListViewFormData } from "../../entities/formDatas";
 import { useAddAttribute } from "../../hooks/attributes";
+import { listViewFormSchema } from "../../validationSchema";
 import { CreateButton } from "../common/buttons";
 import SimpleModal from "../SimpleModal";
 
@@ -12,11 +14,12 @@ const AttributeCreateButton = ({
   const { mutateAsync, isPending } = useAddAttribute();
 
   return (
-    <SimpleModal
+    <SimpleModal<ListViewFormData>
       header="Create Attribute"
       label="Attribute Name"
       submitLabel="Create"
       onSuccessMessage="The attribute was successfully added"
+      schema={listViewFormSchema}
       renderTriggerButton={(onOpen) => <CreateButton onClick={onOpen} />}
       isPending={isPending}
       mutateAsync={(data) =>

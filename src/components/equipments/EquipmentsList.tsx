@@ -3,7 +3,7 @@ import { Equipment } from "../../entities/equipments";
 import useModelStore from "../../store/model";
 import EquipmentDeleteButton from "./EquipmentDeleteButton";
 import EquipmentEditButton from "./EquipmentEditButton";
-import useUserStore from "../../store/auth";
+import useUserStore from "../../store/user";
 
 const EquipmentsList = ({ equipments }: { equipments: Equipment[] }) => {
   const { equipmentId } = useModelStore((s) => s.modelQuery);
