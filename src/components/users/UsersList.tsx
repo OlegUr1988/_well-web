@@ -1,5 +1,5 @@
 import { Skeleton } from "@chakra-ui/react";
-import {useUsers} from "../../hooks/users/";
+import { useUsers } from "../../hooks/users/";
 import useUserStore from "../../store/user";
 import UsersTable from "./UsersTable";
 

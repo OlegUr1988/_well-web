@@ -5,7 +5,7 @@ import { User, UserQuery } from "../../entities/users";
 
 const useUsers = (query: UserQuery) => {
   return useQuery<FetchResponse<User>, Error>({
-    queryKey: ["users"],
+    queryKey: ["users", query],
     queryFn: () => users.getFetchResponse({ params: query }),
     placeholderData: keepPreviousData,
   });
