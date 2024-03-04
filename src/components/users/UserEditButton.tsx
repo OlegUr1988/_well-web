@@ -1,5 +1,5 @@
 import { User } from "../../entities/users";
-import useUpdateUser from "../../hooks/users/useUpdateUser";
+import { useUpdateUser } from "../../hooks/users/";
 import useUserStore from "../../store/user";
 import { clearToken } from "../../utils/auth";
 import { EditButton } from "../common/buttons";
