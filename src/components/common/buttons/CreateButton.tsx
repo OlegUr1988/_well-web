@@ -1,9 +1,15 @@
 import { Button } from "@chakra-ui/react";
 
-const CreateButton = ({ onClick }: { onClick: () => void }) => {
+const CreateButton = ({
+  label = "Create",
+  onClick,
+}: {
+  label?: string;
+  onClick: () => void;
+}) => {
   return (
     <Button colorScheme="blue" onClick={onClick}>
-      Create
+      {label}
     </Button>
   );
 };

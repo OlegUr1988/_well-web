@@ -1,9 +1,9 @@
 import { useDisclosure } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { UpdateUserFormData } from "../../entities/formDatas";
-import { UpdateUser } from "../../entities/users";
+import { RegisterUserFormData } from "../../entities/formDatas";
+import { RegisterUser } from "../../entities/users";
 import { useFormSubmit } from "../../hooks/forms";
-import { updateUserSchema } from "../../validationSchema";
+import { registerUserSchema } from "../../validationSchema";
 import ModalContainer from "../ModalContainer";
 import { FormChekbox, FormContainer, FormInput, FormSubmit } from "../forms";
 
@@ -13,28 +13,26 @@ interface Props {
   onSuccessMessage: string;
   renderTriggerButton: (onOpen: () => void) => JSX.Element;
   isPending: boolean;
-  defaultUser?: UpdateUser;
-  mutateAsync: (data: UpdateUser) => Promise<UpdateUser>;
+  mutateAsync: (data: RegisterUser) => Promise<RegisterUser>;
   onSuccess?: () => void;
 }
 
-const UserModal = ({
+const UserRegisterModal = ({
   header,
   submitLabel,
   onSuccessMessage,
   renderTriggerButton,
   isPending,
-  defaultUser,
   mutateAsync,
   onSuccess,
 }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { reset, register, handleSubmit, onSubmit, errors } =
-    useFormSubmit<UpdateUserFormData>({
+    useFormSubmit<RegisterUserFormData>({
       onSuccessMessage,
       mutateAsync,
-      schema: updateUserSchema,
+      schema: registerUserSchema,
       onSuccess: () => {
         onClose();
         if (onSuccess) onSuccess();
@@ -58,7 +56,6 @@ const UserModal = ({
             label="Tagname"
             error={errors.username?.message!}
             placeholder="Username"
-            defaultValue={defaultUser?.username}
             register={register}
           />
 
@@ -66,8 +63,16 @@ const UserModal = ({
             name="isAdmin"
             label="Select users role"
             value="isAdmin"
-            defaultChecked={defaultUser?.isAdmin}
             error={errors.isAdmin?.message!}
+            register={register}
+          />
+
+          <FormInput
+            name="password"
+            type="password"
+            label="Password"
+            error={errors.password?.message!}
+            placeholder="Password"
             register={register}
           />
 
@@ -78,4 +83,4 @@ const UserModal = ({
   );
 };
 
-export default UserModal;
+export default UserRegisterModal;

@@ -12,6 +12,12 @@ export interface UpdateUser {
   isAdmin: boolean;
 }
 
+export interface RegisterUser {
+  username: string;
+  isAdmin: boolean;
+  password: string;
+}
+
 export interface ChangeUserPassword {
   password: string;
 }

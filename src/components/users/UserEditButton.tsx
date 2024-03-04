@@ -3,14 +3,14 @@ import { useUpdateUser } from "../../hooks/users/";
 import useUserStore from "../../store/user";
 import { clearToken } from "../../utils/auth";
 import { EditButton } from "../common/buttons";
-import UserModal from "./UserModal";
+import UpdateUserModal from "./UpdateUserModal";
 
 const UserEditButton = ({ user }: { user: User }) => {
   const { mutateAsync, isPending } = useUpdateUser(user.id);
   const sessionUser = useUserStore((s) => s.user);
 
   return (
-    <UserModal
+    <UpdateUserModal
       header="Edit User Detail"
       onSuccessMessage="The user was successfuly modified"
       submitLabel="Save"

@@ -7,6 +7,7 @@ import {
   loginSchema,
   changeUserPasswordSchema,
   updateUserSchema,
+  registerUserSchema,
 } from "../validationSchema";
 
 export type ListViewFormData = z.infer<typeof listViewFormSchema>;
@@ -24,3 +25,5 @@ export type ChangeUserPasswordFormData = z.infer<
 >;
 
 export type UpdateUserFormData = z.infer<typeof updateUserSchema>;
+
+export type RegisterUserFormData = z.infer<typeof registerUserSchema>;

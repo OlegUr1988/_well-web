@@ -1,11 +1,16 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
 import { UsersList } from "../../components/users";
+import UserCommandPanel from "../../components/users/UserCommandPanel";
 
 const UsersPage = () => {
   return (
     <>
       <Container maxW="container.xl">
         <Heading mb={5}>Users</Heading>
+
+        <Box mb={5}>
+          <UserCommandPanel />
+        </Box>
 
         <Box mb={5}>
           <UsersList />
