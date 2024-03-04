@@ -10,15 +10,12 @@ const DataSourceForm = () => {
   const { mutateAsync, isPending } = useUpdateDataSource(1);
   const user = useUserStore((s) => s.user);
 
-  const { register, handleSubmit, onSubmit, errors } = useFormSubmit<
-    DataSourceFormData,
-    DataSourceFormData
-  >({
-    onSuccessMessage: "Data source was successfuly updated",
-    mutateAsync,
-    schema: dataSourceSchema,
-    onDataMutate: (data) => data,
-  });
+  const { register, handleSubmit, onSubmit, errors } =
+    useFormSubmit<DataSourceFormData>({
+      onSuccessMessage: "Data source was successfuly updated",
+      mutateAsync,
+      schema: dataSourceSchema,
+    });
 
   if (isLoading) return null;
 
