@@ -2,7 +2,7 @@ import { Badge, Tbody, Td, Tr } from "@chakra-ui/react";
 import { User } from "../../entities/users";
 import useUserStore from "../../store/user";
 
-const usersTableBody = ({ users }: { users: User[] }) => {
+const UsersTableBody = ({ users }: { users: User[] }) => {
   const { page, pageSize } = useUserStore((s) => s.usersQuery);
   return (
     <Tbody>
@@ -29,4 +29,4 @@ const usersTableBody = ({ users }: { users: User[] }) => {
   );
 };
 
-export default usersTableBody;
+export default UsersTableBody;

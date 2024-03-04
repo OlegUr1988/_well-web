@@ -1,7 +1,7 @@
 import { Skeleton } from "@chakra-ui/react";
 import useUsers from "../../hooks/users/useUsers";
 import useUserStore from "../../store/user";
-import UsersTable from "./usersTable";
+import UsersTable from "./UsersTable";
 
 const UsersList = () => {
   const { page, pageSize, searchedName } = useUserStore((s) => s.usersQuery);

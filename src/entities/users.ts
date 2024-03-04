@@ -7,6 +7,11 @@ export interface User {
   joined_at: string;
 }
 
+export interface UpdateUser {
+  username: string;
+  isAdmin: boolean;
+}
+
 export interface ChangeUserPassword {
   password: string;
 }
