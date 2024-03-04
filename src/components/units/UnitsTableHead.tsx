@@ -1,5 +1,5 @@
 import { Th, Thead, Tr } from "@chakra-ui/react";
-import useUserStore from "../../store/auth";
+import useUserStore from "../../store/user";
 
 const UnitsTableHead = () => {
   const user = useUserStore((s) => s.user);

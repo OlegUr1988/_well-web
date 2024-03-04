@@ -5,7 +5,7 @@ import useModelStore from "../../store/model";
 import ListViewLinkIcon from "../ListViewLinkIcon";
 import AssetDeleteButton from "./AssetDeleteButton";
 import AssetEditButton from "./AssetEditButton";
-import useUserStore from "../../store/auth";
+import useUserStore from "../../store/user";
 
 const AssetsList = ({ assets }: { assets: Asset[] }) => {
   const { assetId, areaId } = useModelStore((s) => s.modelQuery);

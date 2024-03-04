@@ -4,7 +4,7 @@ import { AssignmentCreateButton, AssignmentsList } from "../assignments";
 import { CollapsibleButton } from "../common/buttons";
 import AttributeDeleteButton from "./AttributeDeleteButton";
 import AttributeEditButton from "./AttributeEditButton";
-import useUserStore from "../../store/auth";
+import useUserStore from "../../store/user";
 
 const AttributeCard = ({ attribute }: { attribute: Attribute }) => {
   const { isOpen, onToggle } = useDisclosure();

@@ -1,5 +1,5 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
-import useUserStore from "../store/auth";
+import useUserStore from "../store/user";
 import ListViewSpinner from "./ListViewSpinner";
 
 interface Props {

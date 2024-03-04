@@ -1,15 +1,16 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
+import { UsersList } from "../../components/users";
 
 const UsersPage = () => {
   return (
     <>
       <Container maxW="container.xl">
-        <Heading>Users</Heading>
-      </Container>
+        <Heading mb={5}>Users</Heading>
 
-      <Box mb={5}>
-        
-      </Box>
+        <Box mb={5}>
+          <UsersList />
+        </Box>
+      </Container>
     </>
   );
 };

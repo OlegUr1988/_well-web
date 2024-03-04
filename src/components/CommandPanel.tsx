@@ -1,5 +1,5 @@
 import { HStack } from "@chakra-ui/react";
-import useUserStore from "../store/auth";
+import useUserStore from "../store/user";
 
 interface Props {
   createButton?: JSX.Element;
