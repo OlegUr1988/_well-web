@@ -1,19 +1,8 @@
-import { ReactNode, useEffect } from "react";
-import useUserStore from "../store/user";
-import { getToken } from "../utils/auth";
-import { jwtDecode } from "jwt-decode";
-import { User } from "../entities/users";
+import { ReactNode } from "react";
+import { useAuth } from "../hooks/auth/";
 
 const AuthContainer = ({ children }: { children: ReactNode }) => {
-  const { setUser } = useUserStore();
-
-  useEffect(() => {
-    try {
-      const token = getToken();
-      const user = jwtDecode(token!);
-      setUser(user as User);
-    } catch (ex) {}
-  }, [setUser]);
+  useAuth();
 
   return <>{children}</>;
 };

@@ -1,6 +1,6 @@
 import { LoginFormData } from "../entities/formDatas";
+import { useLogin } from "../hooks/auth/";
 import { useFormSubmit } from "../hooks/forms";
-import useLogin from "../hooks/useLogin";
 import { JWT } from "../services/api-client";
 import { setToken } from "../utils/auth";
 import { loginSchema } from "../validationSchema";
