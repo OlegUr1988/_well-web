@@ -18,6 +18,7 @@ interface Props<T> {
   onSuccess?: () => void;
   schema: ZodSchema<T>;
   name?: keyof T;
+  type?: "text" | "number" | "password";
 }
 
 const SimpleModal = <T extends FieldValues>({
@@ -32,6 +33,7 @@ const SimpleModal = <T extends FieldValues>({
   onSuccess,
   schema,
   name = "name",
+  type = "text",
 }: Props<T>) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -58,6 +60,7 @@ const SimpleModal = <T extends FieldValues>({
       <ModalContainer header={header} isOpen={isOpen} onClose={onClose}>
         <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
           <FormInput
+            type={type}
             name={name as Path<T>}
             label={label}
             error={errors[name]?.message as string}

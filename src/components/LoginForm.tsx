@@ -16,8 +16,10 @@ const LoginForm = () => {
     onSuccessMessage: "Successfull login",
     mutateAsync: (data) => mutateAsync(data),
     schema: loginSchema,
-    onSuccess: setToken,
-    redirectPath: "/",
+    onSuccess: (data) => {
+      setToken(data);
+      window.location.href = "/";
+    },
   });
 
   return (
