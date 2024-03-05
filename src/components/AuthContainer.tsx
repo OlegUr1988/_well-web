@@ -1,18 +1,9 @@
-import { ReactNode, useEffect } from "react";
-import { useUser } from "../hooks/users";
-import useUserStore from "../store/user";
+import { ReactNode } from "react";
+import { useAuthExpiration, useAuth } from "../hooks/auth/";
 
 const AuthContainer = ({ children }: { children: ReactNode }) => {
-  const { data: user, isLoading } = useUser();
-  const { setUser } = useUserStore();
-
-  useEffect(() => {
-    if (user) {
-      setUser(user);
-    }
-  }, [user, setUser]);
-
-  if (isLoading) return null;
+  useAuth();
+  useAuthExpiration();
 
   return <>{children}</>;
 };

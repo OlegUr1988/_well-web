@@ -1,13 +1,25 @@
+import { jwtDecode } from "jwt-decode";
 import { LoginFormData } from "../entities/formDatas";
+import { useLogin } from "../hooks/auth/";
 import { useFormSubmit } from "../hooks/forms";
-import useLogin from "../hooks/useLogin";
 import { JWT } from "../services/api-client";
-import { setToken } from "../utils/auth";
+import useUserStore from "../store/user";
+import { getToken, setToken } from "../utils/auth";
 import { loginSchema } from "../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "./forms";
+import { User } from "../entities/users";
 
 const LoginForm = () => {
   const { mutateAsync, isPending } = useLogin();
+  const setUser = useUserStore((s) => s.setUser);
+
+  const handleOnsuccess = (data: JWT) => {
+    setToken(data);
+    const token = getToken();
+    const user = jwtDecode(token!);
+    setUser(user as User);
+  };
+
   const { register, handleSubmit, onSubmit, errors } = useFormSubmit<
     LoginFormData,
     LoginFormData,
@@ -16,7 +28,7 @@ const LoginForm = () => {
     onSuccessMessage: "Successfull login",
     mutateAsync: (data) => mutateAsync(data),
     schema: loginSchema,
-    onSuccess: setToken,
+    onSuccess: handleOnsuccess,
     redirectPath: "/",
   });
 

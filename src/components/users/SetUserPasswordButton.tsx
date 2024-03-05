@@ -26,6 +26,7 @@ const SetUserPasswordButton = ({ user }: { user: User }) => {
       onSuccessMessage="The new password was successfully added"
       schema={changeUserPasswordSchema}
       name="password"
+      type="password"
       renderTriggerButton={(onOpen) => (
         <Button colorScheme="blue" onClick={onOpen}>
           Set Password
