@@ -1,10 +1,10 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
 import {
+  UnitSearchInput,
   UnitsCommandPanel,
   UnitsList,
   UnitsPagination,
 } from "../../components/config/units";
-import UnitSearchInput from "../../components/config/units/UnitSearchInput";
 
 const PHDTagsPage = () => {
   return (

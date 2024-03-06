@@ -1,12 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
-import ConfigPanelPage from "./pages/ConfigPanelPage";
 import DashboardPage from "./pages/DashboardPage";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
-import LoginPage from "./pages/LoginPage";
-import ModelsPage from "./pages/ModelsPage";
-import { DataSourcePage, PHDTagsPage, UnitsPage } from "./pages/configs";
+import {
+  ConfigPanelPage,
+  DataSourcePage,
+  LoginPage,
+  ModelsPage,
+  PHDTagsPage,
+  UnitsPage,
+} from "./pages/configs";
 import ChangePasswordPage from "./pages/configs/ChangePasswordPage";
 import UsersPage from "./pages/configs/UsersPage";
 
