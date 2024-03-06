@@ -4,8 +4,8 @@ import { DashboardHeaderPanel } from "../components/dashboards";
 import {
   LossesDailyLineChartCard,
   LossesTableCard,
-} from "../components/losses/";
-import { PerformancesCard } from "../components/performances";
+} from "../components/dashboards/losses";
+import { PerformancesCard } from "../components/dashboards/performances";
 import { useAreaByName } from "../hooks/areas";
 import { useAssetByName } from "../hooks/assets";
 

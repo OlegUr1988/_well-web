@@ -1,8 +1,10 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
-import { UsersList } from "../../components/users";
-import UserCommandPanel from "../../components/users/UserCommandPanel";
-import UserSearchInput from "../../components/users/UserSearchInput";
-import UsersPagination from "../../components/users/UsersPagination";
+import {
+  UserCommandPanel,
+  UserSearchInput,
+  UsersList,
+  UsersPagination,
+} from "../../components/config/users";
 
 const UsersPage = () => {
   return (

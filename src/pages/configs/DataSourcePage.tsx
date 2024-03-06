@@ -1,5 +1,5 @@
 import { Container, Heading } from "@chakra-ui/react";
-import { DataSourceForm } from "../../components/dataSources";
+import { DataSourceForm } from "../../components/config/dataSources";
 
 const DataSourcePage = () => {
   return (

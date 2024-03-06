@@ -1,5 +1,5 @@
 import { Container, Heading } from "@chakra-ui/react";
-import { ChangeUserPasswordForm } from "../../components/users";
+import { ChangeUserPasswordForm } from "../../components/config/users";
 
 const ChangePasswordPage = () => {
   return (

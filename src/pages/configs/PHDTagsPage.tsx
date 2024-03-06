@@ -4,7 +4,7 @@ import {
   PHDTagsList,
   PHDTagsPagination,
   PHDTagsSearchInput,
-} from "../../components/PHDTags";
+} from "../../components/config/PHDTags";
 
 const PHDTagsPage = () => {
   return (
