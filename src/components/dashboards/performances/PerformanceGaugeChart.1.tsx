@@ -1,11 +1,11 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
-import { Equipment } from "../../entities/equipments";
-import usePerformanceData from "../../hooks/usePerformanceData";
+import { Equipment } from "../../../entities/equipments";
+import usePerformanceData from "../../../hooks/usePerformanceData";
 import {
   calculateTotalDuty,
   calculateTotalUsefulWork,
   calculateUsefulWorkRatio,
-} from "../../utils/performances";
+} from "../../../utils/performances";
 import PerformanceGauge from "./PerformanceGauge";
 import PerformanceGaugeMetricSummary from "./PerformanceGaugeMetricSummary";
 

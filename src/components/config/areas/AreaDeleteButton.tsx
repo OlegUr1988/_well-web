@@ -1,7 +1,7 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteArea } from "../../../hooks/areas";
 import useModelStore from "../../../store/model";
-import SimpleAlert from "../../SimpleAlert";
+import SimpleAlert from "../SimpleAlert";
 import { IconButton } from "../../common/buttons";
 
 const AreaDeleteButton = ({ areaId }: { areaId: number }) => {

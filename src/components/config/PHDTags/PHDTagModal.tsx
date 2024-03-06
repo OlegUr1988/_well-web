@@ -6,8 +6,8 @@ import { SelectOption } from "../../../entities/selectOption";
 import { useFormSubmit } from "../../../hooks/forms";
 import { useUnits } from "../../../hooks/units";
 import { PHDTagSchema } from "../../../validationSchema";
-import ModalContainer from "../../ModalContainer";
-import { FormContainer, FormInput, FormSelect, FormSubmit } from "../../forms";
+import ModalContainer from "../ModalContainer";
+import { FormContainer, FormInput, FormSelect, FormSubmit } from "../forms";
 
 interface Props {
   header: string;

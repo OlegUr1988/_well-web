@@ -6,8 +6,8 @@ import { SelectOption } from "../../../entities/selectOption";
 import { usePHDTags } from "../../../hooks/PHDTags";
 import { useFormSubmit } from "../../../hooks/forms";
 import { assignmentSchema } from "../../../validationSchema";
-import ModalContainer from "../../ModalContainer";
-import { FormContainer, FormSelect, FormSubmit } from "../../forms";
+import ModalContainer from "../ModalContainer";
+import { FormContainer, FormSelect, FormSubmit } from "../forms";
 
 interface Props {
   attributeId: number;

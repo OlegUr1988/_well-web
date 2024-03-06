@@ -2,7 +2,7 @@ import { FaPlus } from "react-icons/fa";
 import { ListViewFormData } from "../../../entities/formDatas";
 import { useAddEquipment } from "../../../hooks/equipments";
 import { listViewFormSchema } from "../../../validationSchema";
-import SimpleModal from "../../SimpleModal";
+import SimpleModal from "../SimpleModal";
 import { IconButton } from "../../common/buttons";
 
 const EquipmentCreateButton = ({ assetId }: { assetId: number }) => {

@@ -1,5 +1,5 @@
 import ReactApexChart from "react-apexcharts";
-import semiGaugeOptions from "../../constants/semiGaugeOptions";
+import semiGaugeOptions from "../../../constants/semiGaugeOptions";
 
 const PerformanceGauge = ({ usefulWorkRatio }: { usefulWorkRatio: number }) => {
   return (

@@ -1,7 +1,7 @@
 import { useUsers } from "../../../hooks/users";
 import useDeleteUser from "../../../hooks/users/useDeleteUser";
 import useUserStore from "../../../store/user";
-import SimpleAlert from "../../SimpleAlert";
+import SimpleAlert from "../SimpleAlert";
 import { DeleteButton } from "../../common/buttons";
 
 const UserDeleteButton = ({ userId }: { userId: number }) => {

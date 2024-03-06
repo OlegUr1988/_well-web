@@ -1,6 +1,6 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteAttribute } from "../../../hooks/attributes";
-import SimpleAlert from "../../SimpleAlert";
+import SimpleAlert from "../SimpleAlert";
 import TooltipContainer from "../../common/TooltipContainer";
 import { IconButton } from "../../common/buttons";
 

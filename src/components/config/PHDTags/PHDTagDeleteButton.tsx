@@ -1,7 +1,7 @@
 import { useDeletePHDTag, usePHDTags } from "../../../hooks/PHDTags";
 import usePHDTagStore from "../../../store/phdTags";
 import { DeleteButton } from "../../common/buttons";
-import SimpleAlert from "../../SimpleAlert";
+import SimpleAlert from "../SimpleAlert";
 
 const PHDTagDeleteButton = ({ tagId }: { tagId: number }) => {
   const { mutateAsync, isPending } = useDeletePHDTag();

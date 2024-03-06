@@ -1,6 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import { useAddArea } from "../../../hooks/areas";
-import SimpleModal from "../../SimpleModal";
+import SimpleModal from "../SimpleModal";
 import { IconButton } from "../../common/buttons";
 import { ListViewFormData } from "../../../entities/formDatas";
 import { listViewFormSchema } from "../../../validationSchema";

@@ -1,7 +1,10 @@
 import { Tr } from "@chakra-ui/react";
-import { Attribute } from "../../entities/attributes";
-import useGetRecords from "../../hooks/useGetRecords";
-import { calculateRecordsSum, getAverageOfRecords } from "../../utils/records";
+import { Attribute } from "../../../entities/attributes";
+import useGetRecords from "../../../hooks/useGetRecords";
+import {
+  calculateRecordsSum,
+  getAverageOfRecords,
+} from "../../../utils/records";
 import LossesTableBodyCell from "./LossesTableBodyCell";
 import LossesTableRowSkeleton from "./LossesTableRowSkeleton";
 

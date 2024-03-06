@@ -1,5 +1,5 @@
 import { Box, Heading } from "@chakra-ui/react";
-import { Equipment } from "../../entities/equipments";
+import { Equipment } from "../../../entities/equipments";
 import LossesTable from "./LossesTable";
 
 const LossesTablesField = ({ equipments }: { equipments: Equipment[] }) => {

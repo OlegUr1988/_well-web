@@ -1,7 +1,7 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Asset } from "../../../entities/assets";
 import { useUpdateAsset } from "../../../hooks/assets";
-import SimpleModal from "../../SimpleModal";
+import SimpleModal from "../SimpleModal";
 import { IconButton } from "../../common/buttons";
 import { ListViewFormData } from "../../../entities/formDatas";
 import { listViewFormSchema } from "../../../validationSchema";

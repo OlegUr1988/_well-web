@@ -12,7 +12,7 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 import { useRef } from "react";
 import { toast } from "react-toastify";
-import { HttpError } from "../services/api-client";
+import { HttpError } from "../../services/api-client";
 
 interface Props<T> {
   header: string;

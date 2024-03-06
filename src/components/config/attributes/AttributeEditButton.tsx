@@ -3,7 +3,7 @@ import { Attribute } from "../../../entities/attributes";
 import { ListViewFormData } from "../../../entities/formDatas";
 import { useUpdateAttribute } from "../../../hooks/attributes";
 import { listViewFormSchema } from "../../../validationSchema";
-import SimpleModal from "../../SimpleModal";
+import SimpleModal from "../SimpleModal";
 import TooltipContainer from "../../common/TooltipContainer";
 import { IconButton } from "../../common/buttons";
 

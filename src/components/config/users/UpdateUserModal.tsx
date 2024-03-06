@@ -4,8 +4,8 @@ import { UpdateUserFormData } from "../../../entities/formDatas";
 import { UpdateUser } from "../../../entities/users";
 import { useFormSubmit } from "../../../hooks/forms";
 import { updateUserSchema } from "../../../validationSchema";
-import ModalContainer from "../../ModalContainer";
-import { FormChekbox, FormContainer, FormInput, FormSubmit } from "../../forms";
+import ModalContainer from "../ModalContainer";
+import { FormChekbox, FormContainer, FormInput, FormSubmit } from "../forms";
 
 interface Props {
   header: string;

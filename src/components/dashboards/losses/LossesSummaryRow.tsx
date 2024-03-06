@@ -1,8 +1,8 @@
 import { Table, TableContainer } from "@chakra-ui/react";
 import _ from "lodash";
-import losses from "../../constants/losses";
-import { Equipment } from "../../entities/equipments";
-import useGetLossesByTypes from "../../hooks/useGetLossesByTypes";
+import losses from "../../../constants/losses";
+import { Equipment } from "../../../entities/equipments";
+import useGetLossesByTypes from "../../../hooks/useGetLossesByTypes";
 import LossesTableFoot from "./LossesTableFoot";
 
 const LossesSummaryRow = ({ equipments }: { equipments: Equipment[] }) => {

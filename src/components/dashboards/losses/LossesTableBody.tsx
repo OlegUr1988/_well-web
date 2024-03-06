@@ -1,5 +1,5 @@
 import { Tbody } from "@chakra-ui/react";
-import { Attribute } from "../../entities/attributes";
+import { Attribute } from "../../../entities/attributes";
 import LossesTableRow from "./LossesTableRow";
 
 const LossesTableBody = ({ attributes }: { attributes: Attribute[] }) => {

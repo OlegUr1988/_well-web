@@ -1,7 +1,7 @@
 import { Flex, HStack, List, Text } from "@chakra-ui/react";
 import { GiGears } from "react-icons/gi";
 import useUserStore from "../../store/user";
-import SideBarListItem from "../SideBarListItem";
+import SideBarListItem from "./SideBarListItem";
 
 const SideBar = () => {
   const user = useUserStore((s) => s.user);

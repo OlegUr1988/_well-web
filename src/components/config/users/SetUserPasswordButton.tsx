@@ -3,7 +3,7 @@ import { ChangeUserPasswordFormData } from "../../../entities/formDatas";
 import { User } from "../../../entities/users";
 import { useSetUserPassword } from "../../../hooks/users";
 import { changeUserPasswordSchema } from "../../../validationSchema";
-import SimpleModal from "../../SimpleModal";
+import SimpleModal from "../SimpleModal";
 import useUserStore from "../../../store/user";
 import { clearToken } from "../../../utils/auth";
 

@@ -3,7 +3,7 @@ import { Unit } from "../../../entities/units";
 import { useUpdateUnit } from "../../../hooks/units";
 import { listViewFormSchema } from "../../../validationSchema";
 import { EditButton } from "../../common/buttons";
-import SimpleModal from "../../SimpleModal";
+import SimpleModal from "../SimpleModal";
 
 const UnitEditButton = ({ unit }: { unit: Unit }) => {
   const { mutateAsync, isPending } = useUpdateUnit(unit.id);
