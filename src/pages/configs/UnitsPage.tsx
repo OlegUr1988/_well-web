@@ -3,8 +3,8 @@ import {
   UnitsCommandPanel,
   UnitsList,
   UnitsPagination,
-} from "../../components/units";
-import UnitSearchInput from "../../components/units/UnitSearchInput";
+} from "../../components/config/units";
+import UnitSearchInput from "../../components/config/units/UnitSearchInput";
 
 const PHDTagsPage = () => {
   return (
