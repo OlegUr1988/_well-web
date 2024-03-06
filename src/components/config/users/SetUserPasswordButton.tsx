@@ -2,10 +2,10 @@ import { Button } from "@chakra-ui/react";
 import { ChangeUserPasswordFormData } from "../../../entities/formDatas";
 import { User } from "../../../entities/users";
 import { useSetUserPassword } from "../../../hooks/users";
-import { changeUserPasswordSchema } from "../../../validationSchema";
-import SimpleModal from "../SimpleModal";
 import useUserStore from "../../../store/user";
 import { clearToken } from "../../../utils/auth";
+import { changeUserPasswordSchema } from "../../../validationSchema";
+import SimpleModal from "../SimpleModal";
 
 const SetUserPasswordButton = ({ user }: { user: User }) => {
   const { mutateAsync, isPending } = useSetUserPassword(user.id);

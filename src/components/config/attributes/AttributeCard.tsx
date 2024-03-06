@@ -1,10 +1,10 @@
 import { Card, Collapse, HStack, Text, useDisclosure } from "@chakra-ui/react";
 import { Attribute } from "../../../entities/attributes";
-import { AssignmentCreateButton, AssignmentsList } from "../assignments";
+import useUserStore from "../../../store/user";
 import { CollapsibleButton } from "../../common/buttons";
+import { AssignmentCreateButton, AssignmentsList } from "../assignments";
 import AttributeDeleteButton from "./AttributeDeleteButton";
 import AttributeEditButton from "./AttributeEditButton";
-import useUserStore from "../../../store/user";
 
 const AttributeCard = ({ attribute }: { attribute: Attribute }) => {
   const { isOpen, onToggle } = useDisclosure();

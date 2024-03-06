@@ -1,8 +1,8 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteAttribute } from "../../../hooks/attributes";
-import SimpleAlert from "../SimpleAlert";
 import TooltipContainer from "../../common/TooltipContainer";
 import { IconButton } from "../../common/buttons";
+import SimpleAlert from "../SimpleAlert";
 
 const AttributeDeleteButton = ({ attributeId }: { attributeId: number }) => {
   const { mutateAsync, isPending } = useDeleteAttribute();

@@ -2,9 +2,9 @@ import { Box, HStack, Text } from "@chakra-ui/react";
 import { Attribute } from "../../../entities/attributes";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
 import useModelStore from "../../../store/model";
+import useUserStore from "../../../store/user";
 import AttributeCreateButton from "./AttributeCreateButton";
 import AttributesList from "./AttributesList";
-import useUserStore from "../../../store/user";
 
 const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
   const { equipmentId } = useModelStore((s) => s.modelQuery);

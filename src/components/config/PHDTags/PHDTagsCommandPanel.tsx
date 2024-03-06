@@ -1,7 +1,7 @@
 import { useImportPHDTagsFromExcel } from "../../../hooks/PHDTags";
 import usePHDTagStore from "../../../store/phdTags";
-import CommandPanel from "../CommandPanel";
 import { ExportButton, ImportButton } from "../../common/buttons";
+import CommandPanel from "../CommandPanel";
 import PHDTagCreateButton from "./PHDTagCreateButton";
 
 const PHDTagsCommandPanel = () => {

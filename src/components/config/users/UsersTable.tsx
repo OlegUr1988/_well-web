@@ -1,7 +1,7 @@
 import { Table, TableContainer } from "@chakra-ui/react";
 import { User } from "../../../entities/users";
-import UsersTableHead from "./UsersTableHead";
 import UsersTableBody from "./UsersTableBody";
+import UsersTableHead from "./UsersTableHead";
 
 const UsersTable = ({ users }: { users: User[] }) => {
   return (

@@ -1,10 +1,10 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Equipment } from "../../../entities/equipments";
-import { useUpdateEquipment } from "../../../hooks/equipments";
-import SimpleModal from "../SimpleModal";
-import { IconButton } from "../../common/buttons";
 import { ListViewFormData } from "../../../entities/formDatas";
+import { useUpdateEquipment } from "../../../hooks/equipments";
 import { listViewFormSchema } from "../../../validationSchema";
+import { IconButton } from "../../common/buttons";
+import SimpleModal from "../SimpleModal";
 
 const EquipmentEditButton = ({ equipment }: { equipment: Equipment }) => {
   const { mutateAsync, isPending } = useUpdateEquipment(equipment.id);

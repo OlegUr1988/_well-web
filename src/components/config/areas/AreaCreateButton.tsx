@@ -1,9 +1,9 @@
 import { FaPlus } from "react-icons/fa";
-import { useAddArea } from "../../../hooks/areas";
-import SimpleModal from "../SimpleModal";
-import { IconButton } from "../../common/buttons";
 import { ListViewFormData } from "../../../entities/formDatas";
+import { useAddArea } from "../../../hooks/areas";
 import { listViewFormSchema } from "../../../validationSchema";
+import { IconButton } from "../../common/buttons";
+import SimpleModal from "../SimpleModal";
 
 const AreaCreateButton = () => {
   const { mutateAsync, isPending } = useAddArea();

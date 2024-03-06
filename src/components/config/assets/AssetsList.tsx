@@ -2,10 +2,10 @@ import { Box, HStack, List, ListItem, Text } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
 import { useArea } from "../../../hooks/areas";
 import useModelStore from "../../../store/model";
+import useUserStore from "../../../store/user";
 import ListViewLinkIcon from "../ListViewLinkIcon";
 import AssetDeleteButton from "./AssetDeleteButton";
 import AssetEditButton from "./AssetEditButton";
-import useUserStore from "../../../store/user";
 
 const AssetsList = ({ assets }: { assets: Asset[] }) => {
   const { assetId, areaId } = useModelStore((s) => s.modelQuery);

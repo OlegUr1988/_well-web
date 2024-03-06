@@ -1,7 +1,7 @@
 import { HStack, List, ListItem, Text } from "@chakra-ui/react";
 import { Area } from "../../../entities/areas";
-import useUserStore from "../../../store/user";
 import useModelStore from "../../../store/model";
+import useUserStore from "../../../store/user";
 import AreaDeleteButton from "./AreaDeleteButton";
 import AreaEditButton from "./AreaEditButton";
 

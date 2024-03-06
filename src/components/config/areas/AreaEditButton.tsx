@@ -3,8 +3,8 @@ import { Area } from "../../../entities/areas";
 import { ListViewFormData } from "../../../entities/formDatas";
 import { useUpdateArea } from "../../../hooks/areas";
 import { listViewFormSchema } from "../../../validationSchema";
-import SimpleModal from "../SimpleModal";
 import { IconButton } from "../../common/buttons";
+import SimpleModal from "../SimpleModal";
 
 const AreaEditButton = ({ area }: { area: Area }) => {
   const { mutateAsync, isPending } = useUpdateArea(area.id);

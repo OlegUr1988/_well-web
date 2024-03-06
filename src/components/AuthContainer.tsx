@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { useAuthExpiration, useAuth } from "../hooks/auth/";
+import { useAuth, useAuthExpiration } from "../hooks/auth/";
 
 const AuthContainer = ({ children }: { children: ReactNode }) => {
   useAuth();

@@ -1,5 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import { LoginFormData } from "../../entities/formDatas";
+import { User } from "../../entities/users";
 import { useLogin } from "../../hooks/auth";
 import { useFormSubmit } from "../../hooks/forms";
 import { JWT } from "../../services/api-client";
@@ -7,7 +8,6 @@ import useUserStore from "../../store/user";
 import { getToken, setToken } from "../../utils/auth";
 import { loginSchema } from "../../validationSchema";
 import { FormContainer, FormInput, FormSubmit } from "./forms";
-import { User } from "../../entities/users";
 
 const LoginForm = () => {
   const { mutateAsync, isPending } = useLogin();

@@ -11,9 +11,9 @@ import {
 import { Assignment } from "../../../entities/assignments";
 import { useAssignments } from "../../../hooks/assignments";
 import { useUnits } from "../../../hooks/units";
+import useUserStore from "../../../store/user";
 import AssignmentDeleteButton from "./AssignmentDeleteButton";
 import AssignmentEditButton from "./AssignmentEditButton";
-import useUserStore from "../../../store/user";
 
 const AssignmentsList = ({ attributeId }: { attributeId: number }) => {
   const { data: assigns, isLoading, error } = useAssignments(attributeId);

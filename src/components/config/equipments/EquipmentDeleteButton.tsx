@@ -1,8 +1,8 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteEquipment } from "../../../hooks/equipments";
 import useModelStore from "../../../store/model";
-import SimpleAlert from "../SimpleAlert";
 import { IconButton } from "../../common/buttons";
+import SimpleAlert from "../SimpleAlert";
 
 const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
   const { mutateAsync, isPending } = useDeleteEquipment();

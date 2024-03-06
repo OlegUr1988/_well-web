@@ -1,9 +1,9 @@
 import { HStack, List, ListItem, Text } from "@chakra-ui/react";
 import { Equipment } from "../../../entities/equipments";
 import useModelStore from "../../../store/model";
+import useUserStore from "../../../store/user";
 import EquipmentDeleteButton from "./EquipmentDeleteButton";
 import EquipmentEditButton from "./EquipmentEditButton";
-import useUserStore from "../../../store/user";
 
 const EquipmentsList = ({ equipments }: { equipments: Equipment[] }) => {
   const { equipmentId } = useModelStore((s) => s.modelQuery);
