@@ -4,15 +4,15 @@ import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
 import {
+  ChangePasswordPage,
   ConfigPanelPage,
   DataSourcePage,
   LoginPage,
   ModelsPage,
   PHDTagsPage,
   UnitsPage,
+  UsersPage,
 } from "./pages/configs";
-import ChangePasswordPage from "./pages/configs/ChangePasswordPage";
-import UsersPage from "./pages/configs/UsersPage";
 
 const router = createBrowserRouter([
   {
