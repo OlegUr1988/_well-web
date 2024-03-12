@@ -1,11 +1,11 @@
 import _ from "lodash";
 import losses from "../constants/losses";
-import { Equipment } from "../entities/equipments";
 import useGetLossesByTypes from "./useGetLossesByTypes";
 import useGetRecords from "./useGetRecords";
+import { Asset } from "../entities/assets";
 
-const useGetSeriesByEquipments = (equipments: Equipment[]) => {
-  const allAttributes = _.flatten(equipments?.map((eq) => eq.attribute));
+const useGetSeriesByAsset = (assets: Asset[]) => {
+  const allAttributes = _.flatten(assets?.map((eq) => eq.attributes));
   const attributes = useGetLossesByTypes(allAttributes, losses);
 
   // getting assignments
@@ -37,4 +37,4 @@ const useGetSeriesByEquipments = (equipments: Equipment[]) => {
   }));
 };
 
-export default useGetSeriesByEquipments;
+export default useGetSeriesByAsset;

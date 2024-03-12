@@ -6,7 +6,6 @@ import {
   LossesTableCard,
 } from "../components/dashboards/losses";
 import { PerformancesCard } from "../components/dashboards/performances";
-import { useAreaByName } from "../hooks/areas";
 import { useAssetByName } from "../hooks/assets";
 
 const DashboardPage = () => {
@@ -36,7 +35,7 @@ const DashboardPage = () => {
         <LossesTableCard asset={asset!} />
         <PerformancesCard asset={asset!} />
       </SimpleGrid>
-      {/* <LossesDailyLineChartCard asset={asset!} /> */}
+      <LossesDailyLineChartCard asset={asset!} />
     </Box>
   );
 };
