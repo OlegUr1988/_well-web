@@ -6,15 +6,14 @@ import { listViewFormSchema } from "../../../validationSchema";
 import { IconButton } from "../../common/buttons";
 import SimpleModal from "../SimpleModal";
 
-const AssetEditButton = ({ asset }: { asset: Asset }) => {
-  const { mutateAsync, isPending } = useUpdateAsset(asset.id);
-
+const AreaEditButton = ({ area }: { area: Asset }) => {
+  const { mutateAsync, isPending } = useUpdateAsset(area.id);
   return (
     <SimpleModal<ListViewFormData>
-      header="Edit Asset"
-      label="Asset Name"
+      header="Edit Area"
+      label="Area Name"
       submitLabel="Save"
-      onSuccessMessage="The asset was successfully modified"
+      onSuccessMessage="The area was successfully modified"
       schema={listViewFormSchema}
       renderTriggerButton={(onOpen) => (
         <IconButton
@@ -24,13 +23,11 @@ const AssetEditButton = ({ asset }: { asset: Asset }) => {
           icon={<MdOutlineEdit color="white" />}
         />
       )}
-      defaultValue={asset.name}
+      defaultValue={area.name}
       isPending={isPending}
-      mutateAsync={(data) =>
-        mutateAsync({ name: data.name, areaId: asset.parentAssetId })
-      }
+      mutateAsync={mutateAsync}
     />
   );
 };
 
-export default AssetEditButton;
+export default AreaEditButton;
