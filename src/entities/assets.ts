@@ -1,9 +1,11 @@
+import { Attribute } from "./attributes";
 import { BasicQuery } from "./basicQuery";
 
 export interface Asset {
   id: number;
   name: string;
   parentAssetId: number;
+  attributes: Attribute[];
   children: Asset[];
 }
 
