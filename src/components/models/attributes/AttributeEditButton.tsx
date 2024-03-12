@@ -32,7 +32,7 @@ const AttributeEditButton = ({ attribute }: { attribute: Attribute }) => {
         mutateAsync({
           name: data.name,
           attributeTypeId: attribute.attributeTypeId,
-          equipmentId: attribute.equipmentId,
+          assetId: attribute.assetId,
         })
       }
     />

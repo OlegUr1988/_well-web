@@ -26,7 +26,7 @@ const AttributeCreateButton = ({
         mutateAsync({
           name: data.name,
           attributeTypeId,
-          equipmentId,
+          assetId: equipmentId,
         })
       }
     />

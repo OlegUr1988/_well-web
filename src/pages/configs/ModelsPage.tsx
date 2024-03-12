@@ -10,9 +10,9 @@ const ModelsPage = () => {
       <AreasListView />
       <AssetsListView />
       <SubassetsListView />
-      {/* <Box flex={1} overflowY="auto">
+      <Box flex={1} overflowY="auto">
         <AttributesSection />
-      </Box> */}
+      </Box>
     </Flex>
   );
 };

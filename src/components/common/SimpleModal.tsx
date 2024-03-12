@@ -6,7 +6,7 @@ import { useFormSubmit } from "../../hooks/forms";
 import ModalContainer from "./ModalContainer";
 import { FormContainer, FormInput, FormSubmit } from "../config/forms";
 
-interface Props<T> {
+interface Props<T, K, V = K> {
   header: string;
   label: string;
   submitLabel: string;
@@ -14,14 +14,14 @@ interface Props<T> {
   renderTriggerButton: (onOpen: () => void) => JSX.Element;
   isPending: boolean;
   defaultValue?: string;
-  mutateAsync: (data: T) => Promise<T>;
-  onSuccess?: () => void;
+  mutateAsync: (data: K) => Promise<V>;
+  onSuccess?: (result: V) => void;
   schema: ZodSchema<T>;
   name?: keyof T;
   type?: "text" | "number" | "password";
 }
 
-const SimpleModal = <T extends FieldValues>({
+const SimpleModal = <T extends FieldValues, K = T, V = K>({
   header,
   label,
   submitLabel,
@@ -34,16 +34,20 @@ const SimpleModal = <T extends FieldValues>({
   schema,
   name = "name",
   type = "text",
-}: Props<T>) => {
+}: Props<T, K, V>) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { reset, register, handleSubmit, onSubmit, errors } = useFormSubmit<T>({
+  const { reset, register, handleSubmit, onSubmit, errors } = useFormSubmit<
+    T,
+    K,
+    V
+  >({
     onSuccessMessage,
     mutateAsync,
     schema,
-    onSuccess: () => {
+    onSuccess: (data) => {
       onClose();
-      if (onSuccess) onSuccess();
+      if (onSuccess) onSuccess(data);
     },
   });
 
