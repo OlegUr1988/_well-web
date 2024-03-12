@@ -1,9 +1,9 @@
 import { HStack, List, ListItem, Text } from "@chakra-ui/react";
-import { Asset } from "../../../../entities/assets";
-import useModelStore from "../../../../store/model";
-import useUserStore from "../../../../store/user";
-import AreaEditButton from "./AreaEditButton";
+import { Asset } from "../../../entities/assets";
+import useModelStore from "../../../store/model";
+import useUserStore from "../../../store/user";
 import AreaDeleteButton from "./AreaDeleteButton";
+import AreaEditButton from "./AreaEditButton";
 
 const AreasList = ({ areas }: { areas: Asset[] }) => {
   const { areaId } = useModelStore((s) => s.modelQuery);

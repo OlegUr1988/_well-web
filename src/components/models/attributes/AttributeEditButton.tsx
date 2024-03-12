@@ -5,7 +5,7 @@ import { useUpdateAttribute } from "../../../hooks/attributes";
 import { listViewFormSchema } from "../../../validationSchema";
 import TooltipContainer from "../../common/TooltipContainer";
 import { IconButton } from "../../common/buttons";
-import SimpleModal from "../SimpleModal";
+import SimpleModal from "../../common/SimpleModal";
 
 const AttributeEditButton = ({ attribute }: { attribute: Attribute }) => {
   const { mutateAsync, isPending } = useUpdateAttribute(attribute.id);

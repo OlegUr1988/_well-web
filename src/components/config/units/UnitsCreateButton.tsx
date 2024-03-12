@@ -2,7 +2,7 @@ import { ListViewFormData } from "../../../entities/formDatas";
 import { useAddUnit } from "../../../hooks/units";
 import { listViewFormSchema } from "../../../validationSchema";
 import { CreateButton } from "../../common/buttons";
-import SimpleModal from "../SimpleModal";
+import SimpleModal from "../../common/SimpleModal";
 
 const UnitsCreateButton = () => {
   const { mutateAsync, isPending } = useAddUnit();

@@ -1,7 +1,7 @@
 import { useDeleteUnit, useUnits } from "../../../hooks/units";
 import useUnitsStore from "../../../store/unitsStore";
 import { DeleteButton } from "../../common/buttons";
-import SimpleAlert from "../SimpleAlert";
+import SimpleAlert from "../../common/SimpleAlert";
 
 const UnitDeleteButton = ({ unitId }: { unitId: number }) => {
   const { mutateAsync, isPending } = useDeleteUnit();

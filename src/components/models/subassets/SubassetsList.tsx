@@ -1,7 +1,7 @@
 import { HStack, List, ListItem, Text } from "@chakra-ui/react";
-import { Asset } from "../../../../entities/assets";
-import useModelStore from "../../../../store/model";
-import useUserStore from "../../../../store/user";
+import { Asset } from "../../../entities/assets";
+import useModelStore from "../../../store/model";
+import useUserStore from "../../../store/user";
 import SubassetDeleteButton from "./SubassetDeleteButton";
 import SubassetEditButton from "./SubassetEditButton";
 

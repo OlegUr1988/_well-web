@@ -1,6 +1,6 @@
 import _ from "lodash";
-import { useAssets } from "../../../../hooks/assets";
-import ListView from "../../ListView";
+import { useAssets } from "../../../hooks/assets";
+import ListView from "../ListView";
 import AreaCreateButton from "./AreaCreateButton";
 import AreasList from "./AreasList";
 

@@ -1,6 +1,6 @@
-import { useAssets } from "../../../../hooks/assets";
-import useModelStore from "../../../../store/model";
-import ListView from "../../ListView";
+import { useAssets } from "../../../hooks/assets";
+import useModelStore from "../../../store/model";
+import ListView from "../ListView";
 import AssetCreateButton from "./AssetCreateButton";
 import AssetsList from "./AssetsList";
 

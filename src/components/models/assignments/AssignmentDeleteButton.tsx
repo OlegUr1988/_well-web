@@ -3,7 +3,7 @@ import { Assignment } from "../../../entities/assignments";
 import { useDeleteAssignment } from "../../../hooks/assignments";
 import TooltipContainer from "../../common/TooltipContainer";
 import { IconButton } from "../../common/buttons";
-import SimpleAlert from "../SimpleAlert";
+import SimpleAlert from "../../common/SimpleAlert";
 
 const AssignmentDeleteButton = ({ assignment }: { assignment: Assignment }) => {
   const { mutateAsync, isPending } = useDeleteAssignment(assignment);

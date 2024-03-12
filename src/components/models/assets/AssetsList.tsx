@@ -1,9 +1,9 @@
 import { Box, HStack, List, ListItem, Text } from "@chakra-ui/react";
-import { Asset } from "../../../../entities/assets";
-import { useAsset } from "../../../../hooks/assets";
-import useModelStore from "../../../../store/model";
-import useUserStore from "../../../../store/user";
-import ListViewLinkIcon from "../../ListViewLinkIcon";
+import { Asset } from "../../../entities/assets";
+import { useAsset } from "../../../hooks/assets";
+import useModelStore from "../../../store/model";
+import useUserStore from "../../../store/user";
+import ListViewLinkIcon from "../ListViewLinkIcon";
 import AssetDeleteButton from "./AssetDeleteButton";
 import AssetEditButton from "./AssetEditButton";
 
