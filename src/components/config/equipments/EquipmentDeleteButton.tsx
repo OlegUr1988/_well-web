@@ -6,7 +6,7 @@ import SimpleAlert from "../SimpleAlert";
 
 const EquipmentDeleteButton = ({ equipmentId }: { equipmentId: number }) => {
   const { mutateAsync, isPending } = useDeleteEquipment();
-  const setEquipmentId = useModelStore((s) => s.setEquipmentId);
+  const setEquipmentId = useModelStore((s) => s.setSubassetId);
 
   return (
     <SimpleAlert

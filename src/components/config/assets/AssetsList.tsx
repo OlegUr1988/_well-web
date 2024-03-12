@@ -10,7 +10,7 @@ import AssetEditButton from "./AssetEditButton";
 const AssetsList = ({ assets }: { assets: Asset[] }) => {
   const { assetId, areaId } = useModelStore((s) => s.modelQuery);
   const setAssetId = useModelStore((s) => s.setAssetId);
-  const setEquipmentId = useModelStore((s) => s.setEquipmentId);
+  const setEquipmentId = useModelStore((s) => s.setSubassetId);
   const { data: area } = useArea(areaId);
   const user = useUserStore((s) => s.user);
 

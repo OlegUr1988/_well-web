@@ -6,8 +6,8 @@ import EquipmentDeleteButton from "./EquipmentDeleteButton";
 import EquipmentEditButton from "./EquipmentEditButton";
 
 const EquipmentsList = ({ equipments }: { equipments: Equipment[] }) => {
-  const { equipmentId } = useModelStore((s) => s.modelQuery);
-  const setEquipmentId = useModelStore((s) => s.setEquipmentId);
+  const { subassetId: equipmentId } = useModelStore((s) => s.modelQuery);
+  const setEquipmentId = useModelStore((s) => s.setSubassetId);
   const user = useUserStore((s) => s.user);
 
   return (

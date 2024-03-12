@@ -7,7 +7,7 @@ import AttributeCreateButton from "./AttributeCreateButton";
 import AttributesList from "./AttributesList";
 
 const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
-  const { equipmentId } = useModelStore((s) => s.modelQuery);
+  const { subassetId: equipmentId } = useModelStore((s) => s.modelQuery);
   const user = useUserStore((s) => s.user);
 
   const { data: types } = useAttributeTypes();

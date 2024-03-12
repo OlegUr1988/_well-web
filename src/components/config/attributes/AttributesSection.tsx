@@ -4,7 +4,7 @@ import useModelStore from "../../../store/model";
 import AttributeTypesList from "./AttributeTypesList";
 
 const AttributesSection = () => {
-  const { equipmentId } = useModelStore((s) => s.modelQuery);
+  const { subassetId: equipmentId } = useModelStore((s) => s.modelQuery);
   const { data: attributes, isLoading, error } = useAttributes({ equipmentId });
 
   if (equipmentId === 0) return null;

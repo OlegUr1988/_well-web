@@ -4,27 +4,27 @@ import { create } from "zustand";
 interface ModelQuery {
   areaId: number;
   assetId: number;
-  equipmentId: number;
+  subassetId: number;
 }
 
 interface ModelStore {
   modelQuery: ModelQuery;
   setAreaId: (areaId: number) => void;
   setAssetId: (assetId: number) => void;
-  setEquipmentId: (equipmentId: number) => void;
+  setSubassetId: (subassetId: number) => void;
 }
 
 const useModelStore = create<ModelStore>((set) => ({
-  modelQuery: { areaId: 0, assetId: 0, equipmentId: 0 },
+  modelQuery: { areaId: 0, assetId: 0, subassetId: 0 },
   setAreaId: (areaId) =>
     set((store) => ({ modelQuery: { ...store.modelQuery, areaId } })),
   setAssetId: (assetId) =>
     set((store) => ({
       modelQuery: { ...store.modelQuery, assetId },
     })),
-  setEquipmentId: (equipmentId) =>
+  setSubassetId: (subassetId) =>
     set((store) => ({
-      modelQuery: { ...store.modelQuery, equipmentId },
+      modelQuery: { ...store.modelQuery, subassetId },
     })),
 }));
 
