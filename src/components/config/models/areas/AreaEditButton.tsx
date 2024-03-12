@@ -1,10 +1,10 @@
 import { MdOutlineEdit } from "react-icons/md";
-import { Asset } from "../../../entities/assets";
-import { ListViewFormData } from "../../../entities/formDatas";
-import { useUpdateAsset } from "../../../hooks/assets";
-import { listViewFormSchema } from "../../../validationSchema";
-import { IconButton } from "../../common/buttons";
-import SimpleModal from "../SimpleModal";
+import { Asset } from "../../../../entities/assets";
+import { ListViewFormData } from "../../../../entities/formDatas";
+import { useUpdateAsset } from "../../../../hooks/assets";
+import { listViewFormSchema } from "../../../../validationSchema";
+import { IconButton } from "../../../common/buttons";
+import SimpleModal from "../../SimpleModal";
 
 const AreaEditButton = ({ area }: { area: Asset }) => {
   const { mutateAsync, isPending } = useUpdateAsset(area.id);

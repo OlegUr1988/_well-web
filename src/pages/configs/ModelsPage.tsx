@@ -2,7 +2,7 @@ import { Box, Flex } from "@chakra-ui/react";
 import { AssetsListView } from "../../components/config/assets";
 import { AttributesSection } from "../../components/config/attributes";
 import { EquipmentsListView } from "../../components/config/equipments";
-import { AreasListView } from "../../components/config/models";
+import { AreasListView } from "../../components/config/models/areas";
 
 const ModelsPage = () => {
   return (

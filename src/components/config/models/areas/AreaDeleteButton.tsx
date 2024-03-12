@@ -1,8 +1,8 @@
 import { FaRegTrashAlt } from "react-icons/fa";
-import { useDeleteAsset } from "../../../hooks/assets";
-import useModelStore from "../../../store/model";
-import { IconButton } from "../../common/buttons";
-import SimpleAlert from "../SimpleAlert";
+import { useDeleteAsset } from "../../../../hooks/assets";
+import useModelStore from "../../../../store/model";
+import { IconButton } from "../../../common/buttons";
+import SimpleAlert from "../../SimpleAlert";
 
 const AreaDeleteButton = ({ areaId }: { areaId: number }) => {
   const { mutateAsync, isPending } = useDeleteAsset();
