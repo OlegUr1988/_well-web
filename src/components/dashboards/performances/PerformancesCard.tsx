@@ -5,19 +5,17 @@ import {
   DashboardCardSkeleton,
 } from "..";
 import { Asset } from "../../../entities/assets";
-import { useEquipments } from "../../../hooks/equipments";
+import { useAsset } from "../../../hooks/assets";
 import PerformanceGaugeChart from "./PerformanceGaugeChart";
 
 const PerformancesCard = ({ asset }: { asset: Asset }) => {
-  const {
-    data: equipments,
-    isLoading,
-    error,
-  } = useEquipments({ assetId: asset.id });
+  const { data: parentAsset, isLoading, error } = useAsset(asset.id);
 
   if (isLoading) return <DashboardCardSkeleton />;
 
   if (error) return <DashboardCardErrorMessage />;
+
+  const assets = parentAsset?.children;
 
   return (
     <DashboardCard>
@@ -25,13 +23,13 @@ const PerformancesCard = ({ asset }: { asset: Asset }) => {
       <Box h="300">
         <SimpleGrid
           h="100%"
-          columns={{ base: 1, xl: equipments!.length > 1 ? 2 : 1 }}
+          columns={{ base: 1, xl: assets!.length > 1 ? 2 : 1 }}
           alignContent={{ base: "start", xl: "center" }}
           overflowY="auto"
           gap={6}
         >
-          {equipments?.map((equipment) => (
-            <PerformanceGaugeChart key={equipment.id} equipment={equipment} />
+          {assets?.map((asset) => (
+            <PerformanceGaugeChart key={asset.id} asset={asset} />
           ))}
         </SimpleGrid>
       </Box>

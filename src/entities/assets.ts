@@ -1,24 +1,25 @@
-import { Area } from "./areas";
+import { Attribute } from "./attributes";
 import { BasicQuery } from "./basicQuery";
 
 export interface Asset {
   id: number;
   name: string;
-  areaId: number;
-  area: Area;
+  parentAssetId: number;
+  attributes: Attribute[];
+  children: Asset[];
 }
 
 export interface AddAsset {
+  id?: number;
   name: string;
-  areaId: number;
+  parentAssetId?: number;
 }
 
 export interface UpdateAsset {
   name: string;
-  areaId: number;
+  parentAssetId?: number;
 }
 
 export interface AssetQuery extends BasicQuery {
-  areaId?: number;
   name?: string;
 }

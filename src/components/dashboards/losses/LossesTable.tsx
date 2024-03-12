@@ -1,13 +1,13 @@
 import { Table, TableContainer } from "@chakra-ui/react";
 import losses from "../../../constants/losses";
-import { Equipment } from "../../../entities/equipments";
+import { Asset } from "../../../entities/assets";
 import useGetLossesByTypes from "../../../hooks/useGetLossesByTypes";
 import LossesTableBody from "./LossesTableBody";
 import LossesTableFoot from "./LossesTableFoot";
 import LossesTableHead from "./LossesTableHead";
 
-const LossesTable = ({ equipment }: { equipment: Equipment }) => {
-  const allAttributes = equipment.attribute;
+const LossesTable = ({ asset }: { asset: Asset }) => {
+  const allAttributes = asset.attributes;
   const attributes = useGetLossesByTypes(allAttributes, losses);
 
   return (

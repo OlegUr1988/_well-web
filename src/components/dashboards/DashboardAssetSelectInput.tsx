@@ -2,26 +2,25 @@ import { Box, Text, VStack } from "@chakra-ui/react";
 import { Select } from "chakra-react-select";
 import { useNavigate } from "react-router-dom";
 import { DashboardCard } from ".";
-import { Area } from "../../entities/areas";
 import { Asset } from "../../entities/assets";
-import { useAssets } from "../../hooks/assets";
+import { useAsset } from "../../hooks/assets";
 import DashboardAssetSelectInputSkeleton from "./DashboardAssetSelectInputSkeleton";
 
 const DashboardAssetSelectInput = ({
   area,
   asset,
 }: {
-  area: Area;
+  area: Asset;
   asset: Asset;
 }) => {
-  const { data: assets, isLoading, error } = useAssets({});
+  const { data: assets, isLoading, error } = useAsset(area.id);
   const navigate = useNavigate();
 
   if (isLoading) return <DashboardAssetSelectInputSkeleton />;
 
   if (error) return null;
 
-  const options = assets?.map((asset) => ({
+  const options = assets?.children?.map((asset) => ({
     value: asset.id,
     label: asset.name,
   }));

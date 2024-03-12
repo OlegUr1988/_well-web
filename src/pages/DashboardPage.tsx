@@ -6,7 +6,6 @@ import {
   LossesTableCard,
 } from "../components/dashboards/losses";
 import { PerformancesCard } from "../components/dashboards/performances";
-import { useAreaByName } from "../hooks/areas";
 import { useAssetByName } from "../hooks/assets";
 
 const DashboardPage = () => {
@@ -16,7 +15,7 @@ const DashboardPage = () => {
     data: area,
     isLoading: isAreaLoading,
     error: areaError,
-  } = useAreaByName({ name: areaName });
+  } = useAssetByName({ name: areaName });
   const {
     data: asset,
     isLoading: isAssetLoading,

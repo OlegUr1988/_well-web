@@ -5,20 +5,18 @@ import {
   DashboardCardSkeleton,
 } from "..";
 import { Asset } from "../../../entities/assets";
-import { useEquipments } from "../../../hooks/equipments";
+import { useAsset } from "../../../hooks/assets";
 import LossesSummaryRow from "./LossesSummaryRow";
 import LossesTablesField from "./LossesTablesField";
 
 const LossesTableCard = ({ asset }: { asset: Asset }) => {
-  const {
-    data: equipments,
-    isLoading,
-    error,
-  } = useEquipments({ assetId: asset.id });
+  const { data: parentAsset, isLoading, error } = useAsset(asset.id);
 
   if (isLoading) return <DashboardCardSkeleton />;
 
   if (error) return <DashboardCardErrorMessage />;
+
+  const assets = parentAsset?.children;
 
   return (
     <DashboardCard>
@@ -27,11 +25,11 @@ const LossesTableCard = ({ asset }: { asset: Asset }) => {
       </Heading>
 
       <Box h={250} mb={3} overflowY="auto">
-        <LossesTablesField equipments={equipments!} />
+        <LossesTablesField assets={assets!} />
       </Box>
 
       <Box>
-        <LossesSummaryRow equipments={equipments!} />
+        <LossesSummaryRow assets={assets!} />
       </Box>
     </DashboardCard>
   );

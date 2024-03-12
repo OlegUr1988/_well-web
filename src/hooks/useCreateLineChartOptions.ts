@@ -1,9 +1,9 @@
 import lineChartOptions from "../constants/lineChartOptions";
-import { Equipment } from "../entities/equipments";
-import useGetSeriesByEquipments from "./useGetSeriesByEquipments";
+import { Asset } from "../entities/assets";
+import useGetSeriesByAsset from "./useGetSeriesByAsset";
 
-const useCreateLineChartOptions = (equipments: Equipment[]) => {
-  const series = useGetSeriesByEquipments(equipments);
+const useCreateLineChartOptions = (assets: Asset[]) => {
+  const series = useGetSeriesByAsset(assets);
   const options = {
     ...lineChartOptions,
     title: { ...lineChartOptions.title, text: "Daily Average" },

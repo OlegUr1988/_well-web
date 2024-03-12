@@ -1,15 +1,15 @@
 import { Box, Heading } from "@chakra-ui/react";
-import { Equipment } from "../../../entities/equipments";
+import { Asset } from "../../../entities/assets";
 import LossesTable from "./LossesTable";
 
-const LossesTablesField = ({ equipments }: { equipments: Equipment[] }) => {
+const LossesTablesField = ({ assets }: { assets: Asset[] }) => {
   return (
     <>
-      {equipments?.map((equipment) => (
-        <Box key={equipment.id}>
-          <Heading size="sm">{equipment.name}</Heading>
+      {assets?.map((asset) => (
+        <Box key={asset.id}>
+          <Heading size="sm">{asset.name}</Heading>
           <Box mb={3}>
-            <LossesTable equipment={equipment} />
+            <LossesTable asset={asset} />
           </Box>
         </Box>
       ))}

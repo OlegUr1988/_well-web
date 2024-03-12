@@ -5,17 +5,15 @@ import {
   DashboardCardSkeleton,
 } from "..";
 import { Asset } from "../../../entities/assets";
-import { useEquipments } from "../../../hooks/equipments";
+import { useAsset } from "../../../hooks/assets";
 import useCreateLineChartOptions from "../../../hooks/useCreateLineChartOptions";
 
 const LossesDailyLineChartCard = ({ asset }: { asset: Asset }) => {
-  const {
-    data: equipments,
-    isLoading,
-    error,
-  } = useEquipments({ assetId: asset.id });
+  const { data: parentAsset, isLoading, error } = useAsset(asset.id);
 
-  const { series, options } = useCreateLineChartOptions(equipments!);
+  const assets = parentAsset?.children;
+
+  const { series, options } = useCreateLineChartOptions(assets!);
 
   if (isLoading) return <DashboardCardSkeleton />;
 

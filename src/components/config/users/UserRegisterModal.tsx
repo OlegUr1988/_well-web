@@ -4,7 +4,7 @@ import { RegisterUserFormData } from "../../../entities/formDatas";
 import { RegisterUser } from "../../../entities/users";
 import { useFormSubmit } from "../../../hooks/forms";
 import { registerUserSchema } from "../../../validationSchema";
-import ModalContainer from "../ModalContainer";
+import ModalContainer from "../../common/ModalContainer";
 import { FormChekbox, FormContainer, FormInput, FormSubmit } from "../forms";
 
 interface Props {
