@@ -7,7 +7,7 @@ import AttributeCreateButton from "./AttributeCreateButton";
 import AttributesList from "./AttributesList";
 
 const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
-  const { subassetId: equipmentId } = useModelStore((s) => s.modelQuery);
+  const { subassetId } = useModelStore((s) => s.modelQuery);
   const user = useUserStore((s) => s.user);
 
   const { data: types } = useAttributeTypes();
@@ -22,10 +22,10 @@ const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
             </Text>
           </HStack>
           <Box mb={3}>
-            {user && (
+            {user && type.name.toLowerCase() !== "duty" && (
               <AttributeCreateButton
                 attributeTypeId={type.id}
-                equipmentId={equipmentId}
+                assetId={subassetId}
               />
             )}
           </Box>

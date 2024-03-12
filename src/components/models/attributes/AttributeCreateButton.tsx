@@ -6,10 +6,10 @@ import SimpleModal from "../../common/SimpleModal";
 
 const AttributeCreateButton = ({
   attributeTypeId,
-  equipmentId,
+  assetId,
 }: {
   attributeTypeId: number;
-  equipmentId: number;
+  assetId: number;
 }) => {
   const { mutateAsync, isPending } = useAddAttribute();
 
@@ -26,7 +26,7 @@ const AttributeCreateButton = ({
         mutateAsync({
           name: data.name,
           attributeTypeId,
-          assetId: equipmentId,
+          assetId,
         })
       }
     />
