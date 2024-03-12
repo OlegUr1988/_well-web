@@ -4,6 +4,7 @@ export interface Asset {
   id: number;
   name: string;
   parentAssetId: number;
+  children: Asset[];
 }
 
 export interface AddAsset {

@@ -16,7 +16,7 @@ const DashboardPage = () => {
     data: area,
     isLoading: isAreaLoading,
     error: areaError,
-  } = useAreaByName({ name: areaName });
+  } = useAssetByName({ name: areaName });
   const {
     data: asset,
     isLoading: isAssetLoading,
@@ -32,11 +32,11 @@ const DashboardPage = () => {
       <Box mb={5}>
         <DashboardHeaderPanel area={area!} asset={asset!} />
       </Box>
-      <SimpleGrid columns={2} gap={5} mb={5}>
+      {/* <SimpleGrid columns={2} gap={5} mb={5}>
         <LossesTableCard asset={asset!} />
         <PerformancesCard asset={asset!} />
       </SimpleGrid>
-      <LossesDailyLineChartCard asset={asset!} />
+      <LossesDailyLineChartCard asset={asset!} /> */}
     </Box>
   );
 };
