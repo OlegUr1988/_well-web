@@ -1,5 +1,5 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
-import { Equipment } from "../../../entities/equipments";
+import { Asset } from "../../../entities/assets";
 import usePerformanceData from "../../../hooks/usePerformanceData";
 import {
   calculateTotalDuty,
@@ -9,12 +9,8 @@ import {
 import PerformanceGauge from "./PerformanceGauge";
 import PerformanceGaugeMetricSummary from "./PerformanceGaugeMetricSummary";
 
-export const PerformanceGaugeChart = ({
-  equipment,
-}: {
-  equipment: Equipment;
-}) => {
-  const allAttributes = equipment.attribute;
+export const PerformanceGaugeChart = ({ asset }: { asset: Asset }) => {
+  const allAttributes = asset.attributes;
 
   // Get duty
   const dutyAttribute = allAttributes.find(
@@ -53,7 +49,7 @@ export const PerformanceGaugeChart = ({
     <VStack>
       <Box w={250} overflowX="auto">
         <Text fontSize="lg" textAlign="left">
-          {equipment.name}
+          {asset.name}
         </Text>
         <PerformanceGauge usefulWorkRatio={usefulWorkRatio} />
         <PerformanceGaugeMetricSummary
