@@ -4,7 +4,7 @@ import { useFormSubmit } from "../../../hooks/forms";
 import { useChangeUserPassword } from "../../../hooks/users";
 import { clearToken } from "../../../utils/auth";
 import { changeUserPasswordSchema } from "../../../validationSchema";
-import { FormContainer, FormInput, FormSubmit } from "../forms";
+import { FormContainer, FormInput, FormSubmit } from "../../common/forms";
 
 const ChangeUserPasswordForm = () => {
   const { mutateAsync, isPending } = useChangeUserPassword();

@@ -7,7 +7,7 @@ import { usePHDTags } from "../../../hooks/PHDTags";
 import { useFormSubmit } from "../../../hooks/forms";
 import { assignmentSchema } from "../../../validationSchema";
 import ModalContainer from "../../common/ModalContainer";
-import { FormContainer, FormSelect, FormSubmit } from "../../config/forms";
+import { FormContainer, FormSelect, FormSubmit } from "../../common/forms";
 
 interface Props {
   attributeId: number;
