@@ -4,11 +4,11 @@ import APIClient from "../services/api-client";
 
 const apiClient = new APIClient<UtilityType>("utility-types");
 
-const useAttributeTypes = () => {
+const useUtilityTypes = () => {
   return useQuery({
     queryKey: ["utilityTypes"],
     queryFn: apiClient.getAll,
   });
 };
 
-export default useAttributeTypes;
+export default useUtilityTypes;

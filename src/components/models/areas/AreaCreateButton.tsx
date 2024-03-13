@@ -4,11 +4,21 @@ import { useAddAsset } from "../../../hooks/assets";
 import { listViewFormSchema } from "../../../validationSchema";
 import SimpleModal from "../../common/SimpleModal";
 import { IconButton } from "../../common/buttons";
+import { AddAsset } from "../../../entities/assets";
+import useUtilityTypes from "../../../hooks/useUtilityTypes";
 
 const AreaCreateButton = () => {
   const { mutateAsync, isPending } = useAddAsset();
+  const { data: types, isLoading, error } = useUtilityTypes();
+
+  if (isLoading) return null;
+
+  if (error) return null;
+
+  const areatype = types?.find((type) => type.name.toLowerCase() === "area");
+
   return (
-    <SimpleModal<ListViewFormData>
+    <SimpleModal<ListViewFormData, AddAsset>
       header="Create Area"
       label="Area Name"
       submitLabel="Create"
@@ -25,7 +35,12 @@ const AreaCreateButton = () => {
         />
       )}
       isPending={isPending}
-      mutateAsync={mutateAsync}
+      mutateAsync={(data) =>
+        mutateAsync({
+          name: data.name,
+          utilityTypeId: areatype?.id!,
+        })
+      }
     />
   );
 };
