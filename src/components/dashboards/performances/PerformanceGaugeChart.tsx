@@ -15,13 +15,13 @@ const PerformanceGaugeChart = ({ asset }: { asset: Asset }) => {
   const dutyAttribute = allAttributes.find(
     (attr) => attr.name.toLowerCase() === "duty"
   );
-  const dutyAssignments = dutyAttribute ? dutyAttribute?.assignment : [];
+  const dutyAssignments = dutyAttribute ? dutyAttribute?.assignments : [];
 
   const usefulworkAttribute = allAttributes.find(
     (attr) => attr.name.toLowerCase() === "useful work"
   );
   const usefulWorkAssignments = usefulworkAttribute
-    ? usefulworkAttribute.assignment
+    ? usefulworkAttribute.assignments
     : [];
 
   const {

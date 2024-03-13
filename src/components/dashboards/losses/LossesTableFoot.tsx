@@ -15,7 +15,7 @@ interface Props {
 }
 
 const LossesTableFoot = ({ attributes, label = "Total" }: Props) => {
-  const assignments = _.flatten(attributes.map((attr) => attr.assignment));
+  const assignments = _.flatten(attributes.map((attr) => attr.assignments));
   const { records, isLoading } = useGetRecords(assignments);
 
   if (isLoading) return <LossesTableFootSkeleton label={label} />;

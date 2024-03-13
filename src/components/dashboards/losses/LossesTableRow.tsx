@@ -9,7 +9,7 @@ import LossesTableBodyCell from "./LossesTableBodyCell";
 import LossesTableRowSkeleton from "./LossesTableRowSkeleton";
 
 const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
-  const { records, isLoading } = useGetRecords(attribute.assignment);
+  const { records, isLoading } = useGetRecords(attribute.assignments);
 
   if (isLoading) return <LossesTableRowSkeleton label={attribute.name} />;
 
@@ -29,7 +29,7 @@ const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
       </LossesTableBodyCell>
       <LossesTableBodyCell>Ton CO2</LossesTableBodyCell>
       <LossesTableBodyCell>
-        {getAverageOfRecords(attribute.assignment, records) + "%"}
+        {getAverageOfRecords(attribute.assignments, records) + "%"}
       </LossesTableBodyCell>
     </Tr>
   );
