@@ -7,7 +7,7 @@ import { JWT } from "../../services/api-client";
 import useUserStore from "../../store/user";
 import { getToken, setToken } from "../../utils/auth";
 import { loginSchema } from "../../validationSchema";
-import { FormContainer, FormInput, FormSubmit } from "./forms";
+import { FormContainer, FormInput, FormSubmit } from "../common/forms";
 
 const LoginForm = () => {
   const { mutateAsync, isPending } = useLogin();

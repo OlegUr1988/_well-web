@@ -6,7 +6,7 @@ export interface Attribute {
   name: string;
   assetId: number;
   attributeTypeId: number;
-  assignment: Assignment[];
+  assignments: Assignment[];
 }
 
 export interface AddAttribute {

@@ -1,9 +1,9 @@
 import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
 import { GroupBase, Select, Props as SelectProps } from "chakra-react-select";
 import {
-  FieldValues,
-  UseControllerProps,
-  useController,
+    FieldValues,
+    UseControllerProps,
+    useController,
 } from "react-hook-form";
 
 interface ControlledSelectProps<

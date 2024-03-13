@@ -5,6 +5,7 @@ import { ListViewFormData } from "../../../entities/formDatas";
 import { useAddAsset } from "../../../hooks/assets";
 import { useAddAttribute } from "../../../hooks/attributes";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import useUtilityTypes from "../../../hooks/useUtilityTypes";
 import { HttpError } from "../../../services/api-client";
 import { listViewFormSchema } from "../../../validationSchema";
 import SimpleModal from "../../common/SimpleModal";
@@ -14,10 +15,21 @@ const SubassetCreateButton = ({ parentAssetId }: { parentAssetId: number }) => {
   const { mutateAsync, isPending } = useAddAsset();
   const { mutateAsync: createAttribute, isPending: creatingAttribute } =
     useAddAttribute();
-  const { data: types } = useAttributeTypes();
+  const { data: attributeTypes } = useAttributeTypes();
+  const { data: assetTypes, isLoading, error } = useUtilityTypes();
+
+  if (isLoading) return null;
+
+  if (error) return null;
+
+  const subassetType = assetTypes?.find(
+    (type) => type.name.toLowerCase() === "area"
+  );
 
   const handleOnSuccess = async (data: AddAsset) => {
-    const dutyType = types?.find((type) => type.name.toLowerCase() === "duty");
+    const dutyType = attributeTypes?.find(
+      (type) => type.name.toLowerCase() === "duty"
+    );
 
     const template = {
       assetId: data.id!,
@@ -57,7 +69,13 @@ const SubassetCreateButton = ({ parentAssetId }: { parentAssetId: number }) => {
         />
       )}
       isPending={isPending && creatingAttribute}
-      mutateAsync={(data) => mutateAsync({ name: data.name, parentAssetId })}
+      mutateAsync={(data) =>
+        mutateAsync({
+          name: data.name,
+          parentAssetId,
+          utilityTypeId: subassetType?.id!,
+        })
+      }
       onSuccess={handleOnSuccess}
     />
   );

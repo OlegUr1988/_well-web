@@ -9,7 +9,7 @@ const useGetSeriesByAsset = (assets: Asset[]) => {
   const attributes = useGetLossesByTypes(allAttributes, losses);
 
   // getting assignments
-  const assignments = _.flatten(attributes.map((attr) => attr.assignment));
+  const assignments = _.flatten(attributes.map((attr) => attr.assignments));
 
   // getting records
   const { records } = useGetRecords(assignments);

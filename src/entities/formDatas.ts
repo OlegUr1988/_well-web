@@ -1,18 +1,21 @@
 import { z } from "zod";
 import {
-  assignmentSchema,
-  dataSourceSchema,
   PHDTagSchema,
+  assetSchema,
+  assignmentSchema,
+  changeUserPasswordSchema,
+  dataSourceSchema,
   listViewFormSchema,
   loginSchema,
-  changeUserPasswordSchema,
-  updateUserSchema,
   registerUserSchema,
+  updateUserSchema,
 } from "../validationSchema";
 
 export type ListViewFormData = z.infer<typeof listViewFormSchema>;
 
 export type PHDTagFormData = z.infer<typeof PHDTagSchema>;
+
+export type AssetFormData = z.infer<typeof assetSchema>;
 
 export type AssignmentFormData = z.infer<typeof assignmentSchema>;
 

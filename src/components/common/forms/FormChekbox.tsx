@@ -1,8 +1,8 @@
 import {
-  Checkbox,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
+    Checkbox,
+    FormControl,
+    FormErrorMessage,
+    FormLabel,
 } from "@chakra-ui/react";
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 

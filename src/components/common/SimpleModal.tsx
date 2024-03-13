@@ -4,7 +4,7 @@ import { FieldValues, Path } from "react-hook-form";
 import { ZodSchema } from "zod";
 import { useFormSubmit } from "../../hooks/forms";
 import ModalContainer from "./ModalContainer";
-import { FormContainer, FormInput, FormSubmit } from "../config/forms";
+import { FormContainer, FormInput, FormSubmit } from "./forms";
 
 interface Props<T, K, V = K> {
   header: string;

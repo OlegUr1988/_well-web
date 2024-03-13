@@ -3,7 +3,7 @@ import { useDataSource, useUpdateDataSource } from "../../../hooks/dataSources";
 import { useFormSubmit } from "../../../hooks/forms";
 import useUserStore from "../../../store/user";
 import { dataSourceSchema } from "../../../validationSchema";
-import { FormContainer, FormInput, FormSubmit } from "../forms";
+import { FormContainer, FormInput, FormSubmit } from "../../common/forms";
 
 const DataSourceForm = () => {
   const { data: dataSource, isLoading, error } = useDataSource(1);
