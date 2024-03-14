@@ -1,17 +1,21 @@
 import { useDisclosure } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 import { AddAsset, Asset } from "../../../entities/assets";
 import { AssetFormData } from "../../../entities/formDatas";
 import { SelectOption } from "../../../entities/selectOption";
+import { useAddAttribute } from "../../../hooks/attributes";
 import { useFormSubmit } from "../../../hooks/forms";
+import useAttributeTypes from "../../../hooks/useAttributeTypes";
 import useUtilityTypes from "../../../hooks/useUtilityTypes";
+import { HttpError } from "../../../services/api-client";
 import { assetSchema } from "../../../validationSchema";
 import ModalContainer from "../../common/ModalContainer";
 import {
-    FormContainer,
-    FormInput,
-    FormSelect,
-    FormSubmit,
+  FormContainer,
+  FormInput,
+  FormSelect,
+  FormSubmit,
 } from "../../common/forms";
 
 interface Props {
@@ -36,12 +40,36 @@ const AssetModal = ({
   mutateAsync,
 }: Props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { data: types, isLoading, error } = useUtilityTypes();
+  const { data: utilityTypes, isLoading, error } = useUtilityTypes();
+  const { mutateAsync: createAttribute, isPending: isCreating } =
+    useAddAttribute();
+  const { data: attributeTypes } = useAttributeTypes();
+
+  const handleOnSuccess = async (data: AddAsset) => {
+    const type = attributeTypes?.find(
+      (type) => type.name.toLowerCase() === "duty"
+    );
+    const heatType = utilityTypes?.find(
+      (type) => type.name.toLowerCase() === "heat"
+    );
+
+    try {
+      if (heatType?.id !== data.utilityTypeId)
+        await createAttribute({
+          assetId: data.id!,
+          attributeTypeId: type!.id,
+          name: "Main Asset Duty",
+        });
+    } catch (error) {
+      const { response } = error as HttpError;
+      toast.error(response?.data.message);
+    }
+  };
 
   const excludeTypes = ["area", "subasset"];
 
-  const assetTypes = types?.filter((type) =>
-    !excludeTypes.includes(type.name.toLowerCase())
+  const assetTypes = utilityTypes?.filter(
+    (type) => !excludeTypes.includes(type.name.toLowerCase())
   );
 
   const { control, reset, register, handleSubmit, onSubmit, errors } =
@@ -54,7 +82,10 @@ const AssetModal = ({
         parentAssetId,
       }),
       schema: assetSchema,
-      onSuccess: () => onClose(),
+      onSuccess: (data) => {
+        handleOnSuccess(data);
+        onClose();
+      },
     });
 
   useEffect(() => {
@@ -98,7 +129,10 @@ const AssetModal = ({
             }}
           />
 
-          <FormSubmit label={submitLabel} isDisabled={isPending} />
+          <FormSubmit
+            label={submitLabel}
+            isDisabled={isPending && isCreating}
+          />
         </FormContainer>
       </ModalContainer>
     </>

@@ -14,7 +14,7 @@ const ModelsPage = () => {
 
   const showAreaAttriubes = () => areaId !== 0 && assetId === 0;
   const showAssetAttributs = () => assetId !== 0 && subassetId === 0;
-  const showSubassetAttributes = () => assetId !== 0;
+  const showSubassetAttributes = () => assetId !== 0 && subassetId !== 0;
   return (
     <Flex h="100%">
       <AreasListView />
