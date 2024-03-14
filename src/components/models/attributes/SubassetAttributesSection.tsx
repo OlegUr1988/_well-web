@@ -1,17 +1,17 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { useAttributes } from "../../../hooks/attributes";
 import useModelStore from "../../../store/model";
-import AttributeTypesList from "./AttributeTypesList";
+import SubassetAttributeTypesList from "./SubassetAttributeTypesList";
 
-const AttributesSection = () => {
-  const { subassetId: equipmentId } = useModelStore((s) => s.modelQuery);
+const SubassetAttributesSection = () => {
+  const { subassetId } = useModelStore((s) => s.modelQuery);
   const {
     data: attributes,
     isLoading,
     error,
-  } = useAttributes({ assetId: equipmentId });
+  } = useAttributes({ assetId: subassetId });
 
-  if (equipmentId === 0) return null;
+  if (subassetId === 0) return null;
 
   if (error) return null;
 
@@ -21,9 +21,9 @@ const AttributesSection = () => {
     <Box mx={5}>
       <Heading>Attributes</Heading>
 
-      <AttributeTypesList attributes={attributes!} />
+      <SubassetAttributeTypesList attributes={attributes!} />
     </Box>
   );
 };
 
-export default AttributesSection;
+export default SubassetAttributesSection;

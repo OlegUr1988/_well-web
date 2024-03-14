@@ -6,9 +6,22 @@ import { AssignmentCreateButton, AssignmentsList } from "../assignments";
 import AttributeDeleteButton from "./AttributeDeleteButton";
 import AttributeEditButton from "./AttributeEditButton";
 
-const AttributeCard = ({ attribute }: { attribute: Attribute }) => {
+interface Props {
+  attribute: Attribute;
+  showEdit?: boolean;
+  showDelete?: boolean;
+}
+
+const AttributeCard = ({
+  attribute,
+  showEdit = false,
+  showDelete = false,
+}: Props) => {
   const { isOpen, onToggle } = useDisclosure();
   const user = useUserStore((s) => s.user);
+
+  if (!attribute) return null;
+
   return (
     <Card variant="outline">
       <HStack p={3} justify="space-between">
@@ -18,8 +31,10 @@ const AttributeCard = ({ attribute }: { attribute: Attribute }) => {
         </HStack>
         <HStack>
           {user && <AssignmentCreateButton attributeId={attribute.id} />}
-          {user && <AttributeEditButton attribute={attribute} />}
-          {user && <AttributeDeleteButton attributeId={attribute.id} />}
+          {user && showEdit && <AttributeEditButton attribute={attribute} />}
+          {user && showDelete && (
+            <AttributeDeleteButton attributeId={attribute.id} />
+          )}
         </HStack>
       </HStack>
       <Collapse in={isOpen} animateOpacity>

@@ -4,7 +4,7 @@ import { updateAsset } from "../../services/assetsServices";
 
 const useUpdateAsset = (id: string | number) => {
   return useMutation<UpdateAsset, Error, UpdateAsset>({
-    mutationFn: (equipment) => updateAsset.put(id, equipment),
+    mutationFn: (asset) => updateAsset.put(id, asset),
   });
 };
 

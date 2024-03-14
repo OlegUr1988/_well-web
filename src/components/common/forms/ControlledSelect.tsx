@@ -1,9 +1,10 @@
 import { FormControl, FormErrorMessage, FormLabel } from "@chakra-ui/react";
 import { GroupBase, Select, Props as SelectProps } from "chakra-react-select";
+import { useState } from "react";
 import {
-    FieldValues,
-    UseControllerProps,
-    useController,
+  FieldValues,
+  UseControllerProps,
+  useController,
 } from "react-hook-form";
 
 interface ControlledSelectProps<
@@ -47,14 +48,23 @@ const ControlledSelect = <
     defaultValue,
   });
 
+  const [selectedValue, setSelectedValue] = useState<Option | null>(
+    defaultValue || null
+  );
+
+  const handleChange = (newValue: Option | null) => {
+    setSelectedValue(newValue);
+    field.onChange(newValue);
+  };
+
   return (
     <FormControl label={label} isInvalid={!!error} id={name}>
       {label && <FormLabel>{label}</FormLabel>}
       <Select<Option, IsMulti, Group>
         options={options}
-        defaultValue={defaultValue}
+        value={selectedValue}
+        onChange={(newValue) => handleChange(newValue as Option | null)}
         {...selectProps}
-        {...field}
       />
       <FormErrorMessage>{error?.message}</FormErrorMessage>
     </FormControl>

@@ -23,17 +23,17 @@ const SubassetCreateButton = ({ parentAssetId }: { parentAssetId: number }) => {
   if (error) return null;
 
   const subassetType = assetTypes?.find(
-    (type) => type.name.toLowerCase() === "area"
+    (type) => type.name.toLowerCase() === "subasset"
   );
 
   const handleOnSuccess = async (data: AddAsset) => {
-    const dutyType = attributeTypes?.find(
+    const type = attributeTypes?.find(
       (type) => type.name.toLowerCase() === "duty"
     );
 
     const template = {
       assetId: data.id!,
-      attributeTypeId: dutyType!.id,
+      attributeTypeId: type!.id,
     };
 
     try {
