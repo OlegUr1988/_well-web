@@ -29,8 +29,8 @@ const AreaAttributesSection = () => {
     <Box m={5}>
       <Heading>Attributes</Heading>
 
-      <AttributeCard attribute={getProduction()} />
-      <AttributeCard attribute={getTotalEnergyConsupmtion()} />
+      <AttributeCard attribute={getProduction()!} />
+      <AttributeCard attribute={getTotalEnergyConsupmtion()!} />
     </Box>
   );
 };

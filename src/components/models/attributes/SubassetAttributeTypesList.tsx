@@ -4,7 +4,7 @@ import useAttributeTypes from "../../../hooks/useAttributeTypes";
 import useModelStore from "../../../store/model";
 import useUserStore from "../../../store/user";
 import AttributeCreateButton from "./AttributeCreateButton";
-import AttributesList from "./AttributesList";
+import SubassetAttributesList from "./SubassetAttributesList";
 
 const SubassetAttributeTypesList = ({
   attributes,
@@ -40,7 +40,7 @@ const SubassetAttributeTypesList = ({
             )}
           </Box>
           <Box mb={10}>
-            <AttributesList attributes={attributes} typeId={type.id} />
+            <SubassetAttributesList attributes={attributes} typeId={type.id} />
           </Box>
         </Box>
       ))}
