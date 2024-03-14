@@ -6,9 +6,12 @@ import { AssignmentCreateButton, AssignmentsList } from "../assignments";
 import AttributeDeleteButton from "./AttributeDeleteButton";
 import AttributeEditButton from "./AttributeEditButton";
 
-const AttributeCard = ({ attribute }: { attribute: Attribute }) => {
+const AttributeCard = ({ attribute }: { attribute: Attribute | undefined }) => {
   const { isOpen, onToggle } = useDisclosure();
   const user = useUserStore((s) => s.user);
+
+  if (!attribute) return null;
+
   return (
     <Card variant="outline">
       <HStack p={3} justify="space-between">

@@ -4,14 +4,14 @@ import useModelStore from "../../../store/model";
 import SubassetAttributeTypesList from "./SubassetAttributeTypesList";
 
 const SubassetAttributesSection = () => {
-  const { subassetId: equipmentId } = useModelStore((s) => s.modelQuery);
+  const { subassetId } = useModelStore((s) => s.modelQuery);
   const {
     data: attributes,
     isLoading,
     error,
-  } = useAttributes({ assetId: equipmentId });
+  } = useAttributes({ assetId: subassetId });
 
-  if (equipmentId === 0) return null;
+  if (subassetId === 0) return null;
 
   if (error) return null;
 

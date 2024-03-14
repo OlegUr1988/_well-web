@@ -28,7 +28,7 @@ const AreaCreateButton = () => {
 
   const handleOnSuccess = async (data: AddAsset) => {
     const type = attributeTypes?.find(
-      (type) => type.name.toLowerCase() === "area attributes"
+      (type) => type.name.toLowerCase() === "area attribute"
     );
 
     const template = {
