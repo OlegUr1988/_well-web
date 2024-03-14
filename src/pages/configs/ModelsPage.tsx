@@ -3,6 +3,7 @@ import { AreasListView } from "../../components/models/areas";
 import { AssetsListView } from "../../components/models/assets";
 import {
   AreaAttributesSection,
+  AssetAttributesSection,
   SubassetAttributesSection,
 } from "../../components/models/attributes";
 import { SubassetsListView } from "../../components/models/subassets";
@@ -12,7 +13,8 @@ const ModelsPage = () => {
   const { areaId, assetId, subassetId } = useModelStore((s) => s.modelQuery);
 
   const showAreaAttriubes = () => areaId !== 0 && assetId === 0;
-  const showSubassetAttributes = () => assetId !== 0;
+  const showAssetAttributs = () => assetId !== 0 && subassetId === 0;
+  const showSubassetAttributes = () => assetId !== 0 && subassetId !== 0;
   return (
     <Flex h="100%">
       <AreasListView />
@@ -21,6 +23,11 @@ const ModelsPage = () => {
       {showAreaAttriubes() && (
         <Box flex={1} overflowY="auto">
           <AreaAttributesSection />
+        </Box>
+      )}
+      {showAssetAttributs() && (
+        <Box flex={1} overflowY="auto">
+          <AssetAttributesSection />
         </Box>
       )}
       {showSubassetAttributes() && (
