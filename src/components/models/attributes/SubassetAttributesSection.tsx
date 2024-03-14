@@ -1,9 +1,9 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { useAttributes } from "../../../hooks/attributes";
 import useModelStore from "../../../store/model";
-import AttributeTypesList from "./AttributeTypesList";
+import SubassetAttributeTypesList from "./SubassetAttributeTypesList";
 
-const AttributesSection = () => {
+const SubassetAttributesSection = () => {
   const { subassetId: equipmentId } = useModelStore((s) => s.modelQuery);
   const {
     data: attributes,
@@ -21,9 +21,9 @@ const AttributesSection = () => {
     <Box mx={5}>
       <Heading>Attributes</Heading>
 
-      <AttributeTypesList attributes={attributes!} />
+      <SubassetAttributeTypesList attributes={attributes!} />
     </Box>
   );
 };
 
-export default AttributesSection;
+export default SubassetAttributesSection;

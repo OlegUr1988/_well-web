@@ -1,1 +1,1 @@
-export { default as AttributesSection } from "./AttributesSection";
+export { default as SubassetAttributesSection } from "./SubassetAttributesSection";

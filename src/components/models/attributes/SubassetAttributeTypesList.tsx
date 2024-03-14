@@ -6,14 +6,24 @@ import useUserStore from "../../../store/user";
 import AttributeCreateButton from "./AttributeCreateButton";
 import AttributesList from "./AttributesList";
 
-const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
+const SubassetAttributeTypesList = ({
+  attributes,
+}: {
+  attributes: Attribute[];
+}) => {
   const { subassetId } = useModelStore((s) => s.modelQuery);
   const user = useUserStore((s) => s.user);
 
   const { data: types } = useAttributeTypes();
+  const subassetTypes = ["duty", "design loss", "operating loss"];
+
+  const filteredTypes = types?.filter((type) =>
+    subassetTypes.includes(type.name.toLowerCase())
+  );
+
   return (
     <>
-      {types?.map((type) => (
+      {filteredTypes?.map((type) => (
         <Box key={type.id} mb={5}>
           <HStack mb={3}>
             <Text fontSize={22}>Attribute type: </Text>
@@ -38,4 +48,4 @@ const AttributeTypesList = ({ attributes }: { attributes: Attribute[] }) => {
   );
 };
 
-export default AttributeTypesList;
+export default SubassetAttributeTypesList;
