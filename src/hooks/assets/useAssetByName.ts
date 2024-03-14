@@ -5,7 +5,7 @@ import { assets } from "../../services/assetsServices";
 const useAssetByName = (query: AssetQuery) => {
   return useQuery<Asset, Error>({
     queryKey: ["asset", query],
-    queryFn: () => assets.getByName({ params: query }),
+    queryFn: () => assets.getByParams({ params: query }),
   });
 };
 
