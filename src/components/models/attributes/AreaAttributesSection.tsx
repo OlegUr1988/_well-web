@@ -2,6 +2,7 @@ import { Box, Heading } from "@chakra-ui/react";
 import { useAttributes } from "../../../hooks/attributes";
 import useModelStore from "../../../store/model";
 import AttributeCard from "./AttributeCard";
+import { useTarget } from "../../../hooks/targets";
 
 const AreaAttributesSection = () => {
   const { areaId } = useModelStore((s) => s.modelQuery);
@@ -10,6 +11,7 @@ const AreaAttributesSection = () => {
     isLoading,
     error,
   } = useAttributes({ assetId: areaId });
+  const { data: targets } = useTarget({ assetId: areaId });
 
   if (areaId === 0) return null;
 
@@ -24,6 +26,8 @@ const AreaAttributesSection = () => {
     attributes!.find(
       (attr) => attr.name.toLowerCase() === "total energy consumption"
     );
+
+  console.log(targets);
 
   return (
     <Box m={5}>

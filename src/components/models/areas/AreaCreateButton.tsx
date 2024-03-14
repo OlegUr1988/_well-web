@@ -4,6 +4,7 @@ import { AddAsset } from "../../../entities/assets";
 import { ListViewFormData } from "../../../entities/formDatas";
 import { useAddAsset } from "../../../hooks/assets";
 import { useAddAttribute } from "../../../hooks/attributes";
+import { useAddTarget } from "../../../hooks/targets";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
 import useUtilityTypes from "../../../hooks/useUtilityTypes";
 import { HttpError } from "../../../services/api-client";
@@ -17,6 +18,8 @@ const AreaCreateButton = () => {
     useAddAttribute();
   const { data: attributeTypes } = useAttributeTypes();
   const { data: assetTypes, isLoading, error } = useUtilityTypes();
+  const { mutateAsync: createTargets, isPending: creatingTargets } =
+    useAddTarget();
 
   if (isLoading) return null;
 
@@ -45,6 +48,14 @@ const AreaCreateButton = () => {
         ...template,
         name: "Total energy consumption",
       });
+
+      await createTargets({
+        productionTarget: 0,
+        specificEnergyConsupmtionTarget: 0,
+        energyConsumptionTarget: 0,
+        CO2EmissionTarget: 0,
+        assetId: data.id!,
+      });
     } catch (error) {
       const { response } = error as HttpError;
       toast.error(response?.data.message);
@@ -68,7 +79,7 @@ const AreaCreateButton = () => {
           icon={<FaPlus />}
         />
       )}
-      isPending={isPending && creatingAttribute}
+      isPending={isPending && creatingAttribute && creatingTargets}
       mutateAsync={(data) =>
         mutateAsync({
           name: data.name,
