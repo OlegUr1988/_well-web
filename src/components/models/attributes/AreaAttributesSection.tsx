@@ -1,8 +1,9 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Divider, Heading } from "@chakra-ui/react";
 import { useAttributes } from "../../../hooks/attributes";
+import { useTarget } from "../../../hooks/targets";
 import useModelStore from "../../../store/model";
 import AttributeCard from "./AttributeCard";
-import { useTarget } from "../../../hooks/targets";
+import TargetsForm from "./TargetsForm";
 
 const AreaAttributesSection = () => {
   const { areaId } = useModelStore((s) => s.modelQuery);
@@ -27,14 +28,19 @@ const AreaAttributesSection = () => {
       (attr) => attr.name.toLowerCase() === "total energy consumption"
     );
 
-  console.log(targets);
-
   return (
     <Box m={5}>
-      <Heading>Attributes</Heading>
+      <Heading mb={3}>Attributes</Heading>
+      <Box mb={3}>
+        <AttributeCard attribute={getProduction()!} />
+      </Box>
+      <Box mb={5}>
+        <AttributeCard attribute={getTotalEnergyConsupmtion()!} />
+      </Box>
 
-      <AttributeCard attribute={getProduction()!} />
-      <AttributeCard attribute={getTotalEnergyConsupmtion()!} />
+      <Divider mb={3} />
+      <Heading mb={3}>Targets</Heading>
+      <TargetsForm targets={targets!} />
     </Box>
   );
 };

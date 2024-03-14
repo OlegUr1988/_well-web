@@ -91,3 +91,10 @@ export const registerUserSchema = z.object({
     .max(255, "More that 255 characters")
     .regex(noSpaces, "Should not contain spacess"),
 });
+
+export const updateTargetSchema = z.object({
+  productionTarget: z.coerce.number().optional(),
+  energyConsumptionTarget: z.coerce.number().optional(),
+  specificEnergyConsupmtionTarget: z.coerce.number().optional(),
+  CO2EmissionTarget: z.coerce.number().optional(),
+});

@@ -9,6 +9,7 @@ import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 
 interface Props<T extends FieldValues> {
   type?: "text" | "number" | "password";
+  w?: number;
   label: string;
   placeholder?: string;
   defaultValue?: string | number;
@@ -20,6 +21,7 @@ interface Props<T extends FieldValues> {
 
 const FormInput = <T extends FieldValues>({
   type = "text",
+  w = 400,
   label,
   placeholder = "",
   defaultValue = "",
@@ -33,7 +35,7 @@ const FormInput = <T extends FieldValues>({
       <FormLabel>{label}</FormLabel>
       <Input
         type={type}
-        w={400}
+        w={w}
         placeholder={placeholder}
         defaultValue={defaultValue}
         {...register(name)}
