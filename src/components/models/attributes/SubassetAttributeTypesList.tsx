@@ -1,6 +1,5 @@
-import _ from "lodash";
 import { Attribute } from "../../../entities/attributes";
-import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import useGetAttributeTypes from "../../../hooks/useGetAttributeTypes";
 import SubassetAttributeTypeItem from "./SubassetAttributeTypeItem";
 
 const SubassetAttributeTypesList = ({
@@ -8,8 +7,7 @@ const SubassetAttributeTypesList = ({
 }: {
   attributes: Attribute[];
 }) => {
-  const { data: types } = useAttributeTypes();
-  const attrTypes = _.keyBy(types, (item) => item.name.toLowerCase());
+  const attrTypes = useGetAttributeTypes();
 
   return (
     <>
