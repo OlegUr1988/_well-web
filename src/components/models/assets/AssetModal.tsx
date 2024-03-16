@@ -66,10 +66,8 @@ const AssetModal = ({
     }
   };
 
-  const excludeTypes = ["area", "subasset"];
-
   const assetTypes = utilityTypes?.filter(
-    (type) => !excludeTypes.includes(type.name.toLowerCase())
+    (type) => type.name.toLowerCase() !== "area"
   );
 
   const { control, reset, register, handleSubmit, onSubmit, errors } =

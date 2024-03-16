@@ -1,10 +1,8 @@
-import { Box, HStack, Text } from "@chakra-ui/react";
 import { Attribute } from "../../../entities/attributes";
-import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import { useAsset } from "../../../hooks/assets";
+import useGetAttributeTypes from "../../../hooks/useGetAttributeTypes";
 import useModelStore from "../../../store/model";
-import useUserStore from "../../../store/user";
-import AttributeCreateButton from "./AttributeCreateButton";
-import SubassetAttributesList from "./SubassetAttributesList";
+import SubassetAttributeTypeItem from "./SubassetAttributeTypeItem";
 
 const SubassetAttributeTypesList = ({
   attributes,
@@ -12,38 +10,40 @@ const SubassetAttributeTypesList = ({
   attributes: Attribute[];
 }) => {
   const { subassetId } = useModelStore((s) => s.modelQuery);
-  const user = useUserStore((s) => s.user);
+  const { data: asset } = useAsset(subassetId);
+  const attrTypes = useGetAttributeTypes();
 
-  const { data: types } = useAttributeTypes();
-  const subassetTypes = ["duty", "design loss", "operating loss"];
-
-  const filteredTypes = types?.filter((type) =>
-    subassetTypes.includes(type.name.toLowerCase())
-  );
+  const showCO2Emission = () => asset?.utilityType.name.toLowerCase() === "gas";
+  const showDuty = () => asset?.utilityType.name.toLowerCase() !== "heat";
 
   return (
     <>
-      {filteredTypes?.map((type) => (
-        <Box key={type.id} mb={5}>
-          <HStack mb={3}>
-            <Text fontSize={22}>Attribute type: </Text>
-            <Text fontSize={22} fontWeight="bold">
-              {type.name}
-            </Text>
-          </HStack>
-          <Box mb={3}>
-            {user && type.name.toLowerCase() !== "duty" && (
-              <AttributeCreateButton
-                attributeTypeId={type.id}
-                assetId={subassetId}
-              />
-            )}
-          </Box>
-          <Box mb={10}>
-            <SubassetAttributesList attributes={attributes} typeId={type.id} />
-          </Box>
-        </Box>
-      ))}
+      {showCO2Emission() && (
+        <SubassetAttributeTypeItem
+          attributes={attributes}
+          attributeTypeId={attrTypes["co2 emission"].id}
+          label="CO2 Emission"
+          showCreateButton={false}
+        />
+      )}
+      {showDuty() && (
+        <SubassetAttributeTypeItem
+          attributes={attributes}
+          attributeTypeId={attrTypes["duty"].id}
+          label="Duty"
+          showCreateButton={false}
+        />
+      )}
+      <SubassetAttributeTypeItem
+        attributes={attributes}
+        attributeTypeId={attrTypes["design loss"].id}
+        label="Design Loss"
+      />
+      <SubassetAttributeTypeItem
+        attributes={attributes}
+        attributeTypeId={attrTypes["operating loss"].id}
+        label="Operating loss"
+      />
     </>
   );
 };
