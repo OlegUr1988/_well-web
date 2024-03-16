@@ -2,6 +2,7 @@ import { Box, Divider, Heading } from "@chakra-ui/react";
 import { useAttributes } from "../../../hooks/attributes";
 import { useTarget } from "../../../hooks/targets";
 import useModelStore from "../../../store/model";
+import LoadingSpinner from "../LoadingSpinner";
 import AttributeCard from "./AttributeCard";
 import TargetsForm from "./TargetsForm";
 
@@ -9,16 +10,22 @@ const AreaAttributesSection = () => {
   const { areaId } = useModelStore((s) => s.modelQuery);
   const {
     data: attributes,
-    isLoading,
-    error,
+    isLoading: attributesLoading,
+    error: attributesError,
   } = useAttributes({ assetId: areaId });
-  const { data: targets } = useTarget({ assetId: areaId });
+  const {
+    data: targets,
+    isLoading: targetsLoading,
+    error: targetsError,
+  } = useTarget({
+    assetId: areaId,
+  });
 
   if (areaId === 0) return null;
 
-  if (error) return null;
+  if (attributesError || targetsError) return null;
 
-  if (isLoading) return <Heading>Loading</Heading>;
+  if (attributesLoading || targetsLoading) return <LoadingSpinner />;
 
   const getProduction = () =>
     attributes!.find((attr) => attr.name.toLowerCase() === "production");

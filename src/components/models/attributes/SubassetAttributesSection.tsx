@@ -1,6 +1,7 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { useAttributes } from "../../../hooks/attributes";
 import useModelStore from "../../../store/model";
+import LoadingSpinner from "../LoadingSpinner";
 import SubassetAttributeTypesList from "./SubassetAttributeTypesList";
 
 const SubassetAttributesSection = () => {
@@ -15,7 +16,7 @@ const SubassetAttributesSection = () => {
 
   if (error) return null;
 
-  if (isLoading) return <Heading>Loading</Heading>;
+  if (isLoading) return <LoadingSpinner />;
 
   return (
     <Box m={5}>
