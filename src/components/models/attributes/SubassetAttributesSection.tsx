@@ -18,7 +18,7 @@ const SubassetAttributesSection = () => {
   if (isLoading) return <Heading>Loading</Heading>;
 
   return (
-    <Box mx={5}>
+    <Box m={5}>
       <Heading>Attributes</Heading>
 
       <SubassetAttributeTypesList attributes={attributes!} />
