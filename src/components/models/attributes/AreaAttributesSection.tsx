@@ -30,7 +30,7 @@ const AreaAttributesSection = () => {
 
   return (
     <Box m={5}>
-      <Heading mb={3}>Attributes</Heading>
+      <Heading mb={3}>Area Attributes</Heading>
       <Box mb={3}>
         <AttributeCard attribute={getProduction()!} />
       </Box>

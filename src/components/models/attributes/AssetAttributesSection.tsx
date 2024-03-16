@@ -17,7 +17,7 @@ const AssetAttributesSection = () => {
 
   return (
     <Box m={5}>
-      <Heading mb={3}>Attributes</Heading>
+      <Heading mb={3}>Asset Attributes</Heading>
 
       <HStack mb={3}>
         <Text fontSize={22}>Utility type: </Text>

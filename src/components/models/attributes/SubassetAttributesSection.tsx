@@ -19,7 +19,7 @@ const SubassetAttributesSection = () => {
 
   return (
     <Box m={5}>
-      <Heading>Attributes</Heading>
+      <Heading>Subasset Attributes</Heading>
 
       <SubassetAttributeTypesList attributes={attributes!} />
     </Box>
