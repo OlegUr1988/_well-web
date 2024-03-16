@@ -1,7 +1,9 @@
 import { List, ListItem } from "@chakra-ui/react";
 import { Attribute } from "../../../entities/attributes";
-import AttributeCard from "./AttributeCard";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import AttributeCard from "./AttributeCard";
+
+const editableAttributes = ["design loss", "operating loss"];
 
 const SubassetAttributesList = ({
   attributes,
@@ -11,10 +13,11 @@ const SubassetAttributesList = ({
   typeId: number;
 }) => {
   const { data: types } = useAttributeTypes();
-  const dutyType = types?.find((type) => type.name.toLowerCase() === "duty");
+  const filtered = types?.filter((type) =>
+    editableAttributes.includes(type.name.toLowerCase())
+  );
 
-  const isDutyType = (attribute: Attribute) =>
-    attribute.attributeTypeId !== dutyType?.id;
+  const isEditable = (attribute: Attribute) => filtered?.includes(attribute);
 
   return (
     <>
@@ -25,8 +28,8 @@ const SubassetAttributesList = ({
             <ListItem mb={2}>
               <AttributeCard
                 attribute={attribute}
-                showEdit={isDutyType(attribute)}
-                showDelete={isDutyType(attribute)}
+                showEdit={isEditable(attribute)}
+                showDelete={isEditable(attribute)}
               />
             </ListItem>
           </List>

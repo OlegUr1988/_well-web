@@ -1,49 +1,40 @@
-import { Box, HStack, Text } from "@chakra-ui/react";
+import _ from "lodash";
 import { Attribute } from "../../../entities/attributes";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
-import useModelStore from "../../../store/model";
-import useUserStore from "../../../store/user";
-import AttributeCreateButton from "./AttributeCreateButton";
-import SubassetAttributesList from "./SubassetAttributesList";
+import SubassetAttributeTypeItem from "./SubassetAttributeTypeItem";
 
 const SubassetAttributeTypesList = ({
   attributes,
 }: {
   attributes: Attribute[];
 }) => {
-  const { subassetId } = useModelStore((s) => s.modelQuery);
-  const user = useUserStore((s) => s.user);
-
   const { data: types } = useAttributeTypes();
-  const subassetTypes = ["duty", "design loss", "operating loss"];
-
-  const filteredTypes = types?.filter((type) =>
-    subassetTypes.includes(type.name.toLowerCase())
-  );
+  const attrTypes = _.keyBy(types, (item) => item.name.toLowerCase());
 
   return (
     <>
-      {filteredTypes?.map((type) => (
-        <Box key={type.id} mb={5}>
-          <HStack mb={3}>
-            <Text fontSize={22}>Attribute type: </Text>
-            <Text fontSize={22} fontWeight="bold">
-              {type.name}
-            </Text>
-          </HStack>
-          <Box mb={3}>
-            {user && type.name.toLowerCase() !== "duty" && (
-              <AttributeCreateButton
-                attributeTypeId={type.id}
-                assetId={subassetId}
-              />
-            )}
-          </Box>
-          <Box mb={10}>
-            <SubassetAttributesList attributes={attributes} typeId={type.id} />
-          </Box>
-        </Box>
-      ))}
+      <SubassetAttributeTypeItem
+        attributes={attributes}
+        attributeTypeId={attrTypes["co2 emission"].id}
+        label="CO2 Emission"
+        showCreateButton={false}
+      />
+      <SubassetAttributeTypeItem
+        attributes={attributes}
+        attributeTypeId={attrTypes["duty"].id}
+        label="Duty"
+        showCreateButton={false}
+      />
+      <SubassetAttributeTypeItem
+        attributes={attributes}
+        attributeTypeId={attrTypes["design loss"].id}
+        label="Design Loss"
+      />
+      <SubassetAttributeTypeItem
+        attributes={attributes}
+        attributeTypeId={attrTypes["operating loss"].id}
+        label="Operating loss"
+      />
     </>
   );
 };
