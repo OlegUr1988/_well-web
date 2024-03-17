@@ -14,8 +14,8 @@ interface Props {
 
 const AttributeCard = ({
   attribute,
-  showEdit = false,
-  showDelete = false,
+  showEdit = true,
+  showDelete = true,
 }: Props) => {
   const { isOpen, onToggle } = useDisclosure();
   const user = useUserStore((s) => s.user);

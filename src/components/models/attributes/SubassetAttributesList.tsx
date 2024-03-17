@@ -16,8 +16,10 @@ const SubassetAttributesList = ({
   const filtered = types?.filter((type) =>
     editableAttributes.includes(type.name.toLowerCase())
   );
+  const typeIds = filtered?.map((type) => type.id);
 
-  const isEditable = (attribute: Attribute) => filtered?.includes(attribute);
+  const isEditable = (attribute: Attribute) =>
+    typeIds?.includes(attribute.attributeTypeId);
 
   return (
     <>
