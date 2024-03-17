@@ -12,13 +12,16 @@ const SubassetAttributeTypesList = ({
   const { subassetId } = useModelStore((s) => s.modelQuery);
   const { data: asset } = useAsset(subassetId);
   const attrTypes = useGetAttributeTypes();
-
-  const showCO2Emission = () => asset?.utilityType.name.toLowerCase() === "gas";
-  const showDuty = () => asset?.utilityType.name.toLowerCase() !== "heat";
+  const isGasUtility = asset?.utilityType.name.toLowerCase() === "gas";
+  const isNotHeatUtility = asset?.utilityType.name.toLowerCase() !== "heat";
+  const hasCO2EmissionType = !!attrTypes["co2 emission"];
+  const hasDutyType = !!attrTypes["duty"];
+  const hasOperatingLossType = !!attrTypes["operating loss"];
+  const hasDesignLossType = !!attrTypes["design loss"];
 
   return (
     <>
-      {showCO2Emission() && (
+      {isGasUtility && hasCO2EmissionType && (
         <SubassetAttributeTypeItem
           attributes={attributes}
           attributeTypeId={attrTypes["co2 emission"].id}
@@ -26,7 +29,7 @@ const SubassetAttributeTypesList = ({
           showCreateButton={false}
         />
       )}
-      {showDuty() && (
+      {isNotHeatUtility && hasDutyType && (
         <SubassetAttributeTypeItem
           attributes={attributes}
           attributeTypeId={attrTypes["duty"].id}
@@ -34,16 +37,20 @@ const SubassetAttributeTypesList = ({
           showCreateButton={false}
         />
       )}
-      <SubassetAttributeTypeItem
-        attributes={attributes}
-        attributeTypeId={attrTypes["design loss"].id}
-        label="Design Loss"
-      />
-      <SubassetAttributeTypeItem
-        attributes={attributes}
-        attributeTypeId={attrTypes["operating loss"].id}
-        label="Operating loss"
-      />
+      {hasDesignLossType && (
+        <SubassetAttributeTypeItem
+          attributes={attributes}
+          attributeTypeId={attrTypes["design loss"].id}
+          label="Design Loss"
+        />
+      )}
+      {hasOperatingLossType && (
+        <SubassetAttributeTypeItem
+          attributes={attributes}
+          attributeTypeId={attrTypes["operating loss"].id}
+          label="Operating loss"
+        />
+      )}
     </>
   );
 };
