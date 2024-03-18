@@ -1,7 +1,8 @@
-import { HStack, List, ListItem, Text } from "@chakra-ui/react";
+import { Box, HStack, List, ListItem, Text } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
 import useModelStore from "../../../store/model";
 import useUserStore from "../../../store/user";
+import ListViewLinkIcon from "../ListViewLinkIcon";
 import AreaDeleteButton from "./AreaDeleteButton";
 import AreaEditButton from "./AreaEditButton";
 
@@ -34,6 +35,9 @@ const AreasList = ({ areas }: { areas: Asset[] }) => {
               cursor="pointer"
             >
               {area.name}
+              <Box as="span">
+                <ListViewLinkIcon path={`/dashboards/${area?.name}`} />
+              </Box>
             </Text>
             <HStack>
               {user && <AreaEditButton area={area} />}

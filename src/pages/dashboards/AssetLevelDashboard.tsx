@@ -1,14 +1,14 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import { DashboardHeaderPanel } from "../components/dashboards";
+import { DashboardHeaderPanel } from "../../components/dashboards";
 import {
   LossesDailyLineChartCard,
   LossesTableCard,
-} from "../components/dashboards/losses";
-import { PerformancesCard } from "../components/dashboards/performances";
-import { useAssetByName } from "../hooks/assets";
+} from "../../components/dashboards/losses";
+import { PerformancesCard } from "../../components/dashboards/performances";
+import { useAssetByName } from "../../hooks/assets";
 
-const DashboardPage = () => {
+const AssetLevelDashboard = () => {
   const { areaName, assetName } = useParams();
 
   const {
@@ -40,4 +40,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default AssetLevelDashboard;

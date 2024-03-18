@@ -1,5 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import DashboardPage from "./pages/DashboardPage";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
@@ -14,6 +13,7 @@ import {
   UnitsPage,
   UsersPage,
 } from "./pages/configs";
+import { AreaLevelDashboard, AssetLevelDashboard } from "./pages/dashboards/";
 
 const router = createBrowserRouter([
   {
@@ -41,7 +41,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: "dashboards/:areaName/:assetName", element: <DashboardPage /> },
+  { path: "dashboards/:areaName", element: <AreaLevelDashboard /> },
+  { path: "dashboards/:areaName/:assetName", element: <AssetLevelDashboard /> },
 ]);
 
 export default router;
