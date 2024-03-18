@@ -2,11 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Constant } from "../../entities/constants";
 import { constants } from "../../services/constantsServices";
 
-const useConstant = (id: string | number) => {
+const useConstantByName = (name: string) => {
   return useQuery<Constant, Error>({
-    queryKey: ["constatns", id],
-    queryFn: () => constants.get(id),
+    queryKey: ["constatns", name],
+    queryFn: () => constants.get(name),
   });
 };
 
-export default useConstant;
+export default useConstantByName;
