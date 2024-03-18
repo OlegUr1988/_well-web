@@ -5,7 +5,6 @@ import { ListViewFormData } from "../../../entities/formDatas";
 import { useAddAsset, useAsset } from "../../../hooks/assets";
 import { useAddAttribute } from "../../../hooks/attributes";
 import useGetAttributeTypes from "../../../hooks/useGetAttributeTypes";
-import useGetUtilityTypes from "../../../hooks/useGetUtilityTypes";
 import { HttpError } from "../../../services/api-client";
 import { listViewFormSchema } from "../../../validationSchema";
 import SimpleModal from "../../common/SimpleModal";
@@ -16,7 +15,6 @@ const SubassetCreateButton = ({ parentAssetId }: { parentAssetId: number }) => {
   const { mutateAsync: createAttribute, isPending: creatingAttribute } =
     useAddAttribute();
   const attrTypes = useGetAttributeTypes();
-  const utilityTypes = useGetUtilityTypes();
   const { data: asset } = useAsset(parentAssetId);
 
   const handleOnSuccess = async (data: AddAsset) => {
@@ -24,25 +22,15 @@ const SubassetCreateButton = ({ parentAssetId }: { parentAssetId: number }) => {
       assetId: data.id!,
       attributeTypeId: attrTypes["duty"]!.id,
     };
-
     try {
-      if (data.utilityTypeId === utilityTypes["gas"]!.id)
-        await createAttribute({
-          assetId: data.id!,
-          attributeTypeId: attrTypes["co2 emission"]!.id,
-          name: "CO2 emission",
-        });
-
-      if (data.utilityTypeId !== utilityTypes["heat"]!.id) {
-        await createAttribute({
-          ...template,
-          name: "Duty",
-        });
-        await createAttribute({
-          ...template,
-          name: "Useful work",
-        });
-      }
+      await createAttribute({
+        ...template,
+        name: "Duty",
+      });
+      await createAttribute({
+        ...template,
+        name: "Useful work",
+      });
     } catch (error) {
       const { response } = error as HttpError;
       toast.error(response?.data.message);
