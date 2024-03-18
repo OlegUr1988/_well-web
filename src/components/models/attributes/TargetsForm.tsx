@@ -1,4 +1,4 @@
-import { UpdateTargetSchema } from "../../../entities/formDatas";
+import { UpdateTargetFormData } from "../../../entities/formDatas";
 import { Target } from "../../../entities/targets";
 import { useFormSubmit } from "../../../hooks/forms";
 import { useUpdateTarget } from "../../../hooks/targets";
@@ -11,7 +11,7 @@ const TargetsForm = ({ targets }: { targets: Target }) => {
   const user = useUserStore((s) => s.user);
 
   const { register, handleSubmit, onSubmit, errors } =
-    useFormSubmit<UpdateTargetSchema>({
+    useFormSubmit<UpdateTargetFormData>({
       onSuccessMessage: "Targets was successfuly updated",
       mutateAsync,
       schema: updateTargetSchema,

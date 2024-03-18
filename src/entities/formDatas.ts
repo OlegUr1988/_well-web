@@ -4,6 +4,7 @@ import {
   assetSchema,
   assignmentSchema,
   changeUserPasswordSchema,
+  constantShcema,
   dataSourceSchema,
   listViewFormSchema,
   loginSchema,
@@ -32,4 +33,6 @@ export type UpdateUserFormData = z.infer<typeof updateUserSchema>;
 
 export type RegisterUserFormData = z.infer<typeof registerUserSchema>;
 
-export type UpdateTargetSchema = z.infer<typeof updateTargetSchema>;
+export type UpdateTargetFormData = z.infer<typeof updateTargetSchema>;
+
+export type ConstantFormData = z.infer<typeof constantShcema>;

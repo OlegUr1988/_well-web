@@ -1,6 +1,6 @@
 import { Tbody, Td, Tr } from "@chakra-ui/react";
 import { Unit } from "../../../entities/units";
-import useUnitsStore from "../../../store/unitsStore";
+import useUnitsStore from "../../../store/units";
 import useUserStore from "../../../store/user";
 import UnitDeleteButton from "./UnitDeleteButton";
 import UnitEditButton from "./UnitEditButton";

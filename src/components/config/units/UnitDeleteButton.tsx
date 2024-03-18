@@ -1,5 +1,5 @@
 import { useDeleteUnit, useUnits } from "../../../hooks/units";
-import useUnitsStore from "../../../store/unitsStore";
+import useUnitsStore from "../../../store/units";
 import { DeleteButton } from "../../common/buttons";
 import SimpleAlert from "../../common/SimpleAlert";
 
