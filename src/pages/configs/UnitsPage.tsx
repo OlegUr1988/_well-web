@@ -8,7 +8,6 @@ import {
 
 const PHDTagsPage = () => {
   return (
-    <>
       <Container maxW="container.xl">
         <Heading mb={5}>Units</Heading>
 
@@ -26,7 +25,6 @@ const PHDTagsPage = () => {
 
         <UnitsPagination />
       </Container>
-    </>
   );
 };
 

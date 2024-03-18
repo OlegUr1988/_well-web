@@ -20,6 +20,7 @@ const SideBar = () => {
         )}
         <SideBarListItem to="/config/tags" text="PHD Tags" />
         <SideBarListItem to="/config/units" text="Units" />
+        <SideBarListItem to="/config/constants" text="Constants" />
         <SideBarListItem to="/config/datasource" text="Data Source" />
         {user && (
           <SideBarListItem

@@ -8,25 +8,23 @@ import {
 
 const PHDTagsPage = () => {
   return (
-    <>
-      <Container maxW="container.xl">
-        <Heading mb={5}>PHD Tags</Heading>
+    <Container maxW="container.xl">
+      <Heading mb={5}>PHD Tags</Heading>
 
-        <Box mb={5}>
-          <PHDTagsCommandPanel />
-        </Box>
+      <Box mb={5}>
+        <PHDTagsCommandPanel />
+      </Box>
 
-        <Box mb={3}>
-          <PHDTagsSearchInput />
-        </Box>
+      <Box mb={3}>
+        <PHDTagsSearchInput />
+      </Box>
 
-        <Box mb={5}>
-          <PHDTagsList />
-        </Box>
+      <Box mb={5}>
+        <PHDTagsList />
+      </Box>
 
-        <PHDTagsPagination />
-      </Container>
-    </>
+      <PHDTagsPagination />
+    </Container>
   );
 };
 

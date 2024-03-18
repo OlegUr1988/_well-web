@@ -1,10 +1,11 @@
+import useConstantsStore from "../../../store/constants";
 import useUnitsStore from "../../../store/units";
 import SearchInput from "../../common/SearchInput";
 
-const UnitSearchInput = () => {
-  const { searchedName } = useUnitsStore((s) => s.unitsQuery);
+const ConstantSearchInput = () => {
+  const { searchedName } = useConstantsStore((s) => s.constantsQuery);
   const setSearchedName = useUnitsStore((s) => s.setSearchedName);
-  const setPage = useUnitsStore((s) => s.setPage);
+  const setPage = useConstantsStore((s) => s.setPage);
 
   const handleSearch = (text: string) => {
     setSearchedName(text);
@@ -13,11 +14,11 @@ const UnitSearchInput = () => {
 
   return (
     <SearchInput
-      placeholder="Search units..."
+      placeholder="Search constants..."
       defaultValue={searchedName}
       onSearch={(e) => handleSearch(e)}
     />
   );
 };
 
-export default UnitSearchInput;
+export default ConstantSearchInput;

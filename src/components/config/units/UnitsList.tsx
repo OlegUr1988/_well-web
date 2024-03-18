@@ -1,9 +1,9 @@
 import { Skeleton } from "@chakra-ui/react";
 import { useUnits } from "../../../hooks/units";
-import useUnitsStore from "../../../store/unitsStore";
+import useUnitsStore from "../../../store/units";
 import UnitsTable from "./UnitsTable";
 
-const PHDTagsList = () => {
+const UnitssList = () => {
   const { page, pageSize, searchedName } = useUnitsStore((s) => s.unitsQuery);
 
   const {
@@ -25,4 +25,4 @@ const PHDTagsList = () => {
   );
 };
 
-export default PHDTagsList;
+export default UnitssList;
