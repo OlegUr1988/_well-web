@@ -2,7 +2,7 @@ import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
 import { User } from "../../entities/users";
 import useUserStore from "../../store/user";
-import { getToken } from "../../utils/auth";
+import { clearToken, getToken } from "../../utils/auth";
 
 const useAuth = () => {
   const setUser = useUserStore((s) => s.setUser);
@@ -11,6 +11,11 @@ const useAuth = () => {
     try {
       const token = getToken();
       const user = jwtDecode(token!);
+      const expireTime = user.exp! * 1000;
+      const currentTime = Date.now();
+      if (currentTime > expireTime) {
+        clearToken();
+      }
       setUser(user as User);
     } catch (error) {}
   }, []);
