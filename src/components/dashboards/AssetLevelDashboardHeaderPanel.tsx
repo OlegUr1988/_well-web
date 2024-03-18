@@ -1,6 +1,6 @@
 import { Heading, Show, SimpleGrid } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
-import DashboardAssetSelectInput from "./DashboardAssetSelectInput";
+import AssetLevelDashboardSelectInput from "./AssetLevelDashboardSelectInput";
 import DashboardLocationInfo from "./DashboardLocationInfo";
 import DashboardLogo from "./DashboardLogo";
 import DashboardTimeSelectInput from "./DashboardTimeSelectInput";
@@ -10,7 +10,7 @@ interface Props {
   asset: Asset;
 }
 
-const DashboardHeaderPanel = ({ area, asset }: Props) => {
+const AssetLevelDashboardHeaderPanel = ({ area, asset }: Props) => {
   if (asset.parentAssetId !== area.id)
     return (
       <Heading>{`The asset: ${asset?.name} is not exists in area: ${area?.name}`}</Heading>
@@ -28,10 +28,10 @@ const DashboardHeaderPanel = ({ area, asset }: Props) => {
       <Show above="xl">
         <DashboardLocationInfo areaName={area.name} assetName={asset.name} />
       </Show>
-      <DashboardAssetSelectInput asset={asset} area={area} />
+      <AssetLevelDashboardSelectInput asset={asset} area={area} />
       <DashboardTimeSelectInput />
     </SimpleGrid>
   );
 };
 
-export default DashboardHeaderPanel;
+export default AssetLevelDashboardHeaderPanel;
