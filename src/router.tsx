@@ -6,6 +6,7 @@ import Layout from "./pages/Layout";
 import {
   ChangePasswordPage,
   ConfigPanelPage,
+  ConstantsPage,
   DataSourcePage,
   LoginPage,
   ModelsPage,
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
           { path: "users", element: <UsersPage /> },
           { path: "tags", element: <PHDTagsPage /> },
           { path: "units", element: <UnitsPage /> },
+          { path: "constants", element: <ConstantsPage /> },
           { path: "datasource", element: <DataSourcePage /> },
           { path: "change-password", element: <ChangePasswordPage /> },
         ],

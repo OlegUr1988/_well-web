@@ -8,7 +8,6 @@ import {
 
 const UsersPage = () => {
   return (
-    <>
       <Container maxW="container.xl">
         <Heading mb={5}>Users</Heading>
 
@@ -26,7 +25,6 @@ const UsersPage = () => {
 
         <UsersPagination />
       </Container>
-    </>
   );
 };
 
