@@ -13,12 +13,10 @@ const useAuth = () => {
       const user = jwtDecode(token!);
       const expireTime = user.exp! * 1000;
       const currentTime = Date.now();
-      if (currentTime > expireTime) {
-        clearToken();
-      }
-      setUser(user as User);
+      if (currentTime > expireTime) clearToken();
+      else setUser(user as User);
     } catch (error) {}
-  }, []);
+  }, [setUser]);
 };
 
 export default useAuth;
