@@ -14,7 +14,7 @@ const AreaLevelDashboard = () => {
 
   return (
     <Box p={5}>
-      <Box mb={5}>
+      <Box mb={5} w={{ base: "100%", xl: "75%" }}>
         <AreaLevelDashboardHeaderPanel area={area!} />
       </Box>
     </Box>
