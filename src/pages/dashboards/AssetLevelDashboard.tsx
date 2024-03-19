@@ -1,14 +1,15 @@
 import { Box, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import { DashboardHeaderPanel } from "../components/dashboards";
+import { AssetLevelDashboardHeaderPanel } from "../../components/dashboards";
 import {
   LossesDailyLineChartCard,
   LossesTableCard,
-} from "../components/dashboards/losses";
-import { PerformancesCard } from "../components/dashboards/performances";
-import { useAssetByName } from "../hooks/assets";
+} from "../../components/dashboards/losses";
+import { PerformancesCard } from "../../components/dashboards/performances";
+import LoadingSpinner from "../../components/models/LoadingSpinner";
+import { useAssetByName } from "../../hooks/assets";
 
-const DashboardPage = () => {
+const AssetLevelDashboard = () => {
   const { areaName, assetName } = useParams();
 
   const {
@@ -22,14 +23,14 @@ const DashboardPage = () => {
     error: assetError,
   } = useAssetByName({ name: assetName });
 
-  if (isAreaLoading || isAssetLoading) return "Loading";
+  if (isAreaLoading || isAssetLoading) return <LoadingSpinner />;
 
   if (areaError || assetError) return null;
 
   return (
     <Box p={5}>
       <Box mb={5}>
-        <DashboardHeaderPanel area={area!} asset={asset!} />
+        <AssetLevelDashboardHeaderPanel area={area!} asset={asset!} />
       </Box>
       <SimpleGrid columns={2} gap={5} mb={5}>
         <LossesTableCard asset={asset!} />
@@ -40,4 +41,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default AssetLevelDashboard;

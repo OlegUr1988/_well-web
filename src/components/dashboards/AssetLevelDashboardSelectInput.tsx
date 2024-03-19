@@ -6,7 +6,7 @@ import { Asset } from "../../entities/assets";
 import { useAsset } from "../../hooks/assets";
 import DashboardAssetSelectInputSkeleton from "./DashboardAssetSelectInputSkeleton";
 
-const DashboardAssetSelectInput = ({
+const AssetLevelDashboardSelectInput = ({
   area,
   asset,
 }: {
@@ -48,4 +48,4 @@ const DashboardAssetSelectInput = ({
   );
 };
 
-export default DashboardAssetSelectInput;
+export default AssetLevelDashboardSelectInput;
