@@ -1,5 +1,6 @@
 import { Attribute } from "./attributes";
 import { BasicQuery } from "./basicQuery";
+import { Target } from "./targets";
 import { UtilityType } from "./utilityTypes";
 
 export interface Asset {
@@ -10,6 +11,7 @@ export interface Asset {
   attributes: Attribute[];
   children: Asset[];
   utilityType: UtilityType;
+  target: Target;
 }
 
 export interface AddAsset {
