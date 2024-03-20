@@ -1,5 +1,7 @@
 import _ from "lodash";
 import { Asset } from "../entities/assets";
+import { Record } from "../entities/records";
+import { getSumOfRecords, groupBy } from "../utils/records";
 import { useConstantByName } from "./constants";
 import useGetRecords from "./useGetRecords";
 
@@ -53,48 +55,42 @@ const useCalculateAreaTotalKPIs = (area: Asset) => {
   if (isLoading) return null;
 
   // Calculating productions
-  const totalProduction = _.sum(productions.map((r) => parseFloat(r.value)));
+  const totalProduction = parseFloat(getSumOfRecords(productions));
   const productionUnit = productions.length
     ? productions[0].PHDTag.unit.name
     : "Ton/hr";
-  const productionGroups = _.groupBy(productions, (item) => item.timestamp);
-  const productionDifferences = _.map(productionGroups, (array) =>
-    _.sumBy(array, (item) => productionTarget - parseFloat(item.value))
+  const productionGroups = groupBy(productions, "timestamp");
+  const productionDifferences = getDiffirences(
+    productionGroups,
+    productionTarget
   );
-  const productionTargetDifference = parseFloat(
-    ((_.sum(productionDifferences) * 100) / totalProduction - 100).toFixed(2)
+  const productionTargetDifference = getTotalDifference(
+    productionDifferences,
+    totalProduction
   );
 
   // Calculating energy consumptions
-  const totalEnergyConsumption = _.sum(
-    energyConsumptions.map((r) => parseFloat(r.value))
+  const totalEnergyConsumption = parseFloat(
+    getSumOfRecords(energyConsumptions)
   );
   const energyConsumptionUnit = energyConsumptions.length
     ? energyConsumptions[0].PHDTag.unit.name
     : "KW";
-  const energyConsumptionGroups = _.groupBy(
-    energyConsumptions,
-    (item) => item.timestamp
+  const energyConsumptionGroups = groupBy(energyConsumptions, "timestamp");
+  const energyConsumptDifferences = getDiffirences(
+    energyConsumptionGroups,
+    energyConsumptionTarget
   );
-  const energyConsumptDifferences = _.map(energyConsumptionGroups, (array) =>
-    _.sumBy(array, (item) => energyConsumptionTarget - parseFloat(item.value))
-  );
-  const energyConsumptDifference = parseFloat(
-    (
-      (_.sum(energyConsumptDifferences) * 100) / totalEnergyConsumption -
-      100
-    ).toFixed(2)
+  const energyConsumptDifference = getTotalDifference(
+    energyConsumptDifferences,
+    totalEnergyConsumption
   );
 
   // Calculating spesific energy consumptions
   const totalSpecificEnergyConsumption =
     totalProduction / totalEnergyConsumption || 0;
-  const Productions = _.mapValues(productionGroups, (obj) =>
-    _.sumBy(obj, (item) => parseFloat(item.value))
-  );
-  const EnergyConsumptions = _.mapValues(energyConsumptionGroups, (obj) =>
-    _.sumBy(obj, (item) => parseFloat(item.value))
-  );
+  const Productions = getArrayOfSums(productionGroups);
+  const EnergyConsumptions = getArrayOfSums(energyConsumptionGroups);
   const specificEnergyConsumptionGroups = _.mapValues(
     _.zipObject(_.keys(Productions), _.values(EnergyConsumptions)),
     (val, key) => {
@@ -105,22 +101,20 @@ const useCalculateAreaTotalKPIs = (area: Asset) => {
     specificEnergyConsumptionGroups,
     (item) => specificEnergyConsupmtionTarget - item
   );
-  const specificEnergyConsumptionDifference = parseFloat(
-    (
-      (_.sum(specificEnergyConsumptionDifferences) * 100) /
-        totalSpecificEnergyConsumption -
-      100
-    ).toFixed(2)
+  const specificEnergyConsumptionDifference = getTotalDifference(
+    specificEnergyConsumptionDifferences,
+    totalSpecificEnergyConsumption
   );
 
   // Calculating CO2 emissions
-  const totatlAssetsDuty = _.sum(assetsRecords.map((r) => parseFloat(r.value)));
+  const totatlAssetsDuty = parseFloat(getSumOfRecords(assetsRecords));
   const totalCO2Emission = totatlAssetsDuty * CO2coefficient!;
   const CO2EmissionDifferences = assetsRecords.map(
     (asset) => CO2EmissionTarget - parseFloat(asset.value) * CO2coefficient
   );
-  const CO2EmissionDifferense = parseFloat(
-    ((_.sum(CO2EmissionDifferences) * 100) / totalCO2Emission - 100).toFixed(2)
+  const CO2EmissionDifferense = getTotalDifference(
+    CO2EmissionDifferences,
+    totalCO2Emission
   );
 
   return {
@@ -145,3 +139,14 @@ const useCalculateAreaTotalKPIs = (area: Asset) => {
 };
 
 export default useCalculateAreaTotalKPIs;
+
+const getDiffirences = (groups: _.Dictionary<Record[]>, target: number) =>
+  _.map(groups, (array) =>
+    _.sumBy(array, (item) => target - parseFloat(item.value))
+  );
+
+const getTotalDifference = (differences: number[], total: number) =>
+  parseFloat(((_.sum(differences) * 100) / total - 100).toFixed(2));
+
+const getArrayOfSums = (groups: _.Dictionary<Record[]>) =>
+  _.mapValues(groups, (obj) => _.sumBy(obj, (item) => parseFloat(item.value)));

@@ -8,7 +8,7 @@ export const getRecordsByUnits = (records: Record[], units: string) =>
   );
 
 export const getSumOfRecords = (records: Record[]) =>
-  _.sumBy(records, (array) => parseFloat(array.value)).toFixed(2)
+  _.sumBy(records, (array) => parseFloat(array.value)).toFixed(2);
 
 export const getAverageOfRecords = (
   assignments: Assignment[],
@@ -52,3 +52,6 @@ export const getAverageOfRecords = (
 
 export const calculateRecordsSum = (records: Record[], units: string) =>
   getSumOfRecords(getRecordsByUnits(records, units));
+
+export const groupBy = (records: Record[], key: keyof Record) =>
+  _.groupBy(records, (item) => item[key]);
