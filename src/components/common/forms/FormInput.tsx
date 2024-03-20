@@ -35,6 +35,7 @@ const FormInput = <T extends FieldValues>({
       <FormLabel>{label}</FormLabel>
       <Input
         type={type}
+        step="any"
         w={w}
         placeholder={placeholder}
         defaultValue={defaultValue}

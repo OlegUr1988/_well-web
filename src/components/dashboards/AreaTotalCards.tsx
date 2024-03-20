@@ -6,7 +6,12 @@ import useGetRecords from "../../hooks/useGetRecords";
 import { useConstantByName } from "../../hooks/constants";
 
 const AreaTotalCards = ({ area }: { area: Asset }) => {
-  //   const { productionTarget, energyConsumptionTarget } = area.target;
+  const {
+    productionTarget,
+    energyConsumptionTarget,
+    specificEnergyConsupmtionTarget,
+    CO2EmissionTarget,
+  } = area.target;
   const attributes = _.flatten(area.attributes);
   const assignments = _.flatten(attributes.map((p) => p.assignments));
   const productionAssignments = assignments.filter(
@@ -53,13 +58,64 @@ const AreaTotalCards = ({ area }: { area: Asset }) => {
   const totalEnergyConsumption = _.sum(
     energyConsumptions.map((r) => parseFloat(r.value))
   );
-  const specificEnergyConsumption =
+  const totalSpecificEnergyConsumption =
     totalProduction / totalEnergyConsumption || 0;
 
   const CO2coefficient = constant?.value || 0;
   const totatlAssetsDuty = _.sum(assetsRecords.map((r) => parseFloat(r.value)));
 
   const totalCO2Emission = totatlAssetsDuty * CO2coefficient!;
+
+  const productionGroups = _.groupBy(productions, (item) => item.timestamp);
+  const productionDifferences = _.map(productionGroups, (array) =>
+    _.sumBy(array, (item) => productionTarget - parseFloat(item.value))
+  );
+  const productionTargetDifference = (
+    (_.sum(productionDifferences) * 100) / totalProduction -
+    100
+  ).toFixed(2);
+
+  const energyConsumptionGroups = _.groupBy(
+    energyConsumptions,
+    (item) => item.timestamp
+  );
+  const energyConsumptDifferences = _.map(energyConsumptionGroups, (array) =>
+    _.sumBy(array, (item) => energyConsumptionTarget - parseFloat(item.value))
+  );
+  const energyConsumptDifference = (
+    (_.sum(energyConsumptDifferences) * 100) / totalEnergyConsumption -
+    100
+  ).toFixed(2);
+
+  const totalProductions = _.mapValues(productionGroups, (obj) =>
+    _.sumBy(obj, (item) => parseFloat(item.value))
+  );
+  const totalEnergyConsumptions = _.mapValues(energyConsumptionGroups, (obj) =>
+    _.sumBy(obj, (item) => parseFloat(item.value))
+  );
+  const specificEnergyConsumptionGroups = _.mapValues(
+    _.zipObject(_.keys(totalProductions), _.values(totalEnergyConsumptions)),
+    (val, key) => {
+      return totalProductions[key] / val;
+    }
+  );
+  const specificEnergyConsumptionDifferences = _.map(
+    specificEnergyConsumptionGroups,
+    (item) => specificEnergyConsupmtionTarget - item
+  );
+  const specificEnergyConsumptionDifference = (
+    (_.sum(specificEnergyConsumptionDifferences) * 100) /
+      totalSpecificEnergyConsumption -
+    100
+  ).toFixed(2);
+
+  const CO2EmissionDifferences = assetsRecords.map(
+    (asset) => CO2EmissionTarget - parseFloat(asset.value) * CO2coefficient
+  );
+  const CO2EmissionDifferense = (
+    (_.sum(CO2EmissionDifferences) * 100) / totalCO2Emission -
+    100
+  ).toFixed(2);
 
   return (
     <Box mb={5} w={{ base: "100%", xl: "75%" }}>
@@ -68,25 +124,25 @@ const AreaTotalCards = ({ area }: { area: Asset }) => {
           header="Production"
           value={totalProduction}
           units={productionUnit.toUpperCase()}
-          difference={0.1}
+          difference={parseFloat(productionTargetDifference)}
         />
         <TotalKPICard
           header="Energy Consumption"
           value={totalEnergyConsumption}
-          units={energyConsumptionUnit}
-          difference={-0.7}
+          units={energyConsumptionUnit.toUpperCase()}
+          difference={parseFloat(energyConsumptDifference)}
         />
         <TotalKPICard
           header="Specific Energy Consumption"
-          value={specificEnergyConsumption}
+          value={totalSpecificEnergyConsumption}
           units="KW"
-          difference={-0.6}
+          difference={parseFloat(specificEnergyConsumptionDifference)}
         />
         <TotalKPICard
           header="CO2 Emission"
           value={totalCO2Emission}
           units="TON CO2"
-          difference={-0.7}
+          difference={parseFloat(CO2EmissionDifferense)}
         />
       </SimpleGrid>
     </Box>

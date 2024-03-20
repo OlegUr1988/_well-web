@@ -34,7 +34,7 @@ const TotalKPICard = ({ header, value, units, difference }: Props) => {
           ) : (
             <FaArrowDown color="red" />
           )}
-          <Text>{Math.abs(difference)} from target</Text>
+          <Text>{Math.abs(difference)}% from target</Text>
         </HStack>
       </VStack>
     </DashboardCard>
