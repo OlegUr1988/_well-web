@@ -56,7 +56,7 @@ const useCalculateAreaTotalKPIs = (area: Asset) => {
   const totalProduction = _.sum(productions.map((r) => parseFloat(r.value)));
   const productionUnit = productions.length
     ? productions[0].PHDTag.unit.name
-    : "Ton";
+    : "Ton/hr";
   const productionGroups = _.groupBy(productions, (item) => item.timestamp);
   const productionDifferences = _.map(productionGroups, (array) =>
     _.sumBy(array, (item) => productionTarget - parseFloat(item.value))
