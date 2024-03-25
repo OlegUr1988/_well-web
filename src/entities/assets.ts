@@ -29,4 +29,5 @@ export interface UpdateAsset {
 
 export interface AssetQuery extends BasicQuery {
   name?: string;
+  ids?: number[];
 }

@@ -1,6 +1,7 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import AreaLevelDashboardHeaderPanel from "../../components/dashboards/AreaLevelDashboardHeaderPanel";
+import AreaLossesCard from "../../components/dashboards/AreaLossesCard";
 import AreaTotalCards from "../../components/dashboards/AreaTotalCards";
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
@@ -19,7 +20,11 @@ const AreaLevelDashboard = () => {
         <AreaLevelDashboardHeaderPanel area={area!} />
       </Box>
 
-      <AreaTotalCards area={area!} />
+      <Box mb={5}>
+        <AreaTotalCards area={area!} />
+      </Box>
+
+      <AreaLossesCard area={area!} />
     </Box>
   );
 };
