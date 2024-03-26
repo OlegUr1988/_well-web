@@ -6,16 +6,16 @@ import { IconButton } from "../../common/buttons";
 
 const PlantDeleteButton = ({ areaId }: { areaId: number }) => {
   const { mutateAsync, isPending } = useDeleteAsset();
-  const setAreaId = useModelStore((s) => s.setAreaId);
+  const setPlantId = useModelStore((s) => s.setPlantId);
 
   return (
     <SimpleAlert
-      header="Delete the Area?"
-      content="Are you sure to delete this Area?"
-      onSuccessMessage="The area was successfully deleted"
+      header="Delete the Plant?"
+      content="Are you sure to delete this Plant?"
+      onSuccessMessage="The plant was successfully deleted"
       isPending={isPending}
       mutateAsync={() => mutateAsync(areaId)}
-      onSuccess={() => setAreaId(0)}
+      onSuccess={() => setPlantId(0)}
       renderTriggerButton={(onOpen) => (
         <IconButton
           onClick={onOpen}

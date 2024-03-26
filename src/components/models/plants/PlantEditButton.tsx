@@ -10,10 +10,10 @@ const PlantEditButton = ({ area }: { area: Asset }) => {
   const { mutateAsync, isPending } = useUpdateAsset(area.id);
   return (
     <SimpleModal<ListViewFormData>
-      header="Edit Area"
-      label="Area Name"
+      header="Edit Plant"
+      label="Plant Name"
       submitLabel="Save"
-      onSuccessMessage="The area was successfully modified"
+      onSuccessMessage="The plant was successfully modified"
       schema={listViewFormSchema}
       renderTriggerButton={(onOpen) => (
         <IconButton

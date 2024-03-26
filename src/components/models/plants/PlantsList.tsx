@@ -6,42 +6,44 @@ import ListViewLinkIcon from "../ListViewLinkIcon";
 import PlantDeleteButton from "./PlantDeleteButton";
 import PlantEditButton from "./PlantEditButton";
 
-const PlantsList = ({ areas }: { areas: Asset[] }) => {
-  const { areaId } = useModelStore((s) => s.modelQuery);
+const PlantsList = ({ plants }: { plants: Asset[] }) => {
+  const { plantId } = useModelStore((s) => s.modelQuery);
+  const setPlantId = useModelStore((s) => s.setPlantId);
   const setAreaId = useModelStore((s) => s.setAreaId);
   const setAssetId = useModelStore((s) => s.setAssetId);
   const setEquipmentId = useModelStore((s) => s.setSubassetId);
   const user = useUserStore((s) => s.user);
 
   const handleSelect = (id: number) => {
-    setAreaId(id);
+    setPlantId(id);
+    setAreaId(0);
     setAssetId(0);
     setEquipmentId(0);
   };
 
   return (
     <List w="100%">
-      {areas.map((area) => (
+      {plants.map((plant) => (
         <ListItem
-          key={area.id}
+          key={plant.id}
           py={1}
           px={2}
-          bgColor={areaId === area.id ? "blue.300" : "gray.700"}
+          bgColor={plantId === plant.id ? "blue.300" : "gray.700"}
         >
           <HStack justify="space-between">
             <Text
               color="white"
-              onClick={() => handleSelect(area.id)}
+              onClick={() => handleSelect(plant.id)}
               cursor="pointer"
             >
-              {area.name}
+              {plant.name}
               <Box as="span">
-                <ListViewLinkIcon path={`/dashboards/${area?.name}`} />
+                <ListViewLinkIcon path={`/dashboards/${plant?.name}`} />
               </Box>
             </Text>
             <HStack>
-              {user && <PlantEditButton area={area} />}
-              {user && <PlantDeleteButton areaId={area.id} />}
+              {user && <PlantEditButton area={plant} />}
+              {user && <PlantDeleteButton areaId={plant.id} />}
             </HStack>
           </HStack>
         </ListItem>

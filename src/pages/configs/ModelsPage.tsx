@@ -8,6 +8,7 @@ import {
 } from "../../components/models/attributes";
 import { SubassetsListView } from "../../components/models/subassets";
 import useModelStore from "../../store/model";
+import { PlantsListView } from "../../components/models/plants";
 
 const ModelsPage = () => {
   const { areaId, assetId, subassetId } = useModelStore((s) => s.modelQuery);
@@ -17,6 +18,7 @@ const ModelsPage = () => {
   const showSubassetAttributes = () => assetId !== 0 && subassetId !== 0;
   return (
     <Flex h="100%">
+      <PlantsListView />
       <AreasListView />
       <AssetsListView />
       <SubassetsListView />
