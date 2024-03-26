@@ -1,4 +1,5 @@
 import { ApexOptions } from "apexcharts";
+import numeral from "numeral";
 
 const columnChartOptions: ApexOptions = {
   chart: {
@@ -10,11 +11,16 @@ const columnChartOptions: ApexOptions = {
     },
   },
   plotOptions: {
-    bar: { columnWidth: 100 },
+    bar: {
+      columnWidth: 50,
+      dataLabels: {
+        position: "top",
+      },
+    },
   },
   dataLabels: {
     formatter: (val: number) => {
-      return val.toFixed(0);
+      return numeral(val).format("0.0a").toUpperCase();
     },
   },
   xaxis: {},
