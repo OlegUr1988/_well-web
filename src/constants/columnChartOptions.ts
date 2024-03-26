@@ -3,14 +3,14 @@ import { ApexOptions } from "apexcharts";
 const columnChartOptions: ApexOptions = {
   chart: {
     type: "bar",
-    height: 500,
+    height: 400,
     stacked: true,
     toolbar: {
       show: true,
     },
   },
   plotOptions: {
-    bar: { columnWidth: "10%" },
+    bar: { columnWidth: 100 },
   },
   dataLabels: {
     formatter: (val: number) => {

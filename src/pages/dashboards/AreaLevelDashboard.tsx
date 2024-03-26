@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import AreaLevelDashboardHeaderPanel from "../../components/dashboards/AreaLevelDashboardHeaderPanel";
 import AreaLossesCard from "../../components/dashboards/AreaLossesCard";
@@ -24,7 +24,9 @@ const AreaLevelDashboard = () => {
         <AreaTotalCards area={area!} />
       </Box>
 
-      <AreaLossesCard area={area!} />
+      <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
+        <AreaLossesCard area={area!} />
+      </SimpleGrid>
     </Box>
   );
 };
