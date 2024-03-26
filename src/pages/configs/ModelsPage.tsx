@@ -9,10 +9,14 @@ import {
 import { SubassetsListView } from "../../components/models/subassets";
 import useModelStore from "../../store/model";
 import { PlantsListView } from "../../components/models/plants";
+import PlantAttributesSection from "../../components/models/attributes/PlantAttributesSection";
 
 const ModelsPage = () => {
-  const { areaId, assetId, subassetId } = useModelStore((s) => s.modelQuery);
+  const { plantId, areaId, assetId, subassetId } = useModelStore(
+    (s) => s.modelQuery
+  );
 
+  const showPlantAttriubes = () => plantId !== 0 && areaId === 0;
   const showAreaAttriubes = () => areaId !== 0 && assetId === 0;
   const showAssetAttributs = () => assetId !== 0 && subassetId === 0;
   const showSubassetAttributes = () => assetId !== 0 && subassetId !== 0;
@@ -22,6 +26,11 @@ const ModelsPage = () => {
       <AreasListView />
       <AssetsListView />
       <SubassetsListView />
+      {showPlantAttriubes() && (
+        <Box flex={1} overflowY="auto">
+          <PlantAttributesSection />
+        </Box>
+      )}
       {showAreaAttriubes() && (
         <Box flex={1} overflowY="auto">
           <AreaAttributesSection />
