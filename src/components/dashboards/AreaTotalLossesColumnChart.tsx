@@ -1,41 +1,16 @@
-import _ from "lodash";
+import ReactApexChart from "react-apexcharts";
 import { Asset } from "../../entities/assets";
-import { AttributeType } from "../../entities/attributeType";
-import useAreaAttributesByType from "../../hooks/useAreaAttributesByType";
-import useAreaLosses from "../../hooks/useAreaLosses";
+import useCreateColumnChartOptions from "../../hooks/useCreateColumnChartOptions";
 
-const AreaTotalLossesColumnChart = ({
-  assets,
-}: {
-  assets: Asset[];
-  types: AttributeType[];
-}) => {
-  const assetDesignLosses = useAreaLosses(
-    useAreaAttributesByType(assets, "design loss")
+const AreaTotalLossesColumnChart = ({ assets }: { assets: Asset[] }) => {
+  const chart = useCreateColumnChartOptions(assets);
+  if (!chart) return null;
+
+  const { series, options } = chart;
+
+  return (
+    <ReactApexChart series={series} options={options} type="bar" height={500} />
   );
-  const assetOperatingLosses = useAreaLosses(
-    useAreaAttributesByType(assets, "operating loss")
-  );
-
-  if (!assetDesignLosses) return null;
-
-  if (!assetOperatingLosses) return null;
-
-  const dataset = assets?.map((asset: Asset) => ({
-    id: asset.id,
-    name: asset.name,
-    losses: {
-      designLoss:
-        _.sum(asset.children.map((child) => assetDesignLosses![child.id])) || 0,
-      operatingLoss:
-        _.sum(asset.children.map((child) => assetOperatingLosses![child.id])) ||
-        0,
-    },
-  }));
-
-  console.log(dataset);
-
-  return <div>AreaTotalLossesColumnChart</div>;
 };
 
 export default AreaTotalLossesColumnChart;

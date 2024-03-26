@@ -1,7 +1,7 @@
 import _ from "lodash";
 import { Attribute } from "../entities/attributes";
-import useRecords from "./useRecords";
 import { getRecordsByUnits, getSumOfRecords } from "../utils/records";
+import useGetRecords from "./useGetRecords";
 
 const useAreaLosses = (attributes: Attribute[][] | null) => {
   const assignments = attributes!.map((nestedArray) =>
@@ -11,13 +11,7 @@ const useAreaLosses = (attributes: Attribute[][] | null) => {
   const allTags = _.flattenDepth(assignments, 2);
   const tags = _.uniqBy(allTags, (r) => r.PHDTagId);
   const PHDTagIds = tags.map((t) => t.PHDTagId);
-  const {
-    data: records,
-    isLoading,
-    error,
-  } = useRecords({
-    PHDTagIds,
-  });
+  const { records, isLoading, error } = useGetRecords(allTags);
 
   if (!PHDTagIds.length) return null;
   if (isLoading || error) return null;

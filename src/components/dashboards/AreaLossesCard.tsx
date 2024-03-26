@@ -12,11 +12,7 @@ const AreaLossesCard = ({ area }: { area: Asset }) => {
     isLoading: isAssetsLoading,
     error: assetsError,
   } = useAssetsByIds({ ids });
-  const {
-    data: types,
-    isLoading: isTypesLoading,
-    error: typesError,
-  } = useAttributeTypes();
+  const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
 
   if (isAssetsLoading || isTypesLoading) return null;
 
@@ -25,7 +21,7 @@ const AreaLossesCard = ({ area }: { area: Asset }) => {
   return (
     <DashboardCard>
       <Heading>Losses</Heading>
-      <AreaTotalLossesColumnChart assets={assets!} types={types!} />
+      <AreaTotalLossesColumnChart assets={assets!} />
     </DashboardCard>
   );
 };
