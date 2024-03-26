@@ -9,7 +9,12 @@ import {
 import PerformanceGauge from "./PerformanceGauge";
 import PerformanceGaugeMetricSummary from "./PerformanceGaugeMetricSummary";
 
-const PerformanceGaugeChart = ({ asset }: { asset: Asset }) => {
+interface Props {
+  asset: Asset;
+  count?: number;
+}
+
+const PerformanceGaugeChart = ({ asset, count = 1 }: Props) => {
   const allAttributes = asset.attributes;
 
   const dutyAttribute = allAttributes.find(
@@ -49,12 +54,18 @@ const PerformanceGaugeChart = ({ asset }: { asset: Asset }) => {
         <Text fontSize="lg" textAlign="left" fontWeight={600}>
           {asset.name}
         </Text>
-        <PerformanceGauge usefulWorkRatio={usefulWorkRatio} />
-        <PerformanceGaugeMetricSummary
-          totalDuty={totalDuty}
-          totalUsefulWork={totalUsefulWork}
-          usefulWorkRatio={usefulWorkRatio}
-        />
+        <Box position="relative" top={-10}>
+          <PerformanceGauge
+            usefulWorkRatio={usefulWorkRatio}
+            height={count > 1 ? 300 : 380}
+          />
+          <PerformanceGaugeMetricSummary
+            totalDuty={totalDuty}
+            totalUsefulWork={totalUsefulWork}
+            usefulWorkRatio={usefulWorkRatio}
+            count={count}
+          />
+        </Box>
       </Box>
     </VStack>
   );

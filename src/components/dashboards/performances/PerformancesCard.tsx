@@ -24,12 +24,15 @@ const PerformancesCard = ({ asset }: { asset: Asset }) => {
         <SimpleGrid
           h="100%"
           columns={{ base: 1, xl: assets!.length > 1 ? 2 : 1 }}
-          alignContent={{ base: "start", xl: "center" }}
+          alignContent={{ base: "start", xl: "flex-start" }}
           overflowY="auto"
-          gap={6}
         >
           {assets?.map((asset) => (
-            <PerformanceGaugeChart key={asset.id} asset={asset} />
+            <PerformanceGaugeChart
+              key={asset.id}
+              asset={asset}
+              count={assets!.length}
+            />
           ))}
         </SimpleGrid>
       </Box>
