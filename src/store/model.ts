@@ -2,6 +2,7 @@ import { mountStoreDevtool } from "simple-zustand-devtools";
 import { create } from "zustand";
 
 interface ModelQuery {
+  plantId: number;
   areaId: number;
   assetId: number;
   subassetId: number;
@@ -9,13 +10,16 @@ interface ModelQuery {
 
 interface ModelStore {
   modelQuery: ModelQuery;
+  setPlantId: (plantId: number) => void;
   setAreaId: (areaId: number) => void;
   setAssetId: (assetId: number) => void;
   setSubassetId: (subassetId: number) => void;
 }
 
 const useModelStore = create<ModelStore>((set) => ({
-  modelQuery: { areaId: 0, assetId: 0, subassetId: 0 },
+  modelQuery: { plantId: 0, areaId: 0, assetId: 0, subassetId: 0 },
+  setPlantId: (plantId) =>
+    set((store) => ({ modelQuery: { ...store.modelQuery, plantId } })),
   setAreaId: (areaId) =>
     set((store) => ({ modelQuery: { ...store.modelQuery, areaId } })),
   setAssetId: (assetId) =>
