@@ -6,8 +6,8 @@ import { listViewFormSchema } from "../../../validationSchema";
 import SimpleModal from "../../common/SimpleModal";
 import { IconButton } from "../../common/buttons";
 
-const PlantEditButton = ({ area }: { area: Asset }) => {
-  const { mutateAsync, isPending } = useUpdateAsset(area.id);
+const PlantEditButton = ({ plant }: { plant: Asset }) => {
+  const { mutateAsync, isPending } = useUpdateAsset(plant.id);
   return (
     <SimpleModal<ListViewFormData>
       header="Edit Plant"
@@ -23,7 +23,7 @@ const PlantEditButton = ({ area }: { area: Asset }) => {
           icon={<MdOutlineEdit color="white" />}
         />
       )}
-      defaultValue={area.name}
+      defaultValue={plant.name}
       isPending={isPending}
       mutateAsync={mutateAsync}
     />

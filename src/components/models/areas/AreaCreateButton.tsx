@@ -12,7 +12,7 @@ import { listViewFormSchema } from "../../../validationSchema";
 import SimpleModal from "../../common/SimpleModal";
 import { IconButton } from "../../common/buttons";
 
-const AreaCreateButton = () => {
+const AreaCreateButton = ({ plantId }: { plantId: number }) => {
   const { mutateAsync, isPending } = useAddAsset();
   const { mutateAsync: createAttribute, isPending: creatingAttribute } =
     useAddAttribute();
@@ -84,6 +84,7 @@ const AreaCreateButton = () => {
         mutateAsync({
           name: data.name,
           utilityTypeId: areatype?.id!,
+          parentAssetId: plantId,
         })
       }
       onSuccess={handleOnSuccess}

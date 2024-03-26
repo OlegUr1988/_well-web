@@ -42,8 +42,8 @@ const PlantsList = ({ plants }: { plants: Asset[] }) => {
               </Box>
             </Text>
             <HStack>
-              {user && <PlantEditButton area={plant} />}
-              {user && <PlantDeleteButton areaId={plant.id} />}
+              {user && <PlantEditButton plant={plant} />}
+              {user && <PlantDeleteButton plantId={plant.id} />}
             </HStack>
           </HStack>
         </ListItem>

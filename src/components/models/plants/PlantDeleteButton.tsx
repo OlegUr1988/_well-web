@@ -4,7 +4,7 @@ import useModelStore from "../../../store/model";
 import SimpleAlert from "../../common/SimpleAlert";
 import { IconButton } from "../../common/buttons";
 
-const PlantDeleteButton = ({ areaId }: { areaId: number }) => {
+const PlantDeleteButton = ({ plantId }: { plantId: number }) => {
   const { mutateAsync, isPending } = useDeleteAsset();
   const setPlantId = useModelStore((s) => s.setPlantId);
 
@@ -14,7 +14,7 @@ const PlantDeleteButton = ({ areaId }: { areaId: number }) => {
       content="Are you sure to delete this Plant?"
       onSuccessMessage="The plant was successfully deleted"
       isPending={isPending}
-      mutateAsync={() => mutateAsync(areaId)}
+      mutateAsync={() => mutateAsync(plantId)}
       onSuccess={() => setPlantId(0)}
       renderTriggerButton={(onOpen) => (
         <IconButton

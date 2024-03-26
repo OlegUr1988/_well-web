@@ -10,13 +10,13 @@ const AreasList = ({ areas }: { areas: Asset[] }) => {
   const { areaId } = useModelStore((s) => s.modelQuery);
   const setAreaId = useModelStore((s) => s.setAreaId);
   const setAssetId = useModelStore((s) => s.setAssetId);
-  const setEquipmentId = useModelStore((s) => s.setSubassetId);
+  const setSubassetId = useModelStore((s) => s.setSubassetId);
   const user = useUserStore((s) => s.user);
 
   const handleSelect = (id: number) => {
     setAreaId(id);
     setAssetId(0);
-    setEquipmentId(0);
+    setSubassetId(0);
   };
 
   return (
