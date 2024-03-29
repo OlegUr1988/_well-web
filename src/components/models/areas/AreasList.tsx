@@ -36,7 +36,7 @@ const AreasList = ({ areas }: { areas: Asset[] }) => {
             >
               {area.name}
               <Box as="span">
-                <ListViewLinkIcon path={`/dashboards/${area?.name}`} />
+                <ListViewLinkIcon path={`/dashboards/areas/${area?.name}`} />
               </Box>
             </Text>
             <HStack>

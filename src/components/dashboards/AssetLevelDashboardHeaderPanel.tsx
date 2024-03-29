@@ -1,4 +1,4 @@
-import { Heading, Show, SimpleGrid } from "@chakra-ui/react";
+import { Show, SimpleGrid } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
 import AssetLevelDashboardSelectInput from "./AssetLevelDashboardSelectInput";
 import DashboardLocationInfo from "./DashboardLocationInfo";
@@ -11,10 +11,6 @@ interface Props {
 }
 
 const AssetLevelDashboardHeaderPanel = ({ area, asset }: Props) => {
-  if (asset.parentAssetId !== area.id)
-    return (
-      <Heading>{`The asset: ${asset?.name} is not exists in area: ${area?.name}`}</Heading>
-    );
   return (
     <SimpleGrid
       templateColumns={{

@@ -36,7 +36,7 @@ const AreaLevelDashboardSelectInput = ({ area }: { area: Asset }) => {
         <Box w="100%">
           <Select
             defaultValue={defaultValue}
-            onChange={(option) => navigate(`/dashboards/${option?.label}`)}
+            onChange={(option) => navigate(`/dashboards/areas/${option?.label}`)}
             options={options}
             size="sm"
           />

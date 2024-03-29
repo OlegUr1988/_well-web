@@ -38,7 +38,7 @@ const PlantsList = ({ plants }: { plants: Asset[] }) => {
             >
               {plant.name}
               <Box as="span">
-                <ListViewLinkIcon path={`/dashboards/${plant?.name}`} />
+                <ListViewLinkIcon path={`/dashboards/plant/${plant?.name}`} />
               </Box>
             </Text>
             <HStack>

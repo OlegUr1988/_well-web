@@ -41,8 +41,11 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: "dashboards/:areaName", element: <AreaLevelDashboard /> },
-  { path: "dashboards/:areaName/:assetName", element: <AssetLevelDashboard /> },
+  { path: "dashboards/areas/:areaName", element: <AreaLevelDashboard /> },
+  {
+    path: "dashboards/assets/:areaName/:assetName",
+    element: <AssetLevelDashboard />,
+  },
 ]);
 
 export default router;

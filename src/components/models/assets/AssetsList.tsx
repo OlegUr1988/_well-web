@@ -37,7 +37,7 @@ const AssetsList = ({ assets }: { assets: Asset[] }) => {
               {asset.name}
               <Box as="span">
                 <ListViewLinkIcon
-                  path={`/dashboards/${area?.name}/${asset.name}`}
+                  path={`/dashboards/assets/${area?.name}/${asset.name}`}
                 />
               </Box>
             </Text>
