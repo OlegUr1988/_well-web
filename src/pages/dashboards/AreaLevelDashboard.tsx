@@ -5,20 +5,18 @@ import AreaLossesCard from "../../components/dashboards/AreaLossesCard";
 import AreaTotalCards from "../../components/dashboards/AreaTotalCards";
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
-import useUtilityTypes from "../../hooks/useUtilityTypes";
+import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 
 const AreaLevelDashboard = () => {
   const { areaName } = useParams();
-  const { data: types } = useUtilityTypes();
+  const types = useGetUtilityTypes();
   const { data: area, isLoading, error } = useAssetByName({ name: areaName });
-
-  const areaType = types?.find((type) => type.name.toLowerCase() === "area");
 
   if (isLoading) return <LoadingSpinner />;
 
   if (error) return <Heading>Invalid area name provided</Heading>;
 
-  if (area?.utilityTypeId !== areaType?.id)
+  if (types["plant"] && area?.utilityTypeId !== types["area"].id)
     return <Heading>Invalid asset type provided</Heading>;
 
   return (
