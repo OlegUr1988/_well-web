@@ -9,7 +9,7 @@ const AreaTotalLossesColumnChart = ({ assets }: { assets: Asset[] }) => {
   const { series, options } = chart;
 
   return (
-    <ReactApexChart series={series} options={options} type="bar" height={500} />
+    <ReactApexChart series={series} options={options} type="bar" height={400} />
   );
 };
 

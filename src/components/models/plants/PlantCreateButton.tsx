@@ -12,7 +12,7 @@ import { listViewFormSchema } from "../../../validationSchema";
 import SimpleModal from "../../common/SimpleModal";
 import { IconButton } from "../../common/buttons";
 
-const AreaCreateButton = ({ plantId }: { plantId: number }) => {
+const PlantCreateButton = () => {
   const { mutateAsync, isPending } = useAddAsset();
   const { mutateAsync: createAttribute, isPending: creatingAttribute } =
     useAddAttribute();
@@ -25,8 +25,8 @@ const AreaCreateButton = ({ plantId }: { plantId: number }) => {
 
   if (error) return null;
 
-  const areatype = assetTypes?.find(
-    (type) => type.name.toLowerCase() === "area"
+  const plantType = assetTypes?.find(
+    (type) => type.name.toLowerCase() === "plant"
   );
 
   const handleOnSuccess = async (data: AddAsset) => {
@@ -64,10 +64,10 @@ const AreaCreateButton = ({ plantId }: { plantId: number }) => {
 
   return (
     <SimpleModal<ListViewFormData, AddAsset>
-      header="Create Area"
-      label="Area Name"
+      header="Create Plant"
+      label="Plant Name"
       submitLabel="Create"
-      onSuccessMessage="The new area was successfully added"
+      onSuccessMessage="The new plant was successfully added"
       schema={listViewFormSchema}
       renderTriggerButton={(onOpen) => (
         <IconButton
@@ -83,8 +83,7 @@ const AreaCreateButton = ({ plantId }: { plantId: number }) => {
       mutateAsync={(data) =>
         mutateAsync({
           name: data.name,
-          utilityTypeId: areatype?.id!,
-          parentAssetId: plantId,
+          utilityTypeId: plantType?.id!,
         })
       }
       onSuccess={handleOnSuccess}
@@ -92,4 +91,4 @@ const AreaCreateButton = ({ plantId }: { plantId: number }) => {
   );
 };
 
-export default AreaCreateButton;
+export default PlantCreateButton;

@@ -37,7 +37,7 @@ const AssetLevelDashboardSelectInput = ({
           <Select
             defaultValue={defaultValue}
             onChange={(option) =>
-              navigate(`/dashboards/${area.name}/${option?.label}`)
+              navigate(`/dashboards/assets/${area.name}/${option?.label}`)
             }
             options={options}
             size="sm"

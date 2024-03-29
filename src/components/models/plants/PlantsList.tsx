@@ -3,45 +3,47 @@ import { Asset } from "../../../entities/assets";
 import useModelStore from "../../../store/model";
 import useUserStore from "../../../store/user";
 import ListViewLinkIcon from "../ListViewLinkIcon";
-import AreaDeleteButton from "./AreaDeleteButton";
-import AreaEditButton from "./AreaEditButton";
+import PlantDeleteButton from "./PlantDeleteButton";
+import PlantEditButton from "./PlantEditButton";
 
-const AreasList = ({ areas }: { areas: Asset[] }) => {
-  const { areaId } = useModelStore((s) => s.modelQuery);
+const PlantsList = ({ plants }: { plants: Asset[] }) => {
+  const { plantId } = useModelStore((s) => s.modelQuery);
+  const setPlantId = useModelStore((s) => s.setPlantId);
   const setAreaId = useModelStore((s) => s.setAreaId);
   const setAssetId = useModelStore((s) => s.setAssetId);
-  const setSubassetId = useModelStore((s) => s.setSubassetId);
+  const setEquipmentId = useModelStore((s) => s.setSubassetId);
   const user = useUserStore((s) => s.user);
 
   const handleSelect = (id: number) => {
-    setAreaId(id);
+    setPlantId(id);
+    setAreaId(0);
     setAssetId(0);
-    setSubassetId(0);
+    setEquipmentId(0);
   };
 
   return (
     <List w="100%">
-      {areas.map((area) => (
+      {plants.map((plant) => (
         <ListItem
-          key={area.id}
+          key={plant.id}
           py={1}
           px={2}
-          bgColor={areaId === area.id ? "blue.300" : "gray.700"}
+          bgColor={plantId === plant.id ? "blue.300" : "gray.700"}
         >
           <HStack justify="space-between">
             <Text
               color="white"
-              onClick={() => handleSelect(area.id)}
+              onClick={() => handleSelect(plant.id)}
               cursor="pointer"
             >
-              {area.name}
+              {plant.name}
               <Box as="span">
-                <ListViewLinkIcon path={`/dashboards/areas/${area?.name}`} />
+                <ListViewLinkIcon path={`/dashboards/plant/${plant?.name}`} />
               </Box>
             </Text>
             <HStack>
-              {user && <AreaEditButton area={area} />}
-              {user && <AreaDeleteButton areaId={area.id} />}
+              {user && <PlantEditButton plant={plant} />}
+              {user && <PlantDeleteButton plantId={plant.id} />}
             </HStack>
           </HStack>
         </ListItem>
@@ -50,4 +52,4 @@ const AreasList = ({ areas }: { areas: Asset[] }) => {
   );
 };
 
-export default AreasList;
+export default PlantsList;

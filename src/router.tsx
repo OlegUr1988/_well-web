@@ -13,7 +13,11 @@ import {
   UnitsPage,
   UsersPage,
 } from "./pages/configs";
-import { AreaLevelDashboard, AssetLevelDashboard } from "./pages/dashboards/";
+import {
+  AreaLevelDashboard,
+  AssetLevelDashboard,
+  PlantLevelDashboard,
+} from "./pages/dashboards/";
 
 const router = createBrowserRouter([
   {
@@ -41,8 +45,12 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: "dashboards/:areaName", element: <AreaLevelDashboard /> },
-  { path: "dashboards/:areaName/:assetName", element: <AssetLevelDashboard /> },
+  { path: "dashboards/plant/:plantName", element: <PlantLevelDashboard /> },
+  { path: "dashboards/areas/:areaName", element: <AreaLevelDashboard /> },
+  {
+    path: "dashboards/assets/:areaName/:assetName",
+    element: <AssetLevelDashboard />,
+  },
 ]);
 
 export default router;

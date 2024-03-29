@@ -7,7 +7,7 @@ interface Props {
   isLoading: boolean;
   error: Error | null;
   listComponent: JSX.Element;
-  createButtonComponent: JSX.Element;
+  createButtonComponent: JSX.Element | null;
 }
 
 const ListView = ({
