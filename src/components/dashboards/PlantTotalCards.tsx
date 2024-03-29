@@ -1,8 +1,8 @@
 import { Asset } from "../../entities/assets";
-import useCalculateAreaTotalKPIs from "../../hooks/useCalculateAreaTotalKPIs";
+import useCalculateTotalKPIs from "../../hooks/useCalculateAreaTotalKPIs";
 
 const PlantTotalCards = ({ plant }: { plant: Asset }) => {
-  const totalKPIs = useCalculateAreaTotalKPIs(plant);
+  const totalKPIs = useCalculateTotalKPIs(plant);
 
   console.log(totalKPIs);
 

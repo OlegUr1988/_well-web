@@ -1,23 +1,21 @@
 import _ from "lodash";
 import { Asset } from "../entities/assets";
-import { Record } from "../entities/records";
-import { getSumOfRecords, groupBy } from "../utils/records";
-import { useConstantByName } from "./constants";
+import {
+  getArrayOfSums,
+  getDiffirences,
+  getSumOfRecords,
+  getTotalDifference,
+  groupBy,
+} from "../utils/records";
 import useGetRecords from "./useGetRecords";
 
-const useCalculateAreaTotalKPIs = (area: Asset) => {
+const useCalculateTotalKPIs = (area: Asset) => {
   // Targets for area
   const {
     productionTarget,
     energyConsumptionTarget,
     specificEnergyConsupmtionTarget,
-    CO2EmissionTarget,
   } = area.target;
-
-  // Get CO2 conversion coefficient
-  const { data: constant, isLoading: isCO2CoefficientLoading } =
-    useConstantByName("CO2 conversion coefficient");
-  const CO2coefficient = constant?.value || 0;
 
   // Get assignments
   const attributes = _.flatten(area.attributes);
@@ -28,17 +26,8 @@ const useCalculateAreaTotalKPIs = (area: Asset) => {
   const consumptionAssignments = assignments.filter(
     (ass) => ass.attribute.name.toLowerCase() === "total energy consumption"
   );
-  const assetAttributes = _.flatten(
-    area.children.map((asset) => asset.attributes)
-  );
-  const assetAssignments = _.flatten(
-    assetAttributes.map((asset) => asset.assignments)
-  );
 
   // Get Records
-  const { records: assetsRecords, isLoading: isChildrenLoading } =
-    useGetRecords(assetAssignments);
-
   const { records: productions, isLoading: isProductionsLoading } =
     useGetRecords(productionAssignments);
   const {
@@ -46,11 +35,7 @@ const useCalculateAreaTotalKPIs = (area: Asset) => {
     isLoading: isEnergyConsumptionsLoading,
   } = useGetRecords(consumptionAssignments);
 
-  const isLoading =
-    isProductionsLoading ||
-    isEnergyConsumptionsLoading ||
-    isChildrenLoading ||
-    isCO2CoefficientLoading;
+  const isLoading = isProductionsLoading || isEnergyConsumptionsLoading;
 
   if (isLoading) return null;
 
@@ -106,30 +91,16 @@ const useCalculateAreaTotalKPIs = (area: Asset) => {
     totalSpecificEnergyConsumption
   );
 
-  // Calculating CO2 emissions
-  const totatlAssetsDuty = parseFloat(getSumOfRecords(assetsRecords));
-  const totalCO2Emission = totatlAssetsDuty * CO2coefficient!;
-  const CO2EmissionDifferences = assetsRecords.map(
-    (asset) => CO2EmissionTarget - parseFloat(asset.value) * CO2coefficient
-  );
-  const CO2EmissionDifferense = getTotalDifference(
-    CO2EmissionDifferences,
-    totalCO2Emission
-  );
-
   return {
-    isLoading,
     totals: {
       totalProduction,
       totalEnergyConsumption,
       totalSpecificEnergyConsumption,
-      totalCO2Emission,
     },
     targetDifferences: {
       productionTargetDifference,
       energyConsumptDifference,
       specificEnergyConsumptionDifference,
-      CO2EmissionDifferense,
     },
     units: {
       productionUnit,
@@ -138,15 +109,4 @@ const useCalculateAreaTotalKPIs = (area: Asset) => {
   };
 };
 
-export default useCalculateAreaTotalKPIs;
-
-const getDiffirences = (groups: _.Dictionary<Record[]>, target: number) =>
-  _.map(groups, (array) =>
-    _.sumBy(array, (item) => target - parseFloat(item.value))
-  );
-
-const getTotalDifference = (differences: number[], total: number) =>
-  parseFloat(((_.sum(differences) * 100) / total - 100).toFixed(2));
-
-const getArrayOfSums = (groups: _.Dictionary<Record[]>) =>
-  _.mapValues(groups, (obj) => _.sumBy(obj, (item) => parseFloat(item.value)));
+export default useCalculateTotalKPIs;
