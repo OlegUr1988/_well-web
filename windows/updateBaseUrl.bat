@@ -10,7 +10,7 @@ if "%newBaseUrl%"=="" (
     exit /b 1
 )
 
-set "newBaseUrl=http://%newBaseUrl%:3000/api"
+set "newBaseUrl=https://%newBaseUrl%:3000/api"
 
 (for /f "tokens=1,* delims==" %%a in (%file%) do (
     if "%%a"=="VITE_REACT_APP_BASE_URL" (
