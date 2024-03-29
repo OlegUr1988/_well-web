@@ -88,7 +88,7 @@ const useCalculateAreaTotalKPIs = (area: Asset) => {
 
   // Calculating spesific energy consumptions
   const totalSpecificEnergyConsumption =
-    totalProduction / totalEnergyConsumption || 0;
+    totalEnergyConsumption / totalProduction || 0;
   const Productions = getArrayOfSums(productionGroups);
   const EnergyConsumptions = getArrayOfSums(energyConsumptionGroups);
   const specificEnergyConsumptionGroups = _.mapValues(

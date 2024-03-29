@@ -4,6 +4,7 @@ import PlantLevelDashboardHeaderPanel from "../../components/dashboards/PlantLev
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
+import PlantTotalCards from "../../components/dashboards/PlantTotalCards";
 
 const PlantLevelDashboard = () => {
   const { plantName } = useParams();
@@ -21,6 +22,10 @@ const PlantLevelDashboard = () => {
     <Box p={5}>
       <Box mb={5}>
         <PlantLevelDashboardHeaderPanel />
+      </Box>
+
+      <Box mb={5}>
+        <PlantTotalCards plant={plant!} />
       </Box>
     </Box>
   );
