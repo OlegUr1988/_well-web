@@ -8,7 +8,6 @@ import {
 import { PerformancesCard } from "../../components/dashboards/performances";
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
-import useUtilityTypes from "../../hooks/useUtilityTypes";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 
 const AssetLevelDashboard = () => {
@@ -29,10 +28,6 @@ const AssetLevelDashboard = () => {
   if (isAreaLoading || isAssetLoading) return <LoadingSpinner />;
 
   if (areaError || assetError) return null;
-
-  if (!types) return null;
-
-  console.log(types);
 
   if (types["area"] && area?.utilityTypeId !== types["area"].id)
     return <Heading>Invalid Area type</Heading>;
