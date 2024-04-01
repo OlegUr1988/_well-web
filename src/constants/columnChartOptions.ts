@@ -30,6 +30,11 @@ const columnChartOptions: ApexOptions = {
       },
     },
   },
+  tooltip: {
+    y: {
+      formatter: (val) => numeral(val).format("0.0a").toUpperCase(),
+    },
+  },
 };
 
 export default columnChartOptions;

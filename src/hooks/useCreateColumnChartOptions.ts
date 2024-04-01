@@ -44,7 +44,7 @@ const useCreateColumnChartOptions = (assets: Asset[]) => {
     ...columnChartOptions,
     xaxis: {
       ...columnChartOptions.xaxis,
-      overwriteCategories: dataset.map((item) => item.name),
+      categories: dataset.map((item) => item.name),
     },
   };
 
