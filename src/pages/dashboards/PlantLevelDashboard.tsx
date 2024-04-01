@@ -6,6 +6,7 @@ import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 import PlantTotalCards from "../../components/dashboards/PlantTotalCards";
 import PlantLossesCard from "../../components/dashboards/PlantLossesCard";
+import PlantTotalKPITrendCard from "../../components/dashboards/TotalKPITrendCard";
 
 const PlantLevelDashboard = () => {
   const { plantName } = useParams();
