@@ -2,7 +2,7 @@ import { Heading } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
 import { useAssetsByIds } from "../../hooks/assets";
 import useAttributeTypes from "../../hooks/useAttributeTypes";
-import AreaTotalLossesColumnChart from "./AreaTotalLossesColumnChart";
+import TotalLossesColumnChart from "./AreaTotalLossesColumnChart";
 import DashboardCard from "./DashboardCard";
 
 const AreaLossesCard = ({ area }: { area: Asset }) => {
@@ -21,7 +21,7 @@ const AreaLossesCard = ({ area }: { area: Asset }) => {
   return (
     <DashboardCard>
       <Heading>Losses</Heading>
-      <AreaTotalLossesColumnChart assets={assets!} />
+      <TotalLossesColumnChart assets={assets!} />
     </DashboardCard>
   );
 };
