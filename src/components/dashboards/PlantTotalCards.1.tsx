@@ -1,14 +1,11 @@
-import { Box, SimpleGrid } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
 import useCalculateTotalKPIs from "../../hooks/useCalculateAreaTotalKPIs";
-import TotalKPICard from "./TotalKPICard";
-import useCalculateAreaCO2Emission from "../../hooks/useCalculateAreaCO2Emission";
 
-const AreaTotalCards = ({ area }: { area: Asset }) => {
-  const totalKPIs = useCalculateTotalKPIs(area);
-  const CO2EmissionKPI = useCalculateAreaCO2Emission(area);
+export const PlantTotalCards = ({ plant }: { plant: Asset }) => {
+  const totalKPIs = useCalculateTotalKPIs(plant);
 
-  if (!totalKPIs || !CO2EmissionKPI) return null;
+  if (!totalKPIs) return null;
 
   const { totals } = totalKPIs!;
   const {
@@ -16,7 +13,6 @@ const AreaTotalCards = ({ area }: { area: Asset }) => {
     totalEnergyConsumption,
     totalSpecificEnergyConsumption,
   } = totals;
-  const { totalCO2Emission, CO2EmissionDifference } = CO2EmissionKPI;
 
   const { units } = totalKPIs!;
   const { productionUnit, energyConsumptionUnit } = units;
@@ -59,5 +55,3 @@ const AreaTotalCards = ({ area }: { area: Asset }) => {
     </Box>
   );
 };
-
-export default AreaTotalCards;
