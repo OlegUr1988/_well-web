@@ -33,6 +33,7 @@ const PlantLevelDashboard = () => {
       <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
         <PlantLossesCard plant={plant!} />
       </SimpleGrid>
+      <PlantTotalKPITrendCard plant={plant!} />
     </Box>
   );
 };

@@ -31,7 +31,7 @@ const AreaLossesCard = ({ plant }: { plant: Asset }) => {
   if (areasError || typesError || assetsError) return null;
 
   return (
-    <DashboardCard>
+    <DashboardCard p={5}>
       <Heading fontSize="xl" mb={3}>
         Plant top 15 bad actors
       </Heading>
