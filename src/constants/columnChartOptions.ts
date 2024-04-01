@@ -12,7 +12,6 @@ const columnChartOptions: ApexOptions = {
   },
   plotOptions: {
     bar: {
-      columnWidth: 50,
       dataLabels: {
         position: "top",
       },
