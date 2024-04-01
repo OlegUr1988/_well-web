@@ -21,7 +21,7 @@ const PlantTotalKPITrendCard = ({ plant, trendType }: Props) => {
     specificEnergyConsupmtionTarget,
   } = plant.target;
 
-  let targe;
+  let target = 0;
 
   // Get assignments
   const attributes = _.flatten(plant.attributes);
@@ -69,6 +69,8 @@ const PlantTotalKPITrendCard = ({ plant, trendType }: Props) => {
         ),
       },
     ];
+
+    target = productionTarget;
   }
 
   if (trendType === "energy consumption") {
@@ -85,6 +87,8 @@ const PlantTotalKPITrendCard = ({ plant, trendType }: Props) => {
         ),
       },
     ];
+
+    target = energyConsumptionTarget;
   }
 
   if (trendType === "specific energy consumption") {
@@ -111,7 +115,15 @@ const PlantTotalKPITrendCard = ({ plant, trendType }: Props) => {
         ),
       },
     ];
+
+    target = specificEnergyConsupmtionTarget;
   }
+
+  const minValue = _.minBy(series![0].data, "y")!.y;
+  const maxValue = _.maxBy(series![0].data, "y")!.y;
+
+  const min = _.min([minValue, target])! * 0.8;
+  const max = _.max([maxValue, target])! * 1.2;
 
   const options: ApexOptions = {
     chart: {
@@ -126,6 +138,10 @@ const PlantTotalKPITrendCard = ({ plant, trendType }: Props) => {
         text: "Timestamp",
       },
     },
+    yaxis: {
+      max: max,
+      min: min,
+    },
     grid: {
       yaxis: {
         lines: {
@@ -136,7 +152,7 @@ const PlantTotalKPITrendCard = ({ plant, trendType }: Props) => {
     annotations: {
       yaxis: [
         {
-          y: productionTarget,
+          y: target,
           borderColor: "#00E396",
           borderWidth: 4,
           strokeDashArray: 0,
@@ -146,7 +162,7 @@ const PlantTotalKPITrendCard = ({ plant, trendType }: Props) => {
               color: "#fff",
               background: "#00E396",
             },
-            text: "Target " + productionTarget,
+            text: "Target " + target,
           },
         },
       ],
