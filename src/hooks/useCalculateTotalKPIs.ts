@@ -9,16 +9,16 @@ import {
 } from "../utils/records";
 import useGetRecords from "./useGetRecords";
 
-const useCalculateTotalKPIs = (area: Asset) => {
-  // Targets for area
+const useCalculateTotalKPIs = (asset: Asset) => {
+  // Targets for asset
   const {
     productionTarget,
     energyConsumptionTarget,
     specificEnergyConsupmtionTarget,
-  } = area.target;
+  } = asset.target;
 
   // Get assignments
-  const attributes = _.flatten(area.attributes);
+  const attributes = _.flatten(asset.attributes);
   const assignments = _.flatten(attributes.map((p) => p.assignments));
   const productionAssignments = assignments.filter(
     (ass) => ass.attribute.name.toLowerCase() === "production"
@@ -74,12 +74,12 @@ const useCalculateTotalKPIs = (area: Asset) => {
   // Calculating spesific energy consumptions
   const totalSpecificEnergyConsumption =
     totalEnergyConsumption / totalProduction || 0;
-  const Productions = getArrayOfSums(productionGroups);
-  const EnergyConsumptions = getArrayOfSums(energyConsumptionGroups);
+  const sumOfProductions = getArrayOfSums(productionGroups);
+  const sumOfEnergyConsumptions = getArrayOfSums(energyConsumptionGroups);
   const specificEnergyConsumptionGroups = _.mapValues(
-    _.zipObject(_.keys(Productions), _.values(EnergyConsumptions)),
+    _.zipObject(_.keys(sumOfProductions), _.values(sumOfEnergyConsumptions)),
     (val, key) => {
-      return Productions[key] / val;
+      return sumOfProductions[key] / val;
     }
   );
   const specificEnergyConsumptionDifferences = _.map(

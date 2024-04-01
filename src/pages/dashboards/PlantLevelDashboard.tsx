@@ -7,8 +7,10 @@ import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 import PlantTotalCards from "../../components/dashboards/PlantTotalCards";
 import PlantLossesCard from "../../components/dashboards/PlantLossesCard";
 import PlantTotalKPITrendCard from "../../components/dashboards/TotalKPITrendCard";
+import useDashboardsStore from "../../store/dashboard";
 
 const PlantLevelDashboard = () => {
+  const { trend } = useDashboardsStore((s) => s.dashboardQuery);
   const { plantName } = useParams();
   const types = useGetUtilityTypes();
   const { data: plant, isLoading, error } = useAssetByName({ name: plantName });
@@ -31,9 +33,26 @@ const PlantLevelDashboard = () => {
       </Box>
 
       <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
-        <PlantLossesCard plant={plant!} />
+        {trend === "bad actors" && <PlantLossesCard plant={plant!} />}
+        {trend === "production" && (
+          <PlantTotalKPITrendCard plant={plant!} trendType="production" />
+        )}
+        {trend === "energy consumption" && (
+          <PlantTotalKPITrendCard
+            plant={plant!}
+            trendType="energy consumption"
+          />
+        )}
+        {trend === "specific energy consumption" && (
+          <PlantTotalKPITrendCard
+            plant={plant!}
+            trendType="specific energy consumption"
+          />
+        )}
+        {trend === "CO2 emission" && (
+          <PlantTotalKPITrendCard plant={plant!} trendType="CO2 emission" />
+        )}
       </SimpleGrid>
-      <PlantTotalKPITrendCard plant={plant!} />
     </Box>
   );
 };

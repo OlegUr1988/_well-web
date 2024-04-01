@@ -1,6 +1,6 @@
 import { Box, GridItem, SimpleGrid } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
-import useCalculateTotalKPIs from "../../hooks/useCalculateAreaTotalKPIs";
+import useCalculateTotalKPIs from "../../hooks/useCalculateTotalKPIs";
 import useCalculatePlantCO2Emission from "../../hooks/useCalculatePlantCO2Emission";
 import TotalKPICard from "./TotalKPICard";
 import useDashboardsStore from "../../store/dashboard";

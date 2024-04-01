@@ -1,7 +1,7 @@
 import { mountStoreDevtool } from "simple-zustand-devtools";
 import { create } from "zustand";
 
-type Trend =
+export type Trend =
   | "bad actors"
   | "production"
   | "energy consumption"

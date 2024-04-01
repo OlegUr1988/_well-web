@@ -1,6 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
-import useCalculateTotalKPIs from "../../hooks/useCalculateAreaTotalKPIs";
+import useCalculateTotalKPIs from "../../hooks/useCalculateTotalKPIs";
 
 export const PlantTotalCards = ({ plant }: { plant: Asset }) => {
   const totalKPIs = useCalculateTotalKPIs(plant);
