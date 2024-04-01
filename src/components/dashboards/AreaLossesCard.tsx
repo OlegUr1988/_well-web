@@ -20,7 +20,9 @@ const AreaLossesCard = ({ area }: { area: Asset }) => {
 
   return (
     <DashboardCard>
-      <Heading>Losses</Heading>
+      <Heading fontSize="xl" mb={3}>
+        Area top 15 bad actors
+      </Heading>
       <TotalLossesColumnChart assets={assets!} />
     </DashboardCard>
   );

@@ -32,7 +32,9 @@ const AreaLossesCard = ({ plant }: { plant: Asset }) => {
 
   return (
     <DashboardCard>
-      <Heading>Losses</Heading>
+      <Heading fontSize="xl" mb={3}>
+        Plant top 15 bad actors
+      </Heading>
       <TotalLossesColumnChart assets={assets!} />
     </DashboardCard>
   );
