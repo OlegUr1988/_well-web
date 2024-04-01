@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { UpdateTargetFormData } from "../../../entities/formDatas";
 import { Target } from "../../../entities/targets";
 import { useFormSubmit } from "../../../hooks/forms";
@@ -10,12 +11,16 @@ const TargetsForm = ({ targets }: { targets: Target }) => {
   const { mutateAsync, isPending } = useUpdateTarget(targets.id);
   const user = useUserStore((s) => s.user);
 
-  const { register, handleSubmit, onSubmit, errors } =
+  const { reset, register, handleSubmit, onSubmit, errors } =
     useFormSubmit<UpdateTargetFormData>({
       onSuccessMessage: "Targets was successfuly updated",
       mutateAsync,
       schema: updateTargetSchema,
     });
+
+  useEffect(() => {
+    reset();
+  }, []);
 
   return (
     <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
