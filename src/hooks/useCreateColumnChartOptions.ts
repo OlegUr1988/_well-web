@@ -29,14 +29,22 @@ const useCreateColumnChartOptions = (assets: Asset[]) => {
     },
   }));
 
+  const sortedDataset = _.reverse(
+    _.sortBy(dataset, [
+      (array) => array.losses.designLoss + array.losses.operatingLoss,
+    ])
+  );
+
+  const filteredDataset = sortedDataset.slice(0, 15);
+
   const series = [
     {
       name: "Design Losses",
-      data: dataset.map((item) => item.losses["designLoss"]),
+      data: filteredDataset.map((item) => item.losses["designLoss"]),
     },
     {
       name: "Operating Losses",
-      data: dataset.map((item) => item.losses["operatingLoss"]),
+      data: filteredDataset.map((item) => item.losses["operatingLoss"]),
     },
   ];
 
@@ -44,7 +52,7 @@ const useCreateColumnChartOptions = (assets: Asset[]) => {
     ...columnChartOptions,
     xaxis: {
       ...columnChartOptions.xaxis,
-      overwriteCategories: dataset.map((item) => item.name),
+      categories: filteredDataset.map((item) => item.name),
     },
   };
 

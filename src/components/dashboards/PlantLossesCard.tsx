@@ -4,24 +4,36 @@ import { useAssetsByIds } from "../../hooks/assets";
 import useAttributeTypes from "../../hooks/useAttributeTypes";
 import TotalLossesColumnChart from "./AreaTotalLossesColumnChart";
 import DashboardCard from "./DashboardCard";
+import _ from "lodash";
 
-const AreaLossesCard = ({ area }: { area: Asset }) => {
-  const ids = area.children.map((child) => child.id);
+const AreaLossesCard = ({ plant }: { plant: Asset }) => {
+  const areaIds = plant.children.map((child) => child.id);
+  const {
+    data: areas,
+    isLoading: isAreasLoading,
+    error: areasError,
+  } = useAssetsByIds({ ids: areaIds });
+  const assetIds = _.flatten(
+    areas?.map((area) => area.children.map((asset) => asset.id))
+  );
   const {
     data: assets,
     isLoading: isAssetsLoading,
     error: assetsError,
-  } = useAssetsByIds({ ids });
+  } = useAssetsByIds({
+    ids: assetIds,
+  });
+
   const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
 
-  if (isAssetsLoading || isTypesLoading) return null;
+  if (isAreasLoading || isTypesLoading || isAssetsLoading) return null;
 
-  if (assetsError || typesError) return null;
+  if (areasError || typesError || assetsError) return null;
 
   return (
     <DashboardCard>
       <Heading fontSize="xl" mb={3}>
-        Area top 15 bad actors
+        Plant top 15 bad actors
       </Heading>
       <TotalLossesColumnChart assets={assets!} />
     </DashboardCard>

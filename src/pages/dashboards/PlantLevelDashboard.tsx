@@ -1,10 +1,11 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import PlantLevelDashboardHeaderPanel from "../../components/dashboards/PlantLevelDashboardHeaderPanel";
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 import PlantTotalCards from "../../components/dashboards/PlantTotalCards";
+import PlantLossesCard from "../../components/dashboards/PlantLossesCard";
 
 const PlantLevelDashboard = () => {
   const { plantName } = useParams();
@@ -27,6 +28,10 @@ const PlantLevelDashboard = () => {
       <Box mb={5}>
         <PlantTotalCards plant={plant!} />
       </Box>
+
+      <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
+        <PlantLossesCard plant={plant!} />
+      </SimpleGrid>
     </Box>
   );
 };

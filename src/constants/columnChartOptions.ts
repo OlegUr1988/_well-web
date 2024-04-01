@@ -12,7 +12,6 @@ const columnChartOptions: ApexOptions = {
   },
   plotOptions: {
     bar: {
-      columnWidth: 50,
       dataLabels: {
         position: "top",
       },
@@ -29,6 +28,11 @@ const columnChartOptions: ApexOptions = {
       formatter: (val) => {
         return val.toFixed(0);
       },
+    },
+  },
+  tooltip: {
+    y: {
+      formatter: (val) => numeral(val).format("0.0a").toUpperCase(),
     },
   },
 };
