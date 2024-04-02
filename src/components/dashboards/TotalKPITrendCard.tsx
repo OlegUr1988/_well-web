@@ -7,6 +7,7 @@ import useGetRecords from "../../hooks/useGetRecords";
 import { getArrayOfSums, groupBy } from "../../utils/records";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
+import productionLineChartOptions from "../../constants/productionLineChartOptions";
 
 interface Props {
   plant: Asset;
@@ -125,43 +126,23 @@ const TotalKPITrendCard = ({ plant, trendType }: Props) => {
   const min = _.min([minValue, target])! * 0.8;
   const max = _.max([maxValue, target])! * 1.2;
 
+  const annotationsYAxis = productionLineChartOptions.annotations?.yaxis || [];
+
   const options: ApexOptions = {
-    chart: {
-      type: "line",
-    },
-    xaxis: {
-      type: "datetime",
-      labels: {
-        datetimeUTC: false,
-      },
-      title: {
-        text: "Timestamp",
-      },
-    },
+    ...productionLineChartOptions,
     yaxis: {
+      ...productionLineChartOptions.yaxis,
       max: max,
       min: min,
     },
-    grid: {
-      yaxis: {
-        lines: {
-          show: false,
-        },
-      },
-    },
     annotations: {
+      ...productionLineChartOptions.annotations,
       yaxis: [
         {
+          ...(annotationsYAxis[0] || {}),
           y: target,
-          borderColor: "#00E396",
-          borderWidth: 4,
-          strokeDashArray: 0,
           label: {
-            borderColor: "#00E396",
-            style: {
-              color: "#fff",
-              background: "#00E396",
-            },
+            ...annotationsYAxis[0].label,
             text: "Target " + target,
           },
         },

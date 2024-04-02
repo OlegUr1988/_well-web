@@ -8,6 +8,7 @@ import { useConstantByName } from "../../hooks/constants";
 import useGetRecords from "../../hooks/useGetRecords";
 import { getArrayOfSums, groupBy } from "../../utils/records";
 import DashboardCard from "./DashboardCard";
+import productionLineChartOptions from "../../constants/productionLineChartOptions";
 
 interface Props {
   plant: Asset;
@@ -74,43 +75,23 @@ const PlantTotalCO2EmissionKPITrendCard = ({ plant }: Props) => {
   const min = _.min([minValue, CO2EmissionTarget])! * 0.8;
   const max = _.max([maxValue, CO2EmissionTarget])! * 1.2;
 
+  const annotationsYAxis = productionLineChartOptions.annotations?.yaxis || [];
+
   const options: ApexOptions = {
-    chart: {
-      type: "line",
-    },
-    xaxis: {
-      type: "datetime",
-      labels: {
-        datetimeUTC: false,
-      },
-      title: {
-        text: "Timestamp",
-      },
-    },
+    ...productionLineChartOptions,
     yaxis: {
+      ...productionLineChartOptions.yaxis,
       max: max,
       min: min,
     },
-    grid: {
-      yaxis: {
-        lines: {
-          show: false,
-        },
-      },
-    },
     annotations: {
+      ...productionLineChartOptions.annotations,
       yaxis: [
         {
+          ...(annotationsYAxis[0] || {}),
           y: CO2EmissionTarget,
-          borderColor: "#00E396",
-          borderWidth: 4,
-          strokeDashArray: 0,
           label: {
-            borderColor: "#00E396",
-            style: {
-              color: "#fff",
-              background: "#00E396",
-            },
+            ...annotationsYAxis[0].label,
             text: "Target " + CO2EmissionTarget,
           },
         },
