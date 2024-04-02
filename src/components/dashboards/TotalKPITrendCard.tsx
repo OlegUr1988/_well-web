@@ -13,7 +13,7 @@ interface Props {
   trendType: Trend;
 }
 
-const PlantTotalKPITrendCard = ({ plant, trendType }: Props) => {
+const TotalKPITrendCard = ({ plant, trendType }: Props) => {
   // Targets for asset
   const {
     productionTarget,
@@ -182,4 +182,4 @@ const PlantTotalKPITrendCard = ({ plant, trendType }: Props) => {
   );
 };
 
-export default PlantTotalKPITrendCard;
+export default TotalKPITrendCard;

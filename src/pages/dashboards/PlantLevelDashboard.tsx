@@ -6,8 +6,9 @@ import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 import PlantTotalCards from "../../components/dashboards/PlantTotalCards";
 import PlantLossesCard from "../../components/dashboards/PlantLossesCard";
-import PlantTotalKPITrendCard from "../../components/dashboards/TotalKPITrendCard";
 import useDashboardsStore from "../../store/dashboard";
+import TotalKPITrendCard from "../../components/dashboards/TotalKPITrendCard";
+import PlantTotalCO2EmissionKPITrendCard from "../../components/dashboards/PlantTotalCO2EmissionKPITrendCard";
 
 const PlantLevelDashboard = () => {
   const { trend } = useDashboardsStore((s) => s.dashboardQuery);
@@ -35,22 +36,19 @@ const PlantLevelDashboard = () => {
       <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
         {trend === "bad actors" && <PlantLossesCard plant={plant!} />}
         {trend === "production" && (
-          <PlantTotalKPITrendCard plant={plant!} trendType="production" />
+          <TotalKPITrendCard plant={plant!} trendType="production" />
         )}
         {trend === "energy consumption" && (
-          <PlantTotalKPITrendCard
-            plant={plant!}
-            trendType="energy consumption"
-          />
+          <TotalKPITrendCard plant={plant!} trendType="energy consumption" />
         )}
         {trend === "specific energy consumption" && (
-          <PlantTotalKPITrendCard
+          <TotalKPITrendCard
             plant={plant!}
             trendType="specific energy consumption"
           />
         )}
         {trend === "CO2 emission" && (
-          <PlantTotalKPITrendCard plant={plant!} trendType="CO2 emission" />
+          <PlantTotalCO2EmissionKPITrendCard plant={plant!} />
         )}
       </SimpleGrid>
     </Box>
