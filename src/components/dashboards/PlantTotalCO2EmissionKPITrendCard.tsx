@@ -3,6 +3,7 @@ import ReactApexChart from "react-apexcharts";
 import { Asset } from "../../entities/assets";
 import useGetPlantC02EmissionKPIchartOptions from "../../hooks/useGetPlantC02EmissionKPIchartOptions";
 import DashboardCard from "./DashboardCard";
+import DashboardCardErrorMessage from "./DashboardCardErrorMessage";
 import DashboardCardSkeleton from "./DashboardCardSkeleton";
 import TotalKPICardHeader from "./TotalKPICardHeader";
 
@@ -11,6 +12,8 @@ const PlantTotalCO2EmissionKPITrendCard = ({ plant }: { plant: Asset }) => {
     useGetPlantC02EmissionKPIchartOptions(plant);
 
   if (isLoading) return <DashboardCardSkeleton h={400} />;
+
+  if (!series.length) return <DashboardCardErrorMessage />;
 
   return (
     <DashboardCard p={5}>

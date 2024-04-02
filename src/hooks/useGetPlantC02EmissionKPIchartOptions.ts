@@ -1,10 +1,10 @@
 import _ from "lodash";
+import productionLineChartOptions from "../constants/productionLineChartOptions";
 import { Asset } from "../entities/assets";
+import { getArrayOfSums, groupBy } from "../utils/records";
 import { useAssets, useAssetsByIds } from "./assets";
 import { useConstantByName } from "./constants";
 import useGetRecords from "./useGetRecords";
-import { getArrayOfSums, groupBy } from "../utils/records";
-import productionLineChartOptions from "../constants/productionLineChartOptions";
 
 const useGetPlantC02EmissionKPIchartOptions = (plant: Asset) => {
   // Targets for asset
@@ -60,6 +60,13 @@ const useGetPlantC02EmissionKPIchartOptions = (plant: Asset) => {
       })),
     },
   ];
+
+  if (!series[0].data.length)
+    return {
+      isLoading,
+      series: [],
+      options: {},
+    };
 
   const minValue = _.minBy(series![0].data, "y")!.y;
   const maxValue = _.maxBy(series![0].data, "y")!.y;
