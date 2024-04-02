@@ -17,11 +17,26 @@ const TotalKPITrendCard = ({ asset, trendType }: Props) => {
     trendType
   );
 
+  const getHeader = () => {
+    switch (trendType) {
+      case "production":
+        return "Production";
+
+      case "energy consumption":
+        return "Energy consumption";
+
+      case "specific energy consumption":
+        return "Specific energy consumption";
+    }
+  };
+
   if (isLoading) return <DashboardCardSkeleton h={400} />;
 
   return (
-    <DashboardCard>
-      <Heading fontSize="xl">Production</Heading>
+    <DashboardCard p={5}>
+      <Heading fontSize="xl" mb={3}>
+        {getHeader()}
+      </Heading>
       <ReactApexChart
         options={options}
         series={series!}

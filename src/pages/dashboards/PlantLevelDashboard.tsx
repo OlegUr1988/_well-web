@@ -1,17 +1,13 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import PlantKPITrends from "../../components/dashboards/PlantKPITrends";
 import PlantLevelDashboardHeaderPanel from "../../components/dashboards/PlantLevelDashboardHeaderPanel";
+import PlantTotalCards from "../../components/dashboards/PlantTotalCards";
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
-import PlantTotalCards from "../../components/dashboards/PlantTotalCards";
-import PlantLossesCard from "../../components/dashboards/PlantLossesCard";
-import useDashboardsStore from "../../store/dashboard";
-import TotalKPITrendCard from "../../components/dashboards/TotalKPITrendCard";
-import PlantTotalCO2EmissionKPITrendCard from "../../components/dashboards/PlantTotalCO2EmissionKPITrendCard";
 
 const PlantLevelDashboard = () => {
-  const { trend } = useDashboardsStore((s) => s.dashboardQuery);
   const { plantName } = useParams();
   const types = useGetUtilityTypes();
   const { data: plant, isLoading, error } = useAssetByName({ name: plantName });
@@ -34,22 +30,7 @@ const PlantLevelDashboard = () => {
       </Box>
 
       <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
-        {trend === "bad actors" && <PlantLossesCard plant={plant!} />}
-        {trend === "production" && (
-          <TotalKPITrendCard asset={plant!} trendType="production" />
-        )}
-        {trend === "energy consumption" && (
-          <TotalKPITrendCard asset={plant!} trendType="energy consumption" />
-        )}
-        {trend === "specific energy consumption" && (
-          <TotalKPITrendCard
-            asset={plant!}
-            trendType="specific energy consumption"
-          />
-        )}
-        {trend === "CO2 emission" && (
-          <PlantTotalCO2EmissionKPITrendCard plant={plant!} />
-        )}
+        <PlantKPITrends plant={plant!} />
       </SimpleGrid>
     </Box>
   );

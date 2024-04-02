@@ -12,8 +12,10 @@ const PlantTotalCO2EmissionKPITrendCard = ({ plant }: { plant: Asset }) => {
   if (isLoading) return <DashboardCardSkeleton h={400} />;
 
   return (
-    <DashboardCard>
-      <Heading fontSize="xl">Production</Heading>
+    <DashboardCard p={5}>
+      <Heading fontSize="xl" mb={3}>
+        CO2 Emission
+      </Heading>
       <ReactApexChart
         options={options}
         series={series!}
