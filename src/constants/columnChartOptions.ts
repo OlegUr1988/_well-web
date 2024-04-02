@@ -18,9 +18,7 @@ const columnChartOptions: ApexOptions = {
     },
   },
   dataLabels: {
-    formatter: (val: number) => {
-      return numeral(val).format("0.0a").toUpperCase();
-    },
+    formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
   },
   xaxis: {},
   yaxis: {
@@ -32,7 +30,7 @@ const columnChartOptions: ApexOptions = {
   },
   tooltip: {
     y: {
-      formatter: (val) => numeral(val).format("0.0a").toUpperCase(),
+      formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
     },
   },
 };

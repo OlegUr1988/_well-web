@@ -18,7 +18,7 @@ const PerformancesCard = ({ asset }: { asset: Asset }) => {
   const assets = parentAsset?.children;
 
   return (
-    <DashboardCard>
+    <DashboardCard p={3}>
       <Heading size="md">Performances</Heading>
       <Box h="300">
         <SimpleGrid

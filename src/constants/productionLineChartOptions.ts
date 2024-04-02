@@ -1,4 +1,5 @@
 import { ApexOptions } from "apexcharts";
+import numeral from "numeral";
 
 const productionLineChartOptions: ApexOptions = {
   chart: {
@@ -13,7 +14,11 @@ const productionLineChartOptions: ApexOptions = {
       text: "Timestamp",
     },
   },
-  yaxis: {},
+  yaxis: {
+    labels: {
+      formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
+    },
+  },
   grid: {
     yaxis: {
       lines: {
@@ -36,6 +41,11 @@ const productionLineChartOptions: ApexOptions = {
         },
       },
     ],
+  },
+  tooltip: {
+    y: {
+      formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
+    },
   },
 };
 
