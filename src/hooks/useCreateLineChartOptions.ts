@@ -1,4 +1,4 @@
-import lineChartOptions from "../constants/lineChartOptions";
+import lineChartOptions from "../constants/lossesLineChartOptions";
 import { Asset } from "../entities/assets";
 import useGetSeriesByAsset from "./useGetSeriesByAsset";
 

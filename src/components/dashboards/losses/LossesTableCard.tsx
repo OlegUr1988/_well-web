@@ -19,7 +19,7 @@ const LossesTableCard = ({ asset }: { asset: Asset }) => {
   const assets = parentAsset?.children;
 
   return (
-    <DashboardCard>
+    <DashboardCard p={3}>
       <Heading size="md" mb={3}>
         {asset.name}
       </Heading>

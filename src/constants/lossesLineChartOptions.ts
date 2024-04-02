@@ -1,4 +1,5 @@
 import { ApexOptions } from "apexcharts";
+import numeral from "numeral";
 
 const lineChartOptions: ApexOptions = {
   chart: {
@@ -18,9 +19,7 @@ const lineChartOptions: ApexOptions = {
   },
   dataLabels: {
     enabled: true,
-    formatter: (val) => {
-      return parseFloat(val.toString()).toFixed(0);
-    },
+    formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
     offsetY: -5,
   },
   title: {
@@ -51,15 +50,18 @@ const lineChartOptions: ApexOptions = {
   },
   yaxis: {
     labels: {
-      formatter: (val) => {
-        return val.toFixed(0);
-      },
+      formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
     },
   },
   legend: {
     show: true,
     position: "top",
     horizontalAlign: "left",
+  },
+  tooltip: {
+    y: {
+      formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
+    },
   },
 };
 

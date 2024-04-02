@@ -1,9 +1,10 @@
-import { Heading } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Asset } from "../../entities/assets";
 import { useAssetsByIds } from "../../hooks/assets";
 import useAttributeTypes from "../../hooks/useAttributeTypes";
 import TotalLossesColumnChart from "./AreaTotalLossesColumnChart";
 import DashboardCard from "./DashboardCard";
+import TotalKPICardHeader from "./TotalKPICardHeader";
 
 const AreaLossesCard = ({ area }: { area: Asset }) => {
   const ids = area.children.map((child) => child.id);
@@ -19,11 +20,11 @@ const AreaLossesCard = ({ area }: { area: Asset }) => {
   if (assetsError || typesError) return null;
 
   return (
-    <DashboardCard>
-      <Heading fontSize="xl" mb={3}>
-        Area top 15 bad actors
-      </Heading>
-      <TotalLossesColumnChart assets={assets!} />
+    <DashboardCard p={5}>
+      <TotalKPICardHeader label="Area top 15 bad actors" />
+      <Box className="z-level-one">
+        <TotalLossesColumnChart assets={assets!} />
+      </Box>
     </DashboardCard>
   );
 };
