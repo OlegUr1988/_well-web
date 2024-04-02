@@ -27,3 +27,15 @@ body,
     width: 100%;
   }
 }
+
+.z-level-one {
+  z-index: 1;
+}
+
+.z-level-two {
+  z-index: 2;
+}
+
+.z-level-three {
+  z-index: 3;
+}

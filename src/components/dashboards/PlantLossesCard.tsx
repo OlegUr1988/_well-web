@@ -1,10 +1,11 @@
-import { Heading } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import _ from "lodash";
 import { Asset } from "../../entities/assets";
 import { useAssetsByIds } from "../../hooks/assets";
 import useAttributeTypes from "../../hooks/useAttributeTypes";
 import TotalLossesColumnChart from "./AreaTotalLossesColumnChart";
 import DashboardCard from "./DashboardCard";
-import _ from "lodash";
+import TotalKPICardHeader from "./TotalKPICardHeader";
 
 const AreaLossesCard = ({ plant }: { plant: Asset }) => {
   const areaIds = plant.children.map((child) => child.id);
@@ -32,10 +33,10 @@ const AreaLossesCard = ({ plant }: { plant: Asset }) => {
 
   return (
     <DashboardCard p={5}>
-      <Heading fontSize="xl" mb={3}>
-        Plant top 15 bad actors
-      </Heading>
-      <TotalLossesColumnChart assets={assets!} />
+      <TotalKPICardHeader label="Plant top 15 bad actors" />
+      <Box className="z-level-one">
+        <TotalLossesColumnChart assets={assets!} />
+      </Box>
     </DashboardCard>
   );
 };
