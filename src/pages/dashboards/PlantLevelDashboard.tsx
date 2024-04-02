@@ -36,14 +36,14 @@ const PlantLevelDashboard = () => {
       <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
         {trend === "bad actors" && <PlantLossesCard plant={plant!} />}
         {trend === "production" && (
-          <TotalKPITrendCard plant={plant!} trendType="production" />
+          <TotalKPITrendCard asset={plant!} trendType="production" />
         )}
         {trend === "energy consumption" && (
-          <TotalKPITrendCard plant={plant!} trendType="energy consumption" />
+          <TotalKPITrendCard asset={plant!} trendType="energy consumption" />
         )}
         {trend === "specific energy consumption" && (
           <TotalKPITrendCard
-            plant={plant!}
+            asset={plant!}
             trendType="specific energy consumption"
           />
         )}

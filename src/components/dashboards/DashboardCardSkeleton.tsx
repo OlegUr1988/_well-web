@@ -1,10 +1,14 @@
 import { Skeleton } from "@chakra-ui/react";
 import DashboardCard from "./DashboardCard";
 
-const DashboardCardSkeleton = () => {
+interface Props {
+  h?: number;
+}
+
+const DashboardCardSkeleton = ({ h = 350 }: Props) => {
   return (
     <DashboardCard>
-      <Skeleton h={350} borderRadius={10} />
+      <Skeleton h={h} borderRadius={10} />
     </DashboardCard>
   );
 };
