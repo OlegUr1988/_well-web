@@ -1,7 +1,7 @@
 import { Asset } from "../../entities/assets";
 import useDashboardsStore from "../../store/dashboard";
 import AreaLossesCard from "./AreaLossesCard";
-import PlantTotalCO2EmissionKPITrendCard from "./PlantTotalCO2EmissionKPITrendCard";
+import AreaTotalCO2EmissionKPITrendCard from "./AreaTotalCO2EmissionKPITrendCard";
 import TotalKPITrendCard from "./TotalKPITrendCard";
 
 const AreaKPITrends = ({ area }: { area: Asset }) => {
@@ -22,7 +22,7 @@ const AreaKPITrends = ({ area }: { area: Asset }) => {
         />
       )}
       {trend === "CO2 emission" && (
-        <PlantTotalCO2EmissionKPITrendCard plant={area!} />
+        <AreaTotalCO2EmissionKPITrendCard plant={area!} />
       )}
     </>
   );
