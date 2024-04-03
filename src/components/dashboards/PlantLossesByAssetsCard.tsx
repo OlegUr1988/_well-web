@@ -1,9 +1,9 @@
-import { Heading } from "@chakra-ui/react";
-import DashboardCard from "./DashboardCard";
+import { Center, Heading } from "@chakra-ui/react";
+import _ from "lodash";
 import { Asset } from "../../entities/assets";
 import { useAssetsByIds } from "../../hooks/assets";
-import _ from "lodash";
 import useAttributeTypes from "../../hooks/useAttributeTypes";
+import DashboardCard from "./DashboardCard";
 import LossesByAssetsPieChart from "./LossesByAssetsPieChart";
 
 const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
@@ -35,7 +35,9 @@ const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
       <Heading mb={3} size="md">
         Top 15 Bad Actors
       </Heading>
-      <LossesByAssetsPieChart assets={assets!} />
+      <Center>
+        <LossesByAssetsPieChart assets={assets!} />
+      </Center>
     </DashboardCard>
   );
 };

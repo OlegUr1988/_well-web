@@ -16,7 +16,7 @@ const ConsumptionsDonutChart = ({ assets }: { assets: Asset[] }) => {
     <ReactApexChart
       series={series}
       options={options}
-      width="100%"
+      height={250}
       type="donut"
     />
   );

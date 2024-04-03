@@ -35,7 +35,7 @@ const PlantLevelDashboard = () => {
             <PlantKPITrends plant={plant!} />
           </Box>
         </VStack>
-        <VStack align="stretch" position="relative" top={-50}>
+        <VStack align="stretch">
           <PlantLossesByAssetsCard plant={plant!} />
           <PlantConsumptionByUtilityCard plant={plant!} />
         </VStack>
