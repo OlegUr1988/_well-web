@@ -12,8 +12,8 @@ interface Props {
 
 const TotalKPICard = ({ header, value, units, difference }: Props) => {
   return (
-    <DashboardCard>
-      <VStack justify="space-between" align="flex-start">
+    <DashboardCard h="100%">
+      <VStack justify="space-between" h="100%" align="flex-start">
         <Heading size={{ base: "sm", xl: "md" }} mb={1}>
           {header}
         </Heading>

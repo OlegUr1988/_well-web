@@ -1,12 +1,13 @@
 import { Box, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import PlantConsumptionByUtilityCard from "../../components/dashboards/PlantConsumptionByUtilityCard";
 import PlantKPITrends from "../../components/dashboards/PlantKPITrends";
 import PlantLevelDashboardHeaderPanel from "../../components/dashboards/PlantLevelDashboardHeaderPanel";
+import PlantLossesByAssetsCard from "../../components/dashboards/PlantLossesByAssetsCard";
 import PlantTotalCards from "../../components/dashboards/PlantTotalCards";
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
-import PlantLossesByAssetsCard from "../../components/dashboards/PlantLossesByAssetsCard";
 
 const PlantLevelDashboard = () => {
   const { plantName } = useParams();
@@ -25,15 +26,18 @@ const PlantLevelDashboard = () => {
       <Box mb={5}>
         <PlantLevelDashboardHeaderPanel />
       </Box>
-
-      <Box mb={5}>
-        <PlantTotalCards plant={plant!} />
-      </Box>
-
       <SimpleGrid templateColumns={"3fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
-        <PlantKPITrends plant={plant!} />
+        <VStack align="stretch">
+          <Box mb={5}>
+            <PlantTotalCards plant={plant!} />
+          </Box>
+          <Box>
+            <PlantKPITrends plant={plant!} />
+          </Box>
+        </VStack>
         <VStack align="stretch">
           <PlantLossesByAssetsCard plant={plant!} />
+          <PlantConsumptionByUtilityCard plant={plant!} />
         </VStack>
       </SimpleGrid>
     </Box>
