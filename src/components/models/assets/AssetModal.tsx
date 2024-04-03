@@ -29,6 +29,8 @@ interface Props {
   mutateAsync: (data: AddAsset) => Promise<AddAsset>;
 }
 
+const excludedUtilities = ["area", "plant"];
+
 const AssetModal = ({
   parentAssetId,
   header,
@@ -67,7 +69,7 @@ const AssetModal = ({
   };
 
   const assetTypes = utilityTypes?.filter(
-    (type) => type.name.toLowerCase() !== "area"
+    (type) => !excludedUtilities.includes(type.name.toLowerCase())
   );
 
   const { control, reset, register, handleSubmit, onSubmit, errors } =
