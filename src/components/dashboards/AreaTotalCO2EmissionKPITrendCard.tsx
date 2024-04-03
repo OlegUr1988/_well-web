@@ -1,15 +1,15 @@
 import { Box } from "@chakra-ui/react";
 import ReactApexChart from "react-apexcharts";
 import { Asset } from "../../entities/assets";
-import useGetPlantC02EmissionKPIchartOptions from "../../hooks/useGetPlantC02EmissionKPIchartOptions";
+import useGetAreaC02EmissionKPIchartOptions from "../../hooks/useGetAreaC02EmissionKPIchartOptions";
 import DashboardCard from "./DashboardCard";
 import DashboardCardErrorMessage from "./DashboardCardErrorMessage";
 import DashboardCardSkeleton from "./DashboardCardSkeleton";
 import TotalKPICardHeader from "./TotalKPICardHeader";
 
-const PlantTotalCO2EmissionKPITrendCard = ({ plant }: { plant: Asset }) => {
+const AreaTotalCO2EmissionKPITrendCard = ({ plant }: { plant: Asset }) => {
   const { isLoading, series, options } =
-    useGetPlantC02EmissionKPIchartOptions(plant);
+    useGetAreaC02EmissionKPIchartOptions(plant);
 
   if (isLoading) return <DashboardCardSkeleton h={400} />;
 
@@ -30,4 +30,4 @@ const PlantTotalCO2EmissionKPITrendCard = ({ plant }: { plant: Asset }) => {
   );
 };
 
-export default PlantTotalCO2EmissionKPITrendCard;
+export default AreaTotalCO2EmissionKPITrendCard;

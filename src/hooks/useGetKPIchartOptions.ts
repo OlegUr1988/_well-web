@@ -1,9 +1,9 @@
 import _ from "lodash";
+import productionLineChartOptions from "../constants/productionLineChartOptions";
 import { Asset } from "../entities/assets";
 import { Trend } from "../store/dashboard";
-import useGetRecords from "./useGetRecords";
 import { getArrayOfSums, groupBy } from "../utils/records";
-import productionLineChartOptions from "../constants/productionLineChartOptions";
+import useGetRecords from "./useGetRecords";
 
 const useGetKPIchartOptions = (asset: Asset, trendType: Trend) => {
   // Targets for asset
@@ -110,6 +110,13 @@ const useGetKPIchartOptions = (asset: Asset, trendType: Trend) => {
 
     target = specificEnergyConsupmtionTarget;
   }
+
+  if (!series[0].data.length)
+    return {
+      isLoading,
+      series: [],
+      options: {},
+    };
 
   const minValue = _.minBy(series![0].data, "y")!.y;
   const maxValue = _.maxBy(series![0].data, "y")!.y;

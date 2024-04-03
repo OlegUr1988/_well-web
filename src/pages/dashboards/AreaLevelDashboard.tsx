@@ -1,7 +1,7 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import AreaKPITrends from "../../components/dashboards/AreaKPITrends";
 import AreaLevelDashboardHeaderPanel from "../../components/dashboards/AreaLevelDashboardHeaderPanel";
-import AreaLossesCard from "../../components/dashboards/AreaLossesCard";
 import AreaTotalCards from "../../components/dashboards/AreaTotalCards";
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
@@ -30,7 +30,7 @@ const AreaLevelDashboard = () => {
       </Box>
 
       <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
-        <AreaLossesCard area={area!} />
+        <AreaKPITrends area={area!} />
       </SimpleGrid>
     </Box>
   );

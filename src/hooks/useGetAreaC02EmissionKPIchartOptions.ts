@@ -2,46 +2,25 @@ import _ from "lodash";
 import productionLineChartOptions from "../constants/productionLineChartOptions";
 import { Asset } from "../entities/assets";
 import { getArrayOfSums, groupBy } from "../utils/records";
-import { useAssets, useAssetsByIds } from "./assets";
 import { useConstantByName } from "./constants";
 import useGetRecords from "./useGetRecords";
 
-const useGetPlantC02EmissionKPIchartOptions = (plant: Asset) => {
+const useGetAreaC02EmissionKPIchartOptions = (area: Asset) => {
   // Targets for asset
-  const { CO2EmissionTarget } = plant.target;
+  const { CO2EmissionTarget } = area.target;
 
   const { data: constant, isLoading: isCO2CoefficientLoading } =
     useConstantByName("CO2 conversion coefficient");
   const CO2coefficient = constant?.value || 0;
 
-  const areasIds = plant.children.map((area) => area.id);
-  const { data: areas, isLoading: isAreasLoading } = useAssets({
-    ids: areasIds,
-  });
-
-  const assetIds = _.flatten(
-    areas?.map((area) => area.children.map((asset) => asset.id))
-  );
-  const { data: assets, isLoading: isAssetsLoading } = useAssetsByIds({
-    ids: assetIds,
-  });
-
-  const attributes = assets
-    ? _.flatten(assets.map((asset) => asset.attributes))
-    : [];
-  const assignments = _.flatten(
-    attributes.map((attr) => (attr ? attr.assignments : []))
-  );
+  const attributes = _.flatten(area.children.map((asset) => asset.attributes));
+  const assignments = _.flatten(attributes.map((asset) => asset.assignments));
 
   // Get Records
   const { records: assetsRecords, isLoading: isRecordsLoading } =
     useGetRecords(assignments);
 
-  const isLoading =
-    isCO2CoefficientLoading ||
-    isAreasLoading ||
-    isAssetsLoading ||
-    isRecordsLoading;
+  const isLoading = isCO2CoefficientLoading || isRecordsLoading;
 
   if (isLoading) return { isLoading, series: [], options: {} };
 
@@ -101,4 +80,4 @@ const useGetPlantC02EmissionKPIchartOptions = (plant: Asset) => {
   return { isLoading, series, options };
 };
 
-export default useGetPlantC02EmissionKPIchartOptions;
+export default useGetAreaC02EmissionKPIchartOptions;

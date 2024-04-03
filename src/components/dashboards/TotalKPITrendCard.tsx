@@ -4,6 +4,7 @@ import { Asset } from "../../entities/assets";
 import useGetKPIchartOptions from "../../hooks/useGetKPIchartOptions";
 import { Trend } from "../../store/dashboard";
 import DashboardCard from "./DashboardCard";
+import DashboardCardErrorMessage from "./DashboardCardErrorMessage";
 import DashboardCardSkeleton from "./DashboardCardSkeleton";
 import TotalKPICardHeader from "./TotalKPICardHeader";
 
@@ -34,6 +35,8 @@ const TotalKPITrendCard = ({ asset, trendType }: Props) => {
   };
 
   if (isLoading) return <DashboardCardSkeleton h={400} />;
+
+  if (!series.length) return <DashboardCardErrorMessage />;
 
   return (
     <DashboardCard p={5}>
