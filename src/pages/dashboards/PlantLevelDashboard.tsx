@@ -25,14 +25,16 @@ const PlantLevelDashboard = () => {
       <Box mb={5}>
         <PlantLevelDashboardHeaderPanel />
       </Box>
-
-      <Box mb={5}>
-        <PlantTotalCards plant={plant!} />
-      </Box>
-
       <SimpleGrid templateColumns={"3fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
-        <PlantKPITrends plant={plant!} />
         <VStack align="stretch">
+          <Box mb={5}>
+            <PlantTotalCards plant={plant!} />
+          </Box>
+          <Box>
+            <PlantKPITrends plant={plant!} />
+          </Box>
+        </VStack>
+        <VStack align="stretch" position="relative" top={-50}>
           <PlantLossesByAssetsCard plant={plant!} />
         </VStack>
       </SimpleGrid>
