@@ -17,15 +17,14 @@ const columnChartOptions: ApexOptions = {
       },
     },
   },
+  colors: ["#008FFB", "#FEB019"],
   dataLabels: {
     formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
   },
   xaxis: {},
   yaxis: {
     labels: {
-      formatter: (val) => {
-        return val.toFixed(0);
-      },
+      formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
     },
   },
   tooltip: {
