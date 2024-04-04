@@ -1,4 +1,4 @@
-import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import AreaKPITrends from "../../components/dashboards/AreaKPITrends";
 import AreaLevelDashboardHeaderPanel from "../../components/dashboards/AreaLevelDashboardHeaderPanel";
@@ -24,13 +24,14 @@ const AreaLevelDashboard = () => {
       <Box mb={5} w={{ base: "100%", xl: "75%" }}>
         <AreaLevelDashboardHeaderPanel area={area!} />
       </Box>
-
-      <Box mb={5}>
-        <AreaTotalCards area={area!} />
-      </Box>
-
-      <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
-        <AreaKPITrends area={area!} />
+      <SimpleGrid templateColumns={"3fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
+        <VStack align="stretch">
+          <Box mb={5}>
+            <AreaTotalCards area={area!} />
+          </Box>
+          <AreaKPITrends area={area!} />
+        </VStack>
+        <VStack align="stretch"></VStack>
       </SimpleGrid>
     </Box>
   );

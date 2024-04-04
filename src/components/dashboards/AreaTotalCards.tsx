@@ -31,7 +31,7 @@ const AreaTotalCards = ({ area }: { area: Asset }) => {
   } = targetDifferences;
 
   return (
-    <Box mb={5} w={{ base: "100%", xl: "75%" }}>
+    <Box>
       <SimpleGrid columns={4} gap={5}>
         <GridItem onClick={() => setTrend("production")} cursor="pointer">
           <TotalKPICard
