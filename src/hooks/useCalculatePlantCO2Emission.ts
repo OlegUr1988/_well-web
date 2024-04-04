@@ -1,11 +1,6 @@
 import _ from "lodash";
 import { Asset } from "../entities/assets";
-import {
-  getArrayOfSums,
-  getSumOfRecords,
-  getTotalDifference,
-  groupBy,
-} from "../utils/records";
+import { getArrayOfSums, getTotalDifference, groupBy } from "../utils/records";
 import { useAssets, useAssetsByIds } from "./assets";
 import { useConstantByName } from "./constants";
 import useGetRecords from "./useGetRecords";
