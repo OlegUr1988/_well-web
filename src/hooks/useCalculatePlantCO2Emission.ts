@@ -47,11 +47,12 @@ const useCalculatePlantCO2Emission = (plant: Asset) => {
   const totatlAssetsDuty = parseFloat(getSumOfRecords(assetsRecords));
   const totalCO2Emission = totatlAssetsDuty * CO2coefficient!;
   const CO2EmissionDifferences = assetsRecords.map(
-    (asset) => CO2EmissionTarget - parseFloat(asset.value) * CO2coefficient
+    (asset) => parseFloat(asset.value) * CO2coefficient - CO2EmissionTarget
   );
+
   const CO2EmissionDifference = getTotalDifference(
     CO2EmissionDifferences,
-    totalCO2Emission
+    CO2EmissionTarget * CO2EmissionDifferences.length
   );
 
   return { totalCO2Emission, CO2EmissionDifference };

@@ -2,7 +2,8 @@ import _ from "lodash";
 import { Asset } from "../entities/assets";
 import {
   getArrayOfSums,
-  getDiffirences,
+  getNegativeDiffirences,
+  getPossitiveDiffirences,
   getSumOfRecords,
   getTotalDifference,
   groupBy,
@@ -45,13 +46,13 @@ const useCalculateTotalKPIs = (asset: Asset) => {
     ? productions[0].PHDTag.unit.name
     : "Ton/hr";
   const productionGroups = groupBy(productions, "timestamp");
-  const productionDifferences = getDiffirences(
+  const productionDifferences = getPossitiveDiffirences(
     productionGroups,
     productionTarget
   );
   const productionTargetDifference = getTotalDifference(
     productionDifferences,
-    totalProduction
+    productionTarget * productionDifferences.length
   );
 
   // Calculating energy consumptions
@@ -62,13 +63,13 @@ const useCalculateTotalKPIs = (asset: Asset) => {
     ? energyConsumptions[0].PHDTag.unit.name
     : "KW";
   const energyConsumptionGroups = groupBy(energyConsumptions, "timestamp");
-  const energyConsumptDifferences = getDiffirences(
+  const energyConsumptDifferences = getNegativeDiffirences(
     energyConsumptionGroups,
     energyConsumptionTarget
   );
   const energyConsumptDifference = getTotalDifference(
     energyConsumptDifferences,
-    totalEnergyConsumption
+    energyConsumptionTarget * energyConsumptDifferences.length
   );
 
   // Calculating spesific energy consumptions
@@ -88,7 +89,8 @@ const useCalculateTotalKPIs = (asset: Asset) => {
   );
   const specificEnergyConsumptionDifference = getTotalDifference(
     specificEnergyConsumptionDifferences,
-    totalSpecificEnergyConsumption
+    specificEnergyConsupmtionTarget *
+      specificEnergyConsumptionDifferences.length
   );
 
   return {
