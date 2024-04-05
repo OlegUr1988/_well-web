@@ -1,8 +1,11 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
-import { DashboardCardErrorMessage, DashboardCardSkeleton } from "..";
 import { Asset } from "../../../entities/assets";
 import { useAsset } from "../../../hooks/assets";
-import { DashboardCard } from "../common";
+import {
+  DashboardCard,
+  DashboardCardErrorMessage,
+  DashboardCardSkeleton,
+} from "../common";
 import PerformanceGaugeChart from "./PerformanceGaugeChart";
 
 const PerformancesCard = ({ asset }: { asset: Asset }) => {

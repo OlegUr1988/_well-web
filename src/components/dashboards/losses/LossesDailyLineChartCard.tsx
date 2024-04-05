@@ -1,9 +1,12 @@
 import ReactApexChart from "react-apexcharts";
-import { DashboardCardErrorMessage, DashboardCardSkeleton } from "..";
 import { Asset } from "../../../entities/assets";
 import { useAsset } from "../../../hooks/assets";
 import useCreateLineChartOptions from "../../../hooks/useCreateLineChartOptions";
-import { DashboardCard } from "../common";
+import {
+  DashboardCard,
+  DashboardCardErrorMessage,
+  DashboardCardSkeleton,
+} from "../common";
 
 const LossesDailyLineChartCard = ({ asset }: { asset: Asset }) => {
   const { data: parentAsset, isLoading, error } = useAsset(asset.id);

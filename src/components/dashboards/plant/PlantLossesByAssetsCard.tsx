@@ -3,8 +3,8 @@ import _ from "lodash";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import { LossesByAssetsPieChart } from "../charts/";
 import { DashboardCard } from "../common/";
-import LossesByAssetsPieChart from "../LossesByAssetsPieChart";
 
 const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
   const areaIds = plant.children.map((child) => child.id);

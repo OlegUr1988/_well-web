@@ -1,5 +1,5 @@
 import { Skeleton } from "@chakra-ui/react";
-import { DashboardCard } from "./common/";
+import DashboardCard from "./DashboardCard";
 
 interface Props {
   h?: number;

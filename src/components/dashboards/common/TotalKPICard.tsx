@@ -1,7 +1,7 @@
 import { HStack, Heading, Text, VStack } from "@chakra-ui/react";
 import numeral from "numeral";
 import { FaArrowDown, FaArrowUp } from "react-icons/fa";
-import { DashboardCard } from "./common/";
+import { DashboardCard } from ".";
 
 interface Props {
   header: string;

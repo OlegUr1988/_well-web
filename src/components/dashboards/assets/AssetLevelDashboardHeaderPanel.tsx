@@ -1,9 +1,8 @@
 import { Show, SimpleGrid } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
+import { DashboardLogo, DashboardTimeSelectInput } from "../common/";
+import AssetDashboardLocationInfo from "./AssetDashboardLocationInfo";
 import AssetLevelDashboardSelectInput from "./AssetLevelDashboardSelectInput";
-import DashboardLocationInfo from "../DashboardLocationInfo";
-import DashboardLogo from "../DashboardLogo";
-import DashboardTimeSelectInput from "../DashboardTimeSelectInput";
 
 interface Props {
   area: Asset;
@@ -22,7 +21,10 @@ const AssetLevelDashboardHeaderPanel = ({ area, asset }: Props) => {
     >
       <DashboardLogo />
       <Show above="xl">
-        <DashboardLocationInfo areaName={area.name} assetName={asset.name} />
+        <AssetDashboardLocationInfo
+          areaName={area.name}
+          assetName={asset.name}
+        />
       </Show>
       <AssetLevelDashboardSelectInput asset={asset} area={area} />
       <DashboardTimeSelectInput />

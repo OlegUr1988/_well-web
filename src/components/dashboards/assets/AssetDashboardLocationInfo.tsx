@@ -1,7 +1,7 @@
 import { Divider, HStack, Tag, Text, VStack } from "@chakra-ui/react";
-import { DashboardCard } from "./common";
+import { DashboardCard } from "../common";
 
-const DashboardLocationInfo = ({
+const AssetDashboardLocationInfo = ({
   areaName,
   assetName,
 }: {
@@ -25,4 +25,4 @@ const DashboardLocationInfo = ({
   );
 };
 
-export default DashboardLocationInfo;
+export default AssetDashboardLocationInfo;

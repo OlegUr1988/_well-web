@@ -1,5 +1,5 @@
 import { Center } from "@chakra-ui/react";
-import { DashboardCard } from "./common";
+import DashboardCard from "./DashboardCard";
 
 const DashboardLogo = () => {
   return (

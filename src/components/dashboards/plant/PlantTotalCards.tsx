@@ -3,7 +3,7 @@ import { Asset } from "../../../entities/assets";
 import useCalculatePlantCO2Emission from "../../../hooks/useCalculatePlantCO2Emission";
 import useCalculateTotalKPIs from "../../../hooks/useCalculateTotalKPIs";
 import useDashboardsStore from "../../../store/dashboard";
-import TotalKPICard from "../TotalKPICard";
+import { TotalKPICard } from "../common";
 
 const PlantTotalCards = ({ plant }: { plant: Asset }) => {
   const setTrend = useDashboardsStore((s) => s.setTrend);

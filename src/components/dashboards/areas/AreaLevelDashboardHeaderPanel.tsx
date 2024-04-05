@@ -1,8 +1,7 @@
 import { SimpleGrid } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
+import { DashboardLogo, DashboardTimeSelectInput } from "../common/";
 import AreaLevelDashboardSelectInput from "./AreaLevelDashboardSelectInput";
-import DashboardLogo from "../DashboardLogo";
-import DashboardTimeSelectInput from "../DashboardTimeSelectInput";
 
 const AreaLevelDashboardHeaderPanel = ({ area }: { area: Asset }) => {
   return (

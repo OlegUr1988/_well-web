@@ -1,8 +1,8 @@
 import { Asset } from "../../../entities/assets";
 import useDashboardsStore from "../../../store/dashboard";
+import { TotalKPITrendCard } from "../common";
 import AreaLossesCard from "./AreaLossesCard";
 import AreaTotalCO2EmissionKPITrendCard from "./AreaTotalCO2EmissionKPITrendCard";
-import TotalKPITrendCard from "../TotalKPITrendCard";
 
 const AreaKPITrends = ({ area }: { area: Asset }) => {
   const { trend } = useDashboardsStore((s) => s.dashboardQuery);

@@ -1,7 +1,7 @@
 import ReactApexChart from "react-apexcharts";
-import { Asset } from "../../entities/assets";
-import useCreateDonutChart from "../../hooks/useCreateDonutChart";
-import MessageComponent from "./MessageComponent";
+import { Asset } from "../../../entities/assets";
+import useCreateDonutChart from "../../../hooks/useCreateDonutChart";
+import { MessageComponent } from "../common";
 
 const LossesByAssetsPieChart = ({ assets }: { assets: Asset[] }) => {
   const chart = useCreateDonutChart(assets);

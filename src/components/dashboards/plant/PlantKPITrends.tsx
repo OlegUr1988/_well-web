@@ -1,6 +1,6 @@
 import { Asset } from "../../../entities/assets";
 import useDashboardsStore from "../../../store/dashboard";
-import TotalKPITrendCard from "../TotalKPITrendCard";
+import { TotalKPITrendCard } from "../common";
 import PlantLossesCard from "./PlantLossesCard";
 import PlantTotalCO2EmissionKPITrendCard from "./PlantTotalCO2EmissionKPITrendCard";
 

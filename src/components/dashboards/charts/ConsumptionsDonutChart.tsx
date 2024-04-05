@@ -1,7 +1,7 @@
 import ReactApexChart from "react-apexcharts";
 import { Asset } from "../../../entities/assets";
 import useGetConsumptionsByUtility from "../../../hooks/useGetConsumptionsByUtility";
-import MessageComponent from "../MessageComponent";
+import { MessageComponent } from "../common";
 
 const ConsumptionsDonutChart = ({ assets }: { assets: Asset[] }) => {
   const chart = useGetConsumptionsByUtility(assets);

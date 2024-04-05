@@ -6,8 +6,8 @@ import {
   Skeleton,
 } from "@chakra-ui/react";
 import moment from "moment";
-import timeFormat from "../../constants/timeFormat";
-import useTimeRange from "../../hooks/useTimeRage";
+import timeFormat from "../../../constants/timeFormat";
+import useTimeRange from "../../../hooks/useTimeRage";
 
 const TimeRangeSlider = () => {
   const {

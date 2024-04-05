@@ -1,7 +1,7 @@
 import ReactApexChart from "react-apexcharts";
-import { Asset } from "../../entities/assets";
-import useCreateColumnChartOptions from "../../hooks/useCreateColumnChartOptions";
-import MessageComponent from "./MessageComponent";
+import { Asset } from "../../../entities/assets";
+import useCreateColumnChartOptions from "../../../hooks/useCreateColumnChartOptions";
+import { MessageComponent } from "../common";
 
 const TotalLossesColumnChart = ({ assets }: { assets: Asset[] }) => {
   const chart = useCreateColumnChartOptions(assets);
