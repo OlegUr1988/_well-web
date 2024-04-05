@@ -1,9 +1,9 @@
 import { Box, GridItem, SimpleGrid } from "@chakra-ui/react";
-import { Asset } from "../../entities/assets";
-import useCalculateAreaCO2Emission from "../../hooks/useCalculateAreaCO2Emission";
-import useCalculateTotalKPIs from "../../hooks/useCalculateTotalKPIs";
-import useDashboardsStore from "../../store/dashboard";
-import TotalKPICard from "./TotalKPICard";
+import { Asset } from "../../../entities/assets";
+import useCalculateAreaCO2Emission from "../../../hooks/useCalculateAreaCO2Emission";
+import useCalculateTotalKPIs from "../../../hooks/useCalculateTotalKPIs";
+import useDashboardsStore from "../../../store/dashboard";
+import TotalKPICard from "../TotalKPICard";
 
 const AreaTotalCards = ({ area }: { area: Asset }) => {
   const setTrend = useDashboardsStore((s) => s.setTrend);

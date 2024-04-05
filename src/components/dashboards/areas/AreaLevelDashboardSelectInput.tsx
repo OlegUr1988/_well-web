@@ -1,11 +1,11 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
 import { Select } from "chakra-react-select";
 import { useNavigate } from "react-router-dom";
-import { DashboardCard } from ".";
-import { Asset } from "../../entities/assets";
-import { useAssets } from "../../hooks/assets";
-import useUtilityTypes from "../../hooks/useUtilityTypes";
-import DashboardAssetSelectInputSkeleton from "./DashboardAssetSelectInputSkeleton";
+import { DashboardCard } from "..";
+import { Asset } from "../../../entities/assets";
+import { useAssets } from "../../../hooks/assets";
+import useUtilityTypes from "../../../hooks/useUtilityTypes";
+import DashboardAssetSelectInputSkeleton from "../DashboardAssetSelectInputSkeleton";
 
 const AreaLevelDashboardSelectInput = ({ area }: { area: Asset }) => {
   const { data: types } = useUtilityTypes();
@@ -36,7 +36,9 @@ const AreaLevelDashboardSelectInput = ({ area }: { area: Asset }) => {
         <Box w="100%">
           <Select
             defaultValue={defaultValue}
-            onChange={(option) => navigate(`/dashboards/areas/${option?.label}`)}
+            onChange={(option) =>
+              navigate(`/dashboards/areas/${option?.label}`)
+            }
             options={options}
             size="sm"
           />

@@ -1,10 +1,10 @@
 import { Box } from "@chakra-ui/react";
-import { Asset } from "../../entities/assets";
-import { useAssetsByIds } from "../../hooks/assets";
-import useAttributeTypes from "../../hooks/useAttributeTypes";
-import DashboardCard from "./DashboardCard";
-import TotalKPICardHeader from "./TotalKPICardHeader";
-import TotalLossesColumnChart from "./TotalLossesColumnChart";
+import { Asset } from "../../../entities/assets";
+import { useAssetsByIds } from "../../../hooks/assets";
+import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import DashboardCard from "../DashboardCard";
+import TotalKPICardHeader from "../TotalKPICardHeader";
+import TotalLossesColumnChart from "../TotalLossesColumnChart";
 
 const AreaLossesCard = ({ area }: { area: Asset }) => {
   const ids = area.children.map((child) => child.id);

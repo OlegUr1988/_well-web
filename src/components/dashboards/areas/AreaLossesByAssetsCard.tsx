@@ -1,9 +1,9 @@
 import { Center, Heading } from "@chakra-ui/react";
-import { Asset } from "../../entities/assets";
-import { useAssetsByIds } from "../../hooks/assets";
-import useAttributeTypes from "../../hooks/useAttributeTypes";
-import DashboardCard from "./DashboardCard";
-import LossesByAssetsPieChart from "./LossesByAssetsPieChart";
+import { Asset } from "../../../entities/assets";
+import { useAssetsByIds } from "../../../hooks/assets";
+import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import DashboardCard from "../DashboardCard";
+import LossesByAssetsPieChart from "../LossesByAssetsPieChart";
 
 const AreaLossesByAssetsCard = ({ area }: { area: Asset }) => {
   const ids = area.children.map((child) => child.id);
