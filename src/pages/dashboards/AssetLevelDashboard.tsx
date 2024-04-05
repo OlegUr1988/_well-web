@@ -1,6 +1,6 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import { AssetLevelDashboardHeaderPanel } from "../../components/dashboards";
+import { AssetLevelDashboardHeaderPanel } from "../../components/dashboards/assets";
 import {
   LossesDailyLineChartCard,
   LossesTableCard,

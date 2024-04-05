@@ -1,9 +1,9 @@
 import { Show, SimpleGrid } from "@chakra-ui/react";
-import { Asset } from "../../entities/assets";
+import { Asset } from "../../../entities/assets";
 import AssetLevelDashboardSelectInput from "./AssetLevelDashboardSelectInput";
-import DashboardLocationInfo from "./DashboardLocationInfo";
-import DashboardLogo from "./DashboardLogo";
-import DashboardTimeSelectInput from "./DashboardTimeSelectInput";
+import DashboardLocationInfo from "../DashboardLocationInfo";
+import DashboardLogo from "../DashboardLogo";
+import DashboardTimeSelectInput from "../DashboardTimeSelectInput";
 
 interface Props {
   area: Asset;
