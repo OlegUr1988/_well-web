@@ -4,7 +4,7 @@ import { AssetLevelDashboardHeaderPanel } from "../../components/dashboards/asse
 import {
   LossesDailyLineChartCard,
   LossesTableCard,
-} from "../../components/dashboards/losses";
+} from "../../components/dashboards/charts";
 import { PerformancesCard } from "../../components/dashboards/performances";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
