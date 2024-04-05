@@ -1,9 +1,9 @@
 import _ from "lodash";
-import { Asset } from "../entities/assets";
-import useGetUtilityTypes from "./useGetUtilityTypes";
-import useGetRecords from "./useGetRecords";
-import { getSumOfRecords } from "../utils/records";
-import donutChartOptions from "../constants/donutChartOtions";
+import { Asset } from "../../entities/assets";
+import useGetUtilityTypes from "../useGetUtilityTypes";
+import useGetRecords from "../useGetRecords";
+import { getSumOfRecords } from "../../utils/records";
+import donutChartOptions from "../../constants/donutChartOtions";
 
 const useGetConsumptionsByUtility = (assets: Asset[]) => {
   const types = useGetUtilityTypes();

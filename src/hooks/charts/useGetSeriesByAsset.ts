@@ -1,8 +1,8 @@
 import _ from "lodash";
-import losses from "../constants/losses";
-import useGetLossesByTypes from "./useGetLossesByTypes";
-import useGetRecords from "./useGetRecords";
-import { Asset } from "../entities/assets";
+import losses from "../../constants/losses";
+import useGetLossesByTypes from "../useGetLossesByTypes";
+import useGetRecords from "../useGetRecords";
+import { Asset } from "../../entities/assets";
 
 const useGetSeriesByAsset = (assets: Asset[]) => {
   const allAttributes = _.flatten(assets?.map((eq) => eq.attributes));
