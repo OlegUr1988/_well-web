@@ -1,8 +1,12 @@
 import _ from "lodash";
-import { Asset } from "../entities/assets";
-import { getArrayOfSums, getTotalDifference, groupBy } from "../utils/records";
-import { useConstantByName } from "./constants";
-import useGetRecords from "./useGetRecords";
+import { Asset } from "../../entities/assets";
+import {
+  getArrayOfSums,
+  getTotalDifference,
+  groupBy,
+} from "../../utils/records";
+import { useConstantByName } from "../constants";
+import useGetRecords from "../useGetRecords";
 
 const useCalculateAreaCO2Emission = (area: Asset) => {
   const { CO2EmissionTarget } = area.target;

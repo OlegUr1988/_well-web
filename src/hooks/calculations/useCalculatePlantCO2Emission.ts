@@ -1,9 +1,13 @@
 import _ from "lodash";
-import { Asset } from "../entities/assets";
-import { getArrayOfSums, getTotalDifference, groupBy } from "../utils/records";
-import { useAssets, useAssetsByIds } from "./assets";
-import { useConstantByName } from "./constants";
-import useGetRecords from "./useGetRecords";
+import { Asset } from "../../entities/assets";
+import {
+  getArrayOfSums,
+  getTotalDifference,
+  groupBy,
+} from "../../utils/records";
+import { useAssets, useAssetsByIds } from "../assets";
+import { useConstantByName } from "../constants";
+import useGetRecords from "../useGetRecords";
 
 const useCalculatePlantCO2Emission = (plant: Asset) => {
   const { CO2EmissionTarget } = plant.target;

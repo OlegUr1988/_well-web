@@ -1,13 +1,13 @@
 import _ from "lodash";
-import { Asset } from "../entities/assets";
+import { Asset } from "../../entities/assets";
 import {
   getArrayOfSums,
   getDiffirences,
   getSumOfRecords,
   getTotalDifference,
   groupBy,
-} from "../utils/records";
-import useGetRecords from "./useGetRecords";
+} from "../../utils/records";
+import useGetRecords from "../useGetRecords";
 
 const useCalculateTotalKPIs = (asset: Asset) => {
   // Targets for asset
