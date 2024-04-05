@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import ReactApexChart from "react-apexcharts";
 import { Asset } from "../../../entities/assets";
-import useGetPlantC02EmissionKPIchartOptions from "../../../hooks/useGetPlantC02EmissionKPIchartOptions";
+import { useGetPlantC02EmissionKPIchartOptions } from "../../../hooks/charts";
 import {
   DashboardCard,
   DashboardCardErrorMessage,

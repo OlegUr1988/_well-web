@@ -1,6 +1,6 @@
-import lineChartOptions from "../constants/lossesLineChartOptions";
-import { Asset } from "../entities/assets";
-import useGetSeriesByAsset from "./useGetSeriesByAsset";
+import lineChartOptions from "../../constants/lossesLineChartOptions";
+import { Asset } from "../../entities/assets";
+import useGetSeriesByAsset from "../useGetSeriesByAsset";
 
 const useCreateLineChartOptions = (assets: Asset[]) => {
   const series = useGetSeriesByAsset(assets);

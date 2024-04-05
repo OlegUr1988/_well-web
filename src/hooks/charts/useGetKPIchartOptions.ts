@@ -1,9 +1,9 @@
 import _ from "lodash";
-import productionLineChartOptions from "../constants/productionLineChartOptions";
-import { Asset } from "../entities/assets";
-import { Trend } from "../store/dashboard";
-import { getArrayOfSums, groupBy } from "../utils/records";
-import useGetRecords from "./useGetRecords";
+import productionLineChartOptions from "../../constants/productionLineChartOptions";
+import { Asset } from "../../entities/assets";
+import { Trend } from "../../store/dashboard";
+import { getArrayOfSums, groupBy } from "../../utils/records";
+import useGetRecords from "../useGetRecords";
 
 const useGetKPIchartOptions = (asset: Asset, trendType: Trend) => {
   // Targets for asset

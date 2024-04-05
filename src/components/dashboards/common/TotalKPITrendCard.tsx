@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import ReactApexChart from "react-apexcharts";
 import { Asset } from "../../../entities/assets";
-import useGetKPIchartOptions from "../../../hooks/useGetKPIchartOptions";
+import { useGetKPIchartOptions } from "../../../hooks/charts";
 import { Trend } from "../../../store/dashboard";
 import DashboardCard from "./DashboardCard";
 import DashboardCardErrorMessage from "./DashboardCardErrorMessage";

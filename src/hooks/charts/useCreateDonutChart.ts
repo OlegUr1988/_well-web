@@ -1,11 +1,10 @@
-import { ApexOptions } from "apexcharts";
 import _ from "lodash";
-import columnChartOptions from "../constants/columnChartOptions";
-import { Asset } from "../entities/assets";
-import useAreaAttributesByType from "./useAreaAttributesByType";
-import useAreaLosses from "./useAreaLosses";
+import donutChartOptions from "../../constants/donutChartOtions";
+import { Asset } from "../../entities/assets";
+import useAreaAttributesByType from "../useAreaAttributesByType";
+import useAreaLosses from "../useAreaLosses";
 
-const useCreateColumnChartOptions = (assets: Asset[]) => {
+const useCreateDonutChart = (assets: Asset[]) => {
   const assetDesignLosses = useAreaLosses(
     useAreaAttributesByType(assets, "design loss")
   );
@@ -37,26 +36,18 @@ const useCreateColumnChartOptions = (assets: Asset[]) => {
 
   const filteredDataset = sortedDataset.slice(0, 15);
 
-  const series = [
-    {
-      name: "Design Losses",
-      data: filteredDataset.map((item) => item.losses["designLoss"]),
-    },
-    {
-      name: "Operating Losses",
-      data: filteredDataset.map((item) => item.losses["operatingLoss"]),
-    },
-  ];
+  const labels = filteredDataset.map((item) => item.name);
 
-  const options: ApexOptions = {
-    ...columnChartOptions,
-    xaxis: {
-      ...columnChartOptions.xaxis,
-      categories: filteredDataset.map((item) => item.name),
-    },
+  const series = filteredDataset.map((item) =>
+    _.sum([item.losses["designLoss"], item.losses["operatingLoss"]])
+  );
+
+  const options = {
+    ...donutChartOptions,
+    labels,
   };
 
   return { series, options };
 };
 
-export default useCreateColumnChartOptions;
+export default useCreateDonutChart;

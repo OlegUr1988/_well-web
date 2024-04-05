@@ -1,7 +1,7 @@
 import ReactApexChart from "react-apexcharts";
 import { Asset } from "../../../entities/assets";
 import { useAsset } from "../../../hooks/assets";
-import useCreateLineChartOptions from "../../../hooks/useCreateLineChartOptions";
+import { useCreateLineChartOptions } from "../../../hooks/charts";
 import {
   DashboardCard,
   DashboardCardErrorMessage,

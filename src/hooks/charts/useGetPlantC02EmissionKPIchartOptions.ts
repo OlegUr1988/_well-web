@@ -1,26 +1,47 @@
 import _ from "lodash";
-import productionLineChartOptions from "../constants/productionLineChartOptions";
-import { Asset } from "../entities/assets";
-import { getArrayOfSums, groupBy } from "../utils/records";
-import { useConstantByName } from "./constants";
-import useGetRecords from "./useGetRecords";
+import productionLineChartOptions from "../../constants/productionLineChartOptions";
+import { Asset } from "../../entities/assets";
+import { getArrayOfSums, groupBy } from "../../utils/records";
+import { useAssets, useAssetsByIds } from "../assets";
+import { useConstantByName } from "../constants";
+import useGetRecords from "../useGetRecords";
 
-const useGetAreaC02EmissionKPIchartOptions = (area: Asset) => {
+const useGetPlantC02EmissionKPIchartOptions = (plant: Asset) => {
   // Targets for asset
-  const { CO2EmissionTarget } = area.target;
+  const { CO2EmissionTarget } = plant.target;
 
   const { data: constant, isLoading: isCO2CoefficientLoading } =
     useConstantByName("CO2 conversion coefficient");
   const CO2coefficient = constant?.value || 0;
 
-  const attributes = _.flatten(area.children.map((asset) => asset.attributes));
-  const assignments = _.flatten(attributes.map((asset) => asset.assignments));
+  const areasIds = plant.children.map((area) => area.id);
+  const { data: areas, isLoading: isAreasLoading } = useAssets({
+    ids: areasIds,
+  });
+
+  const assetIds = _.flatten(
+    areas?.map((area) => area.children.map((asset) => asset.id))
+  );
+  const { data: assets, isLoading: isAssetsLoading } = useAssetsByIds({
+    ids: assetIds,
+  });
+
+  const attributes = assets
+    ? _.flatten(assets.map((asset) => asset.attributes))
+    : [];
+  const assignments = _.flatten(
+    attributes.map((attr) => (attr ? attr.assignments : []))
+  );
 
   // Get Records
   const { records: assetsRecords, isLoading: isRecordsLoading } =
     useGetRecords(assignments);
 
-  const isLoading = isCO2CoefficientLoading || isRecordsLoading;
+  const isLoading =
+    isCO2CoefficientLoading ||
+    isAreasLoading ||
+    isAssetsLoading ||
+    isRecordsLoading;
 
   if (isLoading) return { isLoading, series: [], options: {} };
 
@@ -80,4 +101,4 @@ const useGetAreaC02EmissionKPIchartOptions = (area: Asset) => {
   return { isLoading, series, options };
 };
 
-export default useGetAreaC02EmissionKPIchartOptions;
+export default useGetPlantC02EmissionKPIchartOptions;
