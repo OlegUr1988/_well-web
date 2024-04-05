@@ -6,10 +6,9 @@ import {
   DashboardCardErrorMessage,
   DashboardCardSkeleton,
 } from "../common";
-import LossesSummaryRow from "./LossesSummaryRow";
-import LossesTablesField from "./LossesTablesField";
+import { LossesSummaryRow, LossesTablesField } from "./tables";
 
-const LossesTableCard = ({ asset }: { asset: Asset }) => {
+const AssetLossesTableCard = ({ asset }: { asset: Asset }) => {
   const { data: parentAsset, isLoading, error } = useAsset(asset.id);
 
   if (isLoading) return <DashboardCardSkeleton />;
@@ -35,4 +34,4 @@ const LossesTableCard = ({ asset }: { asset: Asset }) => {
   );
 };
 
-export default LossesTableCard;
+export default AssetLossesTableCard;

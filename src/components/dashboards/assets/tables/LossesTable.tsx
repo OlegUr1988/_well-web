@@ -1,7 +1,7 @@
 import { Table, TableContainer } from "@chakra-ui/react";
-import losses from "../../../constants/losses";
-import { Asset } from "../../../entities/assets";
-import useGetLossesByTypes from "../../../hooks/useGetLossesByTypes";
+import losses from "../../../../constants/losses";
+import { Asset } from "../../../../entities/assets";
+import useGetLossesByTypes from "../../../../hooks/useGetLossesByTypes";
 import LossesTableBody from "./LossesTableBody";
 import LossesTableFoot from "./LossesTableFoot";
 import LossesTableHead from "./LossesTableHead";

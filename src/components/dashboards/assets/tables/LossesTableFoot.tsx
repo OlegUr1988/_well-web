@@ -1,11 +1,11 @@
 import { Tfoot, Tr } from "@chakra-ui/react";
 import _ from "lodash";
-import { Attribute } from "../../../entities/attributes";
-import useGetRecords from "../../../hooks/useGetRecords";
+import { Attribute } from "../../../../entities/attributes";
+import useGetRecords from "../../../../hooks/useGetRecords";
 import {
   calculateRecordsSum,
   getAverageOfRecords,
-} from "../../../utils/records";
+} from "../../../../utils/records";
 import LossesTableFootSkeleton from "./LossesTableFootSkeleton";
 import LossesTableHeadCell from "./LossesTableHeadCell";
 
