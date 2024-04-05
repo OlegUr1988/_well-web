@@ -1,5 +1,5 @@
 import useUserStore from "../../../store/user";
-import SearchInput from "../../common/SearchInput";
+import { SearchInput } from "../../common";
 
 const UserSearchInput = () => {
   const { searchedName } = useUserStore((s) => s.usersQuery);

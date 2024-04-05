@@ -6,7 +6,7 @@ import { SelectOption } from "../../../entities/selectOption";
 import { useFormSubmit } from "../../../hooks/forms";
 import { useUnits } from "../../../hooks/units";
 import { PHDTagSchema } from "../../../validationSchema";
-import ModalContainer from "../../common/ModalContainer";
+import { ModalContainer } from "../../common/";
 import {
   FormContainer,
   FormInput,

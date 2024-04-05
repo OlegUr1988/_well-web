@@ -1,13 +1,15 @@
 import { Box, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import AreaKPITrends from "../../components/dashboards/AreaKPITrends";
-import AreaLevelDashboardHeaderPanel from "../../components/dashboards/AreaLevelDashboardHeaderPanel";
-import AreaTotalCards from "../../components/dashboards/AreaTotalCards";
-import LoadingSpinner from "../../components/models/LoadingSpinner";
+import { LoadingSpinner } from "../../components/common/";
+import {
+  AreaConsumptionByUtilityCard,
+  AreaKPITrends,
+  AreaLevelDashboardHeaderPanel,
+  AreaLossesByAssetsCard,
+  AreaTotalCards,
+} from "../../components/dashboards/areas/";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
-import AreaLossesByAssetsCard from "../../components/dashboards/AreaLossesByAssetsCard";
-import AreaConsumptionByUtilityCard from "../../components/dashboards/AreaConsumptionByUtilityCard";
 
 const AreaLevelDashboard = () => {
   const { areaName } = useParams();

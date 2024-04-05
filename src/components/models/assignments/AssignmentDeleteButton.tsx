@@ -1,9 +1,8 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { Assignment } from "../../../entities/assignments";
 import { useDeleteAssignment } from "../../../hooks/assignments";
-import TooltipContainer from "../../common/TooltipContainer";
+import { SimpleAlert, TooltipContainer } from "../../common";
 import { IconButton } from "../../common/buttons";
-import SimpleAlert from "../../common/SimpleAlert";
 
 const AssignmentDeleteButton = ({ assignment }: { assignment: Assignment }) => {
   const { mutateAsync, isPending } = useDeleteAssignment(assignment);

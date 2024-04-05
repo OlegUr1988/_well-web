@@ -5,7 +5,7 @@ import { useSetUserPassword } from "../../../hooks/users";
 import useUserStore from "../../../store/user";
 import { clearToken } from "../../../utils/auth";
 import { changeUserPasswordSchema } from "../../../validationSchema";
-import SimpleModal from "../../common/SimpleModal";
+import { SimpleModal } from "../../common";
 
 const SetUserPasswordButton = ({ user }: { user: User }) => {
   const { mutateAsync, isPending } = useSetUserPassword(user.id);

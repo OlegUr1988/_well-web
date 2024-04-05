@@ -4,7 +4,7 @@ import { UpdateUserFormData } from "../../../entities/formDatas";
 import { UpdateUser } from "../../../entities/users";
 import { useFormSubmit } from "../../../hooks/forms";
 import { updateUserSchema } from "../../../validationSchema";
-import ModalContainer from "../../common/ModalContainer";
+import { ModalContainer } from "../../common/";
 import {
   FormChekbox,
   FormContainer,

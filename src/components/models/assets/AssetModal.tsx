@@ -10,7 +10,7 @@ import useAttributeTypes from "../../../hooks/useAttributeTypes";
 import useUtilityTypes from "../../../hooks/useUtilityTypes";
 import { HttpError } from "../../../services/api-client";
 import { assetSchema } from "../../../validationSchema";
-import ModalContainer from "../../common/ModalContainer";
+import { ModalContainer } from "../../common/";
 import {
   FormContainer,
   FormInput,

@@ -1,0 +1,5 @@
+export { default as ConsumptionsDonutChart } from "./ConsumptionsDonutChart";
+export { default as LossesByAssetsPieChart } from "./LossesByAssetsPieChart";
+export { default as LossesDailyLineChartCard } from "./LossesDailyLineChartCard";
+export { default as PerformanceGaugeChart } from "./PerformanceGaugeChart";
+export { default as TotalLossesColumnChart } from "./TotalLossesColumnChart";

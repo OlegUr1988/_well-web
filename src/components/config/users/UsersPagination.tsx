@@ -1,6 +1,6 @@
 import { useUsers } from "../../../hooks/users";
 import useUserStore from "../../../store/user";
-import Pagination from "../../common/Pagination";
+import { Pagination } from "../../common";
 
 const UsersPagination = () => {
   const { page, pageSize, searchedName } = useUserStore((s) => s.usersQuery);
