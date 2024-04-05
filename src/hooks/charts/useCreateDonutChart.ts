@@ -1,8 +1,8 @@
 import _ from "lodash";
 import donutChartOptions from "../../constants/donutChartOtions";
 import { Asset } from "../../entities/assets";
-import useAreaAttributesByType from "../useAreaAttributesByType";
-import useAreaLosses from "../useAreaLosses";
+import useAreaAttributesByType from "./useAreaAttributesByType";
+import useAreaLosses from "./useAreaLosses";
 
 const useCreateDonutChart = (assets: Asset[]) => {
   const assetDesignLosses = useAreaLosses(

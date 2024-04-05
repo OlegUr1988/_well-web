@@ -1,7 +1,7 @@
 import _ from "lodash";
-import { Attribute } from "../entities/attributes";
-import { getRecordsByUnits, getSumOfRecords } from "../utils/records";
-import useGetRecords from "./useGetRecords";
+import { Attribute } from "../../entities/attributes";
+import { getRecordsByUnits, getSumOfRecords } from "../../utils/records";
+import useGetRecords from "../useGetRecords";
 
 const useAreaLosses = (attributes: Attribute[][] | null) => {
   const assignments = attributes!.map((nestedArray) =>

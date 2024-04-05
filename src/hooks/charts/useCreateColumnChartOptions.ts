@@ -2,8 +2,8 @@ import { ApexOptions } from "apexcharts";
 import _ from "lodash";
 import columnChartOptions from "../../constants/columnChartOptions";
 import { Asset } from "../../entities/assets";
-import useAreaAttributesByType from "../useAreaAttributesByType";
-import useAreaLosses from "../useAreaLosses";
+import useAreaAttributesByType from "./useAreaAttributesByType";
+import useAreaLosses from "./useAreaLosses";
 
 const useCreateColumnChartOptions = (assets: Asset[]) => {
   const assetDesignLosses = useAreaLosses(

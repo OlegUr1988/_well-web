@@ -1,6 +1,6 @@
 import _ from "lodash";
-import { Asset } from "../entities/assets";
-import useAttributeTypes from "./useAttributeTypes";
+import { Asset } from "../../entities/assets";
+import useAttributeTypes from "../useAttributeTypes";
 
 const useAreaAttributesByType = (
   assets: Asset[],
