@@ -56,22 +56,13 @@ export const calculateRecordsSum = (records: Record[], units: string) =>
 export const groupBy = (records: Record[], key: keyof Record) =>
   _.groupBy(records, (item) => item[key]);
 
-export const getPossitiveDiffirences = (
+export const getDiffirences = (
   groups: _.Dictionary<Record[]>,
   target: number
 ) =>
   _.map(
     groups,
     (array) => _.sumBy(array, (item) => parseFloat(item.value)) - target
-  );
-
-export const getNegativeDiffirences = (
-  groups: _.Dictionary<Record[]>,
-  target: number
-) =>
-  _.map(
-    groups,
-    (array) => target - _.sumBy(array, (item) => parseFloat(item.value))
   );
 
 export const getTotalDifference = (differences: number[], total: number) =>
