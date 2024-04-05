@@ -6,9 +6,9 @@ import {
   DashboardCardErrorMessage,
   DashboardCardSkeleton,
 } from "../common";
-import PerformanceGaugeChart from "./PerformanceGaugeChart";
+import AssetPerformanceGaugeChart from "./AssetPerformanceGaugeChart";
 
-const PerformancesCard = ({ asset }: { asset: Asset }) => {
+const AssetPerformancesCard = ({ asset }: { asset: Asset }) => {
   const { data: parentAsset, isLoading, error } = useAsset(asset.id);
 
   if (isLoading) return <DashboardCardSkeleton />;
@@ -28,7 +28,7 @@ const PerformancesCard = ({ asset }: { asset: Asset }) => {
           overflowY="auto"
         >
           {assets?.map((asset) => (
-            <PerformanceGaugeChart
+            <AssetPerformanceGaugeChart
               key={asset.id}
               asset={asset}
               count={assets!.length}
@@ -40,4 +40,4 @@ const PerformancesCard = ({ asset }: { asset: Asset }) => {
   );
 };
 
-export default PerformancesCard;
+export default AssetPerformancesCard;

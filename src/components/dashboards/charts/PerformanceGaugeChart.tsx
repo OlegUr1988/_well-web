@@ -1,13 +1,13 @@
+import { ApexOptions } from "apexcharts";
 import ReactApexChart from "react-apexcharts";
 import semiGaugeOptions from "../../../constants/semiGaugeOptions";
-import { ApexOptions } from "apexcharts";
 
 interface Props {
   usefulWorkRatio: number;
   height?: number;
 }
 
-const PerformanceGauge = ({ usefulWorkRatio, height = 380 }: Props) => {
+const PerformanceGaugeChart = ({ usefulWorkRatio, height = 380 }: Props) => {
   const options: ApexOptions = {
     ...semiGaugeOptions,
     chart: {
@@ -25,4 +25,4 @@ const PerformanceGauge = ({ usefulWorkRatio, height = 380 }: Props) => {
   );
 };
 
-export default PerformanceGauge;
+export default PerformanceGaugeChart;

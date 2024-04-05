@@ -6,15 +6,15 @@ import {
   calculateTotalUsefulWork,
   calculateUsefulWorkRatio,
 } from "../../../utils/performances";
-import PerformanceGauge from "./PerformanceGauge";
-import PerformanceGaugeMetricSummary from "./PerformanceGaugeMetricSummary";
+import { PerformanceGaugeChart } from "../charts/";
+import AssetPerformanceGaugeMetricSummary from "./AssetPerformanceGaugeMetricSummary";
 
 interface Props {
   asset: Asset;
   count?: number;
 }
 
-const PerformanceGaugeChart = ({ asset, count = 1 }: Props) => {
+const AssetPerformanceGaugeChart = ({ asset, count = 1 }: Props) => {
   const allAttributes = asset.attributes;
 
   const dutyAttribute = allAttributes.find(
@@ -55,11 +55,11 @@ const PerformanceGaugeChart = ({ asset, count = 1 }: Props) => {
           {asset.name}
         </Text>
         <Box position="relative" top={-10}>
-          <PerformanceGauge
+          <PerformanceGaugeChart
             usefulWorkRatio={usefulWorkRatio}
             height={count > 1 ? 300 : 380}
           />
-          <PerformanceGaugeMetricSummary
+          <AssetPerformanceGaugeMetricSummary
             totalDuty={totalDuty}
             totalUsefulWork={totalUsefulWork}
             usefulWorkRatio={usefulWorkRatio}
@@ -71,4 +71,4 @@ const PerformanceGaugeChart = ({ asset, count = 1 }: Props) => {
   );
 };
 
-export default PerformanceGaugeChart;
+export default AssetPerformanceGaugeChart;

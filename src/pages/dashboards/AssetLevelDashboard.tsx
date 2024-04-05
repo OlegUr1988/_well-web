@@ -1,8 +1,11 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import { AssetLevelDashboardHeaderPanel, AssetLossesTableCard } from "../../components/dashboards/assets";
+import {
+  AssetLevelDashboardHeaderPanel,
+  AssetLossesTableCard,
+  AssetPerformancesCard,
+} from "../../components/dashboards/assets";
 import { LossesDailyLineChartCard } from "../../components/dashboards/charts";
-import { PerformancesCard } from "../../components/dashboards/performances";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
@@ -41,7 +44,7 @@ const AssetLevelDashboard = () => {
       </Box>
       <SimpleGrid columns={2} gap={5} mb={5}>
         <AssetLossesTableCard asset={asset!} />
-        <PerformancesCard asset={asset!} />
+        <AssetPerformancesCard asset={asset!} />
       </SimpleGrid>
       <LossesDailyLineChartCard asset={asset!} />
     </Box>

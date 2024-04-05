@@ -8,7 +8,7 @@ interface Props {
   count?: number;
 }
 
-const PerformanceGaugeMetricSummary = ({
+const AssetPerformanceGaugeMetricSummary = ({
   totalDuty,
   totalUsefulWork,
   usefulWorkRatio,
@@ -44,4 +44,4 @@ const PerformanceGaugeMetricSummary = ({
   );
 };
 
-export default PerformanceGaugeMetricSummary;
+export default AssetPerformanceGaugeMetricSummary;
