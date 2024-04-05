@@ -1,8 +1,8 @@
 import { ListViewFormData } from "../../../entities/formDatas";
 import { useAddAttribute } from "../../../hooks/attributes";
 import { listViewFormSchema } from "../../../validationSchema";
+import { SimpleModal } from "../../common";
 import { CreateButton } from "../../common/buttons";
-import SimpleModal from "../../common/SimpleModal";
 
 const AttributeCreateButton = ({
   attributeTypeId,

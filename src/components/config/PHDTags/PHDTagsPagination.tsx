@@ -1,6 +1,6 @@
 import { usePHDTags } from "../../../hooks/PHDTags";
 import usePHDTagStore from "../../../store/phdTags";
-import Pagination from "../../common/Pagination";
+import { Pagination } from "../../common";
 
 const PHDTagsPagination = () => {
   const { page, pageSize, searchedName } = usePHDTagStore(

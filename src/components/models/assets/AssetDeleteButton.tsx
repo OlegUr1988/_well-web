@@ -1,7 +1,7 @@
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useDeleteAsset } from "../../../hooks/assets";
 import useModelStore from "../../../store/model";
-import SimpleAlert from "../../common/SimpleAlert";
+import { SimpleAlert } from "../../common";
 import { IconButton } from "../../common/buttons";
 
 const AssetDeleteButton = ({ assetId }: { assetId: number }) => {

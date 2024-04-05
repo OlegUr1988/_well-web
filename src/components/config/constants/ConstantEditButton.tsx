@@ -2,8 +2,8 @@ import { Constant } from "../../../entities/constants";
 import { ConstantFormData } from "../../../entities/formDatas";
 import { useUpdateConstant } from "../../../hooks/constants";
 import { constantShcema } from "../../../validationSchema";
+import { SimpleModal } from "../../common";
 import { EditButton } from "../../common/buttons";
-import SimpleModal from "../../common/SimpleModal";
 
 const ConstantEditButton = ({ constant }: { constant: Constant }) => {
   const { mutateAsync, isPending } = useUpdateConstant(constant.id);

@@ -7,7 +7,7 @@ import { useAddAttribute } from "../../../hooks/attributes";
 import useGetAttributeTypes from "../../../hooks/useGetAttributeTypes";
 import { HttpError } from "../../../services/api-client";
 import { listViewFormSchema } from "../../../validationSchema";
-import SimpleModal from "../../common/SimpleModal";
+import { SimpleModal } from "../../common";
 import { IconButton } from "../../common/buttons";
 
 const SubassetCreateButton = ({ parentAssetId }: { parentAssetId: number }) => {

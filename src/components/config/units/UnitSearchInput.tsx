@@ -1,5 +1,5 @@
 import useUnitsStore from "../../../store/units";
-import SearchInput from "../../common/SearchInput";
+import { SearchInput } from "../../common";
 
 const UnitSearchInput = () => {
   const { searchedName } = useUnitsStore((s) => s.unitsQuery);

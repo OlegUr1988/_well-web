@@ -9,7 +9,7 @@ import useAttributeTypes from "../../../hooks/useAttributeTypes";
 import useUtilityTypes from "../../../hooks/useUtilityTypes";
 import { HttpError } from "../../../services/api-client";
 import { listViewFormSchema } from "../../../validationSchema";
-import SimpleModal from "../../common/SimpleModal";
+import { SimpleModal } from "../../common";
 import { IconButton } from "../../common/buttons";
 
 const AreaCreateButton = ({ plantId }: { plantId: number }) => {

@@ -1,7 +1,7 @@
 import { useConstants } from "../../../hooks/constants";
 import useConstantsStore from "../../../store/constants";
 import useUnitsStore from "../../../store/units";
-import Pagination from "../../common/Pagination";
+import { Pagination } from "../../common/";
 
 const ConstantsPagination = () => {
   const { page, pageSize, searchedName } = useConstantsStore(

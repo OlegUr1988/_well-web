@@ -1,6 +1,6 @@
 import { useUnits } from "../../../hooks/units";
 import useUnitsStore from "../../../store/units";
-import Pagination from "../../common/Pagination";
+import { Pagination } from "../../common";
 
 const UnitsPagination = () => {
   const { page, pageSize, searchedName } = useUnitsStore((s) => s.unitsQuery);

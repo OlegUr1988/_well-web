@@ -1,8 +1,8 @@
 import { useUsers } from "../../../hooks/users";
 import useDeleteUser from "../../../hooks/users/useDeleteUser";
 import useUserStore from "../../../store/user";
+import { SimpleAlert } from "../../common";
 import { DeleteButton } from "../../common/buttons";
-import SimpleAlert from "../../common/SimpleAlert";
 
 const UserDeleteButton = ({ userId }: { userId: number }) => {
   const { mutateAsync, isPending } = useDeleteUser();

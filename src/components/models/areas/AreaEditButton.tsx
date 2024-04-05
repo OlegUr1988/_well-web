@@ -3,7 +3,7 @@ import { Asset } from "../../../entities/assets";
 import { ListViewFormData } from "../../../entities/formDatas";
 import { useUpdateAsset } from "../../../hooks/assets";
 import { listViewFormSchema } from "../../../validationSchema";
-import SimpleModal from "../../common/SimpleModal";
+import { SimpleModal } from "../../common";
 import { IconButton } from "../../common/buttons";
 
 const AreaEditButton = ({ area }: { area: Asset }) => {

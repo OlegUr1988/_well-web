@@ -2,7 +2,7 @@ import { Box, Divider, Heading } from "@chakra-ui/react";
 import { useAttributes } from "../../../hooks/attributes";
 import { useTarget } from "../../../hooks/targets";
 import useModelStore from "../../../store/model";
-import LoadingSpinner from "../../common/LoadingSpinner";
+import { LoadingSpinner } from "../../common/";
 import AttributeCard from "./AttributeCard";
 import TargetsForm from "./TargetsForm";
 

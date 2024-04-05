@@ -1,7 +1,7 @@
 import { MdOutlineEdit } from "react-icons/md";
 import { Assignment } from "../../../entities/assignments";
 import { useUpdateAssignment } from "../../../hooks/assignments";
-import TooltipContainer from "../../common/TooltipContainer";
+import { TooltipContainer } from "../../common";
 import { IconButton } from "../../common/buttons";
 import AssignmentModal from "./AssignmentModal";
 

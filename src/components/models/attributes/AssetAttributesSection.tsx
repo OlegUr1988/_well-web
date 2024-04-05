@@ -2,7 +2,7 @@ import { Box, HStack, Heading, Text } from "@chakra-ui/react";
 import { useAsset } from "../../../hooks/assets";
 import { useAttributes } from "../../../hooks/attributes";
 import useModelStore from "../../../store/model";
-import LoadingSpinner from "../../common/LoadingSpinner";
+import { LoadingSpinner } from "../../common/";
 import AttributeCard from "./AttributeCard";
 
 const AssetAttributesSection = () => {

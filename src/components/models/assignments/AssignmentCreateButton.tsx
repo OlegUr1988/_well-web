@@ -1,6 +1,6 @@
 import { FaPlus } from "react-icons/fa";
 import { useAddAssignment } from "../../../hooks/assignments";
-import TooltipContainer from "../../common/TooltipContainer";
+import { TooltipContainer } from "../../common";
 import { IconButton } from "../../common/buttons";
 import AssignmentModal from "./AssignmentModal";
 

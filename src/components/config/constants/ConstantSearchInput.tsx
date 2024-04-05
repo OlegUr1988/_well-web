@@ -1,6 +1,6 @@
 import useConstantsStore from "../../../store/constants";
 import useUnitsStore from "../../../store/units";
-import SearchInput from "../../common/SearchInput";
+import { SearchInput } from "../../common";
 
 const ConstantSearchInput = () => {
   const { searchedName } = useConstantsStore((s) => s.constantsQuery);
