@@ -1,5 +1,5 @@
 import { Skeleton, VStack } from "@chakra-ui/react";
-import { DashboardCard } from ".";
+import DashboardCard from "./DashboardCard";
 
 const DashboardAssetSelectInputSkeleton = () => {
   return (

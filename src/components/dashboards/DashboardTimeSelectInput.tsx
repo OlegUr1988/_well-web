@@ -1,8 +1,8 @@
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/react";
-import { DashboardCard } from ".";
 import EndTimePicker from "./EndTimePicker";
 import StartTimePicker from "./StartTimePicker";
 import TimeRangeSlider from "./TimeRangeSlider";
+import { DashboardCard } from "./common";
 
 const DashboardTimeSelectInput = () => {
   return (

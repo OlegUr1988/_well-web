@@ -1,10 +1,9 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
 import { Select } from "chakra-react-select";
 import { useNavigate } from "react-router-dom";
-import { DashboardCard } from "..";
 import { Asset } from "../../../entities/assets";
 import { useAsset } from "../../../hooks/assets";
-import DashboardAssetSelectInputSkeleton from "../DashboardAssetSelectInputSkeleton";
+import { DashboardAssetSelectInputSkeleton, DashboardCard } from "../common/";
 
 const AssetLevelDashboardSelectInput = ({
   area,

@@ -1,5 +1,5 @@
 import { Divider, HStack, Tag, Text, VStack } from "@chakra-ui/react";
-import { DashboardCard } from ".";
+import { DashboardCard } from "./common";
 
 const DashboardLocationInfo = ({
   areaName,

@@ -2,7 +2,7 @@ import { Box } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
-import DashboardCard from "../DashboardCard";
+import { DashboardCard } from "../common/";
 import TotalKPICardHeader from "../TotalKPICardHeader";
 import TotalLossesColumnChart from "../TotalLossesColumnChart";
 

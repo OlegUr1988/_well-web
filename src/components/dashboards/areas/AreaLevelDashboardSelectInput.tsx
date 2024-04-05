@@ -1,11 +1,10 @@
 import { Box, Text, VStack } from "@chakra-ui/react";
 import { Select } from "chakra-react-select";
 import { useNavigate } from "react-router-dom";
-import { DashboardCard } from "..";
 import { Asset } from "../../../entities/assets";
 import { useAssets } from "../../../hooks/assets";
 import useUtilityTypes from "../../../hooks/useUtilityTypes";
-import DashboardAssetSelectInputSkeleton from "../DashboardAssetSelectInputSkeleton";
+import { DashboardAssetSelectInputSkeleton, DashboardCard } from "../common/";
 
 const AreaLevelDashboardSelectInput = ({ area }: { area: Asset }) => {
   const { data: types } = useUtilityTypes();

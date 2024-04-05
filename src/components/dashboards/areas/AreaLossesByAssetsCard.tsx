@@ -2,7 +2,7 @@ import { Center, Heading } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
-import DashboardCard from "../DashboardCard";
+import { DashboardCard } from "../common/";
 import LossesByAssetsPieChart from "../LossesByAssetsPieChart";
 
 const AreaLossesByAssetsCard = ({ area }: { area: Asset }) => {

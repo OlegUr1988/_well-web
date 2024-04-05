@@ -1,4 +1,4 @@
-import DashboardCard from "./DashboardCard";
+import { DashboardCard } from "./common/";
 import MessageComponent from "./MessageComponent";
 
 const DashboardCardErrorMessage = () => {

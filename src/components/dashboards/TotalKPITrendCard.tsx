@@ -3,7 +3,7 @@ import ReactApexChart from "react-apexcharts";
 import { Asset } from "../../entities/assets";
 import useGetKPIchartOptions from "../../hooks/useGetKPIchartOptions";
 import { Trend } from "../../store/dashboard";
-import DashboardCard from "./DashboardCard";
+import { DashboardCard } from "./common/";
 import DashboardCardErrorMessage from "./DashboardCardErrorMessage";
 import DashboardCardSkeleton from "./DashboardCardSkeleton";
 import TotalKPICardHeader from "./TotalKPICardHeader";

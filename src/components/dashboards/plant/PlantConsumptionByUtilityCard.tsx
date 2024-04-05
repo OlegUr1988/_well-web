@@ -2,8 +2,8 @@ import { Center, Heading } from "@chakra-ui/react";
 import _ from "lodash";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
-import ConsumptionsDonutChart from "../ConsumptionsDonutChart";
-import DashboardCard from "../DashboardCard";
+import { ConsumptionsDonutChart } from "../charts/";
+import { DashboardCard } from "../common/";
 
 const PlantConsumptionByUtilityCard = ({ plant }: { plant: Asset }) => {
   const areaIds = plant.children.map((child) => child.id);
