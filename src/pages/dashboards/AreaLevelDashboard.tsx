@@ -7,6 +7,7 @@ import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 import AreaLossesByAssetsCard from "../../components/dashboards/AreaLossesByAssetsCard";
+import AreaConsumptionByUtilityCard from "../../components/dashboards/AreaConsumptionByUtilityCard";
 
 const AreaLevelDashboard = () => {
   const { areaName } = useParams();
@@ -34,6 +35,7 @@ const AreaLevelDashboard = () => {
         </VStack>
         <VStack align="stretch">
           <AreaLossesByAssetsCard area={area!} />
+          <AreaConsumptionByUtilityCard area={area!} />
         </VStack>
       </SimpleGrid>
     </Box>
