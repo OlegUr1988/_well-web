@@ -36,7 +36,7 @@ const useCalculateAreaCO2Emission = (area: Asset) => {
   const CO2emissions = _.values(CO2EmissionsGrouped);
   const totalCO2Emission = _.sum(CO2emissions);
   const CO2EmissionDifferences = CO2emissions.map(
-    (val) => CO2EmissionTarget - val
+    (val) => val - CO2EmissionTarget
   );
   const CO2EmissionDifference = getTotalDifference(
     CO2EmissionDifferences,

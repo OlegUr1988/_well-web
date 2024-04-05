@@ -50,6 +50,7 @@ const PlantTotalCards = ({ plant }: { plant: Asset }) => {
             value={totalEnergyConsumption}
             units={energyConsumptionUnit.toUpperCase()}
             difference={energyConsumptDifference}
+            isLimit={true}
           />
         </GridItem>
         <GridItem
@@ -61,6 +62,7 @@ const PlantTotalCards = ({ plant }: { plant: Asset }) => {
             value={totalSpecificEnergyConsumption}
             units="KW"
             difference={specificEnergyConsumptionDifference}
+            isLimit={true}
           />
         </GridItem>
         <GridItem onClick={() => setTrend("CO2 emission")} cursor="pointer">
@@ -69,6 +71,7 @@ const PlantTotalCards = ({ plant }: { plant: Asset }) => {
             value={totalCO2Emission}
             units="TON CO2"
             difference={CO2EmissionDifference}
+            isLimit={true}
           />
         </GridItem>
       </SimpleGrid>

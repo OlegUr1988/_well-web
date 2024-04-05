@@ -63,7 +63,7 @@ const useCalculateTotalKPIs = (asset: Asset) => {
     ? energyConsumptions[0].PHDTag.unit.name
     : "KW";
   const energyConsumptionGroups = groupBy(energyConsumptions, "timestamp");
-  const energyConsumptDifferences = getNegativeDiffirences(
+  const energyConsumptDifferences = getPossitiveDiffirences(
     energyConsumptionGroups,
     energyConsumptionTarget
   );
@@ -85,7 +85,7 @@ const useCalculateTotalKPIs = (asset: Asset) => {
   );
   const specificEnergyConsumptionDifferences = _.map(
     specificEnergyConsumptionGroups,
-    (item) => specificEnergyConsupmtionTarget - item
+    (item) => item - specificEnergyConsupmtionTarget
   );
   const specificEnergyConsumptionDifference = getTotalDifference(
     specificEnergyConsumptionDifferences,
