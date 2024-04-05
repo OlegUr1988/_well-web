@@ -6,6 +6,7 @@ import AreaTotalCards from "../../components/dashboards/AreaTotalCards";
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
+import AreaLossesByAssetsCard from "../../components/dashboards/AreaLossesByAssetsCard";
 
 const AreaLevelDashboard = () => {
   const { areaName } = useParams();
@@ -31,7 +32,9 @@ const AreaLevelDashboard = () => {
           </Box>
           <AreaKPITrends area={area!} />
         </VStack>
-        <VStack align="stretch"></VStack>
+        <VStack align="stretch">
+          <AreaLossesByAssetsCard area={area!} />
+        </VStack>
       </SimpleGrid>
     </Box>
   );
