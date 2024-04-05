@@ -8,9 +8,16 @@ interface Props {
   value: number | string;
   units: string;
   difference: number;
+  isLimit?: boolean;
 }
 
-const TotalKPICard = ({ header, value, units, difference }: Props) => {
+const TotalKPICard = ({
+  header,
+  value,
+  units,
+  difference,
+  isLimit = false,
+}: Props) => {
   return (
     <DashboardCard h="100%">
       <VStack justify="space-between" h="100%" align="flex-start">
@@ -30,9 +37,9 @@ const TotalKPICard = ({ header, value, units, difference }: Props) => {
         </HStack>
         <HStack>
           {difference > 0 ? (
-            <FaArrowUp color="green" />
+            <FaArrowUp color={isLimit ? "red" : "green"} />
           ) : (
-            <FaArrowDown color="red" />
+            <FaArrowDown color={isLimit ? "green" : "red"} />
           )}
           <Text>{Math.abs(difference)}% from target</Text>
         </HStack>
