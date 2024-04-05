@@ -1,4 +1,4 @@
-import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import AreaKPITrends from "../../components/dashboards/AreaKPITrends";
 import AreaLevelDashboardHeaderPanel from "../../components/dashboards/AreaLevelDashboardHeaderPanel";
@@ -6,6 +6,8 @@ import AreaTotalCards from "../../components/dashboards/AreaTotalCards";
 import LoadingSpinner from "../../components/models/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
+import AreaLossesByAssetsCard from "../../components/dashboards/AreaLossesByAssetsCard";
+import AreaConsumptionByUtilityCard from "../../components/dashboards/AreaConsumptionByUtilityCard";
 
 const AreaLevelDashboard = () => {
   const { areaName } = useParams();
@@ -24,13 +26,17 @@ const AreaLevelDashboard = () => {
       <Box mb={5} w={{ base: "100%", xl: "75%" }}>
         <AreaLevelDashboardHeaderPanel area={area!} />
       </Box>
-
-      <Box mb={5}>
-        <AreaTotalCards area={area!} />
-      </Box>
-
-      <SimpleGrid templateColumns={"4fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
-        <AreaKPITrends area={area!} />
+      <SimpleGrid templateColumns={"3fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
+        <VStack align="stretch">
+          <Box mb={5}>
+            <AreaTotalCards area={area!} />
+          </Box>
+          <AreaKPITrends area={area!} />
+        </VStack>
+        <VStack align="stretch">
+          <AreaLossesByAssetsCard area={area!} />
+          <AreaConsumptionByUtilityCard area={area!} />
+        </VStack>
       </SimpleGrid>
     </Box>
   );

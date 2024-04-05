@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { Asset } from "../entities/assets";
-import { getSumOfRecords, getTotalDifference } from "../utils/records";
+import { getArrayOfSums, getTotalDifference, groupBy } from "../utils/records";
 import { useAssets, useAssetsByIds } from "./assets";
 import { useConstantByName } from "./constants";
 import useGetRecords from "./useGetRecords";
@@ -10,7 +10,7 @@ const useCalculatePlantCO2Emission = (plant: Asset) => {
 
   const { data: constant, isLoading: isCO2CoefficientLoading } =
     useConstantByName("CO2 conversion coefficient");
-  const CO2coefficient = constant?.value || 0;
+  const CO2Coefficient = constant?.value || 0;
 
   const areasIds = plant.children.map((area) => area.id);
   const { data: areas, isLoading: isAreasLoading } = useAssets({
@@ -44,12 +44,18 @@ const useCalculatePlantCO2Emission = (plant: Asset) => {
   if (isLoading) return null;
 
   // Calculating CO2 emissions
-  const totatlAssetsDuty = parseFloat(getSumOfRecords(assetsRecords));
-  const totalCO2Emission = totatlAssetsDuty * CO2coefficient!;
-  const CO2EmissionDifferences = assetsRecords.map(
-    (asset) => parseFloat(asset.value) * CO2coefficient - CO2EmissionTarget
+  const groupedRecords = groupBy(assetsRecords, "timestamp");
+  const groupedSumOfRecords = getArrayOfSums(groupedRecords);
+  const CO2EmissionsGrouped = _.mapValues(
+    groupedSumOfRecords,
+    (value) => value * CO2Coefficient
   );
 
+  const CO2emissions = _.values(CO2EmissionsGrouped);
+  const totalCO2Emission = _.sum(CO2emissions);
+  const CO2EmissionDifferences = CO2emissions.map(
+    (val) => CO2EmissionTarget - val
+  );
   const CO2EmissionDifference = getTotalDifference(
     CO2EmissionDifferences,
     CO2EmissionTarget * CO2EmissionDifferences.length

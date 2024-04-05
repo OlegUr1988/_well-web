@@ -31,9 +31,7 @@ const PlantLevelDashboard = () => {
           <Box mb={5}>
             <PlantTotalCards plant={plant!} />
           </Box>
-          <Box>
-            <PlantKPITrends plant={plant!} />
-          </Box>
+          <PlantKPITrends plant={plant!} />
         </VStack>
         <VStack align="stretch">
           <PlantLossesByAssetsCard plant={plant!} />
