@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import _ from "lodash";
-import { Asset } from "../../entities/assets";
-import { useAssetsByIds } from "../../hooks/assets";
-import useAttributeTypes from "../../hooks/useAttributeTypes";
-import DashboardCard from "./DashboardCard";
-import TotalKPICardHeader from "./TotalKPICardHeader";
-import TotalLossesColumnChart from "./TotalLossesColumnChart";
+import { Asset } from "../../../entities/assets";
+import { useAssetsByIds } from "../../../hooks/assets";
+import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import DashboardCard from "../DashboardCard";
+import TotalKPICardHeader from "../TotalKPICardHeader";
+import TotalLossesColumnChart from "../TotalLossesColumnChart";
 
 const PlantLossesCard = ({ plant }: { plant: Asset }) => {
   const areaIds = plant.children.map((child) => child.id);

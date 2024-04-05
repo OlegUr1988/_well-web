@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import AreaKPITrends from "../../components/dashboards/AreaKPITrends";
 import AreaLevelDashboardHeaderPanel from "../../components/dashboards/AreaLevelDashboardHeaderPanel";
 import AreaTotalCards from "../../components/dashboards/AreaTotalCards";
-import LoadingSpinner from "../../components/models/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 import AreaLossesByAssetsCard from "../../components/dashboards/AreaLossesByAssetsCard";

@@ -1,10 +1,10 @@
 import { Center, Heading } from "@chakra-ui/react";
 import _ from "lodash";
-import { Asset } from "../../entities/assets";
-import { useAssetsByIds } from "../../hooks/assets";
-import useAttributeTypes from "../../hooks/useAttributeTypes";
-import DashboardCard from "./DashboardCard";
-import LossesByAssetsPieChart from "./LossesByAssetsPieChart";
+import { Asset } from "../../../entities/assets";
+import { useAssetsByIds } from "../../../hooks/assets";
+import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import DashboardCard from "../DashboardCard";
+import LossesByAssetsPieChart from "../LossesByAssetsPieChart";
 
 const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
   const areaIds = plant.children.map((child) => child.id);

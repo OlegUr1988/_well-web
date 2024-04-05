@@ -1,8 +1,8 @@
-import { Asset } from "../../entities/assets";
-import useDashboardsStore from "../../store/dashboard";
+import { Asset } from "../../../entities/assets";
+import useDashboardsStore from "../../../store/dashboard";
+import TotalKPITrendCard from "../TotalKPITrendCard";
 import PlantLossesCard from "./PlantLossesCard";
 import PlantTotalCO2EmissionKPITrendCard from "./PlantTotalCO2EmissionKPITrendCard";
-import TotalKPITrendCard from "./TotalKPITrendCard";
 
 const PlantKPITrends = ({ plant }: { plant: Asset }) => {
   const { trend } = useDashboardsStore((s) => s.dashboardQuery);

@@ -1,6 +1,6 @@
 import { SimpleGrid } from "@chakra-ui/react";
-import DashboardLogo from "./DashboardLogo";
-import DashboardTimeSelectInput from "./DashboardTimeSelectInput";
+import DashboardLogo from "../DashboardLogo";
+import DashboardTimeSelectInput from "../DashboardTimeSelectInput";
 
 const AreaLevelDashboardHeaderPanel = () => {
   return (

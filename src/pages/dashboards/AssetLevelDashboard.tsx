@@ -6,7 +6,7 @@ import {
   LossesTableCard,
 } from "../../components/dashboards/losses";
 import { PerformancesCard } from "../../components/dashboards/performances";
-import LoadingSpinner from "../../components/models/LoadingSpinner";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 
