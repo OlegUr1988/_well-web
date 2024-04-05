@@ -1,5 +1,6 @@
 import { Box, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 import {
   PlantConsumptionByUtilityCard,
   PlantKPITrends,
@@ -7,7 +8,6 @@ import {
   PlantLossesByAssetsCard,
   PlantTotalCards,
 } from "../../components/dashboards/plant/";
-import LoadingSpinner from "../../components/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 

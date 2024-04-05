@@ -1,12 +1,12 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import LoadingSpinner from "../../components/common/LoadingSpinner";
 import {
   AssetLevelDashboardHeaderPanel,
   AssetLossesTableCard,
   AssetPerformancesCard,
 } from "../../components/dashboards/assets";
 import { LossesDailyLineChartCard } from "../../components/dashboards/charts";
-import LoadingSpinner from "../../components/LoadingSpinner";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 
