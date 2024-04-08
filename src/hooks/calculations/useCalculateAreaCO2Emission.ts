@@ -27,7 +27,8 @@ const useCalculateAreaCO2Emission = (area: Asset) => {
 
   const isLoading = isChildrenLoading || isCO2CoefficientLoading;
 
-  if (isLoading) return null;
+  if (isLoading)
+    return { isLoading, totalCO2Emission: 0, CO2EmissionDifference: 0 };
 
   // Calculating CO2 emissions
   const groupedRecords = groupBy(assetsRecords, "timestamp");
@@ -47,7 +48,7 @@ const useCalculateAreaCO2Emission = (area: Asset) => {
     CO2EmissionTarget * CO2EmissionDifferences.length
   );
 
-  return { totalCO2Emission, CO2EmissionDifference };
+  return { isLoading, totalCO2Emission, CO2EmissionDifference };
 };
 
 export default useCalculateAreaCO2Emission;

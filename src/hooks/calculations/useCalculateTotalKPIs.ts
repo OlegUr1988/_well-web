@@ -37,7 +37,13 @@ const useCalculateTotalKPIs = (asset: Asset) => {
 
   const isLoading = isProductionsLoading || isEnergyConsumptionsLoading;
 
-  if (isLoading) return null;
+  if (isLoading)
+    return {
+      isLoading,
+      totals: {},
+      targetDifferences: {},
+      units: {},
+    };
 
   // Calculating productions
   const totalProduction = parseFloat(getSumOfRecords(productions));
@@ -93,6 +99,7 @@ const useCalculateTotalKPIs = (asset: Asset) => {
   );
 
   return {
+    isLoading,
     totals: {
       totalProduction,
       totalEnergyConsumption,
