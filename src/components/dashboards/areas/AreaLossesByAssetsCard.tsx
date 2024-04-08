@@ -3,7 +3,7 @@ import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
 import { LossesByAssetsPieChart } from "../charts/";
-import { DashboardCard } from "../common/";
+import { DashboardCard, DashboardCardSkeleton } from "../common/";
 
 const AreaLossesByAssetsCard = ({ area }: { area: Asset }) => {
   const ids = area.children.map((child) => child.id);
@@ -14,7 +14,8 @@ const AreaLossesByAssetsCard = ({ area }: { area: Asset }) => {
   } = useAssetsByIds({ ids });
   const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
 
-  if (isAssetsLoading || isTypesLoading) return null;
+  if (isAssetsLoading || isTypesLoading)
+    return <DashboardCardSkeleton h={300} />;
 
   if (assetsError || typesError) return null;
 

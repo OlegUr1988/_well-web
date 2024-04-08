@@ -3,7 +3,7 @@ import _ from "lodash";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
 import { ConsumptionsDonutChart } from "../charts/";
-import { DashboardCard } from "../common/";
+import { DashboardCard, DashboardCardSkeleton } from "../common/";
 
 const PlantConsumptionByUtilityCard = ({ plant }: { plant: Asset }) => {
   const areaIds = plant.children.map((child) => child.id);
@@ -23,7 +23,7 @@ const PlantConsumptionByUtilityCard = ({ plant }: { plant: Asset }) => {
     ids: assetIds,
   });
 
-  if (isAreasLoading || isAssetsLoading) return null;
+  if (isAreasLoading || isAssetsLoading) return <DashboardCardSkeleton h={300} />;;
 
   if (areasError || assetsError) return null;
 
