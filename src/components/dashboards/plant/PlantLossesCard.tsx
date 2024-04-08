@@ -3,8 +3,12 @@ import _ from "lodash";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
-import { DashboardCard, TotalKPICardHeader } from "../common/";
 import TotalLossesColumnChart from "../charts/TotalLossesColumnChart";
+import {
+  DashboardCard,
+  DashboardCardSkeleton,
+  TotalKPICardHeader,
+} from "../common/";
 
 const PlantLossesCard = ({ plant }: { plant: Asset }) => {
   const areaIds = plant.children.map((child) => child.id);
@@ -26,7 +30,8 @@ const PlantLossesCard = ({ plant }: { plant: Asset }) => {
 
   const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
 
-  if (isAreasLoading || isTypesLoading || isAssetsLoading) return null;
+  if (isAreasLoading || isTypesLoading || isAssetsLoading)
+    return <DashboardCardSkeleton h={500} />;
 
   if (areasError || typesError || assetsError) return null;
 
