@@ -20,7 +20,7 @@ const TargetsForm = ({ targets }: { targets: Target }) => {
 
   useEffect(() => {
     reset();
-  }, [reset]);
+  }, [targets]);
 
   return (
     <FormContainer handleSubmit={handleSubmit} onSubmit={onSubmit}>
