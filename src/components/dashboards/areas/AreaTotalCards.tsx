@@ -5,7 +5,7 @@ import {
   useCalculateTotalKPIs,
 } from "../../../hooks/calculations";
 import useDashboardsStore from "../../../store/dashboard";
-import { TotalKPICard } from "../common/";
+import { TotalKPICard, TotalKPISkeletonCard } from "../common/";
 
 const AreaTotalCards = ({ area }: { area: Asset }) => {
   const setTrend = useDashboardsStore((s) => s.setTrend);
@@ -14,15 +14,29 @@ const AreaTotalCards = ({ area }: { area: Asset }) => {
 
   if (!totalKPIs || !CO2EmissionKPI) return null;
 
-  const { totals } = totalKPIs!;
+  const { isLoading: isTotalKPIsLoading, totals, units } = totalKPIs;
+  const {
+    isLoading: isCO2EmissionLoading,
+    totalCO2Emission,
+    CO2EmissionDifference,
+  } = CO2EmissionKPI;
+
+  if (isTotalKPIsLoading || isCO2EmissionLoading)
+    return (
+      <SimpleGrid columns={4} gap={5}>
+        <TotalKPISkeletonCard />
+        <TotalKPISkeletonCard />
+        <TotalKPISkeletonCard />
+        <TotalKPISkeletonCard />
+      </SimpleGrid>
+    );
+
   const {
     totalProduction,
     totalEnergyConsumption,
     totalSpecificEnergyConsumption,
   } = totals;
-  const { totalCO2Emission, CO2EmissionDifference } = CO2EmissionKPI;
 
-  const { units } = totalKPIs!;
   const { productionUnit, energyConsumptionUnit } = units;
 
   const { targetDifferences } = totalKPIs!;

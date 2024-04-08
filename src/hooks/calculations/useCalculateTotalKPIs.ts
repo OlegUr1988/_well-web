@@ -28,16 +28,29 @@ const useCalculateTotalKPIs = (asset: Asset) => {
   );
 
   // Get Records
-  const { records: productions, isLoading: isProductionsLoading } =
-    useGetRecords(productionAssignments);
+  const {
+    records: productions,
+    isLoading: isProductionsLoading,
+    error: isProductionError,
+  } = useGetRecords(productionAssignments);
   const {
     records: energyConsumptions,
     isLoading: isEnergyConsumptionsLoading,
+    error: isConsumptionError,
   } = useGetRecords(consumptionAssignments);
 
   const isLoading = isProductionsLoading || isEnergyConsumptionsLoading;
 
-  if (isLoading) return null;
+  const error = isProductionError || isConsumptionError;
+
+  if (isLoading)
+    return {
+      isLoading,
+      totals: {},
+      targetDifferences: {},
+      units: {},
+      error,
+    };
 
   // Calculating productions
   const totalProduction = parseFloat(getSumOfRecords(productions));
@@ -93,6 +106,7 @@ const useCalculateTotalKPIs = (asset: Asset) => {
   );
 
   return {
+    isLoading,
     totals: {
       totalProduction,
       totalEnergyConsumption,
@@ -107,6 +121,7 @@ const useCalculateTotalKPIs = (asset: Asset) => {
       productionUnit,
       energyConsumptionUnit,
     },
+    error,
   };
 };
 

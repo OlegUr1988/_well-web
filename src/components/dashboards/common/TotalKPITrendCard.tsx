@@ -34,7 +34,7 @@ const TotalKPITrendCard = ({ asset, trendType }: Props) => {
     return "";
   };
 
-  if (isLoading) return <DashboardCardSkeleton h={400} />;
+  if (isLoading) return <DashboardCardSkeleton h={500} />;
 
   if (!series.length) return <DashboardCardErrorMessage />;
 
