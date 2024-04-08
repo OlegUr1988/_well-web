@@ -25,7 +25,7 @@ const AreaLevelDashboard = () => {
 
   return (
     <Box p={5}>
-      <Box mb={5} w={{ base: "100%", xl: "75%" }}>
+      <Box mb={5} w={{ base: "100%", xl: "80%" }}>
         <AreaLevelDashboardHeaderPanel area={area!} />
       </Box>
       <SimpleGrid templateColumns={"3fr 1fr"} gridTemplateRows={"1fr"} gap={5}>
