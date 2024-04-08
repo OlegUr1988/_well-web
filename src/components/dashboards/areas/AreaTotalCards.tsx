@@ -12,6 +12,8 @@ const AreaTotalCards = ({ area }: { area: Asset }) => {
   const totalKPIs = useCalculateTotalKPIs(area);
   const CO2EmissionKPI = useCalculateAreaCO2Emission(area);
 
+  if (!totalKPIs || !CO2EmissionKPI) return null;
+
   const { isLoading: isTotalKPIsLoading, totals, units } = totalKPIs;
   const {
     isLoading: isCO2EmissionLoading,

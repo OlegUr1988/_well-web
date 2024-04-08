@@ -12,6 +12,8 @@ const PlantTotalCards = ({ plant }: { plant: Asset }) => {
   const totalKPIs = useCalculateTotalKPIs(plant);
   const CO2EmissionKPI = useCalculatePlantCO2Emission(plant);
 
+  if (!totalKPIs || !CO2EmissionKPI) return null;
+
   const { isLoading: isTotalKPIsLoading, totals, units } = totalKPIs;
   const {
     isLoading: isCO2EmissionLoading,

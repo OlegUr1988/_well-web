@@ -11,8 +11,11 @@ import useGetRecords from "../useGetRecords";
 const useCalculateAreaCO2Emission = (area: Asset) => {
   const { CO2EmissionTarget } = area.target;
 
-  const { data: constant, isLoading: isCO2CoefficientLoading } =
-    useConstantByName("CO2 conversion coefficient");
+  const {
+    data: constant,
+    isLoading: isCO2CoefficientLoading,
+    error: isCO2CoefficientError,
+  } = useConstantByName("CO2 conversion coefficient");
   const CO2Coefficient = constant?.value || 0;
 
   const assetAttributes = _.flatten(
@@ -22,13 +25,20 @@ const useCalculateAreaCO2Emission = (area: Asset) => {
     assetAttributes.map((asset) => asset.assignments)
   );
   // Get Records
-  const { records: assetsRecords, isLoading: isChildrenLoading } =
-    useGetRecords(assetAssignments);
+  const {
+    records: assetsRecords,
+    isLoading: isChildrenLoading,
+    error: isAssetsError,
+  } = useGetRecords(assetAssignments);
 
   const isLoading = isChildrenLoading || isCO2CoefficientLoading;
 
+  const error = isAssetsError || isCO2CoefficientError;
+
   if (isLoading)
     return { isLoading, totalCO2Emission: 0, CO2EmissionDifference: 0 };
+
+  if (error) return null;
 
   // Calculating CO2 emissions
   const groupedRecords = groupBy(assetsRecords, "timestamp");
