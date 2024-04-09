@@ -1,3 +1,4 @@
+export { default as AssetsSelectInput } from "./AssetsSelectInput";
 export { default as DashboardAssetSelectInputSkeleton } from "./DashboardAssetSelectInputSkeleton";
 export { default as DashboardCard } from "./DashboardCard";
 export { default as DashboardCardErrorMessage } from "./DashboardCardErrorMessage";
@@ -9,4 +10,3 @@ export { default as TotalKPICard } from "./TotalKPICard";
 export { default as TotalKPICardHeader } from "./TotalKPICardHeader";
 export { default as TotalKPISkeletonCard } from "./TotalKPISkeletonCard";
 export { default as TotalKPITrendCard } from "./TotalKPITrendCard";
-

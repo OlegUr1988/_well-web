@@ -31,7 +31,7 @@ const TotalKPICard = ({
             mr={3}
             color="blue.700"
           >
-            {numeral(value).format("0.0a").toUpperCase()}
+            {numeral(value).format().toUpperCase()}
           </Text>
           <Text fontSize={{ base: "sm", xl: "md" }}>{units}</Text>
         </HStack>
