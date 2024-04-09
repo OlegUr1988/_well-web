@@ -36,7 +36,7 @@ const AreaLossesCard = ({ area }: { area: Asset }) => {
 
   return (
     <DashboardCard p={5}>
-      <TotalKPICardHeader label="Area top 15 bad actors" />
+      <TotalKPICardHeader label="Bad actors" />
       <Box className="z-level-two" mb={3}>
         <AssetsSelectInput assets={assets!} onSelect={handleSelect} />
       </Box>

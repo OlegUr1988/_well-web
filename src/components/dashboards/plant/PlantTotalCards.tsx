@@ -52,7 +52,7 @@ const PlantTotalCards = ({ plant }: { plant: Asset }) => {
         <TotalKPICard
           header="Production"
           value={totalProduction}
-          units={productionUnit.toUpperCase()}
+          units={productionUnit}
           difference={productionTargetDifference}
         />
       </GridItem>
@@ -60,7 +60,7 @@ const PlantTotalCards = ({ plant }: { plant: Asset }) => {
         <TotalKPICard
           header="Energy Consumption"
           value={totalEnergyConsumption}
-          units={energyConsumptionUnit.toUpperCase()}
+          units={energyConsumptionUnit}
           difference={energyConsumptDifference}
           isLimit={true}
         />
@@ -72,7 +72,7 @@ const PlantTotalCards = ({ plant }: { plant: Asset }) => {
         <TotalKPICard
           header="Specific Energy Consumption"
           value={totalSpecificEnergyConsumption}
-          units="KW"
+          units="kWh/Ton"
           difference={specificEnergyConsumptionDifference}
           isLimit={true}
         />
@@ -81,7 +81,7 @@ const PlantTotalCards = ({ plant }: { plant: Asset }) => {
         <TotalKPICard
           header="CO2 Emission"
           value={totalCO2Emission}
-          units="TON CO2"
+          units="Ton"
           difference={CO2EmissionDifference}
           isLimit={true}
         />
