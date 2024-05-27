@@ -30,6 +30,8 @@ const ListView = ({
       bgColor="gray.700"
       alignItems="start"
       borderRight="1px solid gray"
+      overflow='auto'
+      className="scroll"
     >
       <Heading color="white" size="lg" px={2} my={3}>
         {title}

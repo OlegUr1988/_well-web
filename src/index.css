@@ -39,3 +39,25 @@ body,
 .z-level-three {
   z-index: 3;
 }
+
+/* Custom scrollbars */
+/* width */
+.scroll::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+/* Track */
+.scroll::-webkit-scrollbar-track {
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #777;
+}
