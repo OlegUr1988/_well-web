@@ -1,3 +1,4 @@
+export { default as useCreateAreaChartOptions } from "./useCreateAreaChartOptions";
 export { default as useCreateColumnChartOptions } from "./useCreateColumnChartOptions";
 export { default as useCreateDonutChart } from "./useCreateDonutChart";
 export { default as useCreateLineChartOptions } from "./useCreateLineChartOptions";

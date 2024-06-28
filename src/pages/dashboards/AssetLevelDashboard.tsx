@@ -6,7 +6,7 @@ import {
   AssetLossesTableCard,
   AssetPerformancesCard,
 } from "../../components/dashboards/assets";
-import { LossesDailyLineChartCard } from "../../components/dashboards/charts";
+import { LossesDailyTrendCard } from "../../components/dashboards/charts";
 import { useAssetByName } from "../../hooks/assets";
 import useGetUtilityTypes from "../../hooks/useGetUtilityTypes";
 
@@ -46,7 +46,7 @@ const AssetLevelDashboard = () => {
         <AssetLossesTableCard asset={asset!} />
         <AssetPerformancesCard asset={asset!} />
       </SimpleGrid>
-      <LossesDailyLineChartCard asset={asset!} />
+      <LossesDailyTrendCard asset={asset!} />
     </Box>
   );
 };

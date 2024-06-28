@@ -1,20 +1,13 @@
 import { ApexOptions } from "apexcharts";
 import numeral from "numeral";
 
-const lineChartOptions: ApexOptions = {
+const areaChartOptions: ApexOptions = {
   chart: {
-    type: "line",
-    dropShadow: {
-      enabled: true,
-      color: "#000",
-      top: 18,
-      left: 7,
-      blur: 10,
-      opacity: 0.2,
-    },
+    type: "area",
     toolbar: {
       show: true,
     },
+    stacked: true,
     events: { mounted: (chart) => chart.windowResizeHandler() },
   },
   dataLabels: {
@@ -58,6 +51,9 @@ const lineChartOptions: ApexOptions = {
     position: "top",
     horizontalAlign: "left",
   },
+  fill: {
+    type: "solid",
+  },
   tooltip: {
     y: {
       formatter: (val) => numeral(val).format("0.0aa").toUpperCase(),
@@ -65,4 +61,4 @@ const lineChartOptions: ApexOptions = {
   },
 };
 
-export default lineChartOptions;
+export default areaChartOptions;
