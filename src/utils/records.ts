@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { Assignment } from "../entities/assignments";
 import { Record } from "../entities/records";
+import numeral from "numeral";
 
 export const getRecordsByUnits = (records: Record[], units: string) =>
   records.filter(
@@ -51,7 +52,7 @@ export const getAverageOfRecords = (
 };
 
 export const calculateRecordsSum = (records: Record[], units: string) =>
-  getSumOfRecords(getRecordsByUnits(records, units));
+  numeral(getSumOfRecords(getRecordsByUnits(records, units))).format("0,0");
 
 export const groupBy = (records: Record[], key: keyof Record) =>
   _.groupBy(records, (item) => item[key]);
