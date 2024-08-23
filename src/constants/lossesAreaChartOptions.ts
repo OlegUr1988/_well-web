@@ -1,5 +1,6 @@
 import { ApexOptions } from "apexcharts";
 import numeral from "numeral";
+import { trendPalette } from "./colorPalettes";
 
 const areaChartOptions: ApexOptions = {
   chart: {
@@ -18,6 +19,7 @@ const areaChartOptions: ApexOptions = {
   title: {
     align: "center",
   },
+  colors: trendPalette,
   grid: {
     borderColor: "#e7e7e7",
     row: {
