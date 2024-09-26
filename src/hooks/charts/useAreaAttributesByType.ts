@@ -1,10 +1,11 @@
 import _ from "lodash";
 import { Asset } from "../../entities/assets";
 import useAttributeTypes from "../useAttributeTypes";
+import { manageableLoss, unmanageableLoss } from "../../constants/lossTypes";
 
 const useAreaAttributesByType = (
   assets: Asset[],
-  typeName: "design loss" | "operating loss"
+  typeName: typeof manageableLoss | typeof unmanageableLoss
 ) => {
   const { data: types, isLoading, error } = useAttributeTypes();
 

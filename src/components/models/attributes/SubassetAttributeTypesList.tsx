@@ -1,3 +1,4 @@
+import { manageableLoss, unmanageableLoss } from "../../../constants/lossTypes";
 import { Attribute } from "../../../entities/attributes";
 import useGetAttributeTypes from "../../../hooks/useGetAttributeTypes";
 import SubassetAttributeTypeItem from "./SubassetAttributeTypeItem";
@@ -7,13 +8,10 @@ const SubassetAttributeTypesList = ({
 }: {
   attributes: Attribute[];
 }) => {
-  const manageableLoss = "manageable loss";
-  const unManageableLoss = "non-controllable loss";
-
   const attrTypes = useGetAttributeTypes();
   const hasDutyType = !!attrTypes["duty"];
   const hasManageableLossType = !!attrTypes[manageableLoss];
-  const hasUnmanageableLossType = !!attrTypes[unManageableLoss];
+  const hasUnmanageableLossType = !!attrTypes[unmanageableLoss];
 
   return (
     <>
@@ -25,18 +23,18 @@ const SubassetAttributeTypesList = ({
           showCreateButton={false}
         />
       )}
-      {hasUnmanageableLossType && (
-        <SubassetAttributeTypeItem
-          attributes={attributes}
-          attributeTypeId={attrTypes[unManageableLoss].id}
-          label="Non-controllable Loss"
-        />
-      )}
       {hasManageableLossType && (
         <SubassetAttributeTypeItem
           attributes={attributes}
           attributeTypeId={attrTypes[manageableLoss].id}
           label="Manageable Loss"
+        />
+      )}
+      {hasUnmanageableLossType && (
+        <SubassetAttributeTypeItem
+          attributes={attributes}
+          attributeTypeId={attrTypes[unmanageableLoss].id}
+          label="Non-controllable Loss"
         />
       )}
     </>
