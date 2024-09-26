@@ -1,1 +1,3 @@
-export default ["design loss", "operating loss"];
+import { manageableLoss, unmanageableLoss } from "./lossTypes";
+
+export default [manageableLoss, unmanageableLoss];

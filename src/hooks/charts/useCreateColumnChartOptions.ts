@@ -4,13 +4,14 @@ import columnChartOptions from "../../constants/columnChartOptions";
 import { Asset } from "../../entities/assets";
 import useAreaAttributesByType from "./useAreaAttributesByType";
 import useAreaLosses from "./useAreaLosses";
+import { manageableLoss, unmanageableLoss } from "../../constants/lossTypes";
 
 const useCreateColumnChartOptions = (assets: Asset[]) => {
   const assetDesignLosses = useAreaLosses(
-    useAreaAttributesByType(assets, "design loss")
+    useAreaAttributesByType(assets, manageableLoss)
   );
   const assetOperatingLosses = useAreaLosses(
-    useAreaAttributesByType(assets, "operating loss")
+    useAreaAttributesByType(assets, unmanageableLoss)
   );
 
   if (!assetDesignLosses) return null;
@@ -21,9 +22,9 @@ const useCreateColumnChartOptions = (assets: Asset[]) => {
     id: asset.id,
     name: asset.name,
     losses: {
-      designLoss:
+      manageable:
         _.sum(asset.children.map((child) => assetDesignLosses![child.id])) || 0,
-      operatingLoss:
+      unmanageable:
         _.sum(asset.children.map((child) => assetOperatingLosses![child.id])) ||
         0,
     },
@@ -31,20 +32,22 @@ const useCreateColumnChartOptions = (assets: Asset[]) => {
 
   const sortedDataset = _.reverse(
     _.sortBy(dataset, [
-      (array) => array.losses.designLoss + array.losses.operatingLoss,
+      (array) => array.losses.manageable + array.losses.unmanageable,
     ])
   );
 
   const filteredDataset = sortedDataset.slice(0, 15);
 
+  console.log(filteredDataset);
+
   const series = [
     {
-      name: "Design Losses",
-      data: filteredDataset.map((item) => item.losses["designLoss"]),
+      name: "Manageable Losses",
+      data: filteredDataset.map((item) => item.losses["manageable"]),
     },
     {
-      name: "Operating Losses",
-      data: filteredDataset.map((item) => item.losses["operatingLoss"]),
+      name: "Unamanageable Losses",
+      data: filteredDataset.map((item) => item.losses["unmanageable"]),
     },
   ];
 
