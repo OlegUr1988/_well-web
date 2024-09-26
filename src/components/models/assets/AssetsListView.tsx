@@ -1,3 +1,4 @@
+import _ from "lodash";
 import { useAssets } from "../../../hooks/assets";
 import useModelStore from "../../../store/model";
 import ListView from "../ListView";
@@ -10,12 +11,15 @@ const AssetsListView = () => {
   if (areaId === 0) return null;
 
   const assets = data?.filter((item) => item.parentAssetId === areaId);
+
+  const sortedAssets = _.sortBy(assets, asset => asset.name.toLowerCase())
+
   return (
     <ListView
       title="Assets"
       isLoading={isLoading}
       error={error}
-      listComponent={<AssetsList assets={assets!} />}
+      listComponent={<AssetsList assets={sortedAssets!} />}
       createButtonComponent={<AssetCreateButton areaId={areaId} />}
     />
   );
