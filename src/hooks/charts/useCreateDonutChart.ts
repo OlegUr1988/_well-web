@@ -1,36 +1,40 @@
 import _ from "lodash";
 import donutChartOptions from "../../constants/donutChartOtions";
+import { manageableLoss, unmanageableLoss } from "../../constants/losses";
 import { Asset } from "../../entities/assets";
 import useAreaAttributesByType from "./useAreaAttributesByType";
 import useAreaLosses from "./useAreaLosses";
 
 const useCreateDonutChart = (assets: Asset[]) => {
-  const assetDesignLosses = useAreaLosses(
-    useAreaAttributesByType(assets, "design loss")
+  const assetUnmanageableLosses = useAreaLosses(
+    useAreaAttributesByType(assets, unmanageableLoss)
   );
-  const assetOperatingLosses = useAreaLosses(
-    useAreaAttributesByType(assets, "operating loss")
+  const assetManageableLosses = useAreaLosses(
+    useAreaAttributesByType(assets, manageableLoss)
   );
 
-  if (!assetDesignLosses) return null;
+  if (!assetUnmanageableLosses) return null;
 
-  if (!assetOperatingLosses) return null;
+  if (!assetManageableLosses) return null;
 
   const dataset = assets?.map((asset: Asset) => ({
     id: asset.id,
     name: asset.name,
     losses: {
-      designLoss:
-        _.sum(asset.children.map((child) => assetDesignLosses![child.id])) || 0,
-      operatingLoss:
-        _.sum(asset.children.map((child) => assetOperatingLosses![child.id])) ||
-        0,
+      unmanageableLoss:
+        _.sum(
+          asset.children.map((child) => assetUnmanageableLosses![child.id])
+        ) || 0,
+      manageableLoss:
+        _.sum(
+          asset.children.map((child) => assetManageableLosses![child.id])
+        ) || 0,
     },
   }));
 
   const sortedDataset = _.reverse(
     _.sortBy(dataset, [
-      (array) => array.losses.designLoss + array.losses.operatingLoss,
+      (array) => array.losses.unmanageableLoss + array.losses.manageableLoss,
     ])
   );
 
@@ -39,7 +43,7 @@ const useCreateDonutChart = (assets: Asset[]) => {
   const labels = filteredDataset.map((item) => item.name);
 
   const series = filteredDataset.map((item) =>
-    _.sum([item.losses["designLoss"], item.losses["operatingLoss"]])
+    _.sum([item.losses.unmanageableLoss, item.losses.manageableLoss])
   );
 
   const options = {

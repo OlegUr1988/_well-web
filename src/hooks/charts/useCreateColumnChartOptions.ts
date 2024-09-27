@@ -1,37 +1,41 @@
 import { ApexOptions } from "apexcharts";
 import _ from "lodash";
 import columnChartOptions from "../../constants/columnChartOptions";
+import { manageableLoss, unmanageableLoss } from "../../constants/losses";
 import { Asset } from "../../entities/assets";
 import useAreaAttributesByType from "./useAreaAttributesByType";
 import useAreaLosses from "./useAreaLosses";
 
 const useCreateColumnChartOptions = (assets: Asset[]) => {
-  const assetDesignLosses = useAreaLosses(
-    useAreaAttributesByType(assets, "design loss")
+  const assetUnmanageableLosses = useAreaLosses(
+    useAreaAttributesByType(assets, unmanageableLoss)
   );
-  const assetOperatingLosses = useAreaLosses(
-    useAreaAttributesByType(assets, "operating loss")
+  const assetManageableLosses = useAreaLosses(
+    useAreaAttributesByType(assets, manageableLoss)
   );
 
-  if (!assetDesignLosses) return null;
+  if (!assetUnmanageableLosses) return null;
 
-  if (!assetOperatingLosses) return null;
+  if (!assetManageableLosses) return null;
 
   const dataset = assets?.map((asset: Asset) => ({
     id: asset.id,
     name: asset.name,
     losses: {
-      designLoss:
-        _.sum(asset.children.map((child) => assetDesignLosses![child.id])) || 0,
-      operatingLoss:
-        _.sum(asset.children.map((child) => assetOperatingLosses![child.id])) ||
-        0,
+      unmanageableLoss:
+        _.sum(
+          asset.children.map((child) => assetUnmanageableLosses![child.id])
+        ) || 0,
+      manageableLoss:
+        _.sum(
+          asset.children.map((child) => assetManageableLosses![child.id])
+        ) || 0,
     },
   }));
 
   const sortedDataset = _.reverse(
     _.sortBy(dataset, [
-      (array) => array.losses.designLoss + array.losses.operatingLoss,
+      (array) => array.losses.unmanageableLoss + array.losses.manageableLoss,
     ])
   );
 
@@ -39,12 +43,12 @@ const useCreateColumnChartOptions = (assets: Asset[]) => {
 
   const series = [
     {
-      name: "Design Losses",
-      data: filteredDataset.map((item) => item.losses["designLoss"]),
+      name: unmanageableLoss,
+      data: filteredDataset.map((item) => item.losses.unmanageableLoss),
     },
     {
-      name: "Operating Losses",
-      data: filteredDataset.map((item) => item.losses["operatingLoss"]),
+      name: manageableLoss,
+      data: filteredDataset.map((item) => item.losses.manageableLoss),
     },
   ];
 
