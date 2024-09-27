@@ -3,14 +3,13 @@ import donutChartOptions from "../../constants/donutChartOtions";
 import { Asset } from "../../entities/assets";
 import useAreaAttributesByType from "./useAreaAttributesByType";
 import useAreaLosses from "./useAreaLosses";
-import { manageableLoss, unmanageableLoss } from "../../constants/lossTypes";
 
 const useCreateDonutChart = (assets: Asset[]) => {
   const assetDesignLosses = useAreaLosses(
-    useAreaAttributesByType(assets, manageableLoss)
+    useAreaAttributesByType(assets, "design loss")
   );
   const assetOperatingLosses = useAreaLosses(
-    useAreaAttributesByType(assets, unmanageableLoss)
+    useAreaAttributesByType(assets, "operating loss")
   );
 
   if (!assetDesignLosses) return null;
@@ -21,9 +20,9 @@ const useCreateDonutChart = (assets: Asset[]) => {
     id: asset.id,
     name: asset.name,
     losses: {
-      manageableLoss:
+      designLoss:
         _.sum(asset.children.map((child) => assetDesignLosses![child.id])) || 0,
-      unmanageableLoss:
+      operatingLoss:
         _.sum(asset.children.map((child) => assetOperatingLosses![child.id])) ||
         0,
     },
@@ -31,7 +30,7 @@ const useCreateDonutChart = (assets: Asset[]) => {
 
   const sortedDataset = _.reverse(
     _.sortBy(dataset, [
-      (array) => array.losses.manageableLoss + array.losses.unmanageableLoss,
+      (array) => array.losses.designLoss + array.losses.operatingLoss,
     ])
   );
 
@@ -40,7 +39,7 @@ const useCreateDonutChart = (assets: Asset[]) => {
   const labels = filteredDataset.map((item) => item.name);
 
   const series = filteredDataset.map((item) =>
-    _.sum([item.losses["manageableLoss"], item.losses["unmanageableLoss"]])
+    _.sum([item.losses["designLoss"], item.losses["operatingLoss"]])
   );
 
   const options = {

@@ -2,7 +2,8 @@ import { List, ListItem } from "@chakra-ui/react";
 import { Attribute } from "../../../entities/attributes";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
 import AttributeCard from "./AttributeCard";
-import losses from "../../../constants/losses";
+
+const editableAttributes = ["design loss", "operating loss"];
 
 const SubassetAttributesList = ({
   attributes,
@@ -13,7 +14,7 @@ const SubassetAttributesList = ({
 }) => {
   const { data: types } = useAttributeTypes();
   const filtered = types?.filter((type) =>
-    losses.includes(type.name.toLowerCase())
+    editableAttributes.includes(type.name.toLowerCase())
   );
   const typeIds = filtered?.map((type) => type.id);
 
