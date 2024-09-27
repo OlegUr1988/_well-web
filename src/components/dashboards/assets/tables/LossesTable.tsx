@@ -1,5 +1,5 @@
 import { Table, TableContainer } from "@chakra-ui/react";
-import losses from "../../../../constants/losses";
+import { lossTypes } from "../../../../constants/losses";
 import { Asset } from "../../../../entities/assets";
 import useGetLossesByTypes from "../../../../hooks/useGetLossesByTypes";
 import LossesTableBody from "./LossesTableBody";
@@ -8,7 +8,7 @@ import LossesTableHead from "./LossesTableHead";
 
 const LossesTable = ({ asset }: { asset: Asset }) => {
   const allAttributes = asset.attributes;
-  const attributes = useGetLossesByTypes(allAttributes, losses);
+  const attributes = useGetLossesByTypes(allAttributes, lossTypes);
 
   return (
     <TableContainer overflowX="auto" whiteSpace="normal">
