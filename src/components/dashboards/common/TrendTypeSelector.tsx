@@ -16,8 +16,8 @@ const TrendTypeSelector = ({
       onChange={(e) => onSelect(e.target.value as chartType)}
       defaultValue={"area"}
     >
-      <option value={"line"}>Line Chart</option>
       <option value={"area"}>Area Chart</option>
+      <option value={"line"}>Line Chart</option>
     </Select>
   );
 };
