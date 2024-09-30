@@ -56,7 +56,7 @@ const AssetPerformanceGaugeChart = ({ asset, count = 1 }: Props) => {
         </Text>
         <Box position="relative" top={-10}>
           <PerformanceGaugeChart
-            usefulWorkRatio={usefulWorkRatio}
+            usefulWorkRatio={usefulWorkRatio * 100}
             height={count > 1 ? 300 : 380}
           />
           <AssetPerformanceGaugeMetricSummary

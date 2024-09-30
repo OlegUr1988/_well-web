@@ -6,7 +6,13 @@ import LossesTableBody from "./LossesTableBody";
 import LossesTableFoot from "./LossesTableFoot";
 import LossesTableHead from "./LossesTableHead";
 
-const LossesTable = ({ asset }: { asset: Asset }) => {
+interface Props {
+  asset: Asset;
+  parentAsset: Asset;
+}
+
+const LossesTable = ({ asset, parentAsset }: Props) => {
+  const parentAssetAttributes = parentAsset.attributes;
   const allAttributes = asset.attributes;
   const attributes = useGetLossesByTypes(allAttributes, lossTypes);
 
@@ -14,8 +20,14 @@ const LossesTable = ({ asset }: { asset: Asset }) => {
     <TableContainer overflowX="auto" whiteSpace="normal">
       <Table variant="striped" size="sm">
         <LossesTableHead />
-        <LossesTableBody attributes={attributes!} />
-        <LossesTableFoot attributes={attributes!} />
+        <LossesTableBody
+          parentAssetAttributes={parentAssetAttributes}
+          attributes={attributes!}
+        />
+        <LossesTableFoot
+          parentAssetAttributes={parentAssetAttributes}
+          attributes={attributes!}
+        />
       </Table>
     </TableContainer>
   );

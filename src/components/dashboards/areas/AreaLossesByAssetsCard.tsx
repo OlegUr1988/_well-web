@@ -1,23 +1,18 @@
 import { Center, Heading } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
-import { useAssetsByIds } from "../../../hooks/assets";
-import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import useGetAssetsWithConsumption from "../../../hooks/useGetAssetsWithConsumption";
 import { LossesByAssetsPieChart } from "../charts/";
 import { DashboardCard, DashboardCardSkeleton } from "../common/";
 
 const AreaLossesByAssetsCard = ({ area }: { area: Asset }) => {
   const ids = area.children.map((child) => child.id);
-  const {
-    data: assets,
-    isLoading: isAssetsLoading,
-    error: assetsError,
-  } = useAssetsByIds({ ids });
-  const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
 
-  if (isAssetsLoading || isTypesLoading)
-    return <DashboardCardSkeleton h={300} />;
+  const { assetsWithConsumption, isLoading, error } =
+    useGetAssetsWithConsumption(ids);
 
-  if (assetsError || typesError) return null;
+  if (isLoading) return <DashboardCardSkeleton h={300} />;
+
+  if (error) return null;
 
   return (
     <DashboardCard p={5}>
@@ -25,7 +20,7 @@ const AreaLossesByAssetsCard = ({ area }: { area: Asset }) => {
         Top 15 Bad Actors
       </Heading>
       <Center>
-        <LossesByAssetsPieChart assets={assets!} />
+        <LossesByAssetsPieChart assets={assetsWithConsumption!} />
       </Center>
     </DashboardCard>
   );

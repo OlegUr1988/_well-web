@@ -24,11 +24,11 @@ const AssetLossesTableCard = ({ asset }: { asset: Asset }) => {
       </Heading>
 
       <Box h={250} mb={3} overflowY="auto">
-        <LossesTablesField assets={assets!} />
+        <LossesTablesField parentAsset={asset} assets={assets!} />
       </Box>
 
       <Box>
-        <LossesSummaryRow assets={assets!} />
+        <LossesSummaryRow parentAsset={asset} assets={assets!} />
       </Box>
     </DashboardCard>
   );

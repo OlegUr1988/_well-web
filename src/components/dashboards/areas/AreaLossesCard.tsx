@@ -1,8 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
 import { Asset } from "../../../entities/assets";
-import { useAssetsByIds } from "../../../hooks/assets";
-import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import useGetAssetsWithConsumption from "../../../hooks/useGetAssetsWithConsumption";
 import TotalLossesColumnChart from "../charts/TotalLossesColumnChart";
 import {
   AssetsSelectInput,
@@ -15,30 +14,31 @@ const AreaLossesCard = ({ area }: { area: Asset }) => {
   const [selected, setSelected] = useState<Asset[]>([]);
 
   const ids = area.children.map((child) => child.id);
-  const {
-    data: assets,
-    isLoading: isAssetsLoading,
-    error: assetsError,
-  } = useAssetsByIds({ ids });
-  const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
 
-  if (isAssetsLoading || isTypesLoading)
-    return <DashboardCardSkeleton h={500} />;
+  const { assetsWithConsumption, isLoading, error } =
+    useGetAssetsWithConsumption(ids);
 
-  if (assetsError || typesError) return null;
+  if (isLoading) return <DashboardCardSkeleton h={500} />;
+
+  if (error) return null;
 
   const handleSelect = (values: number[]) => {
-    const selectedAssets = assets!.filter((asset) => values.includes(asset.id));
+    const selectedAssets = assetsWithConsumption!.filter((asset) =>
+      values.includes(asset.id)
+    );
     setSelected(selectedAssets);
   };
 
-  const filtered = selected.length ? selected : assets;
+  const filtered = selected.length ? selected : assetsWithConsumption;
 
   return (
     <DashboardCard p={5}>
       <TotalKPICardHeader label="Bad actors" />
       <Box className="z-level-two" mb={3}>
-        <AssetsSelectInput assets={assets!} onSelect={handleSelect} />
+        <AssetsSelectInput
+          assets={assetsWithConsumption!}
+          onSelect={handleSelect}
+        />
       </Box>
       <Box className="z-level-one">
         <TotalLossesColumnChart assets={filtered!} />

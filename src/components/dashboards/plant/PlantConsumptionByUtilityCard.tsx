@@ -23,7 +23,7 @@ const PlantConsumptionByUtilityCard = ({ plant }: { plant: Asset }) => {
     ids: assetIds,
   });
 
-  if (isAreasLoading || isAssetsLoading) return <DashboardCardSkeleton h={300} />;;
+  if (isAreasLoading || isAssetsLoading) return <DashboardCardSkeleton h={300} />;
 
   if (areasError || assetsError) return null;
 
