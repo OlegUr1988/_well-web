@@ -1,10 +1,8 @@
 import { Center, Heading } from "@chakra-ui/react";
 import _ from "lodash";
-import { heatType } from "../../../constants/utilityTypes";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
-import useAttributeTypes from "../../../hooks/useAttributeTypes";
-import useUtilityTypes from "../../../hooks/useUtilityTypes";
+import useGetAssetsWithConsumption from "../../../hooks/useGetAssetsWithConsumption";
 import { LossesByAssetsPieChart } from "../charts/";
 import { DashboardCard, DashboardCardSkeleton } from "../common/";
 
@@ -19,32 +17,15 @@ const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
     areas?.map((area) => area.children.map((asset) => asset.id))
   );
   const {
-    data: assets,
+    assetsWithConsumption,
     isLoading: isAssetsLoading,
-    error: assetsError,
-  } = useAssetsByIds({
-    ids: assetIds,
-  });
+    error: isAssetsError,
+  } = useGetAssetsWithConsumption(assetIds);
 
-  const {
-    data: utilities,
-    isLoading: isUtilitiesLoading,
-    error: utilitiesError,
-  } = useUtilityTypes();
-
-  const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
-
-  if (isAreasLoading || isTypesLoading || isAssetsLoading || isUtilitiesLoading)
+  if (isAreasLoading || isAssetsLoading)
     return <DashboardCardSkeleton h={300} />;
 
-  if (areasError || typesError || assetsError || utilitiesError) return null;
-
-  const heatUtility = utilities!.find(
-    (utility) => utility.name.toLowerCase() === heatType
-  );
-  const assetsWithConsumptions = assets?.filter(
-    (asset) => asset.utilityTypeId !== heatUtility?.id
-  );
+  if (areasError || isAssetsError) return null;
 
   return (
     <DashboardCard p={5}>
@@ -52,7 +33,7 @@ const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
         Top 15 Bad Actors
       </Heading>
       <Center>
-        <LossesByAssetsPieChart assets={assetsWithConsumptions!} />
+        <LossesByAssetsPieChart assets={assetsWithConsumption!} />
       </Center>
     </DashboardCard>
   );
