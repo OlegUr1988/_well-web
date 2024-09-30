@@ -39,11 +39,11 @@ const LossesTableFoot = ({
           {label}
         </LossesTableHeadCell>
         <LossesTableHeadCell>
-          {getSumOfRecords(records!, "kWh")}
+          {getSumOfRecords(records, "kWh")}
         </LossesTableHeadCell>
         <LossesTableHeadCell>kWh</LossesTableHeadCell>
         <LossesTableHeadCell>
-          {getSumOfRecords(records!, "ton CO2")}
+          {getSumOfRecords(records, "ton CO2")}
         </LossesTableHeadCell>
         <LossesTableHeadCell whiteSpace="nowrap">Ton CO2</LossesTableHeadCell>
         <LossesTableHeadCell>

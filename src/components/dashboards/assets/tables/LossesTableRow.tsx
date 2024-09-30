@@ -32,11 +32,11 @@ const LossesTableRow = ({ parentAssetAttributes, attribute }: Props) => {
         {attribute.name}
       </LossesTableBodyCell>
       <LossesTableBodyCell>
-        {getSumOfRecords(records!, "kWh")}
+        {getSumOfRecords(records, "kWh")}
       </LossesTableBodyCell>
       <LossesTableBodyCell>kWh</LossesTableBodyCell>
       <LossesTableBodyCell>
-        {getSumOfRecords(records!, "ton CO2")}
+        {getSumOfRecords(records, "ton CO2")}
       </LossesTableBodyCell>
       <LossesTableBodyCell>Ton CO2</LossesTableBodyCell>
       <LossesTableBodyCell>
