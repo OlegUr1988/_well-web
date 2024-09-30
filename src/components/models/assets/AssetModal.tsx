@@ -51,17 +51,13 @@ const AssetModal = ({
     const type = attributeTypes?.find(
       (type) => type.name.toLowerCase() === "duty"
     );
-    const heatType = utilityTypes?.find(
-      (type) => type.name.toLowerCase() === "heat"
-    );
 
     try {
-      if (heatType?.id !== data.utilityTypeId)
-        await createAttribute({
-          assetId: data.id!,
-          attributeTypeId: type!.id,
-          name: "Main Asset Duty",
-        });
+      await createAttribute({
+        assetId: data.id!,
+        attributeTypeId: type!.id,
+        name: "Main Asset Duty",
+      });
     } catch (error) {
       const { response } = error as HttpError;
       toast.error(response?.data.message);
