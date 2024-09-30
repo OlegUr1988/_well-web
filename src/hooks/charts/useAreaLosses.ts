@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { Attribute } from "../../entities/attributes";
-import { getRecordsByUnits, getSumOfRecords } from "../../utils/records";
+import { calculateSum, getRecordsByUnits } from "../../utils/records";
 import useGetRecords from "../useGetRecords";
 
 const useAreaLosses = (attributes: Attribute[][] | null) => {
@@ -23,7 +23,7 @@ const useAreaLosses = (attributes: Attribute[][] | null) => {
     (record) => record.PHDTagId
   );
   const losses = _.mapValues(groupedRecords, (records) =>
-    getSumOfRecords(records)
+    calculateSum(records)
   );
 
   const attributesWithLosses = attributes!.map((nestedArray) =>

@@ -1,11 +1,11 @@
 import { Record } from "../entities/records";
-import { getRecordsByUnits, getSumOfRecords } from "./records";
+import { getRecordsByUnits, calculateSum } from "./records";
 
 export const calculateTotalDuty = (records: Record[]) =>
-  getSumOfRecords(getRecordsByUnits(records, "kWh"));
+  calculateSum(getRecordsByUnits(records, "kWh"));
 
 export const calculateTotalUsefulWork = (records: Record[]) =>
-  getSumOfRecords(getRecordsByUnits(records, "kWh"));
+  calculateSum(getRecordsByUnits(records, "kWh"));
 
 export const calculateUsefulWorkRatio = (
   totalUsefulWork: string,

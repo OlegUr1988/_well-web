@@ -1,17 +1,28 @@
 import { Tr } from "@chakra-ui/react";
+import _ from "lodash";
 import { Attribute } from "../../../../entities/attributes";
 import useGetRecords from "../../../../hooks/useGetRecords";
-import {
-  calculateRecordsSum,
-  getAverageOfRecords,
-} from "../../../../utils/records";
+import { getRatio, getSumOfRecords } from "../../../../utils/records";
 import LossesTableBodyCell from "./LossesTableBodyCell";
 import LossesTableRowSkeleton from "./LossesTableRowSkeleton";
 
-const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
+interface Props {
+  parentAssetAttributes: Attribute[];
+  attribute: Attribute;
+}
+
+const LossesTableRow = ({ parentAssetAttributes, attribute }: Props) => {
+  const paretAssetAssignments = _.flatten(
+    parentAssetAttributes.map((attr) => attr.assignments)
+  );
+  const { records: parentRecords, isLoading: isParentLoading } = useGetRecords(
+    paretAssetAssignments
+  );
+
   const { records, isLoading } = useGetRecords(attribute.assignments);
 
-  if (isLoading) return <LossesTableRowSkeleton label={attribute.name} />;
+  if (isParentLoading && isLoading)
+    return <LossesTableRowSkeleton label={attribute.name} />;
 
   if (!records) return null;
 
@@ -21,15 +32,15 @@ const LossesTableRow = ({ attribute }: { attribute: Attribute }) => {
         {attribute.name}
       </LossesTableBodyCell>
       <LossesTableBodyCell>
-        {calculateRecordsSum(records!, "kWh")}
+        {getSumOfRecords(records!, "kWh")}
       </LossesTableBodyCell>
       <LossesTableBodyCell>kWh</LossesTableBodyCell>
       <LossesTableBodyCell>
-        {calculateRecordsSum(records!, "ton CO2")}
+        {getSumOfRecords(records!, "ton CO2")}
       </LossesTableBodyCell>
       <LossesTableBodyCell>Ton CO2</LossesTableBodyCell>
       <LossesTableBodyCell>
-        {getAverageOfRecords(attribute.assignments, records) + "%"}
+        {getRatio(records, parentRecords)}
       </LossesTableBodyCell>
     </Tr>
   );

@@ -1,9 +1,9 @@
 import _ from "lodash";
-import { Asset } from "../../entities/assets";
-import useGetUtilityTypes from "../useGetUtilityTypes";
-import useGetRecords from "../useGetRecords";
-import { getSumOfRecords } from "../../utils/records";
 import donutChartOptions from "../../constants/donutChartOtions";
+import { Asset } from "../../entities/assets";
+import { calculateSum } from "../../utils/records";
+import useGetRecords from "../useGetRecords";
+import useGetUtilityTypes from "../useGetUtilityTypes";
 
 const useGetConsumptionsByUtility = (assets: Asset[]) => {
   const types = useGetUtilityTypes();
@@ -53,9 +53,9 @@ const useGetConsumptionsByUtility = (assets: Asset[]) => {
 
   if (isLoading) return null;
 
-  const gas = parseFloat(getSumOfRecords(gasRecords));
-  const steam = parseFloat(getSumOfRecords(steamRecords));
-  const electricity = parseFloat(getSumOfRecords(electricityRecords));
+  const gas = calculateSum(gasRecords);
+  const steam = calculateSum(steamRecords);
+  const electricity = calculateSum(electricityRecords);
 
   const series = [gas, steam, electricity];
 

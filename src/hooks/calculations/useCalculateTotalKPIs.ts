@@ -1,9 +1,9 @@
 import _ from "lodash";
 import { Asset } from "../../entities/assets";
 import {
+  calculateSum,
   getArrayOfSums,
   getDiffirences,
-  getSumOfRecords,
   getTotalDifference,
   groupBy,
 } from "../../utils/records";
@@ -53,7 +53,7 @@ const useCalculateTotalKPIs = (asset: Asset) => {
     };
 
   // Calculating productions
-  const totalProduction = parseFloat(getSumOfRecords(productions));
+  const totalProduction = calculateSum(productions);
   const productionUnit = productions.length
     ? productions[0].PHDTag.unit.name
     : "Ton/hr";
@@ -68,9 +68,7 @@ const useCalculateTotalKPIs = (asset: Asset) => {
   );
 
   // Calculating energy consumptions
-  const totalEnergyConsumption = parseFloat(
-    getSumOfRecords(energyConsumptions)
-  );
+  const totalEnergyConsumption = calculateSum(energyConsumptions);
   const energyConsumptionUnit = energyConsumptions.length
     ? energyConsumptions[0].PHDTag.unit.name
     : "KW";

@@ -8,8 +8,8 @@ export const getRecordsByUnits = (records: Record[], units: string) =>
     (record) => record.PHDTag.unit.name.toLowerCase() === units.toLowerCase()
   );
 
-export const getSumOfRecords = (records: Record[]) =>
-  _.sumBy(records, (array) => parseFloat(array.value)).toFixed(2);
+export const calculateSum = (records: Record[]) =>
+  _.sumBy(records, (array) => parseFloat(array.value));
 
 export const getAverageOfRecords = (
   assignments: Assignment[],
@@ -51,8 +51,13 @@ export const getAverageOfRecords = (
   return sumOfAverages.toFixed(2);
 };
 
-export const calculateRecordsSum = (records: Record[], units: string) =>
-  numeral(getSumOfRecords(getRecordsByUnits(records, units))).format("0,0");
+export const getSumOfRecords = (records: Record[], units: string) =>
+  numeral(calculateSum(getRecordsByUnits(records, units))).format("0,0");
+
+export const getRatio = (dividendRecords: Record[], deviderRecords: Record[]) =>
+  numeral(calculateSum(dividendRecords) / calculateSum(deviderRecords)).format(
+    "0,0.00%"
+  );
 
 export const groupBy = (records: Record[], key: keyof Record) =>
   _.groupBy(records, (item) => item[key]);
