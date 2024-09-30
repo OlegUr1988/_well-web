@@ -1,8 +1,10 @@
 import { Box } from "@chakra-ui/react";
 import { useState } from "react";
+import { heatType } from "../../../constants/utilityTypes";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import useUtilityTypes from "../../../hooks/useUtilityTypes";
 import TotalLossesColumnChart from "../charts/TotalLossesColumnChart";
 import {
   AssetsSelectInput,
@@ -22,23 +24,41 @@ const AreaLossesCard = ({ area }: { area: Asset }) => {
   } = useAssetsByIds({ ids });
   const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
 
-  if (isAssetsLoading || isTypesLoading)
+  const {
+    data: utilities,
+    isLoading: isUtilitiesLoading,
+    error: utilitiesError,
+  } = useUtilityTypes();
+
+  if (isAssetsLoading || isTypesLoading || isUtilitiesLoading)
     return <DashboardCardSkeleton h={500} />;
 
-  if (assetsError || typesError) return null;
+  if (assetsError || typesError || utilitiesError) return null;
+
+  const heatUtility = utilities!.find(
+    (utility) => utility.name.toLowerCase() === heatType
+  );
+  const assetsWithConsumptions = assets?.filter(
+    (asset) => asset.utilityTypeId !== heatUtility?.id
+  );
 
   const handleSelect = (values: number[]) => {
-    const selectedAssets = assets!.filter((asset) => values.includes(asset.id));
+    const selectedAssets = assetsWithConsumptions!.filter((asset) =>
+      values.includes(asset.id)
+    );
     setSelected(selectedAssets);
   };
 
-  const filtered = selected.length ? selected : assets;
+  const filtered = selected.length ? selected : assetsWithConsumptions;
 
   return (
     <DashboardCard p={5}>
       <TotalKPICardHeader label="Bad actors" />
       <Box className="z-level-two" mb={3}>
-        <AssetsSelectInput assets={assets!} onSelect={handleSelect} />
+        <AssetsSelectInput
+          assets={assetsWithConsumptions!}
+          onSelect={handleSelect}
+        />
       </Box>
       <Box className="z-level-one">
         <TotalLossesColumnChart assets={filtered!} />

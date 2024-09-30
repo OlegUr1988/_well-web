@@ -1,8 +1,10 @@
 import { Center, Heading } from "@chakra-ui/react";
 import _ from "lodash";
+import { heatType } from "../../../constants/utilityTypes";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
 import useAttributeTypes from "../../../hooks/useAttributeTypes";
+import useUtilityTypes from "../../../hooks/useUtilityTypes";
 import { LossesByAssetsPieChart } from "../charts/";
 import { DashboardCard, DashboardCardSkeleton } from "../common/";
 
@@ -24,12 +26,25 @@ const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
     ids: assetIds,
   });
 
+  const {
+    data: utilities,
+    isLoading: isUtilitiesLoading,
+    error: utilitiesError,
+  } = useUtilityTypes();
+
   const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
 
-  if (isAreasLoading || isTypesLoading || isAssetsLoading)
+  if (isAreasLoading || isTypesLoading || isAssetsLoading || isUtilitiesLoading)
     return <DashboardCardSkeleton h={300} />;
 
-  if (areasError || typesError || assetsError) return null;
+  if (areasError || typesError || assetsError || utilitiesError) return null;
+
+  const heatUtility = utilities!.find(
+    (utility) => utility.name.toLowerCase() === heatType
+  );
+  const assetsWithConsumptions = assets?.filter(
+    (asset) => asset.utilityTypeId !== heatUtility?.id
+  );
 
   return (
     <DashboardCard p={5}>
@@ -37,7 +52,7 @@ const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
         Top 15 Bad Actors
       </Heading>
       <Center>
-        <LossesByAssetsPieChart assets={assets!} />
+        <LossesByAssetsPieChart assets={assetsWithConsumptions!} />
       </Center>
     </DashboardCard>
   );

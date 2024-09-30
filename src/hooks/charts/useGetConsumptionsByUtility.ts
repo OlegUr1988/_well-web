@@ -1,5 +1,10 @@
 import _ from "lodash";
 import donutChartOptions from "../../constants/donutChartOtions";
+import {
+  electricityType,
+  gasType,
+  steamType,
+} from "../../constants/utilityTypes";
 import { Asset } from "../../entities/assets";
 import { calculateSum } from "../../utils/records";
 import useGetRecords from "../useGetRecords";
@@ -9,8 +14,8 @@ const useGetConsumptionsByUtility = (assets: Asset[]) => {
   const types = useGetUtilityTypes();
 
   // Get Gas assignments
-  const gasAssets = types["gas"]
-    ? assets.filter((asset) => asset.utilityTypeId === types["gas"].id)
+  const gasAssets = types[gasType]
+    ? assets.filter((asset) => asset.utilityTypeId === types[gasType].id)
     : [];
   const gasAttributes = _.flatten(gasAssets.map((asset) => asset.attributes));
   const gasAssignments = _.flatten(
@@ -18,8 +23,8 @@ const useGetConsumptionsByUtility = (assets: Asset[]) => {
   );
 
   // Get Steam assignments
-  const steamAssets = types["steam"]
-    ? assets.filter((asset) => asset.utilityTypeId === types["steam"].id)
+  const steamAssets = types[steamType]
+    ? assets.filter((asset) => asset.utilityTypeId === types[steamType].id)
     : [];
   const steamAttributes = _.flatten(
     steamAssets.map((asset) => asset.attributes)
@@ -29,8 +34,10 @@ const useGetConsumptionsByUtility = (assets: Asset[]) => {
   );
 
   // Get Electricity assignments
-  const electricityAssets = types["electricity"]
-    ? assets.filter((asset) => asset.utilityTypeId === types["electricity"].id)
+  const electricityAssets = types[electricityType]
+    ? assets.filter(
+        (asset) => asset.utilityTypeId === types[electricityType].id
+      )
     : [];
   const electricityAttributes = _.flatten(
     electricityAssets.map((asset) => asset.attributes)

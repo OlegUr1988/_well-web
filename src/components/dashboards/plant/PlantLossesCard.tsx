@@ -11,6 +11,8 @@ import {
   DashboardCardSkeleton,
   TotalKPICardHeader,
 } from "../common/";
+import useUtilityTypes from "../../../hooks/useUtilityTypes";
+import { heatType } from "../../../constants/utilityTypes";
 
 const PlantLossesCard = ({ plant }: { plant: Asset }) => {
   const [selected, setSelected] = useState<Asset[]>([]);
@@ -34,23 +36,41 @@ const PlantLossesCard = ({ plant }: { plant: Asset }) => {
 
   const { isLoading: isTypesLoading, error: typesError } = useAttributeTypes();
 
-  if (isAreasLoading || isTypesLoading || isAssetsLoading)
+  const {
+    data: utilities,
+    isLoading: isUtilitiesLoading,
+    error: utilitiesError,
+  } = useUtilityTypes();
+
+  if (isAreasLoading || isTypesLoading || isAssetsLoading || isUtilitiesLoading)
     return <DashboardCardSkeleton h={500} />;
 
-  if (areasError || typesError || assetsError) return null;
+  if (areasError || typesError || assetsError || utilitiesError) return null;
+
+  const heatUtility = utilities!.find(
+    (utility) => utility.name.toLowerCase() === heatType
+  );
+  const assetsWithConsumptions = assets?.filter(
+    (asset) => asset.utilityTypeId !== heatUtility?.id
+  );
 
   const handleSelect = (values: number[]) => {
-    const selectedAssets = assets!.filter((asset) => values.includes(asset.id));
+    const selectedAssets = assetsWithConsumptions!.filter((asset) =>
+      values.includes(asset.id)
+    );
     setSelected(selectedAssets);
   };
 
-  const filtered = selected.length ? selected : assets;
+  const filtered = selected.length ? selected : assetsWithConsumptions;
 
   return (
     <DashboardCard p={5}>
       <TotalKPICardHeader label="Bad actors" />
       <Box className="z-level-two" mb={3}>
-        <AssetsSelectInput assets={assets!} onSelect={handleSelect} />
+        <AssetsSelectInput
+          assets={assetsWithConsumptions!}
+          onSelect={handleSelect}
+        />
       </Box>
       <Box className="z-level-one">
         <TotalLossesColumnChart assets={filtered!} />
