@@ -2,8 +2,8 @@ import { Box, HStack, Text } from "@chakra-ui/react";
 import numeral from "numeral";
 
 interface Props {
-  totalDuty: string;
-  totalUsefulWork: string;
+  totalDuty: number;
+  totalUsefulWork: number;
   usefulWorkRatio: number;
   count?: number;
 }
@@ -38,7 +38,7 @@ const AssetPerformanceGaugeMetricSummary = ({
         </Text>
       </HStack>
       <Text textAlign="center">
-        {usefulWorkRatio.toFixed(2)}% Usefull Work Ratio [%]
+        {numeral(usefulWorkRatio).format("0.00%")} Usefull Work Ratio [%]
       </Text>
     </Box>
   );

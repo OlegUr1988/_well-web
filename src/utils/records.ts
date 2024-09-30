@@ -56,7 +56,7 @@ export const getSumOfRecords = (records: Record[], units: string) =>
 
 export const getRatio = (dividendRecords: Record[], deviderRecords: Record[]) =>
   numeral(calculateSum(dividendRecords) / calculateSum(deviderRecords)).format(
-    "0,0.00%"
+    "0.00%"
   );
 
 export const groupBy = (records: Record[], key: keyof Record) =>
