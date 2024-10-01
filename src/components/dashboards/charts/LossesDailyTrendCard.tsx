@@ -1,5 +1,6 @@
 import { Box, Checkbox, HStack } from "@chakra-ui/react";
 import { useState } from "react";
+import { TrendType } from "../../../entities/trendType";
 import { Asset } from "../../../entities/assets";
 import { useAsset } from "../../../hooks/assets";
 import {
@@ -7,13 +8,12 @@ import {
   DashboardCardErrorMessage,
   DashboardCardSkeleton,
 } from "../common";
-import TrendTypeSelector, { chartType } from "../common/TrendTypeSelector";
-import LossesDailyAreaChart from "./LossesDailyAreaChart";
-import LossesDailyLineChart from "./LossesDailyLineChart";
+import TrendTypeSelector from "../common/TrendTypeSelector";
+import LossesDailyTrend from "./LossesDailyTrend";
 
 const LossesDailyTrendCard = ({ asset }: { asset: Asset }) => {
-  const [chartType, setChartType] = useState<chartType>("area");
-  const [enableDataLabels, setEnableDataLabels] = useState(false);
+  const [trendType, setTrendType] = useState<TrendType>("area");
+  const [enableDataLabels, setEnableDataLabels] = useState(true);
   const { data: parentAsset, isLoading, error } = useAsset(asset.id);
 
   if (isLoading) return <DashboardCardSkeleton />;
@@ -24,7 +24,7 @@ const LossesDailyTrendCard = ({ asset }: { asset: Asset }) => {
     <DashboardCard p={0} py={2}>
       <Box position="relative">
         <HStack position="absolute" className="z-level-one" top={-3}>
-          <TrendTypeSelector onSelect={(type) => setChartType(type)} />
+          <TrendTypeSelector onSelect={(type) => setTrendType(type)} />
           <Checkbox
             isChecked={enableDataLabels}
             onChange={() => {
@@ -34,18 +34,11 @@ const LossesDailyTrendCard = ({ asset }: { asset: Asset }) => {
             Data Labels
           </Checkbox>
         </HStack>
-        {chartType === "area" && (
-          <LossesDailyAreaChart
-            parentAsset={parentAsset!}
-            enableDataLabels={enableDataLabels}
-          />
-        )}
-        {chartType === "line" && (
-          <LossesDailyLineChart
-            parentAsset={parentAsset!}
-            enableDataLabels={enableDataLabels}
-          />
-        )}
+        <LossesDailyTrend
+          parentAsset={parentAsset!}
+          trendType={trendType}
+          enableDataLabels={enableDataLabels}
+        />
       </Box>
     </DashboardCard>
   );

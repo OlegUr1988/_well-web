@@ -1,11 +1,10 @@
 import { Select } from "@chakra-ui/react";
-
-export type chartType = "area" | "line";
+import { TrendType } from "../../../entities/trendType";
 
 const TrendTypeSelector = ({
   onSelect,
 }: {
-  onSelect: (type: chartType) => void;
+  onSelect: (type: TrendType) => void;
 }) => {
   return (
     <Select
@@ -13,11 +12,11 @@ const TrendTypeSelector = ({
       rounded={5}
       width={200}
       m={3}
-      onChange={(e) => onSelect(e.target.value as chartType)}
-      defaultValue={"area"}
+      onChange={(e) => onSelect(e.target.value as TrendType)}
+      defaultValue="area"
     >
-      <option value={"area"}>Area Chart</option>
-      <option value={"line"}>Line Chart</option>
+      <option value="area">Area Chart</option>
+      <option value="line">Line Chart</option>
     </Select>
   );
 };
