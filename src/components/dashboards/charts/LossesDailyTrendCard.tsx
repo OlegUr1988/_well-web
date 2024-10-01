@@ -1,7 +1,7 @@
 import { Box, Checkbox, HStack, Show } from "@chakra-ui/react";
 import { useState } from "react";
-import { TrendType } from "../../../entities/trendType";
 import { Asset } from "../../../entities/assets";
+import { TrendType } from "../../../entities/trendType";
 import { useAsset } from "../../../hooks/assets";
 import {
   DashboardCard,
@@ -9,7 +9,8 @@ import {
   DashboardCardSkeleton,
 } from "../common";
 import TrendTypeSelector from "../common/TrendTypeSelector";
-import LossesDailyTrend from "./LossesDailyTrend";
+import LossesDailyAreaChart from "./LossesDailyAreaChart";
+import LossesDailyLineChart from "./LossesDailyLineChart";
 
 const LossesDailyTrendCard = ({ asset }: { asset: Asset }) => {
   const [trendType, setTrendType] = useState<TrendType>("area");
@@ -36,11 +37,18 @@ const LossesDailyTrendCard = ({ asset }: { asset: Asset }) => {
             </Checkbox>
           </Show>
         </HStack>
-        <LossesDailyTrend
-          parentAsset={parentAsset!}
-          trendType={trendType}
-          enableDataLabels={enableDataLabels}
-        />
+        {trendType === "area" && (
+          <LossesDailyAreaChart
+            parentAsset={parentAsset!}
+            enableDataLabels={enableDataLabels}
+          />
+        )}
+        {trendType === "line" && (
+          <LossesDailyLineChart
+            parentAsset={parentAsset!}
+            enableDataLabels={enableDataLabels}
+          />
+        )}
       </Box>
     </DashboardCard>
   );
