@@ -1,4 +1,4 @@
-import { Box, Checkbox, HStack } from "@chakra-ui/react";
+import { Box, Checkbox, HStack, Show } from "@chakra-ui/react";
 import { useState } from "react";
 import { TrendType } from "../../../entities/trendType";
 import { Asset } from "../../../entities/assets";
@@ -25,14 +25,16 @@ const LossesDailyTrendCard = ({ asset }: { asset: Asset }) => {
       <Box position="relative">
         <HStack position="absolute" className="z-level-one" top={-3}>
           <TrendTypeSelector onSelect={(type) => setTrendType(type)} />
-          <Checkbox
-            isChecked={enableDataLabels}
-            onChange={() => {
-              setEnableDataLabels(!enableDataLabels);
-            }}
-          >
-            Data Labels
-          </Checkbox>
+          <Show above="lg">
+            <Checkbox
+              isChecked={enableDataLabels}
+              onChange={() => {
+                setEnableDataLabels(!enableDataLabels);
+              }}
+            >
+              Data Labels
+            </Checkbox>
+          </Show>
         </HStack>
         <LossesDailyTrend
           parentAsset={parentAsset!}
