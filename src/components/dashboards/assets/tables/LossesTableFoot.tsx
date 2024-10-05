@@ -47,7 +47,7 @@ const LossesTableFoot = ({
         </LossesTableHeadCell>
         <LossesTableHeadCell whiteSpace="nowrap">Ton CO2</LossesTableHeadCell>
         <LossesTableHeadCell>
-          {getRatio(records, parentRecords)}
+          {getRatio(records, parentRecords, "kWh")}
         </LossesTableHeadCell>
       </Tr>
     </Tfoot>

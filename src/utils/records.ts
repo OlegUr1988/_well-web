@@ -1,7 +1,7 @@
 import _ from "lodash";
+import numeral from "numeral";
 import { Assignment } from "../entities/assignments";
 import { Record } from "../entities/records";
-import numeral from "numeral";
 
 export const getRecordsByUnits = (records: Record[], units: string) =>
   records.filter(
@@ -54,10 +54,16 @@ export const getAverageOfRecords = (
 export const getSumOfRecords = (records: Record[], units: string) =>
   numeral(calculateSum(getRecordsByUnits(records, units))).format("0,0");
 
-export const getRatio = (dividendRecords: Record[], deviderRecords: Record[]) =>
-  numeral(calculateSum(dividendRecords) / calculateSum(deviderRecords)).format(
-    "0.00%"
-  );
+export const getRatio = (
+  dividendRecords: Record[],
+  deviderRecords: Record[],
+  units: string
+) => {
+  return numeral(
+    calculateSum(getRecordsByUnits(dividendRecords, units)) /
+      calculateSum(getRecordsByUnits(deviderRecords, units))
+  ).format("0.00%");
+};
 
 export const groupBy = (records: Record[], key: keyof Record) =>
   _.groupBy(records, (item) => item[key]);
