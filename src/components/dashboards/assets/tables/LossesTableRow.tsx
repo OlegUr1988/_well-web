@@ -40,7 +40,7 @@ const LossesTableRow = ({ parentAssetAttributes, attribute }: Props) => {
       </LossesTableBodyCell>
       <LossesTableBodyCell>Ton CO2</LossesTableBodyCell>
       <LossesTableBodyCell>
-        {getRatio(records, parentRecords)}
+        {getRatio(records, parentRecords, 'kWh')}
       </LossesTableBodyCell>
     </Tr>
   );
