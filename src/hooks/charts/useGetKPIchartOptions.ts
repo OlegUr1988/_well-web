@@ -4,36 +4,74 @@ import { Asset } from "../../entities/assets";
 import { Trend } from "../../store/dashboard";
 import { getArrayOfSums, groupBy } from "../../utils/records";
 import useGetRecords from "../useGetRecords";
+import { useAssets, useAssetsByIds } from "../assets";
 
-const useGetKPIchartOptions = (asset: Asset, trendType: Trend) => {
+const useGetKPIchartOptions = (
+  entity: Asset,
+  trendType: Trend,
+  isPlant = false
+) => {
   // Targets for asset
   const {
     productionTarget,
     energyConsumptionTarget,
     specificEnergyConsupmtionTarget,
-  } = asset.target;
+  } = entity.target;
 
   let target = 0;
 
-  // Get assignments
-  const attributes = _.flatten(asset.attributes);
-  const assignments = _.flatten(attributes.map((attr) => attr.assignments));
-  const productionAssignments = assignments.filter(
-    (ass) => ass.attribute.name.toLowerCase() === "production"
+  // Get production assignments
+  const entityAttributes = _.flatten(entity.attributes);
+  const entityAssignments = _.flatten(
+    entityAttributes.map((attr) => attr.assignments)
   );
-  const consumptionAssignments = assignments.filter(
-    (ass) => ass.attribute.name.toLowerCase() === "total energy consumption"
+  const productionAssignments = entityAssignments.filter(
+    (ass) => ass.attribute.name.toLowerCase() === "production"
   );
 
   // Get Records
   const { records: productions, isLoading: isProductionsLoading } =
     useGetRecords(productionAssignments);
-  const {
-    records: energyConsumptions,
-    isLoading: isEnergyConsumptionsLoading,
-  } = useGetRecords(consumptionAssignments);
 
-  const isLoading = isProductionsLoading || isEnergyConsumptionsLoading;
+  // Get energy consumption assignments
+  const areasIds = entity.children.map((area) => area.id);
+  const { data: areas, isLoading: isAreasLoading } = useAssets({
+    ids: areasIds,
+  });
+  const assetIds = _.flatten(
+    areas?.map((area) => area.children.map((asset) => asset.id)) || []
+  );
+
+  const { data: assets, isLoading: isAssetsLoading } = useAssetsByIds({
+    ids: assetIds,
+  });
+
+  const plantAttributes = assets
+    ? _.flatten(assets.map((asset) => asset.attributes))
+    : [];
+  const plantAssignments = _.flatten(
+    plantAttributes.map((attr) => attr?.assignments || [])
+  );
+
+  // Get Area assignments
+  const assetAttributes = _.flatten(
+    entity.children.map((asset) => asset.attributes)
+  );
+  const areaAssignments = _.flatten(
+    assetAttributes.map((attr) => attr.assignments)
+  );
+
+  const assignments = isPlant ? plantAssignments : areaAssignments;
+
+  // Get Assets Records
+  const { records: assetsRecords, isLoading: isRecordsLoading } =
+    useGetRecords(assignments);
+
+  const isLoading =
+    isProductionsLoading ||
+    isAreasLoading ||
+    isAssetsLoading ||
+    isRecordsLoading;
 
   let series: {
     name: string;
@@ -66,7 +104,7 @@ const useGetKPIchartOptions = (asset: Asset, trendType: Trend) => {
   }
 
   if (trendType === "energy consumption") {
-    const energyConsumptionGroups = groupBy(energyConsumptions, "timestamp");
+    const energyConsumptionGroups = groupBy(assetsRecords, "timestamp");
     series = [
       {
         name: "Energy consumption",
@@ -85,7 +123,7 @@ const useGetKPIchartOptions = (asset: Asset, trendType: Trend) => {
 
   if (trendType === "specific energy consumption") {
     const productionGroups = groupBy(productions, "timestamp");
-    const energyConsumptionGroups = groupBy(energyConsumptions, "timestamp");
+    const energyConsumptionGroups = groupBy(assetsRecords, "timestamp");
     const sumOfProductions = getArrayOfSums(productionGroups);
     const sumOfEnergyConsumptions = getArrayOfSums(energyConsumptionGroups);
     const specificEnergyConsumptionGroups = _.mapValues(
