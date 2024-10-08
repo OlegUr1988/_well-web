@@ -11,12 +11,14 @@ import TotalKPICardHeader from "./TotalKPICardHeader";
 interface Props {
   asset: Asset;
   trendType: Trend;
+  isPlant?: boolean;
 }
 
-const TotalKPITrendCard = ({ asset, trendType }: Props) => {
+const TotalKPITrendCard = ({ asset, trendType, isPlant = false }: Props) => {
   const { isLoading, series, options } = useGetKPIchartOptions(
     asset,
-    trendType
+    trendType,
+    isPlant
   );
 
   const getHeader = () => {
