@@ -1,12 +1,12 @@
 import { GridItem, SimpleGrid } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
-import { useCalculatePlantKPI } from "../../../hooks/calculations";
+import { useCalculateKPI } from "../../../hooks/calculations";
 import useDashboardsStore from "../../../store/dashboard";
 import { TotalKPICard, TotalKPISkeletonCard } from "../common";
 
 const PlantTotalCards = ({ plant }: { plant: Asset }) => {
   const setTrend = useDashboardsStore((s) => s.setTrend);
-  const totalKPIs = useCalculatePlantKPI(plant);
+  const totalKPIs = useCalculateKPI(plant, true);
 
   if (!totalKPIs) return null;
 

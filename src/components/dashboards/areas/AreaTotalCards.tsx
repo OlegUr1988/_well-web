@@ -1,12 +1,12 @@
 import { Box, GridItem, SimpleGrid } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
-import { useCalculateAreaKPI } from "../../../hooks/calculations";
+import { useCalculateKPI } from "../../../hooks/calculations";
 import useDashboardsStore from "../../../store/dashboard";
 import { TotalKPICard, TotalKPISkeletonCard } from "../common/";
 
 const AreaTotalCards = ({ area }: { area: Asset }) => {
   const setTrend = useDashboardsStore((s) => s.setTrend);
-  const totalKPIs = useCalculateAreaKPI(area);
+  const totalKPIs = useCalculateKPI(area);
 
   if (!totalKPIs) return null;
 

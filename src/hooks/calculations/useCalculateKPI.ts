@@ -7,17 +7,18 @@ import {
   getTotalDifference,
   groupBy,
 } from "../../utils/records";
+import { useAssets, useAssetsByIds } from "../assets";
 import { useConstantByName } from "../constants";
 import useGetRecords from "../useGetRecords";
 
-const useCalculateAreaKPI = (area: Asset) => {
+const useCalculateKPI = (entity: Asset, isPlant = false) => {
   // Get Targets for asset
   const {
     productionTarget,
     energyConsumptionTarget,
     specificEnergyConsupmtionTarget,
     CO2EmissionTarget,
-  } = area.target;
+  } = entity.target;
 
   const {
     data: constant,
@@ -28,9 +29,11 @@ const useCalculateAreaKPI = (area: Asset) => {
 
   // Production part
   // Get Production assignments
-  const attributes = _.flatten(area.attributes);
-  const assignments = _.flatten(attributes.map((p) => p.assignments));
-  const productionAssignments = assignments.filter(
+  const entityAttributes = _.flatten(entity.attributes);
+  const entityAssignments = _.flatten(
+    entityAttributes.map((p) => p.assignments)
+  );
+  const productionAssignments = entityAssignments.filter(
     (ass) => ass.attribute.name.toLowerCase() === "production"
   );
 
@@ -42,25 +45,65 @@ const useCalculateAreaKPI = (area: Asset) => {
   } = useGetRecords(productionAssignments);
 
   // Energy Consumption part
-  // Get Assets Assignments
+  // Get Plant Assignments
+  const areasIds = entity.children.map((area) => area.id);
+  const {
+    data: areas,
+    isLoading: isAreasLoading,
+    error: isAreasError,
+  } = useAssets({
+    ids: areasIds,
+  });
+
+  const assetIds = _.flatten(
+    areas?.map((area) => area.children.map((asset) => asset.id)) || []
+  );
+
+  const {
+    data: assets,
+    isLoading: isAssetsLoading,
+    error: isAssetsError,
+  } = useAssetsByIds({
+    ids: assetIds,
+  });
+
+  const plantAttributes = assets
+    ? _.flatten(assets.map((asset) => asset.attributes))
+    : [];
+  const plantAssignments = _.flatten(
+    plantAttributes.map((attr) => attr?.assignments || [])
+  );
+
+  // Get Area assignments
   const assetAttributes = _.flatten(
-    area.children.map((asset) => asset.attributes)
+    entity.children.map((asset) => asset.attributes)
   );
-  const assetAssignments = _.flatten(
-    assetAttributes.map((asset) => asset.assignments)
+  const areaAssignments = _.flatten(
+    assetAttributes.map((attr) => attr.assignments)
   );
+
+  const assignments = isPlant ? plantAssignments : areaAssignments;
 
   // Get Assets Records
   const {
     records: assetsRecords,
-    isLoading: isChildrenLoading,
-    error: isAssetsError,
-  } = useGetRecords(assetAssignments);
+    isLoading: isRecordsLoading,
+    error: isRecordsError,
+  } = useGetRecords(assignments);
 
   // Handle loading and error
   const isLoading =
-    isCO2CoefficientLoading || isProductionsLoading || isChildrenLoading;
-  const error = isCO2CoefficientError || isProductionError || isAssetsError;
+    isCO2CoefficientLoading ||
+    isProductionsLoading ||
+    isAreasLoading ||
+    isAssetsLoading ||
+    isRecordsLoading;
+  const error =
+    isCO2CoefficientError ||
+    isProductionError ||
+    isAreasError ||
+    isAssetsError ||
+    isRecordsError;
 
   if (isLoading)
     return { isLoading, totals: {}, targetDifferences: {}, units: {}, error };
@@ -158,4 +201,4 @@ const useCalculateAreaKPI = (area: Asset) => {
   };
 };
 
-export default useCalculateAreaKPI;
+export default useCalculateKPI;
