@@ -1,27 +1,18 @@
 import { Box, GridItem, SimpleGrid } from "@chakra-ui/react";
 import { Asset } from "../../../entities/assets";
-import {
-  useCalculateAreaCO2Emission,
-  useCalculateTotalKPIs,
-} from "../../../hooks/calculations";
+import { useCalculateKPI } from "../../../hooks/calculations";
 import useDashboardsStore from "../../../store/dashboard";
 import { TotalKPICard, TotalKPISkeletonCard } from "../common/";
 
 const AreaTotalCards = ({ area }: { area: Asset }) => {
   const setTrend = useDashboardsStore((s) => s.setTrend);
-  const totalKPIs = useCalculateTotalKPIs(area);
-  const CO2EmissionKPI = useCalculateAreaCO2Emission(area);
+  const totalKPIs = useCalculateKPI(area);
 
-  if (!totalKPIs || !CO2EmissionKPI) return null;
+  if (!totalKPIs) return null;
 
-  const { isLoading: isTotalKPIsLoading, totals, units } = totalKPIs;
-  const {
-    isLoading: isCO2EmissionLoading,
-    totalCO2Emission,
-    CO2EmissionDifference,
-  } = CO2EmissionKPI;
+  const { isLoading, totals, units } = totalKPIs;
 
-  if (isTotalKPIsLoading || isCO2EmissionLoading)
+  if (isLoading)
     return (
       <SimpleGrid columns={4} gap={5}>
         <TotalKPISkeletonCard />
@@ -35,6 +26,7 @@ const AreaTotalCards = ({ area }: { area: Asset }) => {
     totalProduction,
     totalEnergyConsumption,
     totalSpecificEnergyConsumption,
+    totalCO2Emission,
   } = totals;
 
   const { productionUnit, energyConsumptionUnit } = units;
@@ -44,6 +36,7 @@ const AreaTotalCards = ({ area }: { area: Asset }) => {
     productionTargetDifference,
     energyConsumptDifference,
     specificEnergyConsumptionDifference,
+    CO2EmissionDifference,
   } = targetDifferences;
 
   return (

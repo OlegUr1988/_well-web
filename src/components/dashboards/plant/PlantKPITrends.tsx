@@ -19,6 +19,7 @@ const PlantKPITrends = ({ plant }: { plant: Asset }) => {
         <TotalKPITrendCard
           asset={plant!}
           trendType="specific energy consumption"
+          isPlant={true}
         />
       )}
       {trend === "CO2 emission" && (
