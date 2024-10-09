@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { heatType } from "../../constants/utilityTypes";
 import { Asset } from "../../entities/assets";
 import {
   calculateSum,
@@ -10,6 +11,7 @@ import {
 import { useAssets, useAssetsByIds } from "../assets";
 import { useConstantByName } from "../constants";
 import useGetRecords from "../useGetRecords";
+import useUtilityTypes from "../useUtilityTypes";
 
 const useCalculateKPI = (entity: Asset, isPlant = false) => {
   // Get Targets for asset
@@ -20,12 +22,24 @@ const useCalculateKPI = (entity: Asset, isPlant = false) => {
     CO2EmissionTarget,
   } = entity.target;
 
+  // Get Constants
   const {
     data: constant,
     isLoading: isCO2CoefficientLoading,
     error: isCO2CoefficientError,
   } = useConstantByName("CO2 conversion coefficient");
   const CO2Coefficient = constant?.value || 0;
+
+  // Get Utilities
+  const {
+    data: utilities,
+    isLoading: isUtilitiesLoading,
+    error: isUtilitiesError,
+  } = useUtilityTypes();
+
+  const heatUtility = utilities?.find(
+    (utility) => utility.name.toLowerCase() === heatType
+  );
 
   // Production part
   // Get Production assignments
@@ -67,39 +81,52 @@ const useCalculateKPI = (entity: Asset, isPlant = false) => {
     ids: assetIds,
   });
 
-  const plantAttributes = assets
-    ? _.flatten(assets.map((asset) => asset.attributes))
+  const filteredAssets = assets?.filter(
+    (asset) => asset.utilityTypeId !== heatUtility?.id
+  );
+
+  const attributesForPlant = filteredAssets
+    ? _.flatten(filteredAssets.map((asset) => asset.attributes))
     : [];
-  const plantAssignments = _.flatten(
-    plantAttributes.map((attr) => attr?.assignments || [])
+  const assignmentsForPlant = _.flatten(
+    attributesForPlant.map((attr) => attr?.assignments || [])
   );
 
   // Get Area assignments
-  const assetAttributes = _.flatten(
-    entity.children.map((asset) => asset.attributes)
-  );
-  const areaAssignments = _.flatten(
-    assetAttributes.map((attr) => attr.assignments)
+  const filteredChildren = entity.children.filter(
+    (asset) => asset.utilityTypeId !== heatUtility?.id
   );
 
-  const assignments = isPlant ? plantAssignments : areaAssignments;
+  const attributesForArea = _.flatten(
+    filteredChildren.map((asset) => asset.attributes)
+  );
+  const assignmentsForArea = _.flatten(
+    attributesForArea.map((attr) => attr.assignments)
+  );
+
+  const consumptionAssignments = isPlant
+    ? assignmentsForPlant
+    : assignmentsForArea;
 
   // Get Assets Records
   const {
-    records: assetsRecords,
+    records: consumptions,
     isLoading: isRecordsLoading,
     error: isRecordsError,
-  } = useGetRecords(assignments);
+  } = useGetRecords(consumptionAssignments);
 
   // Handle loading and error
   const isLoading =
     isCO2CoefficientLoading ||
+    isUtilitiesLoading ||
     isProductionsLoading ||
     isAreasLoading ||
     isAssetsLoading ||
     isRecordsLoading;
+
   const error =
     isCO2CoefficientError ||
+    isUtilitiesError ||
     isProductionError ||
     isAreasError ||
     isAssetsError ||
@@ -126,11 +153,11 @@ const useCalculateKPI = (entity: Asset, isPlant = false) => {
   );
 
   // Calculating energy consumptions
-  const totalEnergyConsumption = calculateSum(assetsRecords);
-  const energyConsumptionUnit = assetsRecords.length
-    ? assetsRecords[0].PHDTag.unit.name
+  const totalEnergyConsumption = calculateSum(consumptions);
+  const energyConsumptionUnit = consumptions.length
+    ? consumptions[0].PHDTag.unit.name
     : "KWh";
-  const energyConsumptionGroups = groupBy(assetsRecords, "timestamp");
+  const energyConsumptionGroups = groupBy(consumptions, "timestamp");
   const energyConsumptDifferences = getDiffirences(
     energyConsumptionGroups,
     energyConsumptionTarget
@@ -162,7 +189,7 @@ const useCalculateKPI = (entity: Asset, isPlant = false) => {
   );
 
   // Calculating CO2 emissions
-  const groupedRecords = groupBy(assetsRecords, "timestamp");
+  const groupedRecords = groupBy(consumptions, "timestamp");
   const groupedSumOfRecords = getArrayOfSums(groupedRecords);
   const CO2EmissionsGrouped = _.mapValues(
     groupedSumOfRecords,
