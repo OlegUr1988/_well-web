@@ -1,10 +1,12 @@
 import _ from "lodash";
 import productionLineChartOptions from "../../constants/productionLineChartOptions";
+import { heatType } from "../../constants/utilityTypes";
 import { Asset } from "../../entities/assets";
 import { Trend } from "../../store/dashboard";
 import { getArrayOfSums, groupBy } from "../../utils/records";
-import useGetRecords from "../useGetRecords";
 import { useAssets, useAssetsByIds } from "../assets";
+import useGetRecords from "../useGetRecords";
+import useUtilityTypes from "../useUtilityTypes";
 
 const useGetKPIchartOptions = (
   entity: Asset,
@@ -20,6 +22,13 @@ const useGetKPIchartOptions = (
 
   let target = 0;
 
+  // Get Utilities
+  const { data: utilities, isLoading: isUtilitiesLoading } = useUtilityTypes();
+
+  const heatUtility = utilities?.find(
+    (utility) => utility.name.toLowerCase() === heatType
+  );
+
   // Get production assignments
   const entityAttributes = _.flatten(entity.attributes);
   const entityAssignments = _.flatten(
@@ -29,11 +38,11 @@ const useGetKPIchartOptions = (
     (ass) => ass.attribute.name.toLowerCase() === "production"
   );
 
-  // Get Records
+  // Get Production Records
   const { records: productions, isLoading: isProductionsLoading } =
     useGetRecords(productionAssignments);
 
-  // Get energy consumption assignments
+  // Get Energy Consumption Assignments
   const areasIds = entity.children.map((area) => area.id);
   const { data: areas, isLoading: isAreasLoading } = useAssets({
     ids: areasIds,
@@ -46,28 +55,37 @@ const useGetKPIchartOptions = (
     ids: assetIds,
   });
 
-  const plantAttributes = assets
-    ? _.flatten(assets.map((asset) => asset.attributes))
+  const filteredAssets = assets?.filter(
+    (asset) => asset.utilityTypeId !== heatUtility?.id
+  );
+
+  const attributesForPlant = filteredAssets
+    ? _.flatten(filteredAssets.map((asset) => asset.attributes))
     : [];
-  const plantAssignments = _.flatten(
-    plantAttributes.map((attr) => attr?.assignments || [])
+  const assignmentsForPlant = _.flatten(
+    attributesForPlant.map((attr) => attr?.assignments || [])
   );
 
   // Get Area assignments
-  const assetAttributes = _.flatten(
-    entity.children.map((asset) => asset.attributes)
-  );
-  const areaAssignments = _.flatten(
-    assetAttributes.map((attr) => attr.assignments)
+  const filteredChildren = entity.children.filter(
+    (asset) => asset.utilityTypeId !== heatUtility?.id
   );
 
-  const assignments = isPlant ? plantAssignments : areaAssignments;
+  const attributesForArea = _.flatten(
+    filteredChildren.map((asset) => asset.attributes)
+  );
+  const assignmentsForArea = _.flatten(
+    attributesForArea.map((attr) => attr.assignments)
+  );
+
+  const assignments = isPlant ? assignmentsForPlant : assignmentsForArea;
 
   // Get Assets Records
   const { records: assetsRecords, isLoading: isRecordsLoading } =
     useGetRecords(assignments);
 
   const isLoading =
+    isUtilitiesLoading ||
     isProductionsLoading ||
     isAreasLoading ||
     isAssetsLoading ||
@@ -156,8 +174,8 @@ const useGetKPIchartOptions = (
       options: {},
     };
 
-  const minValue = _.minBy(series![0].data, "y")!.y;
-  const maxValue = _.maxBy(series![0].data, "y")!.y;
+  const minValue = _.minBy(series![0].data, "y")?.y;
+  const maxValue = _.maxBy(series![0].data, "y")?.y;
 
   const min = _.min([minValue, target])! * 0.8;
   const max = _.max([maxValue, target])! * 1.2;

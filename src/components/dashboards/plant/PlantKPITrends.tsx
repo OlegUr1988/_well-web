@@ -10,10 +10,18 @@ const PlantKPITrends = ({ plant }: { plant: Asset }) => {
     <>
       {trend === "bad actors" && <PlantLossesCard plant={plant} />}
       {trend === "production" && (
-        <TotalKPITrendCard asset={plant!} trendType="production" />
+        <TotalKPITrendCard
+          asset={plant!}
+          trendType="production"
+          isPlant={true}
+        />
       )}
       {trend === "energy consumption" && (
-        <TotalKPITrendCard asset={plant!} trendType="energy consumption" />
+        <TotalKPITrendCard
+          asset={plant!}
+          trendType="energy consumption"
+          isPlant={true}
+        />
       )}
       {trend === "specific energy consumption" && (
         <TotalKPITrendCard
