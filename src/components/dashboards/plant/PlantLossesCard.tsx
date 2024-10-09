@@ -3,7 +3,7 @@ import _ from "lodash";
 import { useState } from "react";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
-import useGetAssetsWithConsumption from "../../../hooks/useGetAssetsWithConsumption";
+import useAssetsLosses from "../../../hooks/useAssetsLosses";
 import TotalLossesColumnChart from "../charts/TotalLossesColumnChart";
 import {
   AssetsSelectInput,
@@ -26,10 +26,10 @@ const PlantLossesCard = ({ plant }: { plant: Asset }) => {
   );
 
   const {
-    assetsWithConsumption,
+    assets,
     isLoading: isAssetsLoading,
     error: isAssetsError,
-  } = useGetAssetsWithConsumption(assetIds);
+  } = useAssetsLosses(assetIds);
 
   if (isAreasLoading || isAssetsLoading)
     return <DashboardCardSkeleton h={500} />;
@@ -37,22 +37,17 @@ const PlantLossesCard = ({ plant }: { plant: Asset }) => {
   if (areasError || isAssetsError) return null;
 
   const handleSelect = (values: number[]) => {
-    const selectedAssets = assetsWithConsumption!.filter((asset) =>
-      values.includes(asset.id)
-    );
+    const selectedAssets = assets!.filter((asset) => values.includes(asset.id));
     setSelected(selectedAssets);
   };
 
-  const filtered = selected.length ? selected : assetsWithConsumption;
+  const filtered = selected.length ? selected : assets;
 
   return (
     <DashboardCard p={5}>
       <TotalKPICardHeader label="Bad actors" />
       <Box className="z-level-two" mb={3}>
-        <AssetsSelectInput
-          assets={assetsWithConsumption!}
-          onSelect={handleSelect}
-        />
+        <AssetsSelectInput assets={assets!} onSelect={handleSelect} />
       </Box>
       <Box className="z-level-one">
         <TotalLossesColumnChart assets={filtered!} />

@@ -2,7 +2,7 @@ import { Center, Heading } from "@chakra-ui/react";
 import _ from "lodash";
 import { Asset } from "../../../entities/assets";
 import { useAssetsByIds } from "../../../hooks/assets";
-import useGetAssetsWithConsumption from "../../../hooks/useGetAssetsWithConsumption";
+import useAssetsLosses from "../../../hooks/useAssetsLosses";
 import { LossesByAssetsPieChart } from "../charts/";
 import { DashboardCard, DashboardCardSkeleton } from "../common/";
 
@@ -17,10 +17,10 @@ const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
     areas?.map((area) => area.children.map((asset) => asset.id))
   );
   const {
-    assetsWithConsumption,
+    assets,
     isLoading: isAssetsLoading,
     error: isAssetsError,
-  } = useGetAssetsWithConsumption(assetIds);
+  } = useAssetsLosses(assetIds);
 
   if (isAreasLoading || isAssetsLoading)
     return <DashboardCardSkeleton h={300} />;
@@ -33,7 +33,7 @@ const PlantLossesByAssetsCard = ({ plant }: { plant: Asset }) => {
         Top 15 Bad Actors
       </Heading>
       <Center>
-        <LossesByAssetsPieChart assets={assetsWithConsumption!} />
+        <LossesByAssetsPieChart assets={assets!} />
       </Center>
     </DashboardCard>
   );

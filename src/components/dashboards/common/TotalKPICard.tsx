@@ -9,6 +9,7 @@ interface Props {
   units: string;
   difference: number;
   isLimit?: boolean;
+  showDigits?: boolean;
 }
 
 const TotalKPICard = ({
@@ -17,7 +18,10 @@ const TotalKPICard = ({
   units,
   difference,
   isLimit = false,
+  showDigits = false,
 }: Props) => {
+  const digitsFormat = showDigits ? "0.00" : "";
+
   return (
     <DashboardCard h="100%">
       <VStack justify="space-between" h="100%" align="flex-start">
@@ -31,7 +35,7 @@ const TotalKPICard = ({
             mr={3}
             color="blue.700"
           >
-            {numeral(value).format().toUpperCase()}
+            {numeral(value).format(digitsFormat).toUpperCase()}
           </Text>
           <Text fontSize={{ base: "sm", xl: "md" }}>{units}</Text>
         </HStack>

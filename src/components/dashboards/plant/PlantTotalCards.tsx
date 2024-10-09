@@ -68,6 +68,7 @@ const PlantTotalCards = ({ plant }: { plant: Asset }) => {
           units="kWh/Ton"
           difference={specificEnergyConsumptionDifference}
           isLimit={true}
+          showDigits={true}
         />
       </GridItem>
       <GridItem onClick={() => setTrend("CO2 emission")} cursor="pointer">
