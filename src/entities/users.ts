@@ -1,5 +1,6 @@
 import { BasicQuery } from "./basicQuery";
 
+
 export interface User {
   id: number;
   username: string;
